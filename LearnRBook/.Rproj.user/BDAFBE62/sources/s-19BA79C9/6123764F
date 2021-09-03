@@ -3,19 +3,22 @@
     "path": "~/Documents/GitHub/LearnRBook/LearnRBook/_bookdown.yml",
     "project_path": "_bookdown.yml",
     "type": "yaml",
-    "hash": "4031387033",
+    "hash": "2929246348",
     "contents": "",
     "dirty": false,
     "created": 1630644537304.0,
     "source_on_save": false,
     "relative_order": 3,
-    "properties": {},
+    "properties": {
+        "cursorPosition": "4,18",
+        "scrollLine": "0"
+    },
     "folds": "",
-    "lastKnownWriteTime": 1630644534,
+    "lastKnownWriteTime": 1630645010,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1630644534,
+    "last_content_update": 1630645010782,
     "read_only": false,
     "read_only_alternatives": []
 }
