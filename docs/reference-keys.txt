@@ -1,11 +1,12 @@
 fig:nice-fig
 tab:nice-tab
 eq:binom
+thm:tri
 about
 usage
 render-book
 preview-book
-hello-bookdown
+welcome-to-stat-107
 a-section
 cross
 chapters-and-sub-chapters

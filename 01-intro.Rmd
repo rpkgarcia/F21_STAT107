@@ -1,6 +1,6 @@
-# Hello bookdown 
+# Welcome to STAT 107
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+You can use this page as a resource for all your course notes.  It will be updated as the quarter progresses. 
 
 ## A section
 
