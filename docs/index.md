@@ -1,7 +1,7 @@
 --- 
 title: "STAT 107 Outline of Class Notes"
-author: "Rebecca Kurtz-Garcia"
-date: "`r Sys.Date()`"
+author: "John Doe"
+date: "2021-09-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -20,4 +20,4 @@ monofont: "Courier New"
 
 # Welcome {-}
 
-Welcome to STAT 107! Here is stuff that can be written. 
+Welcome to STAT 107! Here is stufff that can be written. 
