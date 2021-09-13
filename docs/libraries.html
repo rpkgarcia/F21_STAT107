@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>STAT 107 Outline of Class Notes</title>
+  <title>Chapter 6 Libraries | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 6 Libraries | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 6 Libraries | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="if-statements.html"/>
+<link rel="next" href="sharing-your-book.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -145,62 +145,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#history-of-r"><i class="fa fa-check"></i><b>1.1</b> History of R</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.1</b> The <strong>RStudio</strong> Interface</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.3</b> Additional Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-objects"><i class="fa fa-check"></i><b>1.2</b> R Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers"><i class="fa fa-check"></i>Numbers</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#character"><i class="fa fa-check"></i>Character</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i>Vectors</a></li>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#factors"><i class="fa fa-check"></i><b>1.2.1</b> Factors</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#lists"><i class="fa fa-check"></i>Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
-<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
-<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
-<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
-<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types"><i class="fa fa-check"></i><b>2.7</b> Other Object Types</a></li>
-<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
+<li class="chapter" data-level="2" data-path="more-on-objects.html"><a href="more-on-objects.html"><i class="fa fa-check"></i><b>2</b> More On Objects</a><ul>
+<li class="chapter" data-level="" data-path="more-on-objects.html"><a href="more-on-objects.html#factors-1"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="more-on-objects.html"><a href="more-on-objects.html#lists-1"><i class="fa fa-check"></i>Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html"><i class="fa fa-check"></i><b>3</b> More on R Objects</a><ul>
-<li class="chapter" data-level="3.1" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#factors-1"><i class="fa fa-check"></i><b>3.1</b> Factors</a></li>
-<li class="chapter" data-level="3.2" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#lists-1"><i class="fa fa-check"></i><b>3.2</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
-<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="3" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>3</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="3.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>3.1</b> Getting Data Sets in Our Working Environment</a><ul>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic Data Manipulation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
-<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
-<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
-<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>4.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>4.2</b> Built-In Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
-<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
-<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
+<li class="chapter" data-level="5" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>5</b> If Statements</a><ul>
+<li class="chapter" data-level="5.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>5.1</b> The <code>if else</code> chain</a></li>
+<li class="chapter" data-level="5.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>5.2</b> The <code>ifelse</code> function</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
-<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
-<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
-<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
-<li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
-<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
-<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
-<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
-<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
-<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
+<li class="chapter" data-level="6" data-path="libraries.html"><a href="libraries.html"><i class="fa fa-check"></i><b>6</b> Libraries</a></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a><ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -223,14 +209,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">STAT 107 Outline of Class Notes</h1>
-<p class="author"><em>Rebecca Kurtz-Garcia</em></p>
-<p class="date"><em>2021-09-12</em></p>
-</div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>Welcome to STAT 107! Here is stuff that can be written.</p>
+<div id="libraries" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Libraries</h1>
+<p><code>R</code> packages are a collection of <code>R</code> functions, complied code and sample data. They are stored under a directory called “library” in the <code>R</code> environment. By default, <code>R</code> installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the <code>R</code> console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the <code>R</code> program that is going to use them.</p>
+<p>All the packages available in <code>R</code> language are listed at <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">R Packages</a>.</p>
+<p>To see a list of all packages installed on your device.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="libraries.html#cb260-1"></a><span class="kw">library</span>()</span></code></pre></div>
+<p>To see a list of all packages that are currently loaded.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="libraries.html#cb261-1"></a><span class="kw">search</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:xtable&quot;    &quot;package:knitr&quot;    
+##  [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+##  [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
+## [10] &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
+<p>When adding a new package to our library we only have to install it once. We can do so with the following command.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="libraries.html#cb263-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<p>Alternatively, we can also go to the lower left hand window and select the <em>Packages</em> tab. Then hit the button <strong>Install</strong>. A dropdown menu will appear where we can search for the package name.</p>
+<p>Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="libraries.html#cb264-1"></a><span class="kw">library</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<p>For example, suppose we wanted to install and load the package “ggplot2”, (a very popular package for making plots). We would type the following commands.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="libraries.html#cb265-1"></a><span class="co"># Install package (only need to do this once)</span></span>
+<span id="cb265-2"><a href="libraries.html#cb265-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb265-3"><a href="libraries.html#cb265-3"></a></span>
+<span id="cb265-4"><a href="libraries.html#cb265-4"></a><span class="co"># Load into working environment (need to do this for each new R session)</span></span>
+<span id="cb265-5"><a href="libraries.html#cb265-5"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 
 </div>
             </section>
@@ -238,8 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="if-statements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sharing-your-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -271,7 +272,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-libraries.Rmd",
 "text": "Edit"
 },
 "history": {

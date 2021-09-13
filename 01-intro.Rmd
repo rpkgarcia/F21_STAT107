@@ -2,9 +2,18 @@
 
 This section was written primarily by @Desharnais2020, and was modified for our course.  I am grateful for his help.
 
+## History of R 
+
 ## The **RStudio** Interface 
 
 We will begin by looking at the RStudio software interface. Refer to Figure 1 as you follow the instructions below.
+
+
+```{r, echo = F, message=FALSE, warning=FALSE}
+library(knitr)
+knitr::include_graphics("images/rstudio.png")
+```
+
 
 Launch RStudio. You will see a window that looks like Fig. 1. There are four panels of the window:
 
@@ -90,210 +99,13 @@ df
 
 The columns are labeled with the names of the variables and the rows are labeled with the names of each car. Each row represents the data values for one car; that is, each row is one observation.
 
-## R Objects 
-
-At its core, `R` is an objected-oriented computational and programming environment. Everything in `R` is an object belonging to a certain *class*.
-`R `can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, and `character`. We will look at some examples.
-
-### Numbers {-}
-
-There are different types of numeric objects.  Specifically, we will first consider real numbers (can have decimal values) and integers. We can examine how `R` stores these types of numbers using the `class()` function. 
-
-We will begin with decimal numbers.
-
-```{r}
-a = 17.45
-a
-class(a)
-b = 5
-b 
-class(b)
-```
-
-Both the variables `a` and `b` are `numeric` objects. When you type a number `R` will default to treating it as a `numeric` object which allows decimals. 
-You can use the `as.integer()` function to create a variable that is specifically an integer number. 
-
-```{r}
-a = as.integer(a)
-a
-class(a)
-b = as.integer(b)
-b 
-class(b)
-```
-
-### Logical {-}
-
-Logical values are either "true" or "false" and are created by logical statements that compare variables. There are several ways to do logical statements.  To check if two values or objects are equal to each other we use "==".  To see if a value/object is greater than or less than another we use the "<", ">", "<=", or ">=". 
-
-```{r}
-b = 5
-2+3 == b
-n = (10<11)
-n
-class(n)
-e = (b >10)
-class(e)
-```
-
-The symbols "&" "|", and "!" are used for the logical operations "and", "or", and "not". Two logical expressions connected by & (and) are true only if both are true. Two logical expressions connected by | (or) are true if either are true.  The ! (not) operation turns a true into a false and vice-versa.
-
-```{r}
-e & n
-
-e | n 
-
-!n
-
-```
-
-### Character {-}
-
-`Character` values are text. They are often used as data values and labels. 
-
-```{r}
-first = "George"
-first 
-class(first)
-last = "Washington"
-last
-class(last)
-```
-There are several functions that can operate on character strings.
-
-```{r}
-full = paste(first, last)
-full 
-nchar(full)
-tolower(full)
-toupper(full)
-```
-
-The function `paste()` concatenates two or more character strings with a separator, which is a space by default. The function `nchar()` returns the number of characters in a string. The functions `tolower()` and `toupper()` changes any upper case characters to lower case and vice-versa.
-
-### Vectors {-}
-
-All the objects we have created this far are single element **vectors**.  `R` is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is often advantageous to utilize this feature.  A vector is a one dimensional array of the same data type.  We can use the concatenate function, `c()`, to create vectors, and to make a vector larger. 
-
-```{r}
-v1 = c(19, 390.3, pi, -32.1)
-v1
-class(v1)
-
-v2 = c(1.1, 6, -9.4, 32.1)
-v2
-class(v2)
-
-v3 = c(v1, first)
-class(v3)
-
-v4 = c(first, last)
-class(v4)
-```
 
 
-The **length()** function can be used to obtain the number of elements in a vector. 
 
-```{r}
-length(v1)
-```
+## Additional Resources 
 
-Vectors can be used in arithmetic computations. If the two vectors are of the same length, the computations are performed element-by-element.
-
-```{r}
-v1 + v2
-
-v1 * v2
-```
-
-Single numbers (scalars) will operate on all the vector elements in an expression. 
-
-```{r}
-5*v1
-
-v1/3
-```
-
-Individual elements of a vector can be obtained using an index in square brackets. A negative index removes that element from the vector. The `v2[-1]` is the vector `v2` with the first element removed. The concatenate function can be used to obtain two or more elements of a vector in any desired order. Here `v1[c(3,2)]` returns the third and second elements of the vector `v1`.
-
-```{r}
-v1[3]
-v2[-1]
-v3[c(3,2)]
-```
-### Factors 
-
-
-### Matrices {-}
-
-A matrix is a two dimensional array of data of the same type. The matrix function, `matrix()`, can be used to create a new matrix.
-
-```{r}
-m = matrix(c(1, 9, 2, 0, 5, 7, 3, 8, 4), 
-           nrow=3, ncol=3)
-m
-```
-
-`R` labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function.
-
-As with vectors, matrices can be used in arithmetic expressions with scalars and other matrices of the same size.
-
-```{r}
-m2 = m/2
-m2
-m *m2
-```
-
-Indices can be used to obtain the elements of a matrix, but now we must consider both the row and column.
-
-```{r}
-m[2,2]
-m[c(1,3), c(1,3)]
-m[2,]
-m[,3]
-```
-
-Some functions are particularly useful when using matrices.  For instance, `t()`, `dim()`, and `c()`. The transpose function, `t()`, switches the column and rows of a matrix. The dimension function, `dim()`, returns the dimensions (number of rows, columns) of a matrix. The concatenate function, `c()`, turns a matrix into a vector by concatenating the columns of the matrix.
-
-### Data Frames {-}
-
-Like a matrix, a data frame is a rectangular array of values where each column is a vector, However, unlike a matrix, the columns can be different data types. 
-
-We can create a set of vectors of the same length and use the `data.frame()` function to make a data frame object.
-
-```{r}
-age = c(25,37,23)
-gender = c("Male","Male","Female")
-married = c(FALSE, TRUE, FALSE)
-friends = data.frame(age, gender, married)
-friends
-```
-
-Each column is given the name of the vector used to define it. The data type of the three columns are numeric, character, and logical.
-
-There are a few functions that are particularly useful when working with data frames. The functions `nrow()` and `ncol()` return the number of rows and columns.  The function `rownames()` and `colnames()` can be used to change the row and column names.
-
-
-```{r}
-dim(friends)
-nrow(friends)
-ncol(friends)
-rownames(friends) = c("Doug", "Juan", "Mary")
-friends
-```
-We can refer to a data frame element using a row and column number or name. 
-
-```{r}
-friends[2,3]
-friends["Juan", "married"]
-```
-
-We can also subset an individual columns using the '$' symbol and specifying the column name. 
-
-```{r}
-friends$age
-```
-
-### Lists {-}
-
-
+- Chapters 1 of [CRAN Intro-to-R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+- Videos: 
+    + [Getting Started 1| How to Download and Install RStudio](https://ucr.yuja.com/V/Video?v=2365045&node=8476457&a=437885577&autoplay=1)
+    + [Getting Started 2|Rstudio Introduction cont'd, More Tabs Explained](https://ucr.yuja.com/V/Video?v=2368643&node=8487538&a=437248619&autoplay=1)
+    

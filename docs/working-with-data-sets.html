@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Working with Data Sets | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 4 Working with Data Sets | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Working with Data Sets | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 4 Working with Data Sets | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Working with Data Sets | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 4 Working with Data Sets | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="more-on-objects.html"/>
-<link rel="next" href="footnotes-and-citations.html"/>
+<link rel="prev" href="more-on-r-objects.html"/>
+<link rel="next" href="functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -145,48 +145,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.1</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#history-of-r"><i class="fa fa-check"></i><b>1.1</b> History of R</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-objects"><i class="fa fa-check"></i><b>1.2</b> R Objects</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#numbers"><i class="fa fa-check"></i>Numbers</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical"><i class="fa fa-check"></i>Logical</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#character"><i class="fa fa-check"></i>Character</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i>Vectors</a></li>
-<li class="chapter" data-level="1.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#factors"><i class="fa fa-check"></i><b>1.2.1</b> Factors</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.3</b> Additional Resources</a></li>
 </ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="more-on-objects.html"><a href="more-on-objects.html"><i class="fa fa-check"></i><b>2</b> More On Objects</a><ul>
-<li class="chapter" data-level="" data-path="more-on-objects.html"><a href="more-on-objects.html#factors-1"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="more-on-objects.html"><a href="more-on-objects.html#lists-1"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types"><i class="fa fa-check"></i><b>2.7</b> Other Object Types</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>3</b> Working with Data Sets</a><ul>
-<li class="chapter" data-level="3.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#loading-data-sets"><i class="fa fa-check"></i><b>3.1</b> Loading Data Sets</a><ul>
+<li class="chapter" data-level="3" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html"><i class="fa fa-check"></i><b>3</b> More on R Objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#factors-1"><i class="fa fa-check"></i><b>3.1</b> Factors</a></li>
+<li class="chapter" data-level="3.2" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#lists-1"><i class="fa fa-check"></i><b>3.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic Data Manipulation</a></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>4</b> Footnotes and citations</a><ul>
-<li class="chapter" data-level="4.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>4.1</b> Footnotes</a></li>
-<li class="chapter" data-level="4.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>4.2</b> Citations</a></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>5</b> Blocks</a><ul>
-<li class="chapter" data-level="5.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>5.1</b> Equations</a></li>
-<li class="chapter" data-level="5.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>5.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="5.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>5.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
+<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
+<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>6</b> Sharing your book</a><ul>
-<li class="chapter" data-level="6.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>6.1</b> Publishing</a></li>
-<li class="chapter" data-level="6.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>6.2</b> 404 pages</a></li>
-<li class="chapter" data-level="6.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>6.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
+<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
+<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -210,22 +224,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="working-with-data-sets" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Working with Data Sets</h1>
+<h1><span class="header-section-number">Chapter 4</span> Working with Data Sets</h1>
 <p>Here let me add some text. I’ll add more text.</p>
-<div id="loading-data-sets" class="section level2">
-<h2><span class="header-section-number">3.1</span> Loading Data Sets</h2>
+<div id="getting-data-sets-in-our-working-environment" class="section level2">
+<h2><span class="header-section-number">4.1</span> Getting Data Sets in Our Working Environment</h2>
 <div id="built-in-data" class="section level3 unnumbered">
 <h3>Built-In Data</h3>
+<p>As discussed last week, there are built in objects which are not loaded into the global environment, but can be called upon at any time. For example <code>pi</code> returns the value 3.1415927. Similarly, there are built in data sets that are ready to be used and loaded at a moments notice.</p>
+<ol style="list-style-type: decimal">
+<li>To see a list of built in data sets type in the console:</li>
+</ol>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="working-with-data-sets.html#cb184-1"></a><span class="kw">data</span>()</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>These data sets can be used even if they are not listed in the global environment. For example, if you would like to load the data set  in the global environment, run the following command:</li>
+</ol>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="working-with-data-sets.html#cb185-1"></a><span class="kw">data</span>(<span class="st">&quot;cars&quot;</span>)</span></code></pre></div>
 </div>
 <div id="importing-data" class="section level3 unnumbered">
 <h3>Importing Data</h3>
+<p>Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest. This function usually uses the file path location as an arguement. This can be done in many different ways; however, we will only go over two.</p>
+<p><strong>Option 1</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Download the file <code>InsectData.csv</code> from <em>iLearn</em>. Save this file in a spot in your computer you will remember.</p></li>
+<li><p>In the <strong>Enviroment</strong> window (upper left window), click on the <strong>Import Dataset</strong> button. A drop down menu will appear. Select the <strong>From Text (base)…</strong> option. Find the file <code>InsectData.csv</code> and select it.</p></li>
+<li><p>A pop up menu will appear giving you options for loading in the file, and showing a preview of what the file will look like once loaded. Select the appropriate options and click <strong>Import</strong>.</p></li>
+<li><p>A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new <code>R</code> session and would like to use this file.</p></li>
+</ol>
+<p><strong>Option 2</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Download the file <code>InsectData.csv</code> from <strong>iLearn</strong>. Save this file in a spot in your computer you will remember.</p></li>
+<li><p>In the lower right hand window select the <strong>File</strong> tab. Now search for the file which you have saved <code>InsectData.csv</code>.</p></li>
+<li><p>Click on the file <code>InsectData.csv</code> in order to see a dropdown menu. Select <strong>Import Dataset…</strong></p></li>
+<li><p>A window will appear which will give you options and a preview of your file. Select appropriate options if needed then click <strong>Import</strong>.</p></li>
+<li><p>A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new <code>R</code> session and would like to use this file.</p></li>
+</ol>
 </div>
 <div id="downloading-data" class="section level3 unnumbered">
 <h3>Downloading Data</h3>
 </div>
 </div>
 <div id="basic-data-manipulation" class="section level2">
-<h2><span class="header-section-number">3.2</span> Basic Data Manipulation</h2>
+<h2><span class="header-section-number">4.2</span> Basic Data Manipulation</h2>
 
 </div>
 </div>
@@ -234,8 +273,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="more-on-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="footnotes-and-citations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="more-on-r-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

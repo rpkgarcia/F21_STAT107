@@ -1,0 +1,71 @@
+# If Statements
+
+
+## The `if else` chain
+
+In R, you can tell your code to run ONLY if a certain statement is true by making a `if else` chain.  For example;
+```{r}
+Do = "Add"
+X = 2
+Y = 4
+if(Do == "Add"){
+  Z = X+Y
+}
+Z
+```
+Only if the variable `Do` is equal to the character string `"Add"` will the variable `Z` be created.  Otherwise, whatever is in the body of the `if` statement is not run.
+ 
+Here is an example of a silly function with an `if else` chain:
+```{r}
+Toyfun = function(X,Y,Do){
+  if(Do == "Add"){
+    Z = X+Y
+
+  }else if(Do =="Subtract"){
+    Z = X-Y
+
+  }else if(Do =="Multiply"){
+    Z = X*Y
+
+    
+  }else if(Do =="Penguin"){
+    Z = c("<('' )")
+    
+  } else{
+    Z = c(X,Y)
+  }
+  
+  return(Z)
+}
+Toyfun(2,4,"Add")
+Toyfun(2,4,"Subtract")
+Toyfun(2,4,"Penguin")
+Toyfun(2,4, "Typo")
+```
+
+A few notes:
+
+- `if` will be written initially in the if statement code.
+
+- `else` if will be executed if code if is not true.
+
+- `else` will be executed if none of them are true.
+
+
+## The `ifelse` function
+There is a simple function that can check a logical argument or vector, and give back two answers; one if the statement is
+true, and another if the statement is false. This function is `ifelse()`. For a simple example:
+```{r}
+Pet = "Dog"
+ifelse(Pet == "Dog", "Woof","???")
+Pet = "Cat"
+ifelse(Pet == "Dog", "Woof","???")
+```
+
+We can also pass `ifelse()` a vector, and it will check the logical condition for each element of the vector.  For example, in the `USArrests` data, if I want to find the proportion of states who had a murder rate of over 10 per 100,000 and an urban population of 
+over 50%:
+
+```{r}
+dangerous = ifelse(USArrests$Murder > 10 & USArrests$UrbanPop > 50, TRUE, FALSE)
+sum(dangerous)/length(dangerous)
+```

@@ -1,0 +1,58 @@
+# Packages 
+
+`R` packages are a collection of `R` functions, complied code and sample data. They are stored under a directory called "library" in the `R` environment. By default, `R` installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the `R` console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the `R` program that is going to use them.
+
+All the packages available in `R` language are listed at [R Packages](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+
+To see a list of all packages installed on your device. 
+
+```{r}
+library()
+```
+
+
+To see a list of all packages that are currently loaded. 
+
+```{r}
+search()
+```
+
+When adding a new package to our library we only have to install it once. We can do so with the following command.
+
+```{r, eval = F}
+install.packages("library name")
+```
+
+Alternatively, we can also go to the lower left hand window and select the *Packages* tab.  Then hit the button **Install**.  A dropdown menu will appear where we can search for the package name. 
+
+Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
+
+```{r, eval = F}
+library("library name")
+```
+
+
+
+For example, suppose we wanted to install and load the package "ggplot2", (a very popular package for making plots).  We would type the following commands. 
+
+
+```{r, eval = F}
+# Install package (only need to do this once)
+install.packages("ggplot2")
+
+# Load into working environment (need to do this for each new R session)
+library("ggplot2")
+```
+
+
+
+```{r, eval = F,echo=F}
+
+### Resources
+
+
+# I did use these resources. 
+- https://www.dummies.com/programming/r/how-to-use-the-r-help-files/
+
+```
+

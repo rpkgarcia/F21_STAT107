@@ -1,0 +1,181 @@
+#  Apply Family of Functions
+
+Loops (like `for`, and `while`) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.
+
+`R` has a more efficient and quick approach to perform iterations – **The apply family**.
+
+The apply family consists of vectorized functions. Below are the most common forms of apply functions.
+
+- `apply()`
+- `lapply()`
+- `sapply()`
+- `tapply()`
+
+These functions let you take data in batches and process the whole batch at once.
+
+There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function.
+
+## apply() function 
+
+The `apply() `function is used to apply a function to the rows or columns of matrices or data frames. It assembles the returned values into a vector, and then returns that vector.
+
+If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e. either all numeric values or all character strings) Otherwise, R will force all columns to have identical types. This may not be what you want. In that case, use the `lapply()` or `sapply()` functions.
+
+Description of the required `apply()` arguments:
+
+- `X`: A matrix , data frame or array
+- `MARGIN`: A vector giving the subscripts which the function will be applied over.
+   + 1 indicates rows
+   + 2 indicates columns
+   + c(1, 2) indicates rows and columns
+- `FUN`: The function to be applied
+
+```{r}
+# Get column means 
+data = matrix(1:9, nrow=3, ncol=3)
+data
+
+
+apply(data, 2, mean)
+```
+
+
+```{r}
+# Get row means 
+apply(data, 1, sum)
+```
+
+You can use user-defined functions as well.
+
+```{r}
+apply(data, 2, function(x){
+  
+  # Standard deviation formula 
+  y = sum(x -mean(x))^2/(length(x)-1)
+  
+  return(y)
+  })
+```
+
+## lapply() function 
+
+The `lapply()` function is used to apply a function to each element of the list. It collects the returned values into a list, and then **returns that list**.
+
+Description of the required `lapply()` arguments:
+
+- `X`: A matrix , data frame or array
+- `FUN`: The function to be applied
+
+```{r}
+data_lst = list(item1 = 1:5,
+             item2 = seq(4,36,8),
+             item3 = c(1,3,5,7,9))
+data_lst 
+
+data_vector = c(1,2,3,4,5,6,7,8)
+data_vector
+
+
+lapply(data_lst, sum)
+
+lapply(data_vector, sum)
+```
+
+
+## sapply() function 
+
+The `sapply()` and `lapply()` work basically the same.
+
+The only difference is that `lapply()` always returns a list, whereas `sapply()` tries to simplify the result into a vector or matrix.
+
+- If the return value is a list where every element is length 1, you get a vector. 
+
+- If the return value is a list where every element is a vector of the same length (> 1), you get a matrix.
+
+- If the lengths vary, simplification is impossible and you get a list.
+
+Description of the required `sapply()` arguments:
+
+- `X`: A matrix , data frame or array
+- `FUN`: The function to be applied
+
+```{r}
+data_lst = list(item1 = 1:5,
+                 item2 = seq(4,36,8),
+                 item3 = c(1,3,5,7,9))
+data_lst
+
+sapply(data_lst, sum)
+```
+
+## tapply() function 
+
+The `tapply()` function breaks the data set up into groups and applies a function to each group.
+
+Description of the required `sapply()` arguments:
+
+- `X`: A matrix , data frame or array
+- `INDEX`: A grouping factor or a list of factors
+- `FUN`: The function to be applied
+
+```{r}
+data = data.frame(name=c("Amy","Max","Ray","Kim","Sam","Eve","Bob"), 
+                  age=c(24, 22, 21, 23, 20, 24, 21),
+                  gender=factor(c("F","M","M","F","M","F","M"))) 
+
+data
+
+tapply(data$age, data$gender, min)
+```
+
+
+
+## Practice Problems {-} 
+
+1) Using one of the apply functions (`apply(), lapply, sapply(),` or `tapply()`), recreate the results that the `summary()` function produces for the built-in data set `mtcars`.
+
+```{r}
+summary(mtcars)
+```
+
+2) Retry Homework 4 using *apply(), lapply, sapply(),* and *tapply()* functions. 
+
+
+\newpage
+**Answer 1**
+
+```{r}
+
+my_summary = apply(mtcars, 2, function(column){
+  
+  # Min
+  the_min = min(column)
+  
+  # First Qurtile
+  the_Q1 = quantile(column, .25)
+  
+  # Median
+  the_median = median(column)
+  
+  # Mean 
+  the_mean = mean(column)
+  
+  # Third Quartile
+  the_Q3 = quantile(column, .75)
+  
+  # Max
+  the_max = max(column)
+  
+  # Return values
+  return_me = c(the_min, the_Q1, the_median,
+                the_mean, the_Q3, the_max)
+  names(return_me) = c("Min.:", "1st Qu.:", 
+                       "Median:", "Mean:", 
+                       "3rd Qu.:", "Max.:")
+  
+  return(return_me)
+})
+
+my_summary
+```
+

@@ -1,0 +1,239 @@
+# Functions 
+
+In `R` we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
+
+
+## Build Your Own Function
+
+ To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as `R` objects just like anything else. In particular, they are `R` objects of class *function*. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+
+
+
+Below is the **general template**
+
+```{r, eval = F}
+function_name = function(arg){
+  # Function Body 
+  ....
+  return(return_value)
+}
+```
+
+In this template we have a few key components
+
+- `function_name`: This is the actual name of the function. It is stored in R environment as an object with this name.
+- `function`: A directive which tells `R` a function is being created. 
+- `arg`:  An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
+- `function body`:  The function body contains a collection of statements that defines what the function does.
+- `return_value`: The output value of the function.  If `return(return_value)` is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one thing. Now, this thing can be a vector of many different things
+(i.e, a list or a data frame or a vector made with c()), but you may only return one thing.
+
+
+Below is an example of converting a temperature from Fahrenheit to Celsius. 
+
+```{r}
+fahrenheit_to_celsius = function(temp_F){
+  temp_C = (temp_F - 32) * 5 / 9
+  return(temp_C)
+}
+```
+
+In this example the function name is `fahrenheit_to_celsius`, there is only one input or argument, `temp_F`, and the output is the object `temp_C`.
+
+Now if we would like to "call" this function we can simply put into the command console the function name and desired input.  
+
+```{r}
+# Convert 87F to Celsius
+fahrenheit_to_celsius(temp_F = 87)
+```
+
+
+
+What would happen if we tried to call this function without supplying an input?  This would result in an error. 
+
+```{r,eval=F}
+# temp_F not defined. 
+fahrenheit_to_celsius()
+```
+
+
+```
+Error in fahrenheit_to_celsius() : 
+  argument "temp_F" is missing, with no default
+```
+
+With functions we can define function arguments to have default values.  These default values are used only if the user did not supply an argument value. Observe the example below. 
+
+```{r}
+
+# An example function 
+example_func = function(a = 1, b){
+  c = a + b
+  d = c + 1
+  
+  # returns a+b+1
+  return(d)
+}
+
+# Call example function
+example_func(a= 2, b= 3)
+example_func(b = 3)
+```
+
+
+Further notice that `R` has three ways that arguments supplied by you are matched to the formal arguments of the function definition. 
+
+1) by complete name
+
+2) by partial name (matching on initial *n* characters of the argument name)
+
+3) by position
+
+Observe: 
+
+```{r}
+example_func(2, 3)
+example_func(b = 3, a = 2)
+example_func(a = 2, b = 3)
+```
+
+
+With all these examples of functions, notice that in your global environment, only the function name was added.  The function arguments, return values, and all objects defined inside the function are not a part of the global environment.  This is not a mistake.  We can define objects locally, or temporarily, when using functions.  These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.  
+
+If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used. 
+
+
+## Built-In Functions
+
+`R` has functions built-in to it just like excel.  You can call these built-in function at any time.  We have already seen a few of these functions. 
+
+- `c()`
+- `class()`
+- `matrix()`
+- `data.frame()`
+
+
+Below are a few more examples using the built-in dataset `cars`, we will use `cars$speed` as a vector of data to analyze. 
+
+
+* `mean()`: Takes in a vector, and returns the mean of the values in the vector.
+
+```{r}
+mean(cars$speed)
+```
+
+* `median()`: Takes in a vector, and returns the median of the values in the vector.
+
+```{r}
+median(cars$speed)
+```
+
+* `var()`: Takes in a vector, and returns the variance of the values in the vector.
+
+```{r}
+var(cars$speed)
+```
+
+* `sqrt()`: If you give it a vector, it returns the square root of each element in the vector.  If you give it a single number, it returns the square root of the number.
+
+```{r}
+sqrt(cars$speed) 
+```
+
+* `sd()`: Takes in a vector, and returns the standard deviation of the values in the vector.
+
+```{r}
+sd(cars$speed)
+```
+
+* `fivenum()`: Takes in a vector, and returns the five number summary of the values in the vector.
+
+```{r}
+fivenum(cars$speed)
+```
+
+* `min()`: Takes in a vector, and returns the minimum of the values in the vector.
+
+```{r}
+min(cars$speed)
+```
+
+* `max()`: Takes in a vector, and returns the maximum of the values in the vector.
+
+```{r}
+max(cars$speed)
+```
+
+* `range()`: Takes in a vector, and returns the minimum AND maximum of the values in the vector.
+
+```{r}
+range(cars$speed)
+```
+
+* `quantile()`: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument.  It will return the corresponding quantiles of the values in the first vector specified by the second vector.
+
+To get the $10^{th}$ and $90^{th}$ percentiles:
+
+```{r}
+quantile(cars$speed,c(0.10,0.90))
+```
+
+* `abs()`: If you give it a vector, it returns the absolute value of each element in the vector.  If you give it a single number, it returns the absolute value of the number.
+
+```{r, width = 60}
+abs(cars$speed)
+abs(-2)
+```
+
+* `summary()`: You can give this a dataset OR a vector.  It returns some summary information about the values in the dataset or vector.
+
+```{r}
+summary(cars$speed)
+```
+
+
+
+
+
+
+One of the great advantages of using `R` is that there is a ton of resources available to learn about it.  However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about `R` functions is the **Help files**.
+
+## Help Files 
+
+The Help files are in R and can be viewed from the lower right window by clicking the *Help* tab.  Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The `R` Help Files are typically the best resource to get help. 
+
+The `R` Help files follow a fairly standard outline. You find most of the following sections in every `R` Help file:
+
+- **Title**: A one-sentence overview of the function.
+
+- **Description**: An introduction to the high-level objectives of the function, typically about one paragraph long.
+
+- **Usage**: A description of the syntax of the function (in other words, how the function is called). This is where you find all the arguments that you can supply to the function, as well as any default values of these arguments.
+
+- **Arguments**: A description of each argument. Usually this includes a specification of the class (for example, character, numeric, list, and so on). This section is an important one to understand, because arguments are frequently a cause of errors in R.
+
+- **Details**: Extended details about how the function works, provides longer descriptions of the various ways to call the function (if applicable), and a longer discussion of the arguments.
+
+- **Value**: A description of the class of the value returned by the function.
+
+- **See also**: Links to other relevant functions. In most of the R editors, you can click these links to read the Help files for these functions.
+
+- **Examples**: Worked examples of real R code that you can paste into your console and run.
+
+
+
+An alternative way to view a functions help file is by typing `?` followed by the function name, or by typing `help(function_name)`. 
+
+```{r}
+# Find a help file for the function `rep`
+?rep
+help(rep)
+```
+
+
+If you are not sure exactly which function you want, you can use `??` followed by what you believe the function name is to look at a list of functions. 
+
+
+```{r}
+??rep
+```

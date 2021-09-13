@@ -3,11 +3,51 @@
 Here let me add some text. I'll add more text. 
 
 
-## Loading Data Sets 
+## Getting Data Sets in Our Working Environment
 
 ### Built-In Data {-}
 
+As discussed last week, there are built in objects which are not loaded into the global environment, but can be called upon at any time.  For example `pi` returns the value `r pi`.  Similarly, there are built in data sets that are ready to be used and loaded at a moments notice.
+
+1) To see a list of built in data sets type in the console: 
+
+```{r}
+data()
+```
+
+2) These data sets can be used even if they are not listed in the global environment. For example, if you would like to load the data set \texttt{cars} in the global environment, run the following command: 
+
+```{r, eval = F}
+data("cars")
+```
+
+
 ### Importing Data {-}
+
+Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest.  This function usually uses the file path location as an arguement. This can be done in many different ways; however, we will only go over two. 
+
+**Option 1**
+
+1) Download the file `InsectData.csv` from *iLearn*.  Save this file in a spot in your computer you will remember. 
+
+2) In the **Enviroment** window (upper left window), click on the **Import Dataset** button.  A drop down menu will appear.  Select the **From Text (base)...** option.  Find the file `InsectData.csv` and select it. 
+
+3) A pop up menu will appear giving you options for loading in the file, and showing a preview of what the file will look like once loaded. Select the appropriate options and click **Import**.
+
+4) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new `R` session and would like to use this file. 
+
+**Option 2**
+
+1) Download the file `InsectData.csv` from **iLearn**.  Save this file in a spot in your computer you will remember. 
+
+2) In the lower right hand window select the **File** tab.  Now search for the file which you have saved `InsectData.csv`.  
+
+3) Click on the file `InsectData.csv` in order to see a dropdown menu.  Select **Import Dataset...**
+
+4) A window will appear which will give you options and a preview of your file. Select appropriate options if needed then click **Import**. 
+
+5) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new `R` session and would like to use this file. 
+
 
 ### Downloading Data {-}
 

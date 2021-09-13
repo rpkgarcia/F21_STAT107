@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Apply Family of Functions | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Apply Family of Functions | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Apply Family of Functions | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2021-09-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="loops.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Outline of Class Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#history-of-r"><i class="fa fa-check"></i><b>1.1</b> History of R</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.3</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types"><i class="fa fa-check"></i><b>2.7</b> Other Object Types</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html"><i class="fa fa-check"></i><b>3</b> More on R Objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#factors-1"><i class="fa fa-check"></i><b>3.1</b> Factors</a></li>
+<li class="chapter" data-level="3.2" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#lists-1"><i class="fa fa-check"></i><b>3.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
+<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
+<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
+<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
+<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="apply-family-of-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Apply Family of Functions</h1>
+<p>Loops (like <code>for</code>, and <code>while</code>) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.</p>
+<p><code>R</code> has a more efficient and quick approach to perform iterations – <strong>The apply family</strong>.</p>
+<p>The apply family consists of vectorized functions. Below are the most common forms of apply functions.</p>
+<ul>
+<li><code>apply()</code></li>
+<li><code>lapply()</code></li>
+<li><code>sapply()</code></li>
+<li><code>tapply()</code></li>
+</ul>
+<p>These functions let you take data in batches and process the whole batch at once.</p>
+<p>There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function.</p>
+<div id="apply-function" class="section level2">
+<h2><span class="header-section-number">9.1</span> apply() function</h2>
+<p>The <code>apply()</code>function is used to apply a function to the rows or columns of matrices or data frames. It assembles the returned values into a vector, and then returns that vector.</p>
+<p>If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e. either all numeric values or all character strings) Otherwise, R will force all columns to have identical types. This may not be what you want. In that case, use the <code>lapply()</code> or <code>sapply()</code> functions.</p>
+<p>Description of the required <code>apply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>MARGIN</code>: A vector giving the subscripts which the function will be applied over.
+<ul>
+<li>1 indicates rows</li>
+<li>2 indicates columns</li>
+<li>c(1, 2) indicates rows and columns</li>
+</ul></li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="apply-family-of-functions.html#cb272-1"></a><span class="co"># Get column means </span></span>
+<span id="cb272-2"><a href="apply-family-of-functions.html#cb272-2"></a>data =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb272-3"><a href="apply-family-of-functions.html#cb272-3"></a>data</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="apply-family-of-functions.html#cb274-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, mean)</span></code></pre></div>
+<pre><code>## [1] 2 5 8</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="apply-family-of-functions.html#cb276-1"></a><span class="co"># Get row means </span></span>
+<span id="cb276-2"><a href="apply-family-of-functions.html#cb276-2"></a><span class="kw">apply</span>(data, <span class="dv">1</span>, sum)</span></code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<p>You can use user-defined functions as well.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="apply-family-of-functions.html#cb278-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, <span class="cf">function</span>(x){</span>
+<span id="cb278-2"><a href="apply-family-of-functions.html#cb278-2"></a>  </span>
+<span id="cb278-3"><a href="apply-family-of-functions.html#cb278-3"></a>  <span class="co"># Standard deviation formula </span></span>
+<span id="cb278-4"><a href="apply-family-of-functions.html#cb278-4"></a>  y =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb278-5"><a href="apply-family-of-functions.html#cb278-5"></a>  </span>
+<span id="cb278-6"><a href="apply-family-of-functions.html#cb278-6"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb278-7"><a href="apply-family-of-functions.html#cb278-7"></a>  })</span></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+</div>
+<div id="lapply-function" class="section level2">
+<h2><span class="header-section-number">9.2</span> lapply() function</h2>
+<p>The <code>lapply()</code> function is used to apply a function to each element of the list. It collects the returned values into a list, and then <strong>returns that list</strong>.</p>
+<p>Description of the required <code>lapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="apply-family-of-functions.html#cb280-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb280-2"><a href="apply-family-of-functions.html#cb280-2"></a>             <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb280-3"><a href="apply-family-of-functions.html#cb280-3"></a>             <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb280-4"><a href="apply-family-of-functions.html#cb280-4"></a>data_lst </span></code></pre></div>
+<pre><code>## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="apply-family-of-functions.html#cb282-1"></a>data_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb282-2"><a href="apply-family-of-functions.html#cb282-2"></a>data_vector</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="apply-family-of-functions.html#cb284-1"></a><span class="kw">lapply</span>(data_lst, sum)</span></code></pre></div>
+<pre><code>## $item1
+## [1] 15
+## 
+## $item2
+## [1] 100
+## 
+## $item3
+## [1] 25</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="apply-family-of-functions.html#cb286-1"></a><span class="kw">lapply</span>(data_vector, sum)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 6
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 8</code></pre>
+</div>
+<div id="sapply-function" class="section level2">
+<h2><span class="header-section-number">9.3</span> sapply() function</h2>
+<p>The <code>sapply()</code> and <code>lapply()</code> work basically the same.</p>
+<p>The only difference is that <code>lapply()</code> always returns a list, whereas <code>sapply()</code> tries to simplify the result into a vector or matrix.</p>
+<ul>
+<li><p>If the return value is a list where every element is length 1, you get a vector.</p></li>
+<li><p>If the return value is a list where every element is a vector of the same length (&gt; 1), you get a matrix.</p></li>
+<li><p>If the lengths vary, simplification is impossible and you get a list.</p></li>
+</ul>
+<p>Description of the required <code>sapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="apply-family-of-functions.html#cb288-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb288-2"><a href="apply-family-of-functions.html#cb288-2"></a>                 <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb288-3"><a href="apply-family-of-functions.html#cb288-3"></a>                 <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb288-4"><a href="apply-family-of-functions.html#cb288-4"></a>data_lst</span></code></pre></div>
+<pre><code>## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="apply-family-of-functions.html#cb290-1"></a><span class="kw">sapply</span>(data_lst, sum)</span></code></pre></div>
+<pre><code>## item1 item2 item3 
+##    15   100    25</code></pre>
+</div>
+<div id="tapply-function" class="section level2">
+<h2><span class="header-section-number">9.4</span> tapply() function</h2>
+<p>The <code>tapply()</code> function breaks the data set up into groups and applies a function to each group.</p>
+<p>Description of the required <code>sapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>INDEX</code>: A grouping factor or a list of factors</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="apply-family-of-functions.html#cb292-1"></a>data =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Max&quot;</span>,<span class="st">&quot;Ray&quot;</span>,<span class="st">&quot;Kim&quot;</span>,<span class="st">&quot;Sam&quot;</span>,<span class="st">&quot;Eve&quot;</span>,<span class="st">&quot;Bob&quot;</span>), </span>
+<span id="cb292-2"><a href="apply-family-of-functions.html#cb292-2"></a>                  <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">21</span>),</span>
+<span id="cb292-3"><a href="apply-family-of-functions.html#cb292-3"></a>                  <span class="dt">gender=</span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>))) </span>
+<span id="cb292-4"><a href="apply-family-of-functions.html#cb292-4"></a></span>
+<span id="cb292-5"><a href="apply-family-of-functions.html#cb292-5"></a>data</span></code></pre></div>
+<pre><code>##   name age gender
+## 1  Amy  24      F
+## 2  Max  22      M
+## 3  Ray  21      M
+## 4  Kim  23      F
+## 5  Sam  20      M
+## 6  Eve  24      F
+## 7  Bob  21      M</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="apply-family-of-functions.html#cb294-1"></a><span class="kw">tapply</span>(data<span class="op">$</span>age, data<span class="op">$</span>gender, min)</span></code></pre></div>
+<pre><code>##  F  M 
+## 23 20</code></pre>
+</div>
+<div id="practice-problems-1" class="section level2 unnumbered">
+<h2>Practice Problems</h2>
+<ol style="list-style-type: decimal">
+<li>Using one of the apply functions (<code>apply(), lapply, sapply(),</code> or <code>tapply()</code>), recreate the results that the <code>summary()</code> function produces for the built-in data set <code>mtcars</code>.</li>
+</ol>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="apply-family-of-functions.html#cb296-1"></a><span class="kw">summary</span>(mtcars)</span></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Retry Homework 4 using <em>apply(), lapply, sapply(),</em> and <em>tapply()</em> functions.</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p><strong>Answer 1</strong></p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="apply-family-of-functions.html#cb298-1"></a>my_summary =<span class="st"> </span><span class="kw">apply</span>(mtcars, <span class="dv">2</span>, <span class="cf">function</span>(column){</span>
+<span id="cb298-2"><a href="apply-family-of-functions.html#cb298-2"></a>  </span>
+<span id="cb298-3"><a href="apply-family-of-functions.html#cb298-3"></a>  <span class="co"># Min</span></span>
+<span id="cb298-4"><a href="apply-family-of-functions.html#cb298-4"></a>  the_min =<span class="st"> </span><span class="kw">min</span>(column)</span>
+<span id="cb298-5"><a href="apply-family-of-functions.html#cb298-5"></a>  </span>
+<span id="cb298-6"><a href="apply-family-of-functions.html#cb298-6"></a>  <span class="co"># First Qurtile</span></span>
+<span id="cb298-7"><a href="apply-family-of-functions.html#cb298-7"></a>  the_Q1 =<span class="st"> </span><span class="kw">quantile</span>(column, <span class="fl">.25</span>)</span>
+<span id="cb298-8"><a href="apply-family-of-functions.html#cb298-8"></a>  </span>
+<span id="cb298-9"><a href="apply-family-of-functions.html#cb298-9"></a>  <span class="co"># Median</span></span>
+<span id="cb298-10"><a href="apply-family-of-functions.html#cb298-10"></a>  the_median =<span class="st"> </span><span class="kw">median</span>(column)</span>
+<span id="cb298-11"><a href="apply-family-of-functions.html#cb298-11"></a>  </span>
+<span id="cb298-12"><a href="apply-family-of-functions.html#cb298-12"></a>  <span class="co"># Mean </span></span>
+<span id="cb298-13"><a href="apply-family-of-functions.html#cb298-13"></a>  the_mean =<span class="st"> </span><span class="kw">mean</span>(column)</span>
+<span id="cb298-14"><a href="apply-family-of-functions.html#cb298-14"></a>  </span>
+<span id="cb298-15"><a href="apply-family-of-functions.html#cb298-15"></a>  <span class="co"># Third Quartile</span></span>
+<span id="cb298-16"><a href="apply-family-of-functions.html#cb298-16"></a>  the_Q3 =<span class="st"> </span><span class="kw">quantile</span>(column, <span class="fl">.75</span>)</span>
+<span id="cb298-17"><a href="apply-family-of-functions.html#cb298-17"></a>  </span>
+<span id="cb298-18"><a href="apply-family-of-functions.html#cb298-18"></a>  <span class="co"># Max</span></span>
+<span id="cb298-19"><a href="apply-family-of-functions.html#cb298-19"></a>  the_max =<span class="st"> </span><span class="kw">max</span>(column)</span>
+<span id="cb298-20"><a href="apply-family-of-functions.html#cb298-20"></a>  </span>
+<span id="cb298-21"><a href="apply-family-of-functions.html#cb298-21"></a>  <span class="co"># Return values</span></span>
+<span id="cb298-22"><a href="apply-family-of-functions.html#cb298-22"></a>  return_me =<span class="st"> </span><span class="kw">c</span>(the_min, the_Q1, the_median,</span>
+<span id="cb298-23"><a href="apply-family-of-functions.html#cb298-23"></a>                the_mean, the_Q3, the_max)</span>
+<span id="cb298-24"><a href="apply-family-of-functions.html#cb298-24"></a>  <span class="kw">names</span>(return_me) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Min.:&quot;</span>, <span class="st">&quot;1st Qu.:&quot;</span>, </span>
+<span id="cb298-25"><a href="apply-family-of-functions.html#cb298-25"></a>                       <span class="st">&quot;Median:&quot;</span>, <span class="st">&quot;Mean:&quot;</span>, </span>
+<span id="cb298-26"><a href="apply-family-of-functions.html#cb298-26"></a>                       <span class="st">&quot;3rd Qu.:&quot;</span>, <span class="st">&quot;Max.:&quot;</span>)</span>
+<span id="cb298-27"><a href="apply-family-of-functions.html#cb298-27"></a>  </span>
+<span id="cb298-28"><a href="apply-family-of-functions.html#cb298-28"></a>  <span class="kw">return</span>(return_me)</span>
+<span id="cb298-29"><a href="apply-family-of-functions.html#cb298-29"></a>})</span>
+<span id="cb298-30"><a href="apply-family-of-functions.html#cb298-30"></a></span>
+<span id="cb298-31"><a href="apply-family-of-functions.html#cb298-31"></a>my_summary</span></code></pre></div>
+<pre><code>##               mpg    cyl     disp       hp     drat      wt     qsec     vs
+## Min.:    10.40000 4.0000  71.1000  52.0000 2.760000 1.51300 14.50000 0.0000
+## 1st Qu.: 15.42500 4.0000 120.8250  96.5000 3.080000 2.58125 16.89250 0.0000
+## Median:  19.20000 6.0000 196.3000 123.0000 3.695000 3.32500 17.71000 0.0000
+## Mean:    20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375
+## 3rd Qu.: 22.80000 8.0000 326.0000 180.0000 3.920000 3.61000 18.90000 1.0000
+## Max.:    33.90000 8.0000 472.0000 335.0000 4.930000 5.42400 22.90000 1.0000
+##               am   gear   carb
+## Min.:    0.00000 3.0000 1.0000
+## 1st Qu.: 0.00000 3.0000 2.0000
+## Median:  0.00000 4.0000 2.0000
+## Mean:    0.40625 3.6875 2.8125
+## 3rd Qu.: 1.00000 4.0000 4.0000
+## Max.:    1.00000 5.0000 8.0000</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-apply-family.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

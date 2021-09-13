@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Functions | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Functions | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Functions | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2021-09-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="working-with-data-sets.html"/>
+<link rel="next" href="if-statements.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Outline of Class Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#history-of-r"><i class="fa fa-check"></i><b>1.1</b> History of R</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.3</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types"><i class="fa fa-check"></i><b>2.7</b> Other Object Types</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html"><i class="fa fa-check"></i><b>3</b> More on R Objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#factors-1"><i class="fa fa-check"></i><b>3.1</b> Factors</a></li>
+<li class="chapter" data-level="3.2" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#lists-1"><i class="fa fa-check"></i><b>3.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
+<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
+<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
+<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
+<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Functions</h1>
+<p>In <code>R</code> we have functions. We can build our own functions or we can use built in functions. I will cite <span class="citation">John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine (<a href="#ref-r-func" role="doc-biblioref">2016</a>)</span> <span class="citation">Vries and Meys (<a href="#ref-dummies2015" role="doc-biblioref">2015</a>)</span></p>
+<div id="build-your-own-function" class="section level2">
+<h2><span class="header-section-number">5.1</span> Build Your Own Function</h2>
+<p>To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as <code>R</code> objects just like anything else. In particular, they are <code>R</code> objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
+<p>Below is the <strong>general template</strong></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="functions.html#cb186-1"></a>function_name =<span class="st"> </span><span class="cf">function</span>(arg){</span>
+<span id="cb186-2"><a href="functions.html#cb186-2"></a>  <span class="co"># Function Body </span></span>
+<span id="cb186-3"><a href="functions.html#cb186-3"></a>  ....</span>
+<span id="cb186-4"><a href="functions.html#cb186-4"></a>  <span class="kw">return</span>(return_value)</span>
+<span id="cb186-5"><a href="functions.html#cb186-5"></a>}</span></code></pre></div>
+<p>In this template we have a few key components</p>
+<ul>
+<li><code>function_name</code>: This is the actual name of the function. It is stored in R environment as an object with this name.</li>
+<li><code>function</code>: A directive which tells <code>R</code> a function is being created.</li>
+<li><code>arg</code>: An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.</li>
+<li><code>function body</code>: The function body contains a collection of statements that defines what the function does.</li>
+<li><code>return_value</code>: The output value of the function. If <code>return(return_value)</code> is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one thing. Now, this thing can be a vector of many different things
+(i.e, a list or a data frame or a vector made with c()), but you may only return one thing.</li>
+</ul>
+<p>Below is an example of converting a temperature from Fahrenheit to Celsius.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="functions.html#cb187-1"></a>fahrenheit_to_celsius =<span class="st"> </span><span class="cf">function</span>(temp_F){</span>
+<span id="cb187-2"><a href="functions.html#cb187-2"></a>  temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></span>
+<span id="cb187-3"><a href="functions.html#cb187-3"></a>  <span class="kw">return</span>(temp_C)</span>
+<span id="cb187-4"><a href="functions.html#cb187-4"></a>}</span></code></pre></div>
+<p>In this example the function name is <code>fahrenheit_to_celsius</code>, there is only one input or argument, <code>temp_F</code>, and the output is the object <code>temp_C</code>.</p>
+<p>Now if we would like to “call” this function we can simply put into the command console the function name and desired input.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="functions.html#cb188-1"></a><span class="co"># Convert 87F to Celsius</span></span>
+<span id="cb188-2"><a href="functions.html#cb188-2"></a><span class="kw">fahrenheit_to_celsius</span>(<span class="dt">temp_F =</span> <span class="dv">87</span>)</span></code></pre></div>
+<pre><code>## [1] 30.55556</code></pre>
+<p>What would happen if we tried to call this function without supplying an input? This would result in an error.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="functions.html#cb190-1"></a><span class="co"># temp_F not defined. </span></span>
+<span id="cb190-2"><a href="functions.html#cb190-2"></a><span class="kw">fahrenheit_to_celsius</span>()</span></code></pre></div>
+<pre><code>Error in fahrenheit_to_celsius() : 
+  argument &quot;temp_F&quot; is missing, with no default</code></pre>
+<p>With functions we can define function arguments to have default values. These default values are used only if the user did not supply an argument value. Observe the example below.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="functions.html#cb192-1"></a><span class="co"># An example function </span></span>
+<span id="cb192-2"><a href="functions.html#cb192-2"></a>example_func =<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b){</span>
+<span id="cb192-3"><a href="functions.html#cb192-3"></a>  c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb192-4"><a href="functions.html#cb192-4"></a>  d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb192-5"><a href="functions.html#cb192-5"></a>  </span>
+<span id="cb192-6"><a href="functions.html#cb192-6"></a>  <span class="co"># returns a+b+1</span></span>
+<span id="cb192-7"><a href="functions.html#cb192-7"></a>  <span class="kw">return</span>(d)</span>
+<span id="cb192-8"><a href="functions.html#cb192-8"></a>}</span>
+<span id="cb192-9"><a href="functions.html#cb192-9"></a></span>
+<span id="cb192-10"><a href="functions.html#cb192-10"></a><span class="co"># Call example function</span></span>
+<span id="cb192-11"><a href="functions.html#cb192-11"></a><span class="kw">example_func</span>(<span class="dt">a=</span> <span class="dv">2</span>, <span class="dt">b=</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="functions.html#cb194-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Further notice that <code>R</code> has three ways that arguments supplied by you are matched to the formal arguments of the function definition.</p>
+<ol style="list-style-type: decimal">
+<li><p>by complete name</p></li>
+<li><p>by partial name (matching on initial <em>n</em> characters of the argument name)</p></li>
+<li><p>by position</p></li>
+</ol>
+<p>Observe:</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="functions.html#cb196-1"></a><span class="kw">example_func</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="functions.html#cb198-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="functions.html#cb200-1"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.</p>
+<p>If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used.</p>
+</div>
+<div id="built-in-functions" class="section level2">
+<h2><span class="header-section-number">5.2</span> Built-In Functions</h2>
+<p><code>R</code> has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.</p>
+<ul>
+<li><code>c()</code></li>
+<li><code>class()</code></li>
+<li><code>matrix()</code></li>
+<li><code>data.frame()</code></li>
+</ul>
+<p>Below are a few more examples using the built-in dataset <code>cars</code>, we will use <code>cars$speed</code> as a vector of data to analyze.</p>
+<ul>
+<li><code>mean()</code>: Takes in a vector, and returns the mean of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="functions.html#cb202-1"></a><span class="kw">mean</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 15.4</code></pre>
+<ul>
+<li><code>median()</code>: Takes in a vector, and returns the median of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="functions.html#cb204-1"></a><span class="kw">median</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<ul>
+<li><code>var()</code>: Takes in a vector, and returns the variance of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="functions.html#cb206-1"></a><span class="kw">var</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 27.95918</code></pre>
+<ul>
+<li><code>sqrt()</code>: If you give it a vector, it returns the square root of each element in the vector. If you give it a single number, it returns the square root of the number.</li>
+</ul>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="functions.html#cb208-1"></a><span class="kw">sqrt</span>(cars<span class="op">$</span>speed) </span></code></pre></div>
+<pre><code>##  [1] 2.000000 2.000000 2.645751 2.645751 2.828427 3.000000 3.162278 3.162278
+##  [9] 3.162278 3.316625 3.316625 3.464102 3.464102 3.464102 3.464102 3.605551
+## [17] 3.605551 3.605551 3.605551 3.741657 3.741657 3.741657 3.741657 3.872983
+## [25] 3.872983 3.872983 4.000000 4.000000 4.123106 4.123106 4.123106 4.242641
+## [33] 4.242641 4.242641 4.242641 4.358899 4.358899 4.358899 4.472136 4.472136
+## [41] 4.472136 4.472136 4.472136 4.690416 4.795832 4.898979 4.898979 4.898979
+## [49] 4.898979 5.000000</code></pre>
+<ul>
+<li><code>sd()</code>: Takes in a vector, and returns the standard deviation of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="functions.html#cb210-1"></a><span class="kw">sd</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 5.287644</code></pre>
+<ul>
+<li><code>fivenum()</code>: Takes in a vector, and returns the five number summary of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="functions.html#cb212-1"></a><span class="kw">fivenum</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1]  4 12 15 19 25</code></pre>
+<ul>
+<li><code>min()</code>: Takes in a vector, and returns the minimum of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="functions.html#cb214-1"></a><span class="kw">min</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li><code>max()</code>: Takes in a vector, and returns the maximum of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="functions.html#cb216-1"></a><span class="kw">max</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<ul>
+<li><code>range()</code>: Takes in a vector, and returns the minimum AND maximum of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="functions.html#cb218-1"></a><span class="kw">range</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>## [1]  4 25</code></pre>
+<ul>
+<li><code>quantile()</code>: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument. It will return the corresponding quantiles of the values in the first vector specified by the second vector.</li>
+</ul>
+<p>To get the <span class="math inline">\(10^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentiles:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="functions.html#cb220-1"></a><span class="kw">quantile</span>(cars<span class="op">$</span>speed,<span class="kw">c</span>(<span class="fl">0.10</span>,<span class="fl">0.90</span>))</span></code></pre></div>
+<pre><code>##  10%  90% 
+##  8.9 23.1</code></pre>
+<ul>
+<li><code>abs()</code>: If you give it a vector, it returns the absolute value of each element in the vector. If you give it a single number, it returns the absolute value of the number.</li>
+</ul>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="functions.html#cb222-1"></a><span class="kw">abs</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="functions.html#cb224-1"></a><span class="kw">abs</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<ul>
+<li><code>summary()</code>: You can give this a dataset OR a vector. It returns some summary information about the values in the dataset or vector.</li>
+</ul>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="functions.html#cb226-1"></a><span class="kw">summary</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     4.0    12.0    15.0    15.4    19.0    25.0</code></pre>
+<p>One of the great advantages of using <code>R</code> is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about <code>R</code> functions is the <strong>Help files</strong>.</p>
+</div>
+<div id="help-files" class="section level2">
+<h2><span class="header-section-number">5.3</span> Help Files</h2>
+<p>The Help files are in R and can be viewed from the lower right window by clicking the <em>Help</em> tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The <code>R</code> Help Files are typically the best resource to get help.</p>
+<p>The <code>R</code> Help files follow a fairly standard outline. You find most of the following sections in every <code>R</code> Help file:</p>
+<ul>
+<li><p><strong>Title</strong>: A one-sentence overview of the function.</p></li>
+<li><p><strong>Description</strong>: An introduction to the high-level objectives of the function, typically about one paragraph long.</p></li>
+<li><p><strong>Usage</strong>: A description of the syntax of the function (in other words, how the function is called). This is where you find all the arguments that you can supply to the function, as well as any default values of these arguments.</p></li>
+<li><p><strong>Arguments</strong>: A description of each argument. Usually this includes a specification of the class (for example, character, numeric, list, and so on). This section is an important one to understand, because arguments are frequently a cause of errors in R.</p></li>
+<li><p><strong>Details</strong>: Extended details about how the function works, provides longer descriptions of the various ways to call the function (if applicable), and a longer discussion of the arguments.</p></li>
+<li><p><strong>Value</strong>: A description of the class of the value returned by the function.</p></li>
+<li><p><strong>See also</strong>: Links to other relevant functions. In most of the R editors, you can click these links to read the Help files for these functions.</p></li>
+<li><p><strong>Examples</strong>: Worked examples of real R code that you can paste into your console and run.</p></li>
+</ul>
+<p>An alternative way to view a functions help file is by typing <code>?</code> followed by the function name, or by typing <code>help(function_name)</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="functions.html#cb228-1"></a><span class="co"># Find a help file for the function `rep`</span></span>
+<span id="cb228-2"><a href="functions.html#cb228-2"></a>?rep</span>
+<span id="cb228-3"><a href="functions.html#cb228-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
+<p>If you are not sure exactly which function you want, you can use <code>??</code> followed by what you believe the function name is to look at a list of functions.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="functions.html#cb229-1"></a>??rep</span></code></pre></div>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-r-func">
+<p>John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine. 2016. “Software Carpentry: Programming with R.version 2016.06.” 2016. <a href="https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html">https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a>.</p>
+</div>
+<div id="ref-dummies2015">
+<p>Vries, Andrie de, and Joris Meys. 2015. <em>R for Dummies</em>. Hoboken, New Jersey: John Wiley &amp; Sons, Inc. <a href="https://www.dummies.com/programming/r/how-to-use-the-r-help-files/">https://www.dummies.com/programming/r/how-to-use-the-r-help-files/</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="working-with-data-sets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="if-statements.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

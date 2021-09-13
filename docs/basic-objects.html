@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Basic Objects | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Basic Objects | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Basic Objects | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2021-09-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="objects-continued-advanced-features.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Outline of Class Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#history-of-r"><i class="fa fa-check"></i><b>1.1</b> History of R</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.3</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-objects.html"><a href="basic-objects.html"><i class="fa fa-check"></i><b>2</b> Basic Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="basic-objects.html"><a href="basic-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="basic-objects.html"><a href="basic-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="basic-objects.html"><a href="basic-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="basic-objects.html"><a href="basic-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="basic-objects.html"><a href="basic-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="basic-objects.html"><a href="basic-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-objects.html"><a href="basic-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="basic-objects.html"><a href="basic-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="basic-objects.html"><a href="basic-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="basic-objects.html"><a href="basic-objects.html#other-object-types"><i class="fa fa-check"></i><b>2.7</b> Other Object Types</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="objects-continued-advanced-features.html"><a href="objects-continued-advanced-features.html"><i class="fa fa-check"></i><b>3</b> Objects Continued (Advanced Features)</a><ul>
+<li class="chapter" data-level="" data-path="objects-continued-advanced-features.html"><a href="objects-continued-advanced-features.html#factors-1"><i class="fa fa-check"></i>Factors</a></li>
+<li class="chapter" data-level="" data-path="objects-continued-advanced-features.html"><a href="objects-continued-advanced-features.html#lists-1"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="3.1" data-path="objects-continued-advanced-features.html"><a href="objects-continued-advanced-features.html#additional-resources-1"><i class="fa fa-check"></i><b>3.1</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
+<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
+<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
+<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
+<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-objects" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Basic Objects</h1>
+<div id="atomic-objects" class="section level2">
+<h2><span class="header-section-number">2.1</span> Atomic Objects</h2>
+<p>At its core, <code>R</code> is an objected-oriented computational and programming environment. Everything in <code>R</code> is an object belonging to a certain <em>class</em>.
+<code>R</code>can represent different types of data. The types include <code>numeric</code>, <code>integer</code>, <code>complex</code>, <code>logical</code>, and <code>character</code>. We will look at some examples.</p>
+<div id="numeric" class="section level3 unnumbered">
+<h3>Numeric</h3>
+<p>There are different types of numeric objects. Specifically, we will first consider real numbers (can have decimal values) and integers. We can examine how <code>R</code> stores these types of numbers using the <code>class()</code> function.</p>
+<p>We will begin with decimal numbers.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basic-objects.html#cb11-1"></a>a =<span class="st"> </span><span class="fl">17.45</span></span>
+<span id="cb11-2"><a href="basic-objects.html#cb11-2"></a>a</span></code></pre></div>
+<pre><code>## [1] 17.45</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basic-objects.html#cb13-1"></a><span class="kw">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-objects.html#cb15-1"></a>b =<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb15-2"><a href="basic-objects.html#cb15-2"></a>b </span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-objects.html#cb17-1"></a><span class="kw">class</span>(b)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Both the variables <code>a</code> and <code>b</code> are <code>numeric</code> objects. When you type a number <code>R</code> will default to treating it as a <code>numeric</code> object which allows decimals.
+You can use the <code>as.integer()</code> function to create a variable that is specifically an integer number.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-objects.html#cb19-1"></a>a =<span class="st"> </span><span class="kw">as.integer</span>(a)</span>
+<span id="cb19-2"><a href="basic-objects.html#cb19-2"></a>a</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-objects.html#cb21-1"></a><span class="kw">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basic-objects.html#cb23-1"></a>b =<span class="st"> </span><span class="kw">as.integer</span>(b)</span>
+<span id="cb23-2"><a href="basic-objects.html#cb23-2"></a>b </span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-objects.html#cb25-1"></a><span class="kw">class</span>(b)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="logical" class="section level3 unnumbered">
+<h3>Logical</h3>
+<p>Logical values are either “true” or “false” and are created by logical statements that compare variables. There are several ways to do logical statements. To check if two values or objects are equal to each other we use “==”. To see if a value/object is greater than or less than another we use the “&lt;”, “&gt;”, “&lt;=”, or “&gt;=”.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-objects.html#cb27-1"></a>b =<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb27-2"><a href="basic-objects.html#cb27-2"></a><span class="dv">2</span><span class="op">+</span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span>b</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-objects.html#cb29-1"></a>n =<span class="st"> </span>(<span class="dv">10</span><span class="op">&lt;</span><span class="dv">11</span>)</span>
+<span id="cb29-2"><a href="basic-objects.html#cb29-2"></a>n</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-objects.html#cb31-1"></a><span class="kw">class</span>(n)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-objects.html#cb33-1"></a>e =<span class="st"> </span>(b <span class="op">&gt;</span><span class="dv">10</span>)</span>
+<span id="cb33-2"><a href="basic-objects.html#cb33-2"></a><span class="kw">class</span>(e)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>The symbols “&amp;” “|”, and “!” are used for the logical operations “and”, “or”, and “not”. Two logical expressions connected by &amp; (and) are true only if both are true. Two logical expressions connected by | (or) are true if either are true. The ! (not) operation turns a true into a false and vice-versa.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basic-objects.html#cb35-1"></a>e <span class="op">&amp;</span><span class="st"> </span>n</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-objects.html#cb37-1"></a>e <span class="op">|</span><span class="st"> </span>n </span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basic-objects.html#cb39-1"></a><span class="op">!</span>n</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="character" class="section level3 unnumbered">
+<h3>Character</h3>
+<p><code>Character</code> values are text. They are often used as data values and labels.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basic-objects.html#cb41-1"></a>first =<span class="st"> &quot;George&quot;</span></span>
+<span id="cb41-2"><a href="basic-objects.html#cb41-2"></a>first </span></code></pre></div>
+<pre><code>## [1] &quot;George&quot;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-objects.html#cb43-1"></a><span class="kw">class</span>(first)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basic-objects.html#cb45-1"></a>last =<span class="st"> &quot;Washington&quot;</span></span>
+<span id="cb45-2"><a href="basic-objects.html#cb45-2"></a>last</span></code></pre></div>
+<pre><code>## [1] &quot;Washington&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basic-objects.html#cb47-1"></a><span class="kw">class</span>(last)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>There are several functions that can operate on character strings.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basic-objects.html#cb49-1"></a>full =<span class="st"> </span><span class="kw">paste</span>(first, last)</span>
+<span id="cb49-2"><a href="basic-objects.html#cb49-2"></a>full </span></code></pre></div>
+<pre><code>## [1] &quot;George Washington&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-objects.html#cb51-1"></a><span class="kw">nchar</span>(full)</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basic-objects.html#cb53-1"></a><span class="kw">tolower</span>(full)</span></code></pre></div>
+<pre><code>## [1] &quot;george washington&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-objects.html#cb55-1"></a><span class="kw">toupper</span>(full)</span></code></pre></div>
+<pre><code>## [1] &quot;GEORGE WASHINGTON&quot;</code></pre>
+<p>The function <code>paste()</code> concatenates two or more character strings with a separator, which is a space by default. The function <code>nchar()</code> returns the number of characters in a string. The functions <code>tolower()</code> and <code>toupper()</code> changes any upper case characters to lower case and vice-versa.</p>
+</div>
+</div>
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">2.2</span> Vectors</h2>
+<p>All the objects we have created this far are single element <strong>vectors</strong>. <code>R</code> is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature. A vector is a collection of values of the same data type. We can use the concatenate function, <code>c()</code>, to create vectors, and to make a vector larger.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-objects.html#cb57-1"></a>v1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">19</span>, <span class="fl">390.3</span>, pi, <span class="fl">-32.1</span>)</span>
+<span id="cb57-2"><a href="basic-objects.html#cb57-2"></a>v1</span></code></pre></div>
+<pre><code>## [1]  19.000000 390.300000   3.141593 -32.100000</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-objects.html#cb59-1"></a><span class="kw">class</span>(v1)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basic-objects.html#cb61-1"></a>v2 =<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">6</span>, <span class="fl">-9.4</span>, <span class="fl">32.1</span>)</span>
+<span id="cb61-2"><a href="basic-objects.html#cb61-2"></a>v2</span></code></pre></div>
+<pre><code>## [1]  1.1  6.0 -9.4 32.1</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-objects.html#cb63-1"></a><span class="kw">class</span>(v2)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-objects.html#cb65-1"></a>v3 =<span class="st"> </span><span class="kw">c</span>(v1, first)</span>
+<span id="cb65-2"><a href="basic-objects.html#cb65-2"></a><span class="kw">class</span>(v3)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-objects.html#cb67-1"></a>v4 =<span class="st"> </span><span class="kw">c</span>(first, last)</span>
+<span id="cb67-2"><a href="basic-objects.html#cb67-2"></a><span class="kw">class</span>(v4)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>The <strong>length()</strong> function can be used to obtain the number of elements in a vector.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-objects.html#cb69-1"></a><span class="kw">length</span>(v1)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Vectors can be used in arithmetic computations. If the two vectors are of the same length, the computations are performed element-by-element.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-objects.html#cb71-1"></a>v1 <span class="op">+</span><span class="st"> </span>v2</span></code></pre></div>
+<pre><code>## [1]  20.100000 396.300000  -6.258407   0.000000</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-objects.html#cb73-1"></a>v1 <span class="op">*</span><span class="st"> </span>v2</span></code></pre></div>
+<pre><code>## [1]    20.90000  2341.80000   -29.53097 -1030.41000</code></pre>
+<p>Single numbers (scalars) will operate on all the vector elements in an expression.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-objects.html#cb75-1"></a><span class="dv">5</span><span class="op">*</span>v1</span></code></pre></div>
+<pre><code>## [1]   95.00000 1951.50000   15.70796 -160.50000</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="basic-objects.html#cb77-1"></a>v1<span class="op">/</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1]   6.333333 130.100000   1.047198 -10.700000</code></pre>
+<p>Individual elements of a vector can be obtained using an index in square brackets. A negative index removes that element from the vector. The <code>v2[-1]</code> is the vector <code>v2</code> with the first element removed. The concatenate function can be used to obtain two or more elements of a vector in any desired order. Here <code>v1[c(3,2)]</code> returns the third and second elements of the vector <code>v1</code>.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="basic-objects.html#cb79-1"></a>v1[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="basic-objects.html#cb81-1"></a>v2[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1]  6.0 -9.4 32.1</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="basic-objects.html#cb83-1"></a>v3[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;3.14159265358979&quot; &quot;390.3&quot;</code></pre>
+</div>
+<div id="lists" class="section level2">
+<h2><span class="header-section-number">2.3</span> Lists</h2>
+</div>
+<div id="matrices" class="section level2">
+<h2><span class="header-section-number">2.4</span> Matrices</h2>
+<p>A matrix is a two dimensional array of data of the same type. The matrix function, <code>matrix()</code>, can be used to create a new matrix.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="basic-objects.html#cb85-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">4</span>), </span>
+<span id="cb85-2"><a href="basic-objects.html#cb85-2"></a>           <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb85-3"><a href="basic-objects.html#cb85-3"></a>m</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    3
+## [2,]    9    5    8
+## [3,]    2    7    4</code></pre>
+<p><code>R</code> labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function.</p>
+<p>As with vectors, matrices can be used in arithmetic expressions with scalars and other matrices of the same size.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="basic-objects.html#cb87-1"></a>m2 =<span class="st"> </span>m<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb87-2"><a href="basic-objects.html#cb87-2"></a>m2</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.5  0.0  1.5
+## [2,]  4.5  2.5  4.0
+## [3,]  1.0  3.5  2.0</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="basic-objects.html#cb89-1"></a>m <span class="op">*</span>m2</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.5  0.0  4.5
+## [2,] 40.5 12.5 32.0
+## [3,]  2.0 24.5  8.0</code></pre>
+<p>Indices can be used to obtain the elements of a matrix, but now we must consider both the row and column.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="basic-objects.html#cb91-1"></a>m[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="basic-objects.html#cb93-1"></a>m[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="basic-objects.html#cb95-1"></a>m[<span class="dv">2</span>,]</span></code></pre></div>
+<pre><code>## [1] 9 5 8</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="basic-objects.html#cb97-1"></a>m[,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 3 8 4</code></pre>
+<p>Some functions are particularly useful when using matrices. For instance, <code>t()</code>, <code>dim()</code>, and <code>c()</code>. The transpose function, <code>t()</code>, switches the column and rows of a matrix. The dimension function, <code>dim()</code>, returns the dimensions (number of rows, columns) of a matrix. The concatenate function, <code>c()</code>, turns a matrix into a vector by concatenating the columns of the matrix.</p>
+</div>
+<div id="factors" class="section level2">
+<h2><span class="header-section-number">2.5</span> Factors</h2>
+</div>
+<div id="data-frames" class="section level2">
+<h2><span class="header-section-number">2.6</span> Data Frames</h2>
+<p>Like a matrix, a data frame is a rectangular array of values where each column is a vector, However, unlike a matrix, the columns can be different data types.</p>
+<p>We can create a set of vectors of the same length and use the <code>data.frame()</code> function to make a data frame object.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="basic-objects.html#cb99-1"></a>age =<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">37</span>,<span class="dv">23</span>)</span>
+<span id="cb99-2"><a href="basic-objects.html#cb99-2"></a>gender =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)</span>
+<span id="cb99-3"><a href="basic-objects.html#cb99-3"></a>married =<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb99-4"><a href="basic-objects.html#cb99-4"></a>friends =<span class="st"> </span><span class="kw">data.frame</span>(age, gender, married)</span>
+<span id="cb99-5"><a href="basic-objects.html#cb99-5"></a>friends</span></code></pre></div>
+<pre><code>##   age gender married
+## 1  25   Male   FALSE
+## 2  37   Male    TRUE
+## 3  23 Female   FALSE</code></pre>
+</div>
+<div id="other-object-types" class="section level2">
+<h2><span class="header-section-number">2.7</span> Other Object Types</h2>
+<ul>
+<li><p>Builtin Objects and Special Forms</p></li>
+<li><p>Some specific types of objects are generated by specific functions.</p></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objects-continued-advanced-features.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-basic-objects.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
