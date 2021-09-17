@@ -119,7 +119,15 @@ for (x in colors) {
 For loops do not have the same risk of "running forever", like while loops have. 
 
 
+## Bisection
 
+## Nested Loops
+
+## Switch 
+
+## Next 
+
+## Break 
 
 ## Practice Problems {-} 
 

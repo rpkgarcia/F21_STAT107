@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Packages | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 8 Packages | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Packages | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 8 Packages | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Packages | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 8 Packages | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -30,14 +30,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2021-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="if-statements.html"/>
+<link rel="prev" href="base-r-plotting.html"/>
 <link rel="next" href="loops.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -182,24 +182,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
 <li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
-<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.2</b> Built-In Functions</a></li>
-<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.3</b> Help Files</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>5.2</b> Lexical Scoping</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-arguement"><i class="fa fa-check"></i><b>5.3</b> The … Arguement</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.4</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.5</b> Help Files</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
 <li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
 <li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#the-ifelse-function"><i class="fa fa-check"></i><b>6.2</b> The <code>ifelse</code> function</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a></li>
-<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
-<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
-<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="7" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>7</b> Base R Plotting</a><ul>
+<li class="chapter" data-level="7.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>7.1</b> Visualizing Quantitative Data</a></li>
+<li class="chapter" data-level="7.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#visualizing-qualitative-data"><i class="fa fa-check"></i><b>7.2</b> Visualizing Qualitative Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages</a></li>
+<li class="chapter" data-level="9" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>9</b> Loops</a><ul>
+<li class="chapter" data-level="9.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>9.1</b> While Loop</a></li>
+<li class="chapter" data-level="9.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>9.2</b> For Loops</a></li>
+<li class="chapter" data-level="9.3" data-path="loops.html"><a href="loops.html#bisection"><i class="fa fa-check"></i><b>9.3</b> Bisection</a></li>
+<li class="chapter" data-level="9.4" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.4</b> Nested Loops</a></li>
+<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#switch"><i class="fa fa-check"></i><b>9.5</b> Switch</a></li>
+<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>9.6</b> Next</a></li>
+<li class="chapter" data-level="9.7" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>9.7</b> Break</a></li>
 <li class="chapter" data-level="" data-path="loops.html"><a href="loops.html#practice-problems"><i class="fa fa-check"></i>Practice Problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
-<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>9.1</b> apply() function</a></li>
-<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>9.2</b> lapply() function</a></li>
-<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>9.3</b> sapply() function</a></li>
-<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>9.4</b> tapply() function</a></li>
+<li class="chapter" data-level="10" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>10</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="10.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>10.1</b> apply() function</a></li>
+<li class="chapter" data-level="10.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply-function"><i class="fa fa-check"></i><b>10.2</b> lapply() function</a></li>
+<li class="chapter" data-level="10.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply-function"><i class="fa fa-check"></i><b>10.3</b> sapply() function</a></li>
+<li class="chapter" data-level="10.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply-function"><i class="fa fa-check"></i><b>10.4</b> tapply() function</a></li>
 <li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#practice-problems-1"><i class="fa fa-check"></i>Practice Problems</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -224,28 +235,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="packages" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Packages</h1>
+<h1><span class="header-section-number">Chapter 8</span> Packages</h1>
 <p><code>R</code> packages are a collection of <code>R</code> functions, complied code and sample data. They are stored under a directory called “library” in the <code>R</code> environment. By default, <code>R</code> installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the <code>R</code> console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the <code>R</code> program that is going to use them.</p>
 <p>All the packages available in <code>R</code> language are listed at <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">R Packages</a>.</p>
 <p>To see a list of all packages installed on your device.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="packages.html#cb246-1"></a><span class="kw">library</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="packages.html#cb341-1"></a><span class="kw">library</span>()</span></code></pre></div>
 <p>To see a list of all packages that are currently loaded.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="packages.html#cb247-1"></a><span class="kw">search</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="packages.html#cb342-1"></a><span class="kw">search</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:xtable&quot;    &quot;package:knitr&quot;    
 ##  [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
 ##  [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
 ## [10] &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
 <p>When adding a new package to our library we only have to install it once. We can do so with the following command.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="packages.html#cb249-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="packages.html#cb344-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
 <p>Alternatively, we can also go to the lower left hand window and select the <em>Packages</em> tab. Then hit the button <strong>Install</strong>. A dropdown menu will appear where we can search for the package name.</p>
 <p>Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="packages.html#cb250-1"></a><span class="kw">library</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="packages.html#cb345-1"></a><span class="kw">library</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
 <p>For example, suppose we wanted to install and load the package “ggplot2”, (a very popular package for making plots). We would type the following commands.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="packages.html#cb251-1"></a><span class="co"># Install package (only need to do this once)</span></span>
-<span id="cb251-2"><a href="packages.html#cb251-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb251-3"><a href="packages.html#cb251-3"></a></span>
-<span id="cb251-4"><a href="packages.html#cb251-4"></a><span class="co"># Load into working environment (need to do this for each new R session)</span></span>
-<span id="cb251-5"><a href="packages.html#cb251-5"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="packages.html#cb346-1"></a><span class="co"># Install package (only need to do this once)</span></span>
+<span id="cb346-2"><a href="packages.html#cb346-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb346-3"><a href="packages.html#cb346-3"></a></span>
+<span id="cb346-4"><a href="packages.html#cb346-4"></a><span class="co"># Load into working environment (need to do this for each new R session)</span></span>
+<span id="cb346-5"><a href="packages.html#cb346-5"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 
 </div>
             </section>
@@ -253,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="if-statements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-r-plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -286,7 +297,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-packages.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-packages.Rmd",
 "text": "Edit"
 },
 "history": {

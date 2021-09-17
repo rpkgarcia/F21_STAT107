@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-09-12}
+\date{2021-09-17}
 
 \begin{document}
 \maketitle
@@ -1738,6 +1738,495 @@ Although built-in data sets are convient, most the time we need to load our own 
 \hypertarget{basic-data-manipulation}{%
 \section{Basic Data Manipulation}\label{basic-data-manipulation}}
 
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as weight or gender, and each row is a single observation. All of the values within a column must be the same data type (numeric, character, logical, etc.). Data frames can be created within \texttt{R} or imported from text or spreadsheet files or from the web.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{)}
+\NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+\NormalTok{weight =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{152}\NormalTok{, }\DecValTok{124}\NormalTok{, }\DecValTok{127}\NormalTok{, }\DecValTok{189}\NormalTok{, }\DecValTok{133}\NormalTok{)}
+\NormalTok{pets =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(gender, age, weight)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 1      M  35    152
+## 2      F  30    124
+## 3      M  31    127
+## 4      M  28    189
+## 5      F  40    133
+\end{verbatim}
+
+We have various \texttt{R} functions that help provide information about the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How many rows}
+\KeywordTok{nrow}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How many columns}
+\KeywordTok{ncol}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Rows, Columns}
+\KeywordTok{dim}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Colnames}
+\KeywordTok{colnames}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "gender" "age"    "weight"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "gender" "age"    "weight"
+\end{verbatim}
+
+The \texttt{summary()} function is a powerful command that gives you some summary statistics about the variales in the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     gender               age           weight   
+##  Length:5           Min.   :28.0   Min.   :124  
+##  Class :character   1st Qu.:30.0   1st Qu.:127  
+##  Mode  :character   Median :31.0   Median :133  
+##                     Mean   :32.8   Mean   :145  
+##                     3rd Qu.:35.0   3rd Qu.:152  
+##                     Max.   :40.0   Max.   :189
+\end{verbatim}
+
+The summary statistics are listed below the names of the variables. Since gender is a character variable, \texttt{R} gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, \texttt{R} computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+
+Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31
+\end{verbatim}
+
+If you leave out the number before or after the comma, the entire column or row is returned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{3}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 3      M  31    127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 35 30 31 28 40
+\end{verbatim}
+
+You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight[}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 189
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 152 124 127 189 133
+\end{verbatim}
+
+The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers \(a\), \(a+1\),\ldots, \(b\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{2}\OperatorTok{:}\DecValTok{4}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 3      M  31    127
+## 4      M  28    189
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{age[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31 28 40
+\end{verbatim}
+
+You can use logical conditions to obtain subsets of the data. A logical value of \texttt{TRUE} will return a data row and a logical of \texttt{FALSE} omits that row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{males =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{==}\StringTok{ "M"}\NormalTok{)}
+\NormalTok{males}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 1      M  35    152
+## 3      M  31    127
+## 4      M  28    189
+\end{verbatim}
+
+To subset by all values which are NOT equal to a condition we can use the logical operator \texttt{!=}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{females =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{!=}\StringTok{ "M"}\NormalTok{)}
+\NormalTok{females}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 5      F  40    133
+\end{verbatim}
+
+Data can be sorted using the \texttt{order()} function. This function returns the ranks of the variable being sorted. Including more than one variable allows a ``nested sort,'' where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 3 5 1 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{weight),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 3      M  31    127
+## 5      F  40    133
+## 1      M  35    152
+## 4      M  28    189
+\end{verbatim}
+
+The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, \texttt{weight}. We can sort by more than one variable. Let's first sort by \texttt{gender} alone and then by \texttt{gender} followed by \texttt{weight} and see what we get.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{gender), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 5      F  40    133
+## 1      M  35    152
+## 3      M  31    127
+## 4      M  28    189
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{gender, mydata}\OperatorTok{$}\NormalTok{weight), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 5      F  40    133
+## 3      M  31    127
+## 1      M  35    152
+## 4      M  28    189
+\end{verbatim}
+
+To reorder a vector from smallest to largest we can also condiser the sort() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28 30 31 35 40
+\end{verbatim}
+
+One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a set of heights (in cm) to the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hghts =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{169}\NormalTok{, }\DecValTok{161}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{165}\NormalTok{, }\DecValTok{155}\NormalTok{)}
+\NormalTok{hghts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 169 161 149 165 155
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{height =}\StringTok{ }\NormalTok{hghts}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height
+## 1      M  35    152    169
+## 2      F  30    124    161
+## 3      M  31    127    149
+## 4      M  28    189    165
+## 5      F  40    133    155
+\end{verbatim}
+
+We can also add a new column using the \texttt{cbind()} function. In addition, if we have a missing value, or a blank value, we can use the object \texttt{NA} to indicate the lack of a value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fav_color =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Red"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"Purple"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"Red"}\NormalTok{)}
+
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(mydata, fav_color)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height fav_color
+## 1      M  35    152    169       Red
+## 2      F  30    124    161      <NA>
+## 3      M  31    127    149    Purple
+## 4      M  28    189    165      <NA>
+## 5      F  40    133    155       Red
+\end{verbatim}
+
+We can drop check for \texttt{NA} values using the \texttt{is.na()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.na}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      gender   age weight height fav_color
+## [1,]  FALSE FALSE  FALSE  FALSE     FALSE
+## [2,]  FALSE FALSE  FALSE  FALSE      TRUE
+## [3,]  FALSE FALSE  FALSE  FALSE     FALSE
+## [4,]  FALSE FALSE  FALSE  FALSE      TRUE
+## [5,]  FALSE FALSE  FALSE  FALSE     FALSE
+\end{verbatim}
+
+We can remove all rows with \texttt{NA} values using \texttt{na.omit()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{na.omit}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height fav_color
+## 1      M  35    152    169       Red
+## 3      M  31    127    149    Purple
+## 5      F  40    133    155       Red
+\end{verbatim}
+
+One can drop a variable (column) by setting it equal to the \texttt{R} value \texttt{NULL}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{fav_color =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height
+## 1      M  35    152    169
+## 2      F  30    124    161
+## 3      M  31    127    149
+## 4      M  28    189    165
+## 5      F  40    133    155
+\end{verbatim}
+
+Be careful using these methods. Once a variable or row is dropped, it's gone. Rows can be added to a data frame using the \texttt{rbind()} (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newobs =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"M"}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{136}\NormalTok{, }\DecValTok{160}\NormalTok{)}
+\NormalTok{newdata =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(mydata, newobs)}
+\NormalTok{newdata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height
+## 1      M  35    152    169
+## 2      F  30    124    161
+## 3      M  31    127    149
+## 4      M  28    189    165
+## 5      F  40    133    155
+## 6      M  23    136    160
+\end{verbatim}
+
+We can also use \texttt{rbind()} to append one data frame to another. We can do this with the variables \texttt{males} and \texttt{females} created above still exist in your R environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{males}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 1      M  35    152
+## 3      M  31    127
+## 4      M  28    189
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{females}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 2      F  30    124
+## 5      F  40    133
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbind}\NormalTok{(males, females)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight
+## 1      M  35    152
+## 3      M  31    127
+## 4      M  28    189
+## 2      F  30    124
+## 5      F  40    133
+\end{verbatim}
+
+One can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   gender age weight height
+## 1      M  35    152    169
+## 3      M  31    127    149
+## 5      F  40    133    155
+\end{verbatim}
+
+The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  4  6  8 
+## 11  7 14
+\end{verbatim}
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl, mtcars}\OperatorTok{$}\NormalTok{vs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##      0  1
+##   4  1 10
+##   6  3  4
+##   8 14  0
+\end{verbatim}
+
 \hypertarget{functions}{%
 \chapter{Functions}\label{functions}}
 
@@ -1896,6 +2385,12 @@ Observe:
 With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.
 
 If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used.
+
+\hypertarget{lexical-scoping}{%
+\section{Lexical Scoping}\label{lexical-scoping}}
+
+\hypertarget{the-arguement}{%
+\section{The \ldots{} Arguement}\label{the-arguement}}
 
 \hypertarget{built-in-functions}{%
 \section{Built-In Functions}\label{built-in-functions}}
@@ -2316,6 +2811,307 @@ over 50\%:
 ## [1] 0.24
 \end{verbatim}
 
+\hypertarget{base-r-plotting}{%
+\chapter{Base R Plotting}\label{base-r-plotting}}
+
+\hypertarget{visualizing-quantitative-data}{%
+\section{Visualizing Quantitative Data}\label{visualizing-quantitative-data}}
+
+Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (\url{http://www.cdc.gov/brfss}) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.
+
+We begin by loading the data set of 20,000 observations into the R workspace and examine some of its attributes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"http://www.openintro.org/stat/data/cdc.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+After a brief time, a new data frame cdc appears in the workspace. Each row representing a case (a person surveyed) and each column representing a variable.
+
+To get general information on each variable, use the \texttt{summary()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       genhlth        exerany          hlthplan         smoke100     
+##  excellent:4657   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+##  very good:6972   1st Qu.:0.0000   1st Qu.:1.0000   1st Qu.:0.0000  
+##  good     :5675   Median :1.0000   Median :1.0000   Median :0.0000  
+##  fair     :2019   Mean   :0.7457   Mean   :0.8738   Mean   :0.4721  
+##  poor     : 677   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##                   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##      height          weight         wtdesire          age        gender   
+##  Min.   :48.00   Min.   : 68.0   Min.   : 68.0   Min.   :18.00   m: 9569  
+##  1st Qu.:64.00   1st Qu.:140.0   1st Qu.:130.0   1st Qu.:31.00   f:10431  
+##  Median :67.00   Median :165.0   Median :150.0   Median :43.00            
+##  Mean   :67.18   Mean   :169.7   Mean   :155.1   Mean   :45.07            
+##  3rd Qu.:70.00   3rd Qu.:190.0   3rd Qu.:175.0   3rd Qu.:57.00            
+##  Max.   :93.00   Max.   :500.0   Max.   :680.0   Max.   :99.00
+\end{verbatim}
+
+The variables \texttt{genhlth} and \texttt{gender} are character variables. The \texttt{summary()} command reports the frequencies of the unique values. The variables \texttt{exerany}, \texttt{hlthplan}, and \texttt{smoke100} are yes/no variables coded as 1=yes or 0=no. They represent the existence or absence or regular exercise, the presence of a healthcare plan, and whether or not the person smoked 100 cigarettes in their lifetime. The means are the proportion of ``yes'' responses. The variables \texttt{height}, \texttt{weight}, \texttt{wtdesire}, and \texttt{age} are numeric variables. The \texttt{summary()} command gives information on the means, medians, quartiles and range of values.
+
+Since this is a very large data set, we wouldn't want to list all the data. We can use the functions \texttt{head()} and \texttt{tail()} to list the first and last few rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     genhlth exerany hlthplan smoke100 height weight wtdesire age gender
+## 1      good       0        1        0     70    175      175  77      m
+## 2      good       0        1        1     64    125      115  33      f
+## 3      good       1        1        1     60    105      105  49      f
+## 4      good       1        1        0     66    132      124  42      f
+## 5 very good       0        1        0     61    150      130  55      f
+## 6 very good       1        1        0     64    114      114  55      f
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         genhlth exerany hlthplan smoke100 height weight wtdesire age gender
+## 19995      good       0        1        1     69    224      224  73      m
+## 19996      good       1        1        0     66    215      140  23      f
+## 19997 excellent       0        1        0     73    200      185  35      m
+## 19998      poor       0        1        0     65    216      150  57      f
+## 19999      good       1        1        0     67    165      165  81      f
+## 20000      good       1        1        1     69    170      165  83      m
+\end{verbatim}
+
+We can look at graphical representations of this data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-3.pdf}
+
+The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+
+We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.
+
+Use \texttt{col} argument to change the colors used for the bars. By using the \texttt{border} argument, you can even change the color used for the border of the bars.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+
+There are several ways we can add \textbf{colors} to \texttt{R}.
+
+\begin{itemize}
+\item
+  \textbf{Using Color Names}: \texttt{R} programming has names for 657 colors. You can take a look at them all with the \texttt{colors()} function, or simply check this R color pdf.
+\item
+  \textbf{Using Hex Values as Colors}: Instead of using a color name, color can also be defined with a hexadecimal value. We define a color as a 6 hexadecimal digit number of the form \texttt{\#RRGGBB}. Where the \texttt{RR} is for red, \texttt{GG} for green and \texttt{BB} for blue and value ranges from \texttt{00} to \texttt{FF}. For example, \texttt{\#FF0000} would be red and \texttt{\#00FF00} would be green similarly, \#FFFFFF would be white and \texttt{\#000000} would be black.
+\item
+  \textbf{Using RGB Values} The function \texttt{rgb()} allows us to specify red, green and blue component with a number between 0 and 1. This function returns the corresponding hex code discussed above.
+\item
+  \textbf{Using a Color Palette}: R programming offers 5 built in color palettes which can be used to quickly generate color vectors of desired length. They are: \texttt{rainbow()}, \texttt{heat.colors()}, \texttt{terrain.colors()}, \texttt{topo.colors()} and \texttt{cm.colors()}. We pass in the number of colors that we want
+\end{itemize}
+
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+
+You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{],}
+     \DataTypeTok{col=}\StringTok{"dodgerblue3"}\NormalTok{,}
+     \DataTypeTok{labels=}\OtherTok{TRUE}\NormalTok{, }
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{), }
+     \DataTypeTok{breaks =} \DecValTok{18}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
+
+Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# random numbers}
+\NormalTok{h1 =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{h2 =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+\CommentTok{# Overlay two histograms}
+\KeywordTok{hist}\NormalTok{(h1,}
+     \DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.25}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(h2,}
+     \DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.25}\NormalTok{),}
+     \DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-110-1.pdf}
+
+For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
+
+Let's produce a boxplot for the first 1000 values of the height variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
+
+The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{] }\OperatorTok{~}\StringTok{ }\NormalTok{cdc}\OperatorTok{$}\NormalTok{gender[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
+
+\hypertarget{visualizing-qualitative-data}{%
+\section{Visualizing Qualitative Data}\label{visualizing-qualitative-data}}
+
+We will now look at some of the qualitative data that are not numbers, but categories or groups. The \texttt{table()} function can be used to tabulate categorical data. The \texttt{genhlth} variable has five categories, we can use \texttt{table()} to find the frequencies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## excellent very good      good      fair      poor 
+##      4657      6972      5675      2019       677
+\end{verbatim}
+
+Since the sample size is 20,000, we can divide by n to get proportions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## excellent very good      good      fair      poor 
+##   0.23285   0.34860   0.28375   0.10095   0.03385
+\end{verbatim}
+
+Pie charts are also used for categorical data. Options are also available for the \texttt{pie()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pie}\NormalTok{(}\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+Options are also available for the pie() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"pink"}\NormalTok{, }\StringTok{"red"}\NormalTok{)}
+\KeywordTok{pie}\NormalTok{(}\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}\NormalTok{, }\DataTypeTok{col =}\NormalTok{ colors, }\DataTypeTok{main =} \StringTok{"General Health"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
+
+The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{smoke100, cdc}\OperatorTok{$}\NormalTok{gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##        m    f
+##   0 4547 6012
+##   1 5022 4419
+\end{verbatim}
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth, cdc}\OperatorTok{$}\NormalTok{gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            
+##                m    f
+##   excellent 2298 2359
+##   very good 3382 3590
+##   good      2722 2953
+##   fair       884 1135
+##   poor       283  394
+\end{verbatim}
+
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
 
@@ -2544,6 +3340,21 @@ Like the while loop, the \texttt{break} statement is used to exit the loop immed
 \end{verbatim}
 
 For loops do not have the same risk of ``running forever'', like while loops have.
+
+\hypertarget{bisection}{%
+\section{Bisection}\label{bisection}}
+
+\hypertarget{nested-loops}{%
+\section{Nested Loops}\label{nested-loops}}
+
+\hypertarget{switch}{%
+\section{Switch}\label{switch}}
+
+\hypertarget{next}{%
+\section{Next}\label{next}}
+
+\hypertarget{break}{%
+\section{Break}\label{break}}
 
 \hypertarget{practice-problems}{%
 \section*{Practice Problems}\label{practice-problems}}

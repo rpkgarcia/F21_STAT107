@@ -1,0 +1,168 @@
+# Base R Plotting
+
+## Visualizing Quantitative Data 
+
+Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (http://www.cdc.gov/brfss) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.
+
+We begin by loading the data set of 20,000 observations into the R workspace and examine some of its attributes.
+
+```{r}
+source("http://www.openintro.org/stat/data/cdc.R")
+```
+
+After a brief time, a new data frame cdc appears in the workspace. Each row representing a case (a person surveyed) and each column representing a variable.
+
+To get general information on each variable, use the `summary()` function. 
+
+```{r}
+summary(cdc)
+```
+
+The variables `genhlth` and `gender` are character variables. The `summary()` command reports the frequencies of the unique values. The variables `exerany`, `hlthplan`, and `smoke100` are yes/no variables coded as 1=yes or 0=no. They represent the existence or absence or regular exercise, the presence of a healthcare plan, and whether or not the person smoked 100 cigarettes in their lifetime. The means are the proportion of “yes” responses. The variables `height`, `weight`, `wtdesire`, and `age` are numeric variables. The `summary()` command gives information on the means, medians, quartiles and range of values.
+
+
+Since this is a very large data set, we wouldn’t want to list all the data. We can use the functions `head()` and `tail()` to list the first and last few rows.
+```{r}
+head(cdc)
+tail(cdc)
+```
+
+We can look at graphical representations of this data. 
+
+```{r}
+hist(cdc$height)
+hist(cdc$weight)
+hist(cdc$age)
+```
+
+The output appears in the *Plots* panel of *RStudio*. You can use the arrows to the left of the *Zoom* button the switch among the three plots.
+
+```{r}
+hist(cdc$weight, breaks=20, main="Distribution of Weight",xlab="Weight (kg)")
+```
+
+We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis. 
+
+Use `col` argument to change the colors used for the bars. By using the `border` argument, you can even change the color used for the border of the bars.
+
+```{r}
+hist(cdc$weight, breaks=20, main="Distribution of Weight",
+     xlab="Weight (kg)", 
+     border = "mediumpurple4",
+     col = "mediumpurple1")
+
+```
+
+There are several ways we can add **colors** to `R`.
+
+- **Using Color Names**: `R` programming has names for 657 colors. You can take a look at them all with the `colors()` function, or simply check this R color pdf.
+
+- **Using Hex Values as Colors**: Instead of using a color name, color can also be defined with a hexadecimal value. We define a color as a 6 hexadecimal digit number of the form `#RRGGBB`. Where the `RR` is for red, `GG` for green and `BB` for blue and value ranges from `00` to `FF`. For example, `#FF0000` would be red and `#00FF00` would be green similarly, #FFFFFF would be white and `#000000` would be black.
+
+- **Using RGB Values** The function `rgb()` allows us to specify red, green and blue component with a number between 0 and 1. This function returns the corresponding hex code discussed above.
+
+- **Using a Color Palette**: R programming offers 5 built in color palettes which can be used to quickly generate color vectors of desired length. They are: `rainbow()`, `heat.colors()`, `terrain.colors()`, `topo.colors()` and `cm.colors()`. We pass in the number of colors that we want
+
+
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the `abline()` function.
+
+```{r}
+hist(cdc$weight, breaks=20, main="Distribution of Weight",
+     xlab="Weight (kg)", 
+     border = "mediumpurple4",
+     col = "mediumpurple1")
+
+abline(v=mean(cdc$weight),
+       col="mediumblue",
+       lty=2,
+       lwd=2)
+```
+
+
+You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to `TRUE`.
+
+```{r}
+hist(cdc$height[1:1000],
+     col="dodgerblue3",
+     labels=TRUE, 
+     ylim = c(0, 200), 
+     breaks = 18)
+```
+
+
+Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the `add` argument of the second histogram to `TRUE`.
+
+```{r}
+# random numbers
+h1 = rnorm(1000,6)
+h2 = rnorm(1000,4)
+
+# Overlay two histograms
+hist(h1,
+     col=rgb(1,0,0,0.25))
+hist(h2,
+     col=rgb(0,0,1,0.25),
+     add=TRUE)
+
+```
+
+
+
+
+For more options, look up “hist” in the *Help* panel of *RStudio*.
+
+Let’s produce a boxplot for the first 1000 values of the height variable.
+
+```{r}
+boxplot(cdc$height[1:1000])
+```
+
+The line in the center is the median. The bottom and top of the box are drawn at the first ($Q_1$) and third ($Q_3$) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range ($Q_3-Q_1$). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, $Q3 +1.5(Q_3-Q_1)$, or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, $Q1-1.5(Q_3-Q_1)$, or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
+
+```{r}
+boxplot(cdc$height[1:1000] ~ cdc$gender[1:1000])
+```
+
+
+
+## Visualizing Qualitative Data
+
+We will now look at some of the qualitative data that are not numbers, but categories or groups. The `table()` function can be used to tabulate categorical data. The `genhlth` variable has five categories, we can use `table()` to find the frequencies. 
+
+
+```{r}
+table(cdc$genhlth)
+```
+
+Since the sample size is 20,000, we can divide by n to get proportions.
+
+```{r}
+table(cdc$genhlth)/20000
+```
+
+Pie charts are also used for categorical data.  Options are also available for the `pie()` function. 
+
+```{r}
+pie(table(cdc$genhlth)/20000)
+```
+
+Options are also available for the pie() function. 
+
+```{r}
+colors = c("green", "blue", "yellow", "pink", "red")
+pie(table(cdc$genhlth)/20000, col = colors, main = "General Health")
+```
+
+The `table()` function can also be used to cross-tabulate categorical data.  Let’s create a frequency table of smokers and non-smokers for both genders.
+
+```{r}
+table(cdc$smoke100, cdc$gender)
+```
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+```{r}
+table(cdc$genhlth, cdc$gender)
+```
+
+

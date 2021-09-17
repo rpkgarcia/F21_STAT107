@@ -102,6 +102,9 @@ With all these examples of functions, notice that in your global environment, on
 
 If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used. 
 
+## Lexical Scoping 
+
+## The ... Arguement 
 
 ## Built-In Functions
 

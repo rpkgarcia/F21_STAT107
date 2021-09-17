@@ -55,3 +55,186 @@ Although built-in data sets are convient, most the time we need to load our own 
 
 ## Basic Data Manipulation
 
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as weight or gender, and each row is a single observation. All of the values within a column must be the same data type (numeric, character, logical, etc.). Data frames can be created within `R` or imported from text or spreadsheet files or from the web. 
+
+```{r}
+gender = c("M", "F", "M", "M", "F")
+age = c(35, 30, 31, 28, 40)
+weight = c(152, 124, 127, 189, 133)
+pets = c(TRUE, TRUE, FALSE, FALSE, TRUE)
+
+mydata = data.frame(gender, age, weight)
+mydata
+```
+
+
+We have various `R` functions that help provide information about the data frame.
+
+```{r}
+# How many rows
+nrow(mydata)
+
+# How many columns
+ncol(mydata)
+
+# Rows, Columns
+dim(mydata)
+
+# Colnames
+colnames(mydata)
+names(mydata)
+
+```
+
+
+The `summary()` function is a powerful command that gives you some summary statistics about the variales in the data frame. 
+
+```{r}
+summary(mydata)
+```
+
+The summary statistics are listed below the names of the variables. Since gender is a character variable, `R` gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, `R` computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+
+Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
+
+```{r}
+mydata[3,2]
+```
+
+If you leave out the number before or after the comma, the entire column or row is returned. 
+
+```{r}
+mydata[3,]
+
+mydata[,2]
+
+```
+
+You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable. 
+
+```{r}
+mydata$weight[4]
+
+mydata$weight
+```
+
+The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers $a$, $a+1$,..., $b$.
+
+```{r}
+mydata[2:4,]
+
+mydata$age[3:5]
+```
+
+You can use logical conditions to obtain subsets of the data. A logical value of `TRUE` will return a data row and a logical of `FALSE` omits that row.
+
+```{r}
+males = subset(mydata, mydata$gender == "M")
+males
+```
+
+
+To subset by all values which are NOT equal to a condition we can use the logical operator `!=`.
+```{r}
+females = subset(mydata, mydata$gender != "M")
+females
+```
+
+Data can be sorted using the `order()` function. This function returns the ranks of the variable being sorted. Including more than one variable allows a "nested sort," where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.
+
+```{r}
+order(mydata$weight)
+
+mydata[order(mydata$weight),]
+```
+
+The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, `weight`. We can sort by more than one variable. Let’s first sort by `gender` alone and then by `gender` followed by `weight` and see what we get.
+
+
+```{r}
+mydata[order(mydata$gender), ]
+
+mydata[order(mydata$gender, mydata$weight), ]
+
+```
+
+To reorder a vector from smallest to largest we can also condiser the sort() function. 
+
+```{r}
+sort(mydata$age)
+```
+
+One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a set of heights (in cm) to the data frame.
+
+```{r}
+hghts = c(169, 161, 149, 165, 155)
+hghts
+
+mydata$height = hghts
+mydata
+```
+
+We can also add a new column using the `cbind()` function. In addition, if we have a missing value, or a blank value, we can use the object `NA` to indicate the lack of a value. 
+
+```{r}
+fav_color = c("Red", NA, "Purple", NA, "Red")
+
+mydata = cbind(mydata, fav_color)
+mydata
+```
+
+We can drop check for `NA` values using the `is.na()` function. 
+
+```{r}
+is.na(mydata)
+```
+
+We can remove all rows with `NA` values using `na.omit()`. 
+```{r}
+na.omit(mydata)
+```
+
+
+One can drop a variable (column) by setting it equal to the `R` value `NULL`.
+
+```{r}
+mydata$fav_color = NULL
+mydata
+```
+
+Be careful using these methods. Once a variable or row is dropped, it’s gone. Rows can be added to a data frame using the `rbind()` (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row. 
+
+
+```{r}
+newobs = list("M", 23, 136, 160)
+newdata = rbind(mydata, newobs)
+newdata
+```
+
+We can also use `rbind()` to append one data frame to another. We can do this with the variables `males` and `females` created above still exist in your R environment. 
+
+```{r}
+males
+females
+rbind(males, females)
+```
+
+One can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
+
+```{r}
+mydata[-c(2,4), ]
+```
+
+
+The `table()` function can also be used to cross-tabulate categorical data.  Let’s create a frequency table of smokers and non-smokers for both genders.
+
+```{r}
+table(mtcars$cyl)
+```
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+```{r}
+table(mtcars$cyl, mtcars$vs)
+```
+
