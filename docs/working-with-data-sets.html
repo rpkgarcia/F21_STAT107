@@ -279,18 +279,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="downloading-data" class="section level3 unnumbered">
 <h3>Downloading Data</h3>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="working-with-data-sets.html#cb257-1"></a><span class="co">#source(&quot;https://rpkgarcia.github.io/LearnRBook/data_sets/InsectData.csv&quot;)</span></span></code></pre></div>
 </div>
 </div>
 <div id="basic-data-manipulation" class="section level2">
 <h2><span class="header-section-number">4.2</span> Basic Data Manipulation</h2>
 <p>Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as weight or gender, and each row is a single observation. All of the values within a column must be the same data type (numeric, character, logical, etc.). Data frames can be created within <code>R</code> or imported from text or spreadsheet files or from the web.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="working-with-data-sets.html#cb257-1"></a>gender =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)</span>
-<span id="cb257-2"><a href="working-with-data-sets.html#cb257-2"></a>age =<span class="st"> </span><span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">40</span>)</span>
-<span id="cb257-3"><a href="working-with-data-sets.html#cb257-3"></a>weight =<span class="st"> </span><span class="kw">c</span>(<span class="dv">152</span>, <span class="dv">124</span>, <span class="dv">127</span>, <span class="dv">189</span>, <span class="dv">133</span>)</span>
-<span id="cb257-4"><a href="working-with-data-sets.html#cb257-4"></a>pets =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb257-5"><a href="working-with-data-sets.html#cb257-5"></a></span>
-<span id="cb257-6"><a href="working-with-data-sets.html#cb257-6"></a>mydata =<span class="st"> </span><span class="kw">data.frame</span>(gender, age, weight)</span>
-<span id="cb257-7"><a href="working-with-data-sets.html#cb257-7"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="working-with-data-sets.html#cb258-1"></a>gender =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)</span>
+<span id="cb258-2"><a href="working-with-data-sets.html#cb258-2"></a>age =<span class="st"> </span><span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">40</span>)</span>
+<span id="cb258-3"><a href="working-with-data-sets.html#cb258-3"></a>weight =<span class="st"> </span><span class="kw">c</span>(<span class="dv">152</span>, <span class="dv">124</span>, <span class="dv">127</span>, <span class="dv">189</span>, <span class="dv">133</span>)</span>
+<span id="cb258-4"><a href="working-with-data-sets.html#cb258-4"></a>pets =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb258-5"><a href="working-with-data-sets.html#cb258-5"></a></span>
+<span id="cb258-6"><a href="working-with-data-sets.html#cb258-6"></a>mydata =<span class="st"> </span><span class="kw">data.frame</span>(gender, age, weight)</span>
+<span id="cb258-7"><a href="working-with-data-sets.html#cb258-7"></a>mydata</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 1      M  35    152
 ## 2      F  30    124
@@ -298,22 +299,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      M  28    189
 ## 5      F  40    133</code></pre>
 <p>We have various <code>R</code> functions that help provide information about the data frame.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="working-with-data-sets.html#cb259-1"></a><span class="co"># How many rows</span></span>
-<span id="cb259-2"><a href="working-with-data-sets.html#cb259-2"></a><span class="kw">nrow</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="working-with-data-sets.html#cb260-1"></a><span class="co"># How many rows</span></span>
+<span id="cb260-2"><a href="working-with-data-sets.html#cb260-2"></a><span class="kw">nrow</span>(mydata)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="working-with-data-sets.html#cb261-1"></a><span class="co"># How many columns</span></span>
-<span id="cb261-2"><a href="working-with-data-sets.html#cb261-2"></a><span class="kw">ncol</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="working-with-data-sets.html#cb262-1"></a><span class="co"># How many columns</span></span>
+<span id="cb262-2"><a href="working-with-data-sets.html#cb262-2"></a><span class="kw">ncol</span>(mydata)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="working-with-data-sets.html#cb263-1"></a><span class="co"># Rows, Columns</span></span>
-<span id="cb263-2"><a href="working-with-data-sets.html#cb263-2"></a><span class="kw">dim</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="working-with-data-sets.html#cb264-1"></a><span class="co"># Rows, Columns</span></span>
+<span id="cb264-2"><a href="working-with-data-sets.html#cb264-2"></a><span class="kw">dim</span>(mydata)</span></code></pre></div>
 <pre><code>## [1] 5 3</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="working-with-data-sets.html#cb265-1"></a><span class="co"># Colnames</span></span>
-<span id="cb265-2"><a href="working-with-data-sets.html#cb265-2"></a><span class="kw">colnames</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="working-with-data-sets.html#cb266-1"></a><span class="co"># Colnames</span></span>
+<span id="cb266-2"><a href="working-with-data-sets.html#cb266-2"></a><span class="kw">colnames</span>(mydata)</span></code></pre></div>
 <pre><code>## [1] &quot;gender&quot; &quot;age&quot;    &quot;weight&quot;</code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="working-with-data-sets.html#cb267-1"></a><span class="kw">names</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="working-with-data-sets.html#cb268-1"></a><span class="kw">names</span>(mydata)</span></code></pre></div>
 <pre><code>## [1] &quot;gender&quot; &quot;age&quot;    &quot;weight&quot;</code></pre>
 <p>The <code>summary()</code> function is a powerful command that gives you some summary statistics about the variales in the data frame.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="working-with-data-sets.html#cb269-1"></a><span class="kw">summary</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="working-with-data-sets.html#cb270-1"></a><span class="kw">summary</span>(mydata)</span></code></pre></div>
 <pre><code>##     gender               age           weight   
 ##  Length:5           Min.   :28.0   Min.   :124  
 ##  Class :character   1st Qu.:30.0   1st Qu.:127  
@@ -323,44 +324,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                     Max.   :40.0   Max.   :189</code></pre>
 <p>The summary statistics are listed below the names of the variables. Since gender is a character variable, <code>R</code> gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, <code>R</code> computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.</p>
 <p>Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="working-with-data-sets.html#cb271-1"></a>mydata[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="working-with-data-sets.html#cb272-1"></a>mydata[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 31</code></pre>
 <p>If you leave out the number before or after the comma, the entire column or row is returned.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="working-with-data-sets.html#cb273-1"></a>mydata[<span class="dv">3</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="working-with-data-sets.html#cb274-1"></a>mydata[<span class="dv">3</span>,]</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 3      M  31    127</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="working-with-data-sets.html#cb275-1"></a>mydata[,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="working-with-data-sets.html#cb276-1"></a>mydata[,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 35 30 31 28 40</code></pre>
 <p>You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="working-with-data-sets.html#cb277-1"></a>mydata<span class="op">$</span>weight[<span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="working-with-data-sets.html#cb278-1"></a>mydata<span class="op">$</span>weight[<span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] 189</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="working-with-data-sets.html#cb279-1"></a>mydata<span class="op">$</span>weight</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="working-with-data-sets.html#cb280-1"></a>mydata<span class="op">$</span>weight</span></code></pre></div>
 <pre><code>## [1] 152 124 127 189 133</code></pre>
 <p>The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers <span class="math inline">\(a\)</span>, <span class="math inline">\(a+1\)</span>,…, <span class="math inline">\(b\)</span>.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="working-with-data-sets.html#cb281-1"></a>mydata[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="working-with-data-sets.html#cb282-1"></a>mydata[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,]</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 3      M  31    127
 ## 4      M  28    189</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="working-with-data-sets.html#cb283-1"></a>mydata<span class="op">$</span>age[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="working-with-data-sets.html#cb284-1"></a>mydata<span class="op">$</span>age[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] 31 28 40</code></pre>
 <p>You can use logical conditions to obtain subsets of the data. A logical value of <code>TRUE</code> will return a data row and a logical of <code>FALSE</code> omits that row.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="working-with-data-sets.html#cb285-1"></a>males =<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>gender <span class="op">==</span><span class="st"> &quot;M&quot;</span>)</span>
-<span id="cb285-2"><a href="working-with-data-sets.html#cb285-2"></a>males</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="working-with-data-sets.html#cb286-1"></a>males =<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>gender <span class="op">==</span><span class="st"> &quot;M&quot;</span>)</span>
+<span id="cb286-2"><a href="working-with-data-sets.html#cb286-2"></a>males</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 1      M  35    152
 ## 3      M  31    127
 ## 4      M  28    189</code></pre>
 <p>To subset by all values which are NOT equal to a condition we can use the logical operator <code>!=</code>.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="working-with-data-sets.html#cb287-1"></a>females =<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>gender <span class="op">!=</span><span class="st"> &quot;M&quot;</span>)</span>
-<span id="cb287-2"><a href="working-with-data-sets.html#cb287-2"></a>females</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="working-with-data-sets.html#cb288-1"></a>females =<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>gender <span class="op">!=</span><span class="st"> &quot;M&quot;</span>)</span>
+<span id="cb288-2"><a href="working-with-data-sets.html#cb288-2"></a>females</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 5      F  40    133</code></pre>
 <p>Data can be sorted using the <code>order()</code> function. This function returns the ranks of the variable being sorted. Including more than one variable allows a “nested sort,” where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="working-with-data-sets.html#cb289-1"></a><span class="kw">order</span>(mydata<span class="op">$</span>weight)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="working-with-data-sets.html#cb290-1"></a><span class="kw">order</span>(mydata<span class="op">$</span>weight)</span></code></pre></div>
 <pre><code>## [1] 2 3 5 1 4</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="working-with-data-sets.html#cb291-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>weight),]</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="working-with-data-sets.html#cb292-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>weight),]</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 3      M  31    127
@@ -368,14 +369,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1      M  35    152
 ## 4      M  28    189</code></pre>
 <p>The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, <code>weight</code>. We can sort by more than one variable. Let’s first sort by <code>gender</code> alone and then by <code>gender</code> followed by <code>weight</code> and see what we get.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="working-with-data-sets.html#cb293-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>gender), ]</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="working-with-data-sets.html#cb294-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>gender), ]</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 5      F  40    133
 ## 1      M  35    152
 ## 3      M  31    127
 ## 4      M  28    189</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="working-with-data-sets.html#cb295-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>gender, mydata<span class="op">$</span>weight), ]</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="working-with-data-sets.html#cb296-1"></a>mydata[<span class="kw">order</span>(mydata<span class="op">$</span>gender, mydata<span class="op">$</span>weight), ]</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 5      F  40    133
@@ -383,14 +384,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1      M  35    152
 ## 4      M  28    189</code></pre>
 <p>To reorder a vector from smallest to largest we can also condiser the sort() function.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="working-with-data-sets.html#cb297-1"></a><span class="kw">sort</span>(mydata<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="working-with-data-sets.html#cb298-1"></a><span class="kw">sort</span>(mydata<span class="op">$</span>age)</span></code></pre></div>
 <pre><code>## [1] 28 30 31 35 40</code></pre>
 <p>One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a set of heights (in cm) to the data frame.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="working-with-data-sets.html#cb299-1"></a>hghts =<span class="st"> </span><span class="kw">c</span>(<span class="dv">169</span>, <span class="dv">161</span>, <span class="dv">149</span>, <span class="dv">165</span>, <span class="dv">155</span>)</span>
-<span id="cb299-2"><a href="working-with-data-sets.html#cb299-2"></a>hghts</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="working-with-data-sets.html#cb300-1"></a>hghts =<span class="st"> </span><span class="kw">c</span>(<span class="dv">169</span>, <span class="dv">161</span>, <span class="dv">149</span>, <span class="dv">165</span>, <span class="dv">155</span>)</span>
+<span id="cb300-2"><a href="working-with-data-sets.html#cb300-2"></a>hghts</span></code></pre></div>
 <pre><code>## [1] 169 161 149 165 155</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="working-with-data-sets.html#cb301-1"></a>mydata<span class="op">$</span>height =<span class="st"> </span>hghts</span>
-<span id="cb301-2"><a href="working-with-data-sets.html#cb301-2"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="working-with-data-sets.html#cb302-1"></a>mydata<span class="op">$</span>height =<span class="st"> </span>hghts</span>
+<span id="cb302-2"><a href="working-with-data-sets.html#cb302-2"></a>mydata</span></code></pre></div>
 <pre><code>##   gender age weight height
 ## 1      M  35    152    169
 ## 2      F  30    124    161
@@ -398,10 +399,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      M  28    189    165
 ## 5      F  40    133    155</code></pre>
 <p>We can also add a new column using the <code>cbind()</code> function. In addition, if we have a missing value, or a blank value, we can use the object <code>NA</code> to indicate the lack of a value.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="working-with-data-sets.html#cb303-1"></a>fav_color =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Purple&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Red&quot;</span>)</span>
-<span id="cb303-2"><a href="working-with-data-sets.html#cb303-2"></a></span>
-<span id="cb303-3"><a href="working-with-data-sets.html#cb303-3"></a>mydata =<span class="st"> </span><span class="kw">cbind</span>(mydata, fav_color)</span>
-<span id="cb303-4"><a href="working-with-data-sets.html#cb303-4"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="working-with-data-sets.html#cb304-1"></a>fav_color =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Purple&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Red&quot;</span>)</span>
+<span id="cb304-2"><a href="working-with-data-sets.html#cb304-2"></a></span>
+<span id="cb304-3"><a href="working-with-data-sets.html#cb304-3"></a>mydata =<span class="st"> </span><span class="kw">cbind</span>(mydata, fav_color)</span>
+<span id="cb304-4"><a href="working-with-data-sets.html#cb304-4"></a>mydata</span></code></pre></div>
 <pre><code>##   gender age weight height fav_color
 ## 1      M  35    152    169       Red
 ## 2      F  30    124    161      &lt;NA&gt;
@@ -409,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      M  28    189    165      &lt;NA&gt;
 ## 5      F  40    133    155       Red</code></pre>
 <p>We can drop check for <code>NA</code> values using the <code>is.na()</code> function.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="working-with-data-sets.html#cb305-1"></a><span class="kw">is.na</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="working-with-data-sets.html#cb306-1"></a><span class="kw">is.na</span>(mydata)</span></code></pre></div>
 <pre><code>##      gender   age weight height fav_color
 ## [1,]  FALSE FALSE  FALSE  FALSE     FALSE
 ## [2,]  FALSE FALSE  FALSE  FALSE      TRUE
@@ -417,14 +418,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [4,]  FALSE FALSE  FALSE  FALSE      TRUE
 ## [5,]  FALSE FALSE  FALSE  FALSE     FALSE</code></pre>
 <p>We can remove all rows with <code>NA</code> values using <code>na.omit()</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="working-with-data-sets.html#cb307-1"></a><span class="kw">na.omit</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="working-with-data-sets.html#cb308-1"></a><span class="kw">na.omit</span>(mydata)</span></code></pre></div>
 <pre><code>##   gender age weight height fav_color
 ## 1      M  35    152    169       Red
 ## 3      M  31    127    149    Purple
 ## 5      F  40    133    155       Red</code></pre>
 <p>One can drop a variable (column) by setting it equal to the <code>R</code> value <code>NULL</code>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="working-with-data-sets.html#cb309-1"></a>mydata<span class="op">$</span>fav_color =<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb309-2"><a href="working-with-data-sets.html#cb309-2"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="working-with-data-sets.html#cb310-1"></a>mydata<span class="op">$</span>fav_color =<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb310-2"><a href="working-with-data-sets.html#cb310-2"></a>mydata</span></code></pre></div>
 <pre><code>##   gender age weight height
 ## 1      M  35    152    169
 ## 2      F  30    124    161
@@ -432,9 +433,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      M  28    189    165
 ## 5      F  40    133    155</code></pre>
 <p>Be careful using these methods. Once a variable or row is dropped, it’s gone. Rows can be added to a data frame using the <code>rbind()</code> (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="working-with-data-sets.html#cb311-1"></a>newobs =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">23</span>, <span class="dv">136</span>, <span class="dv">160</span>)</span>
-<span id="cb311-2"><a href="working-with-data-sets.html#cb311-2"></a>newdata =<span class="st"> </span><span class="kw">rbind</span>(mydata, newobs)</span>
-<span id="cb311-3"><a href="working-with-data-sets.html#cb311-3"></a>newdata</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="working-with-data-sets.html#cb312-1"></a>newobs =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">23</span>, <span class="dv">136</span>, <span class="dv">160</span>)</span>
+<span id="cb312-2"><a href="working-with-data-sets.html#cb312-2"></a>newdata =<span class="st"> </span><span class="kw">rbind</span>(mydata, newobs)</span>
+<span id="cb312-3"><a href="working-with-data-sets.html#cb312-3"></a>newdata</span></code></pre></div>
 <pre><code>##   gender age weight height
 ## 1      M  35    152    169
 ## 2      F  30    124    161
@@ -443,16 +444,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      F  40    133    155
 ## 6      M  23    136    160</code></pre>
 <p>We can also use <code>rbind()</code> to append one data frame to another. We can do this with the variables <code>males</code> and <code>females</code> created above still exist in your R environment.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="working-with-data-sets.html#cb313-1"></a>males</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="working-with-data-sets.html#cb314-1"></a>males</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 1      M  35    152
 ## 3      M  31    127
 ## 4      M  28    189</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="working-with-data-sets.html#cb315-1"></a>females</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="working-with-data-sets.html#cb316-1"></a>females</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 2      F  30    124
 ## 5      F  40    133</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="working-with-data-sets.html#cb317-1"></a><span class="kw">rbind</span>(males, females)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="working-with-data-sets.html#cb318-1"></a><span class="kw">rbind</span>(males, females)</span></code></pre></div>
 <pre><code>##   gender age weight
 ## 1      M  35    152
 ## 3      M  31    127
@@ -460,18 +461,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2      F  30    124
 ## 5      F  40    133</code></pre>
 <p>One can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="working-with-data-sets.html#cb319-1"></a>mydata[<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), ]</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="working-with-data-sets.html#cb320-1"></a>mydata[<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), ]</span></code></pre></div>
 <pre><code>##   gender age weight height
 ## 1      M  35    152    169
 ## 3      M  31    127    149
 ## 5      F  40    133    155</code></pre>
 <p>The <code>table()</code> function can also be used to cross-tabulate categorical data. Let’s create a frequency table of smokers and non-smokers for both genders.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="working-with-data-sets.html#cb321-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>cyl)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="working-with-data-sets.html#cb322-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>cyl)</span></code></pre></div>
 <pre><code>## 
 ##  4  6  8 
 ## 11  7 14</code></pre>
 <p>The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="working-with-data-sets.html#cb323-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>cyl, mtcars<span class="op">$</span>vs)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="working-with-data-sets.html#cb324-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>cyl, mtcars<span class="op">$</span>vs)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   4  1 10

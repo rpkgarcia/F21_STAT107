@@ -248,11 +248,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> Build Your Own Function</h2>
 <p>To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as <code>R</code> objects just like anything else. In particular, they are <code>R</code> objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
 <p>Below is the <strong>general template</strong></p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="functions.html#cb325-1"></a>function_name =<span class="st"> </span><span class="cf">function</span>(arg){</span>
-<span id="cb325-2"><a href="functions.html#cb325-2"></a>  <span class="co"># Function Body </span></span>
-<span id="cb325-3"><a href="functions.html#cb325-3"></a>  ....</span>
-<span id="cb325-4"><a href="functions.html#cb325-4"></a>  <span class="kw">return</span>(return_value)</span>
-<span id="cb325-5"><a href="functions.html#cb325-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="functions.html#cb326-1"></a>function_name =<span class="st"> </span><span class="cf">function</span>(arg){</span>
+<span id="cb326-2"><a href="functions.html#cb326-2"></a>  <span class="co"># Function Body </span></span>
+<span id="cb326-3"><a href="functions.html#cb326-3"></a>  ....</span>
+<span id="cb326-4"><a href="functions.html#cb326-4"></a>  <span class="kw">return</span>(return_value)</span>
+<span id="cb326-5"><a href="functions.html#cb326-5"></a>}</span></code></pre></div>
 <p>In this template we have a few key components</p>
 <ul>
 <li><code>function_name</code>: This is the actual name of the function. It is stored in R environment as an object with this name.</li>
@@ -263,34 +263,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 (i.e, a list or a data frame or a vector made with c()), but you may only return one thing.</li>
 </ul>
 <p>Below is an example of converting a temperature from Fahrenheit to Celsius.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="functions.html#cb326-1"></a>fahrenheit_to_celsius =<span class="st"> </span><span class="cf">function</span>(temp_F){</span>
-<span id="cb326-2"><a href="functions.html#cb326-2"></a>  temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></span>
-<span id="cb326-3"><a href="functions.html#cb326-3"></a>  <span class="kw">return</span>(temp_C)</span>
-<span id="cb326-4"><a href="functions.html#cb326-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="functions.html#cb327-1"></a>fahrenheit_to_celsius =<span class="st"> </span><span class="cf">function</span>(temp_F){</span>
+<span id="cb327-2"><a href="functions.html#cb327-2"></a>  temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></span>
+<span id="cb327-3"><a href="functions.html#cb327-3"></a>  <span class="kw">return</span>(temp_C)</span>
+<span id="cb327-4"><a href="functions.html#cb327-4"></a>}</span></code></pre></div>
 <p>In this example the function name is <code>fahrenheit_to_celsius</code>, there is only one input or argument, <code>temp_F</code>, and the output is the object <code>temp_C</code>.</p>
 <p>Now if we would like to “call” this function we can simply put into the command console the function name and desired input.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="functions.html#cb327-1"></a><span class="co"># Convert 87F to Celsius</span></span>
-<span id="cb327-2"><a href="functions.html#cb327-2"></a><span class="kw">fahrenheit_to_celsius</span>(<span class="dt">temp_F =</span> <span class="dv">87</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="functions.html#cb328-1"></a><span class="co"># Convert 87F to Celsius</span></span>
+<span id="cb328-2"><a href="functions.html#cb328-2"></a><span class="kw">fahrenheit_to_celsius</span>(<span class="dt">temp_F =</span> <span class="dv">87</span>)</span></code></pre></div>
 <pre><code>## [1] 30.55556</code></pre>
 <p>What would happen if we tried to call this function without supplying an input? This would result in an error.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="functions.html#cb329-1"></a><span class="co"># temp_F not defined. </span></span>
-<span id="cb329-2"><a href="functions.html#cb329-2"></a><span class="kw">fahrenheit_to_celsius</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="functions.html#cb330-1"></a><span class="co"># temp_F not defined. </span></span>
+<span id="cb330-2"><a href="functions.html#cb330-2"></a><span class="kw">fahrenheit_to_celsius</span>()</span></code></pre></div>
 <pre><code>Error in fahrenheit_to_celsius() : 
   argument &quot;temp_F&quot; is missing, with no default</code></pre>
 <p>With functions we can define function arguments to have default values. These default values are used only if the user did not supply an argument value. Observe the example below.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="functions.html#cb331-1"></a><span class="co"># An example function </span></span>
-<span id="cb331-2"><a href="functions.html#cb331-2"></a>example_func =<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b){</span>
-<span id="cb331-3"><a href="functions.html#cb331-3"></a>  c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb331-4"><a href="functions.html#cb331-4"></a>  d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb331-5"><a href="functions.html#cb331-5"></a>  </span>
-<span id="cb331-6"><a href="functions.html#cb331-6"></a>  <span class="co"># returns a+b+1</span></span>
-<span id="cb331-7"><a href="functions.html#cb331-7"></a>  <span class="kw">return</span>(d)</span>
-<span id="cb331-8"><a href="functions.html#cb331-8"></a>}</span>
-<span id="cb331-9"><a href="functions.html#cb331-9"></a></span>
-<span id="cb331-10"><a href="functions.html#cb331-10"></a><span class="co"># Call example function</span></span>
-<span id="cb331-11"><a href="functions.html#cb331-11"></a><span class="kw">example_func</span>(<span class="dt">a=</span> <span class="dv">2</span>, <span class="dt">b=</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="functions.html#cb332-1"></a><span class="co"># An example function </span></span>
+<span id="cb332-2"><a href="functions.html#cb332-2"></a>example_func =<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b){</span>
+<span id="cb332-3"><a href="functions.html#cb332-3"></a>  c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb332-4"><a href="functions.html#cb332-4"></a>  d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb332-5"><a href="functions.html#cb332-5"></a>  </span>
+<span id="cb332-6"><a href="functions.html#cb332-6"></a>  <span class="co"># returns a+b+1</span></span>
+<span id="cb332-7"><a href="functions.html#cb332-7"></a>  <span class="kw">return</span>(d)</span>
+<span id="cb332-8"><a href="functions.html#cb332-8"></a>}</span>
+<span id="cb332-9"><a href="functions.html#cb332-9"></a></span>
+<span id="cb332-10"><a href="functions.html#cb332-10"></a><span class="co"># Call example function</span></span>
+<span id="cb332-11"><a href="functions.html#cb332-11"></a><span class="kw">example_func</span>(<span class="dt">a=</span> <span class="dv">2</span>, <span class="dt">b=</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="functions.html#cb333-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="functions.html#cb334-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Further notice that <code>R</code> has three ways that arguments supplied by you are matched to the formal arguments of the function definition.</p>
 <ol style="list-style-type: decimal">
@@ -299,11 +299,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>by position</p></li>
 </ol>
 <p>Observe:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="functions.html#cb335-1"></a><span class="kw">example_func</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="functions.html#cb336-1"></a><span class="kw">example_func</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="functions.html#cb337-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="functions.html#cb338-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="functions.html#cb339-1"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="functions.html#cb340-1"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.</p>
 <p>If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used.</p>
@@ -327,22 +327,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>mean()</code>: Takes in a vector, and returns the mean of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="functions.html#cb341-1"></a><span class="kw">mean</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="functions.html#cb342-1"></a><span class="kw">mean</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 15.4</code></pre>
 <ul>
 <li><code>median()</code>: Takes in a vector, and returns the median of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="functions.html#cb343-1"></a><span class="kw">median</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="functions.html#cb344-1"></a><span class="kw">median</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <ul>
 <li><code>var()</code>: Takes in a vector, and returns the variance of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="functions.html#cb345-1"></a><span class="kw">var</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="functions.html#cb346-1"></a><span class="kw">var</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 27.95918</code></pre>
 <ul>
 <li><code>sqrt()</code>: If you give it a vector, it returns the square root of each element in the vector. If you give it a single number, it returns the square root of the number.</li>
 </ul>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="functions.html#cb347-1"></a><span class="kw">sqrt</span>(cars<span class="op">$</span>speed) </span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="functions.html#cb348-1"></a><span class="kw">sqrt</span>(cars<span class="op">$</span>speed) </span></code></pre></div>
 <pre><code>##  [1] 2.000000 2.000000 2.645751 2.645751 2.828427 3.000000 3.162278 3.162278
 ##  [9] 3.162278 3.316625 3.316625 3.464102 3.464102 3.464102 3.464102 3.605551
 ## [17] 3.605551 3.605551 3.605551 3.741657 3.741657 3.741657 3.741657 3.872983
@@ -353,47 +353,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>sd()</code>: Takes in a vector, and returns the standard deviation of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="functions.html#cb349-1"></a><span class="kw">sd</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="functions.html#cb350-1"></a><span class="kw">sd</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 5.287644</code></pre>
 <ul>
 <li><code>fivenum()</code>: Takes in a vector, and returns the five number summary of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="functions.html#cb351-1"></a><span class="kw">fivenum</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="functions.html#cb352-1"></a><span class="kw">fivenum</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1]  4 12 15 19 25</code></pre>
 <ul>
 <li><code>min()</code>: Takes in a vector, and returns the minimum of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="functions.html#cb353-1"></a><span class="kw">min</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="functions.html#cb354-1"></a><span class="kw">min</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <ul>
 <li><code>max()</code>: Takes in a vector, and returns the maximum of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="functions.html#cb355-1"></a><span class="kw">max</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="functions.html#cb356-1"></a><span class="kw">max</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <ul>
 <li><code>range()</code>: Takes in a vector, and returns the minimum AND maximum of the values in the vector.</li>
 </ul>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="functions.html#cb357-1"></a><span class="kw">range</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="functions.html#cb358-1"></a><span class="kw">range</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>## [1]  4 25</code></pre>
 <ul>
 <li><code>quantile()</code>: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument. It will return the corresponding quantiles of the values in the first vector specified by the second vector.</li>
 </ul>
 <p>To get the <span class="math inline">\(10^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentiles:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="functions.html#cb359-1"></a><span class="kw">quantile</span>(cars<span class="op">$</span>speed,<span class="kw">c</span>(<span class="fl">0.10</span>,<span class="fl">0.90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="functions.html#cb360-1"></a><span class="kw">quantile</span>(cars<span class="op">$</span>speed,<span class="kw">c</span>(<span class="fl">0.10</span>,<span class="fl">0.90</span>))</span></code></pre></div>
 <pre><code>##  10%  90% 
 ##  8.9 23.1</code></pre>
 <ul>
 <li><code>abs()</code>: If you give it a vector, it returns the absolute value of each element in the vector. If you give it a single number, it returns the absolute value of the number.</li>
 </ul>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="functions.html#cb361-1"></a><span class="kw">abs</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="functions.html#cb362-1"></a><span class="kw">abs</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
 ## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</code></pre>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="functions.html#cb363-1"></a><span class="kw">abs</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="functions.html#cb364-1"></a><span class="kw">abs</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <ul>
 <li><code>summary()</code>: You can give this a dataset OR a vector. It returns some summary information about the values in the dataset or vector.</li>
 </ul>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="functions.html#cb365-1"></a><span class="kw">summary</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="functions.html#cb366-1"></a><span class="kw">summary</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     4.0    12.0    15.0    15.4    19.0    25.0</code></pre>
 <p>One of the great advantages of using <code>R</code> is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about <code>R</code> functions is the <strong>Help files</strong>.</p>
@@ -413,11 +413,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Examples</strong>: Worked examples of real R code that you can paste into your console and run.</p></li>
 </ul>
 <p>An alternative way to view a functions help file is by typing <code>?</code> followed by the function name, or by typing <code>help(function_name)</code>.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="functions.html#cb367-1"></a><span class="co"># Find a help file for the function `rep`</span></span>
-<span id="cb367-2"><a href="functions.html#cb367-2"></a>?rep</span>
-<span id="cb367-3"><a href="functions.html#cb367-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="functions.html#cb368-1"></a><span class="co"># Find a help file for the function `rep`</span></span>
+<span id="cb368-2"><a href="functions.html#cb368-2"></a>?rep</span>
+<span id="cb368-3"><a href="functions.html#cb368-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
 <p>If you are not sure exactly which function you want, you can use <code>??</code> followed by what you believe the function name is to look at a list of functions.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="functions.html#cb368-1"></a>??rep</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="functions.html#cb369-1"></a>??rep</span></code></pre></div>
 
 </div>
 </div>
