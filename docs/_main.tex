@@ -2079,7 +2079,7 @@ To find the length of a list, use \texttt{length()} function.
 \hypertarget{working-with-data-sets}{%
 \chapter{Working with Data Sets}\label{working-with-data-sets}}
 
-Here let me add some text. I'll add more text.
+In this section we discuss different methods for loading data sets into our R session. There are many different files we can create and import. We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this document we introduce basic data manipulation strategies and helpful functions when working with data sets.
 
 \hypertarget{getting-data-sets-in-our-working-environment}{%
 \section{Getting Data Sets in Our Working Environment}\label{getting-data-sets-in-our-working-environment}}
@@ -2117,24 +2117,24 @@ As discussed last week, there are built in objects which are not loaded into the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{importing-data}{%
-\subsection*{Importing Data}\label{importing-data}}
-\addcontentsline{toc}{subsection}{Importing Data}
+\hypertarget{importing-from-your-computer}{%
+\subsection*{Importing From Your Computer}\label{importing-from-your-computer}}
+\addcontentsline{toc}{subsection}{Importing From Your Computer}
 
-Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest. This function usually uses the file path location as an arguement. This can be done in many different ways; however, we will only go over two.
+Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest. This function usually uses the file path location as an argument. This can be done in many different ways; however, we will only go over two.
 
 \textbf{Option 1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  Download the file \texttt{InsectData.csv} from \emph{iLearn}. Save this file in a spot in your computer you will remember.
+  Download the file \texttt{InsectData.csv} from \textbf{ELearn}. Save this file in a spot in your computer you will remember.
 \item
-  In the \textbf{Enviroment} window (upper left window), click on the \textbf{Import Dataset} button. A drop down menu will appear. Select the \textbf{From Text (base)\ldots{}} option. Find the file \texttt{InsectData.csv} and select it.
+  In the \textbf{Environment} window (upper left window), click on the \textbf{Import Dataset} button. A drop down menu will appear. Select the \textbf{From Text (base)\ldots{}} option. Find the file \texttt{InsectData.csv} and select it.
 \item
   A pop up menu will appear giving you options for loading in the file, and showing a preview of what the file will look like once loaded. Select the appropriate options and click \textbf{Import}.
 \item
-  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new \texttt{R} session and would like to use this file.
+  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new R session and would like to use this file.
 \end{enumerate}
 
 \textbf{Option 2}
@@ -2142,7 +2142,7 @@ Although built-in data sets are convient, most the time we need to load our own 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  Download the file \texttt{InsectData.csv} from \textbf{iLearn}. Save this file in a spot in your computer you will remember.
+  Download the file \texttt{InsectData.csv} from \textbf{ELearn}. Save this file in a spot in your computer you will remember.
 \item
   In the lower right hand window select the \textbf{File} tab. Now search for the file which you have saved \texttt{InsectData.csv}.
 \item
@@ -2150,46 +2150,49 @@ Although built-in data sets are convient, most the time we need to load our own 
 \item
   A window will appear which will give you options and a preview of your file. Select appropriate options if needed then click \textbf{Import}.
 \item
-  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new \texttt{R} session and would like to use this file.
+  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new R session and would like to use this file.
 \end{enumerate}
 
-\hypertarget{downloading-data}{%
-\subsection*{Downloading Data}\label{downloading-data}}
-\addcontentsline{toc}{subsection}{Downloading Data}
+\hypertarget{import-from-online}{%
+\subsection*{Import From Online}\label{import-from-online}}
+\addcontentsline{toc}{subsection}{Import From Online}
+
+We can also download data sets from online in a variety of different ways. Below is one option. With this method we are using the same \texttt{InsectData.csv} file, but it has been posted online. We feed the url of where the data set has been posted into the \texttt{read.csv()} function in order to open the file.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#source("https://rpkgarcia.github.io/LearnRBook/data_sets/InsectData.csv")}
+\NormalTok{the_url =}\StringTok{ "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/InsectData.csv"}
+\NormalTok{the_data =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(the_url)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{basic-data-manipulation}{%
 \section{Basic Data Manipulation}\label{basic-data-manipulation}}
 
-Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as weight or gender, and each row is a single observation. All of the values within a column must be the same data type (numeric, character, logical, etc.). Data frames can be created within \texttt{R} or imported from text or spreadsheet files or from the web.
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created within R or imported from text or spreadsheet files or from the web.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{)}
+\NormalTok{group =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"G1"}\NormalTok{, }\StringTok{"G2"}\NormalTok{, }\StringTok{"G1"}\NormalTok{, }\StringTok{"G1"}\NormalTok{, }\StringTok{"G2"}\NormalTok{)}
 \NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{40}\NormalTok{)}
-\NormalTok{weight =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{152}\NormalTok{, }\DecValTok{124}\NormalTok{, }\DecValTok{127}\NormalTok{, }\DecValTok{189}\NormalTok{, }\DecValTok{133}\NormalTok{)}
+\NormalTok{height =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{65}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{68}\NormalTok{)}
 \NormalTok{pets =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
 
-\NormalTok{mydata =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(gender, age, weight)}
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(group, age, height, pets)}
 \NormalTok{mydata}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 1      M  35    152
-## 2      F  30    124
-## 3      M  31    127
-## 4      M  28    189
-## 5      F  40    133
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 2    G2  30     70  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+## 5    G2  40     68  TRUE
 \end{verbatim}
 
-We have various \texttt{R} functions that help provide information about the data frame.
+We have various R functions that help provide information about the data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2210,7 +2213,7 @@ We have various \texttt{R} functions that help provide information about the dat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3
+## [1] 4
 \end{verbatim}
 
 \begin{Shaded}
@@ -2221,7 +2224,7 @@ We have various \texttt{R} functions that help provide information about the dat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5 3
+## [1] 5 4
 \end{verbatim}
 
 \begin{Shaded}
@@ -2232,17 +2235,7 @@ We have various \texttt{R} functions that help provide information about the dat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "gender" "age"    "weight"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(mydata)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "gender" "age"    "weight"
+## [1] "group"  "age"    "height" "pets"
 \end{verbatim}
 
 The \texttt{summary()} function is a powerful command that gives you some summary statistics about the variales in the data frame.
@@ -2254,16 +2247,49 @@ The \texttt{summary()} function is a powerful command that gives you some summar
 \end{Shaded}
 
 \begin{verbatim}
-##     gender               age           weight   
-##  Length:5           Min.   :28.0   Min.   :124  
-##  Class :character   1st Qu.:30.0   1st Qu.:127  
-##  Mode  :character   Median :31.0   Median :133  
-##                     Mean   :32.8   Mean   :145  
-##                     3rd Qu.:35.0   3rd Qu.:152  
-##                     Max.   :40.0   Max.   :189
+##     group                age           height      pets        
+##  Length:5           Min.   :28.0   Min.   :60   Mode :logical  
+##  Class :character   1st Qu.:30.0   1st Qu.:65   FALSE:2        
+##  Mode  :character   Median :31.0   Median :68   TRUE :3        
+##                     Mean   :32.8   Mean   :67                  
+##                     3rd Qu.:35.0   3rd Qu.:70                  
+##                     Max.   :40.0   Max.   :72
 \end{verbatim}
 
-The summary statistics are listed below the names of the variables. Since gender is a character variable, \texttt{R} gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, \texttt{R} computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+The summary statistics are listed below the names of the variables. Since gender is a character variable, R gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+
+The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table for the different groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## G1 G2 
+##  3  2
+\end{verbatim}
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group, mydata}\OperatorTok{$}\NormalTok{pets)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     
+##      FALSE TRUE
+##   G1     2    1
+##   G2     0    2
+\end{verbatim}
+
+\hypertarget{indexing}{%
+\subsection*{Indexing}\label{indexing}}
+\addcontentsline{toc}{subsection}{Indexing}
 
 Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
 
@@ -2286,8 +2312,8 @@ If you leave out the number before or after the comma, the entire column or row 
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 3      M  31    127
+##   group age height  pets
+## 3    G1  31     60 FALSE
 \end{verbatim}
 
 \begin{Shaded}
@@ -2304,22 +2330,22 @@ You can also access variables by name instead of column number. Use a dollar sig
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight[}\DecValTok{4}\NormalTok{]}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{height[}\DecValTok{4}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 189
+## [1] 72
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{height}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 152 124 127 189 133
+## [1] 65 70 60 72 68
 \end{verbatim}
 
 The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers \(a\), \(a+1\),\ldots, \(b\).
@@ -2331,10 +2357,10 @@ The colon operator can be used to generate a sequence of indices. Typing a:b wil
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 3      M  31    127
-## 4      M  28    189
+##   group age height  pets
+## 2    G2  30     70  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
 \end{verbatim}
 
 \begin{Shaded}
@@ -2351,90 +2377,93 @@ You can use logical conditions to obtain subsets of the data. A logical value of
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{males =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{==}\StringTok{ "M"}\NormalTok{)}
-\NormalTok{males}
+\NormalTok{group1 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{ "G1"}\NormalTok{)}
+\NormalTok{group1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 1      M  35    152
-## 3      M  31    127
-## 4      M  28    189
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
 \end{verbatim}
 
 To subset by all values which are NOT equal to a condition we can use the logical operator \texttt{!=}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{females =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{!=}\StringTok{ "M"}\NormalTok{)}
-\NormalTok{females}
+\NormalTok{group2 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{!=}\StringTok{ "G1"}\NormalTok{)}
+\NormalTok{group2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 5      F  40    133
+## [1] group  age    height pets  
+## <0 rows> (or 0-length row.names)
 \end{verbatim}
+
+\hypertarget{rearranging-rows}{%
+\subsection*{Rearranging Rows}\label{rearranging-rows}}
+\addcontentsline{toc}{subsection}{Rearranging Rows}
 
 Data can be sorted using the \texttt{order()} function. This function returns the ranks of the variable being sorted. Including more than one variable allows a ``nested sort,'' where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{weight)}
+\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{height)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 3 5 1 4
+## [1] 3 1 5 2 4
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{weight),]}
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{height),]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 3      M  31    127
-## 5      F  40    133
-## 1      M  35    152
-## 4      M  28    189
+##   group age height  pets
+## 3    G1  31     60 FALSE
+## 1    G1  35     65  TRUE
+## 5    G2  40     68  TRUE
+## 2    G2  30     70  TRUE
+## 4    G1  28     72 FALSE
 \end{verbatim}
 
 The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, \texttt{weight}. We can sort by more than one variable. Let's first sort by \texttt{gender} alone and then by \texttt{gender} followed by \texttt{weight} and see what we get.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{gender), ]}
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group), ]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 5      F  40    133
-## 1      M  35    152
-## 3      M  31    127
-## 4      M  28    189
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+## 2    G2  30     70  TRUE
+## 5    G2  40     68  TRUE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{gender, mydata}\OperatorTok{$}\NormalTok{weight), ]}
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group, mydata}\OperatorTok{$}\NormalTok{height), ]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 5      F  40    133
-## 3      M  31    127
-## 1      M  35    152
-## 4      M  28    189
+##   group age height  pets
+## 3    G1  31     60 FALSE
+## 1    G1  35     65  TRUE
+## 4    G1  28     72 FALSE
+## 5    G2  40     68  TRUE
+## 2    G2  30     70  TRUE
 \end{verbatim}
 
 To reorder a vector from smallest to largest we can also condiser the sort() function.
@@ -2449,12 +2478,16 @@ To reorder a vector from smallest to largest we can also condiser the sort() fun
 ## [1] 28 30 31 35 40
 \end{verbatim}
 
-One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a set of heights (in cm) to the data frame.
+\hypertarget{adding-columns}{%
+\subsection*{Adding Columns}\label{adding-columns}}
+\addcontentsline{toc}{subsection}{Adding Columns}
+
+One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a \texttt{weight} variable to the data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{hghts =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{169}\NormalTok{, }\DecValTok{161}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{165}\NormalTok{, }\DecValTok{155}\NormalTok{)}
-\NormalTok{hghts}
+\NormalTok{wghts =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{169}\NormalTok{, }\DecValTok{161}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{165}\NormalTok{, }\DecValTok{155}\NormalTok{)}
+\NormalTok{wghts}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2464,21 +2497,43 @@ One can add and remove variables and observations from a data frame. One can add
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata}\OperatorTok{$}\NormalTok{height =}\StringTok{ }\NormalTok{hghts}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight =}\StringTok{ }\NormalTok{wghts}
 \NormalTok{mydata}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height
-## 1      M  35    152    169
-## 2      F  30    124    161
-## 3      M  31    127    149
-## 4      M  28    189    165
-## 5      F  40    133    155
+##   group age height  pets weight
+## 1    G1  35     65  TRUE    169
+## 2    G2  30     70  TRUE    161
+## 3    G1  31     60 FALSE    149
+## 4    G1  28     72 FALSE    165
+## 5    G2  40     68  TRUE    155
 \end{verbatim}
 
-We can also add a new column using the \texttt{cbind()} function. In addition, if we have a missing value, or a blank value, we can use the object \texttt{NA} to indicate the lack of a value.
+We can also add a new column using the \texttt{cbind()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(mydata, wghts)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight wghts
+## 1    G1  35     65  TRUE    169   169
+## 2    G2  30     70  TRUE    161   161
+## 3    G1  31     60 FALSE    149   149
+## 4    G1  28     72 FALSE    165   165
+## 5    G2  40     68  TRUE    155   155
+\end{verbatim}
+
+\hypertarget{na-values}{%
+\subsection*{NA values}\label{na-values}}
+\addcontentsline{toc}{subsection}{NA values}
+
+In addition, if we have a missing value, or a blank value, we can use the object \texttt{NA} to indicate the lack of a value.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2490,12 +2545,12 @@ We can also add a new column using the \texttt{cbind()} function. In addition, i
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height fav_color
-## 1      M  35    152    169       Red
-## 2      F  30    124    161      <NA>
-## 3      M  31    127    149    Purple
-## 4      M  28    189    165      <NA>
-## 5      F  40    133    155       Red
+##   group age height  pets weight wghts fav_color
+## 1    G1  35     65  TRUE    169   169       Red
+## 2    G2  30     70  TRUE    161   161      <NA>
+## 3    G1  31     60 FALSE    149   149    Purple
+## 4    G1  28     72 FALSE    165   165      <NA>
+## 5    G2  40     68  TRUE    155   155       Red
 \end{verbatim}
 
 We can drop check for \texttt{NA} values using the \texttt{is.na()} function.
@@ -2507,12 +2562,12 @@ We can drop check for \texttt{NA} values using the \texttt{is.na()} function.
 \end{Shaded}
 
 \begin{verbatim}
-##      gender   age weight height fav_color
-## [1,]  FALSE FALSE  FALSE  FALSE     FALSE
-## [2,]  FALSE FALSE  FALSE  FALSE      TRUE
-## [3,]  FALSE FALSE  FALSE  FALSE     FALSE
-## [4,]  FALSE FALSE  FALSE  FALSE      TRUE
-## [5,]  FALSE FALSE  FALSE  FALSE     FALSE
+##      group   age height  pets weight wghts fav_color
+## [1,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
+## [2,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
+## [3,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
+## [4,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
+## [5,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
 \end{verbatim}
 
 We can remove all rows with \texttt{NA} values using \texttt{na.omit()}.
@@ -2524,93 +2579,100 @@ We can remove all rows with \texttt{NA} values using \texttt{na.omit()}.
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height fav_color
-## 1      M  35    152    169       Red
-## 3      M  31    127    149    Purple
-## 5      F  40    133    155       Red
+##   group age height  pets weight wghts fav_color
+## 1    G1  35     65  TRUE    169   169       Red
+## 3    G1  31     60 FALSE    149   149    Purple
+## 5    G2  40     68  TRUE    155   155       Red
 \end{verbatim}
+
+\hypertarget{null}{%
+\subsection*{NULL}\label{null}}
+\addcontentsline{toc}{subsection}{NULL}
 
 One can drop a variable (column) by setting it equal to the \texttt{R} value \texttt{NULL}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata}\OperatorTok{$}\NormalTok{fav_color =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{wghts =}\StringTok{ }\OtherTok{NULL}
 \NormalTok{mydata}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height
-## 1      M  35    152    169
-## 2      F  30    124    161
-## 3      M  31    127    149
-## 4      M  28    189    165
-## 5      F  40    133    155
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 2    G2  30     70  TRUE    161      <NA>
+## 3    G1  31     60 FALSE    149    Purple
+## 4    G1  28     72 FALSE    165      <NA>
+## 5    G2  40     68  TRUE    155       Red
 \end{verbatim}
 
-Be careful using these methods. Once a variable or row is dropped, it's gone. Rows can be added to a data frame using the \texttt{rbind()} (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.
+Be careful using these methods. Once a variable or row is dropped, it's gone.
+
+\hypertarget{adding-rows}{%
+\subsection*{Adding Rows}\label{adding-rows}}
+\addcontentsline{toc}{subsection}{Adding Rows}
+
+Rows can be added to a data frame using the \texttt{rbind()} (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{newobs =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"M"}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{136}\NormalTok{, }\DecValTok{160}\NormalTok{)}
+\NormalTok{newobs =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"G1"}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{62}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\DecValTok{160}\NormalTok{, }\StringTok{"Blue"}\NormalTok{)}
 \NormalTok{newdata =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(mydata, newobs)}
 \NormalTok{newdata}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height
-## 1      M  35    152    169
-## 2      F  30    124    161
-## 3      M  31    127    149
-## 4      M  28    189    165
-## 5      F  40    133    155
-## 6      M  23    136    160
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 2    G2  30     70  TRUE    161      <NA>
+## 3    G1  31     60 FALSE    149    Purple
+## 4    G1  28     72 FALSE    165      <NA>
+## 5    G2  40     68  TRUE    155       Red
+## 6    G1  23     62 FALSE    160      Blue
 \end{verbatim}
 
 We can also use \texttt{rbind()} to append one data frame to another. We can do this with the variables \texttt{males} and \texttt{females} created above still exist in your R environment.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{males}
+\NormalTok{group1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 1      M  35    152
-## 3      M  31    127
-## 4      M  28    189
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{females}
+\NormalTok{group2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 2      F  30    124
-## 5      F  40    133
+## [1] group  age    height pets  
+## <0 rows> (or 0-length row.names)
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rbind}\NormalTok{(males, females)}
+\KeywordTok{rbind}\NormalTok{(group1, group2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight
-## 1      M  35    152
-## 3      M  31    127
-## 4      M  28    189
-## 2      F  30    124
-## 5      F  40    133
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
 \end{verbatim}
 
-One can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
+We can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2619,40 +2681,10 @@ One can also remove rows from a data frame. Using negative index values has the 
 \end{Shaded}
 
 \begin{verbatim}
-##   gender age weight height
-## 1      M  35    152    169
-## 3      M  31    127    149
-## 5      F  40    133    155
-\end{verbatim}
-
-The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  4  6  8 
-## 11  7 14
-\end{verbatim}
-
-The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl, mtcars}\OperatorTok{$}\NormalTok{vs)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    
-##      0  1
-##   4  1 10
-##   6  3  4
-##   8 14  0
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 3    G1  31     60 FALSE    149    Purple
+## 5    G2  40     68  TRUE    155       Red
 \end{verbatim}
 
 \hypertarget{functions}{%
@@ -3326,7 +3358,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3334,7 +3366,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3342,7 +3374,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-3.pdf}
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
@@ -3352,7 +3384,7 @@ The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.
 
@@ -3367,7 +3399,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -3398,7 +3430,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
 
@@ -3412,7 +3444,7 @@ You can also place values on top of bars; which will help you interpret the grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
 
@@ -3431,7 +3463,7 @@ Often you want to compare the distributions of different variables within your d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
@@ -3443,7 +3475,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
 
@@ -3453,7 +3485,7 @@ The line in the center is the median. The bottom and top of the box are drawn at
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \hypertarget{visualizing-qualitative-data}{%
 \section{Visualizing Qualitative Data}\label{visualizing-qualitative-data}}
@@ -3494,7 +3526,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -3505,7 +3537,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
 

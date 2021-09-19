@@ -1,6 +1,6 @@
 # Working with Data Sets
 
-Here let me add some text. I'll add more text. 
+In this section we discuss different methods for loading data sets into our R session.  There are many different files we can create and import.  We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this document we introduce basic data manipulation strategies and helpful functions when working with data sets. 
 
 
 ## Getting Data Sets in Our Working Environment
@@ -22,23 +22,23 @@ data("cars")
 ```
 
 
-### Importing Data {-}
+### Importing From Your Computer{-}
 
-Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest.  This function usually uses the file path location as an arguement. This can be done in many different ways; however, we will only go over two. 
+Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest.  This function usually uses the file path location as an argument. This can be done in many different ways; however, we will only go over two. 
 
 **Option 1**
 
-1) Download the file `InsectData.csv` from *iLearn*.  Save this file in a spot in your computer you will remember. 
+1) Download the file `InsectData.csv` from **ELearn**.  Save this file in a spot in your computer you will remember. 
 
-2) In the **Enviroment** window (upper left window), click on the **Import Dataset** button.  A drop down menu will appear.  Select the **From Text (base)...** option.  Find the file `InsectData.csv` and select it. 
+2) In the **Environment** window (upper left window), click on the **Import Dataset** button.  A drop down menu will appear.  Select the **From Text (base)...** option.  Find the file `InsectData.csv` and select it. 
 
 3) A pop up menu will appear giving you options for loading in the file, and showing a preview of what the file will look like once loaded. Select the appropriate options and click **Import**.
 
-4) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new `R` session and would like to use this file. 
+4) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new R session and would like to use this file. 
 
 **Option 2**
 
-1) Download the file `InsectData.csv` from **iLearn**.  Save this file in a spot in your computer you will remember. 
+1) Download the file `InsectData.csv` from **ELearn**.  Save this file in a spot in your computer you will remember. 
 
 2) In the lower right hand window select the **File** tab.  Now search for the file which you have saved `InsectData.csv`.  
 
@@ -46,33 +46,36 @@ Although built-in data sets are convient, most the time we need to load our own 
 
 4) A window will appear which will give you options and a preview of your file. Select appropriate options if needed then click **Import**. 
 
-5) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new `R` session and would like to use this file. 
+5) A new line of code has generated in the console which will read the data into your current environment.  Copy and paste this into your R script document if you would like to save this line of code for later.  You will have to reload this file into your environment each time you start a new R session and would like to use this file. 
 
 
-### Downloading Data {-}
+### Import From Online {-}
+
+We can also download data sets from online in a variety of different ways. Below is one option.  With this method we are using the same `InsectData.csv` file, but it has been posted online.  We feed the url of where the data set has been posted into the `read.csv()` function in order to open the file. 
 
 ```{r}
-#source("https://rpkgarcia.github.io/LearnRBook/data_sets/InsectData.csv")
 
+the_url = "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/InsectData.csv"
+the_data = read.csv(the_url)
 ```
 
 
 ## Basic Data Manipulation
 
-Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as weight or gender, and each row is a single observation. All of the values within a column must be the same data type (numeric, character, logical, etc.). Data frames can be created within `R` or imported from text or spreadsheet files or from the web. 
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created within R or imported from text or spreadsheet files or from the web. 
 
 ```{r}
-gender = c("M", "F", "M", "M", "F")
+group = c("G1", "G2", "G1", "G1", "G2")
 age = c(35, 30, 31, 28, 40)
-weight = c(152, 124, 127, 189, 133)
+height = c(65, 70, 60, 72, 68)
 pets = c(TRUE, TRUE, FALSE, FALSE, TRUE)
 
-mydata = data.frame(gender, age, weight)
+mydata = data.frame(group, age, height, pets)
 mydata
 ```
 
 
-We have various `R` functions that help provide information about the data frame.
+We have various R functions that help provide information about the data frame.
 
 ```{r}
 # How many rows
@@ -86,8 +89,6 @@ dim(mydata)
 
 # Colnames
 colnames(mydata)
-names(mydata)
-
 ```
 
 
@@ -97,7 +98,22 @@ The `summary()` function is a powerful command that gives you some summary stati
 summary(mydata)
 ```
 
-The summary statistics are listed below the names of the variables. Since gender is a character variable, `R` gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, `R` computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+The summary statistics are listed below the names of the variables. Since gender is a character variable, R gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+
+
+The `table()` function can also be used to cross-tabulate categorical data.  Let’s create a frequency table for the different groups.
+
+```{r}
+table(mydata$group)
+```
+
+The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+
+```{r}
+table(mydata$group, mydata$pets)
+```
+
+### Indexing {-}
 
 Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
 
@@ -117,9 +133,9 @@ mydata[,2]
 You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable. 
 
 ```{r}
-mydata$weight[4]
+mydata$height[4]
 
-mydata$weight
+mydata$height
 ```
 
 The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers $a$, $a+1$,..., $b$.
@@ -133,32 +149,34 @@ mydata$age[3:5]
 You can use logical conditions to obtain subsets of the data. A logical value of `TRUE` will return a data row and a logical of `FALSE` omits that row.
 
 ```{r}
-males = subset(mydata, mydata$gender == "M")
-males
+group1 = subset(mydata, mydata$group == "G1")
+group1
 ```
 
 
 To subset by all values which are NOT equal to a condition we can use the logical operator `!=`.
 ```{r}
-females = subset(mydata, mydata$gender != "M")
-females
+group2 = subset(mydata, mydata$gender != "G1")
+group2
 ```
+
+### Rearranging Rows {-}
 
 Data can be sorted using the `order()` function. This function returns the ranks of the variable being sorted. Including more than one variable allows a "nested sort," where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.
 
 ```{r}
-order(mydata$weight)
+order(mydata$height)
 
-mydata[order(mydata$weight),]
+mydata[order(mydata$height),]
 ```
 
 The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, `weight`. We can sort by more than one variable. Let’s first sort by `gender` alone and then by `gender` followed by `weight` and see what we get.
 
 
 ```{r}
-mydata[order(mydata$gender), ]
+mydata[order(mydata$group), ]
 
-mydata[order(mydata$gender, mydata$weight), ]
+mydata[order(mydata$group, mydata$height), ]
 
 ```
 
@@ -168,17 +186,28 @@ To reorder a vector from smallest to largest we can also condiser the sort() fun
 sort(mydata$age)
 ```
 
-One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a set of heights (in cm) to the data frame.
+### Adding Columns {-}
+
+One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a `weight` variable to the data frame.
 
 ```{r}
-hghts = c(169, 161, 149, 165, 155)
-hghts
+wghts = c(169, 161, 149, 165, 155)
+wghts
 
-mydata$height = hghts
+mydata$weight = wghts
 mydata
 ```
 
-We can also add a new column using the `cbind()` function. In addition, if we have a missing value, or a blank value, we can use the object `NA` to indicate the lack of a value. 
+We can also add a new column using the `cbind()` function. 
+
+```{r}
+mydata = cbind(mydata, wghts)
+mydata
+```
+
+### NA values {-}
+
+In addition, if we have a missing value, or a blank value, we can use the object `NA` to indicate the lack of a value. 
 
 ```{r}
 fav_color = c("Red", NA, "Purple", NA, "Red")
@@ -199,18 +228,24 @@ na.omit(mydata)
 ```
 
 
+### NULL {-}
+
 One can drop a variable (column) by setting it equal to the `R` value `NULL`.
 
 ```{r}
-mydata$fav_color = NULL
+mydata$wghts = NULL
 mydata
 ```
 
-Be careful using these methods. Once a variable or row is dropped, it’s gone. Rows can be added to a data frame using the `rbind()` (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row. 
+Be careful using these methods. Once a variable or row is dropped, it’s gone. 
+
+### Adding Rows {-}
+
+Rows can be added to a data frame using the `rbind()` (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row. 
 
 
 ```{r}
-newobs = list("M", 23, 136, 160)
+newobs = list("G1", 23, 62, FALSE, 160, "Blue")
 newdata = rbind(mydata, newobs)
 newdata
 ```
@@ -218,27 +253,16 @@ newdata
 We can also use `rbind()` to append one data frame to another. We can do this with the variables `males` and `females` created above still exist in your R environment. 
 
 ```{r}
-males
-females
-rbind(males, females)
+group1
+group2
+rbind(group1, group2)
 ```
 
-One can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
+We can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
 
 ```{r}
 mydata[-c(2,4), ]
 ```
 
 
-The `table()` function can also be used to cross-tabulate categorical data.  Let’s create a frequency table of smokers and non-smokers for both genders.
-
-```{r}
-table(mtcars$cyl)
-```
-
-The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
-
-```{r}
-table(mtcars$cyl, mtcars$vs)
-```
 

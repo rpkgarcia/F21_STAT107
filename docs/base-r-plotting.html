@@ -182,10 +182,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
 <li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
 <li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
-<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-data"><i class="fa fa-check"></i>Importing Data</a></li>
-<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#downloading-data"><i class="fa fa-check"></i>Downloading Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-from-your-computer"><i class="fa fa-check"></i>Importing From Your Computer</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#import-from-online"><i class="fa fa-check"></i>Import From Online</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#indexing"><i class="fa fa-check"></i>Indexing</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#rearranging-rows"><i class="fa fa-check"></i>Rearranging Rows</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-columns"><i class="fa fa-check"></i>Adding Columns</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#na-values"><i class="fa fa-check"></i>NA values</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#null"><i class="fa fa-check"></i>NULL</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-rows"><i class="fa fa-check"></i>Adding Rows</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
 <li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
@@ -285,21 +292,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 20000      good       1        1        1     69    170      165  83      m</code></pre>
 <p>We can look at graphical representations of this data.</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="base-r-plotting.html#cb393-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="base-r-plotting.html#cb394-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-124-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-125-2.png" width="672" /></p>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="base-r-plotting.html#cb395-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>age)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-124-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-125-3.png" width="672" /></p>
 <p>The output appears in the <em>Plots</em> panel of <em>RStudio</em>. You can use the arrows to the left of the <em>Zoom</em> button the switch among the three plots.</p>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="base-r-plotting.html#cb396-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.</p>
 <p>Use <code>col</code> argument to change the colors used for the bars. By using the <code>border</code> argument, you can even change the color used for the border of the bars.</p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="base-r-plotting.html#cb397-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,</span>
 <span id="cb397-2"><a href="base-r-plotting.html#cb397-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>, </span>
 <span id="cb397-3"><a href="base-r-plotting.html#cb397-3"></a>     <span class="dt">border =</span> <span class="st">&quot;mediumpurple4&quot;</span>,</span>
 <span id="cb397-4"><a href="base-r-plotting.html#cb397-4"></a>     <span class="dt">col =</span> <span class="st">&quot;mediumpurple1&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p>There are several ways we can add <strong>colors</strong> to <code>R</code>.</p>
 <ul>
 <li><p><strong>Using Color Names</strong>: <code>R</code> programming has names for 657 colors. You can take a look at them all with the <code>colors()</code> function, or simply check this R color pdf.</p></li>
@@ -317,14 +324,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb398-7"><a href="base-r-plotting.html#cb398-7"></a>       <span class="dt">col=</span><span class="st">&quot;mediumblue&quot;</span>,</span>
 <span id="cb398-8"><a href="base-r-plotting.html#cb398-8"></a>       <span class="dt">lty=</span><span class="dv">2</span>,</span>
 <span id="cb398-9"><a href="base-r-plotting.html#cb398-9"></a>       <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="base-r-plotting.html#cb399-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>],</span>
 <span id="cb399-2"><a href="base-r-plotting.html#cb399-2"></a>     <span class="dt">col=</span><span class="st">&quot;dodgerblue3&quot;</span>,</span>
 <span id="cb399-3"><a href="base-r-plotting.html#cb399-3"></a>     <span class="dt">labels=</span><span class="ot">TRUE</span>, </span>
 <span id="cb399-4"><a href="base-r-plotting.html#cb399-4"></a>     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), </span>
 <span id="cb399-5"><a href="base-r-plotting.html#cb399-5"></a>     <span class="dt">breaks =</span> <span class="dv">18</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the <code>add</code> argument of the second histogram to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="base-r-plotting.html#cb400-1"></a><span class="co"># random numbers</span></span>
 <span id="cb400-2"><a href="base-r-plotting.html#cb400-2"></a>h1 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">6</span>)</span>
@@ -336,14 +343,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb400-8"><a href="base-r-plotting.html#cb400-8"></a><span class="kw">hist</span>(h2,</span>
 <span id="cb400-9"><a href="base-r-plotting.html#cb400-9"></a>     <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.25</span>),</span>
 <span id="cb400-10"><a href="base-r-plotting.html#cb400-10"></a>     <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <p>For more options, look up “hist” in the <em>Help</em> panel of <em>RStudio</em>.</p>
 <p>Let’s produce a boxplot for the first 1000 values of the height variable.</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="base-r-plotting.html#cb401-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>The line in the center is the median. The bottom and top of the box are drawn at the first (<span class="math inline">\(Q_1\)</span>) and third (<span class="math inline">\(Q_3\)</span>) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (<span class="math inline">\(Q_3-Q_1\)</span>). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, <span class="math inline">\(Q3 +1.5(Q_3-Q_1)\)</span>, or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, <span class="math inline">\(Q1-1.5(Q_3-Q_1)\)</span>, or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="base-r-plotting.html#cb402-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>] <span class="op">~</span><span class="st"> </span>cdc<span class="op">$</span>gender[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 </div>
 <div id="visualizing-qualitative-data" class="section level2">
 <h2><span class="header-section-number">7.2</span> Visualizing Qualitative Data</h2>
@@ -359,11 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   0.23285   0.34860   0.28375   0.10095   0.03385</code></pre>
 <p>Pie charts are also used for categorical data. Options are also available for the <code>pie()</code> function.</p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="base-r-plotting.html#cb407-1"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>Options are also available for the pie() function.</p>
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="base-r-plotting.html#cb408-1"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;pink&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb408-2"><a href="base-r-plotting.html#cb408-2"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>, <span class="dt">col =</span> colors, <span class="dt">main =</span> <span class="st">&quot;General Health&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>The <code>table()</code> function can also be used to cross-tabulate categorical data. Let’s create a frequency table of smokers and non-smokers for both genders.</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="base-r-plotting.html#cb409-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>smoke100, cdc<span class="op">$</span>gender)</span></code></pre></div>
 <pre><code>##    
