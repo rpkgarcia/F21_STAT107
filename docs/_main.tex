@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-09-17}
+\date{2021-09-19}
 
 \begin{document}
 \maketitle
@@ -134,9 +134,6 @@ Welcome to STAT 107! Here is stuff that can be written.
 \chapter{Introduction to R}\label{introduction-to-r}}
 
 This section was written primarily by \citet{Desharnais2020}, and was modified for our course. I am grateful for his help.
-
-\hypertarget{history-of-r}{%
-\section{History of R}\label{history-of-r}}
 
 \hypertarget{the-rstudio-interface}{%
 \section{\texorpdfstring{The \textbf{RStudio} Interface}{The RStudio Interface}}\label{the-rstudio-interface}}
@@ -307,6 +304,331 @@ You can also list the data in the console by typing the name of the data fame ob
 
 The columns are labeled with the names of the variables and the rows are labeled with the names of each car. Each row represents the data values for one car; that is, each row is one observation.
 
+\hypertarget{comments}{%
+\section{Comments}\label{comments}}
+
+Often times we will want to add a comment to our script document so we can remember special aspects later, and make the code easier to read and modify in the future. To add a comment start the comment with a \texttt{\#} symbol. This will make the remaining characters in a line a comment and R will not try to compile these lines. Go to the script document and type the following. Highlight what you have typed and press ``Run''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# This is a comment }
+\DecValTok{2}\OperatorTok{+}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3} \CommentTok{# Comments can also start in the middle of a line. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{operators}{%
+\section{Operators}\label{operators}}
+
+An operator is a symbol that tells the compiler to preform a specific task. There are several types of operators, some preeform mathematical tasks, logical checks, and create new objects. We will review a few of the basic operators here. We will continue to discuss and introduce operators throughout this document.
+
+\hypertarget{arithmetic-operators}{%
+\subsection*{Arithmetic Operators}\label{arithmetic-operators}}
+\addcontentsline{toc}{subsection}{Arithmetic Operators}
+
+R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively. The first operators we discuss are a few of the basic arithmetic operations. These are operations ismilar to that of a calculator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Addition }
+\DecValTok{2}\OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Subtraction }
+\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Multiplication }
+\DecValTok{2}\OperatorTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Division }
+\DecValTok{2}\OperatorTok{/}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6666667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Exponent }
+\DecValTok{2}\OperatorTok{^}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\hypertarget{relational-operators}{%
+\subsection*{Relational Operators}\label{relational-operators}}
+\addcontentsline{toc}{subsection}{Relational Operators}
+
+Relational operators are used to compare two values. When using a relational operation R will return either \texttt{TRUE} or \texttt{FALSE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Less than }
+\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Greater than }
+\DecValTok{2} \OperatorTok{>}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Less than or equal to }
+\DecValTok{2} \OperatorTok{<=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Greater than or equal to }
+\DecValTok{2}\OperatorTok{>=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Not equal to }
+\DecValTok{2} \OperatorTok{!=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Equal to }
+\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+We can use all the same operators above if our object contains more than one element. This will preform the above comparisons element by element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.325000  3.378440  8.680041
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OperatorTok{>}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE FALSE
+\end{verbatim}
+
+If we have two vectors of an unequal length then the checks will be preformed element-by-element but the values in the shorter vector will be \emph{recycled}, or \emph{repeated}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{v }\OperatorTok{>}\StringTok{ }\NormalTok{w}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in v > w: longer object length is not a multiple of shorter object
+## length
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  TRUE  TRUE FALSE
+\end{verbatim}
+
+R evaluated the first and third element of \texttt{v} and compared it to the first element of \texttt{w}, and the second element of \texttt{v} to the second element of \texttt{w}. In this case, R returned a \emph{warning} alerting you that it recycled elements. However, R will not always do this.
+
+\hypertarget{logical-operators}{%
+\subsection*{Logical operators}\label{logical-operators}}
+\addcontentsline{toc}{subsection}{Logical operators}
+
+Logical operators are similar to relational operators. They are used to check ``AND'' and ``OR'' events. We have the \texttt{\&} symbol which returns \texttt{TRUE} only if BOTH conditions are true. We also have the \texttt{\textbar{}} symbol which returns \texttt{TRUE} if EITHER condition is true.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Check if both operations are true. }
+\NormalTok{(}\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(}\DecValTok{5} \OperatorTok{<}\StringTok{ }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Check if either operation is true. }
+\NormalTok{(}\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(}\DecValTok{5} \OperatorTok{<}\StringTok{ }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+We can also negate a \texttt{TRUE} or \texttt{FALSE} value using the \texttt{!} symbol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Negate an operation }
+\OperatorTok{!}\NormalTok{(}\DecValTok{2}\OperatorTok{<}\DecValTok{3}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+Like relational operators from before, if we have more than one element the logical operations will be implemented element-by-element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# AND event, compared element-by-element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# OR event, compared elmeent-by-elment}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE TRUE TRUE
+\end{verbatim}
+
+We also have the symbols \texttt{\&\&} and \texttt{\textbar{}\textbar{}} which will ensure that only the first element in an object will be compared.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# AND event, only check the first element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{&&}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# OR event, only check the first element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{||}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{assignment-operators}{%
+\subsection*{Assignment Operators}\label{assignment-operators}}
+\addcontentsline{toc}{subsection}{Assignment Operators}
+
+Assignment operators are used to assign values to a new object. There are many types of assignment operators, and they operate slightly differently. The two most common assignment operators are \texttt{=} and \texttt{\textless{}-}. With these operators the value to the left of the operator is the name of the new object and the value on the right is what the object is now equal to.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+The majority of the time we can use these two assignment operators above interchangeably, there are some exceptions though. There are several other assignment operators which are uncommon and should only be used by advanced users, \texttt{-\textgreater{}}, \texttt{\textless{}\textless{}-}, and \texttt{-\textgreater{}\textgreater{}}.
+
 \hypertarget{additional-resources}{%
 \section{Additional Resources}\label{additional-resources}}
 
@@ -320,9 +642,9 @@ The columns are labeled with the names of the variables and the rows are labeled
   \begin{itemize}
   \tightlist
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2365045\&node=8476457\&a=437885577\&autoplay=1}{Getting Started 1\textbar{} How to Download and Install RStudio}
+    \href{https://ucr.yuja.com/V/Video?v=2365045\&node=8476457\&a=437885577\&autoplay=1}{Getting Started 1 \textbar{} How to Download and Install RStudio}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368643\&node=8487538\&a=437248619\&autoplay=1}{Getting Started 2\textbar Rstudio Introduction cont'd, More Tabs Explained}
+    \href{https://ucr.yuja.com/V/Video?v=2368643\&node=8487538\&a=437248619\&autoplay=1}{Getting Started 2 \textbar{} Rstudio Introduction cont'd, More Tabs Explained}
   \end{itemize}
 \end{itemize}
 
@@ -332,16 +654,14 @@ The columns are labeled with the names of the variables and the rows are labeled
 \hypertarget{atomic-objects}{%
 \section{Atomic Objects}\label{atomic-objects}}
 
-At its core, \texttt{R} is an objected-oriented computational and programming environment. Everything in \texttt{R} is an object belonging to a certain \emph{class}.
-\texttt{R}can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, and \texttt{character}. We will look at some examples.
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}.
+R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. In practice \texttt{raw} is rarely used. For our class we will not need the \texttt{complex} type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function. function.
 
 \hypertarget{numeric}{%
 \subsection*{Numeric}\label{numeric}}
 \addcontentsline{toc}{subsection}{Numeric}
 
-There are different types of numeric objects. Specifically, we will first consider real numbers (can have decimal values) and integers. We can examine how \texttt{R} stores these types of numbers using the \texttt{class()} function.
-
-We will begin with decimal numbers.
+Numeric objects are perhaps the most common. These are objects which contain a real number, that is, a number which can contain a decimal value. These objects are comparable to \texttt{doubles} in \texttt{C}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -386,7 +706,12 @@ We will begin with decimal numbers.
 \end{verbatim}
 
 Both the variables \texttt{a} and \texttt{b} are \texttt{numeric} objects. When you type a number \texttt{R} will default to treating it as a \texttt{numeric} object which allows decimals.
-You can use the \texttt{as.integer()} function to create a variable that is specifically an integer number.
+
+\hypertarget{integer}{%
+\subsection*{Integer}\label{integer}}
+\addcontentsline{toc}{subsection}{Integer}
+
+We can also create numeric objects which are specifically made to store integer values. We can do this using the \texttt{as.integer()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -434,21 +759,11 @@ You can use the \texttt{as.integer()} function to create a variable that is spec
 \subsection*{Logical}\label{logical}}
 \addcontentsline{toc}{subsection}{Logical}
 
-Logical values are either ``true'' or ``false'' and are created by logical statements that compare variables. There are several ways to do logical statements. To check if two values or objects are equal to each other we use ``==''. To see if a value/object is greater than or less than another we use the ``\textless{}'', ``\textgreater{}'', ``\textless='', or ``\textgreater=''.
+Logical values are either \texttt{TRUE} or \texttt{FALSE} and are created by using logical and relational operators. In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section @ref\{operators\}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{b =}\StringTok{ }\DecValTok{5}
-\DecValTok{2}\OperatorTok{+}\DecValTok{3} \OperatorTok{==}\StringTok{ }\NormalTok{b}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] TRUE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{n =}\StringTok{ }\NormalTok{(}\DecValTok{10}\OperatorTok{<}\DecValTok{11}\NormalTok{)}
 \NormalTok{n}
 \end{Highlighting}
@@ -468,32 +783,12 @@ Logical values are either ``true'' or ``false'' and are created by logical state
 ## [1] "logical"
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{e =}\StringTok{ }\NormalTok{(b }\OperatorTok{>}\DecValTok{10}\NormalTok{)}
-\KeywordTok{class}\NormalTok{(e)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "logical"
-\end{verbatim}
-
-The symbols ``\&'' ``\textbar{}'', and ``!'' are used for the logical operations ``and'', ``or'', and ``not''. Two logical expressions connected by \& (and) are true only if both are true. Two logical expressions connected by \textbar{} (or) are true if either are true. The ! (not) operation turns a true into a false and vice-versa.
+We can also assign a value as \texttt{TRUE} or \texttt{FALSE} manually by setting it equal to \texttt{TRUE} or \texttt{FALSE}, or by using \texttt{T} or \texttt{F}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{e }\OperatorTok{&}\StringTok{ }\NormalTok{n}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{e }\OperatorTok{|}\StringTok{ }\NormalTok{n }
+\NormalTok{c =}\StringTok{ }\NormalTok{T}
+\NormalTok{c}
 \end{Highlighting}
 \end{Shaded}
 
@@ -503,12 +798,12 @@ The symbols ``\&'' ``\textbar{}'', and ``!'' are used for the logical operations
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{!}\NormalTok{n}
+\KeywordTok{class}\NormalTok{(c)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
+## [1] "logical"
 \end{verbatim}
 
 \hypertarget{character}{%
@@ -607,7 +902,7 @@ The function \texttt{paste()} concatenates two or more character strings with a 
 \hypertarget{vectors}{%
 \section{Vectors}\label{vectors}}
 
-All the objects we have created this far are single element \textbf{vectors}. \texttt{R} is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature. A vector is a collection of values of the same data type. We can use the concatenate function, \texttt{c()}, to create vectors, and to make a vector larger.
+All the objects we have created this far are single element \emph{vectors}. R is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature. \textbf{A vector is a collection of values of the same data type}. We can use the concatenate function, \texttt{c()}, to create vectors, and to make a vector larger.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -651,6 +946,8 @@ All the objects we have created this far are single element \textbf{vectors}. \t
 ## [1] "numeric"
 \end{verbatim}
 
+If we try to create a vector with a mix of classes R will convert all the objects to be the same class. In general, it is easiest to convert objects into a \texttt{character} but hard to convert \texttt{character} into something else. Be cautious when mixing data types and vectors because you will not be notified if objects are converted, and they may not be converted to the class you intended.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{v3 =}\StringTok{ }\KeywordTok{c}\NormalTok{(v1, first)}
@@ -673,7 +970,7 @@ All the objects we have created this far are single element \textbf{vectors}. \t
 ## [1] "character"
 \end{verbatim}
 
-The \textbf{length()} function can be used to obtain the number of elements in a vector.
+The \texttt{length()} function can be used to obtain the number of elements in a vector.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -764,10 +1061,89 @@ Individual elements of a vector can be obtained using an index in square bracket
 \hypertarget{lists}{%
 \section{Lists}\label{lists}}
 
+Lists are thought of as a vector with a variety of classes. A list is made up of elements, and each element can be of a different class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{4}\NormalTok{, v4, v2)}
+\NormalTok{lst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] "George"     "Washington"
+## 
+## [[3]]
+## [1]  1.1  6.0 -9.4 32.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+We can observe the class of each element in the list by using the \texttt{str()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 3
+##  $ : num 4
+##  $ : chr [1:2] "George" "Washington"
+##  $ : num [1:4] 1.1 6 -9.4 32.1
+\end{verbatim}
+
+The above output tells us we have a list of three objects. The first object is a numeric vector with one element, the second object is a character vector with two elements, and third object is a numeric vector with four elements. We can subset elements in a list using double brackets we \texttt{{[}{[}{]}{]}}. Inside these square brakets we state the element we would like to obtain.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lst[[}\DecValTok{1}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+To determine how long our list is we can use the \texttt{length()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
 \hypertarget{matrices}{%
 \section{Matrices}\label{matrices}}
 
-A matrix is a two dimensional array of data of the same type. The matrix function, \texttt{matrix()}, can be used to create a new matrix.
+A matrix is a two dimensional array of data of \textbf{the same type}. The matrix function, \texttt{matrix()}, can be used to create a new matrix.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -784,9 +1160,7 @@ A matrix is a two dimensional array of data of the same type. The matrix functio
 ## [3,]    2    7    4
 \end{verbatim}
 
-\texttt{R} labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function.
-
-As with vectors, matrices can be used in arithmetic expressions with scalars and other matrices of the same size.
+R labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function. As with vectors, matrices can be used in arithmetic operations with scalars and other matrices of the same size.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -861,8 +1235,71 @@ Indices can be used to obtain the elements of a matrix, but now we must consider
 
 Some functions are particularly useful when using matrices. For instance, \texttt{t()}, \texttt{dim()}, and \texttt{c()}. The transpose function, \texttt{t()}, switches the column and rows of a matrix. The dimension function, \texttt{dim()}, returns the dimensions (number of rows, columns) of a matrix. The concatenate function, \texttt{c()}, turns a matrix into a vector by concatenating the columns of the matrix.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Dimensions (row, column)}
+\KeywordTok{dim}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Transpose}
+\KeywordTok{t}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    9    2
+## [2,]    0    5    7
+## [3,]    3    8    4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Convert to vector }
+\KeywordTok{c}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 9 2 0 5 7 3 8 4
+\end{verbatim}
+
 \hypertarget{factors}{%
 \section{Factors}\label{factors}}
+
+Factors are useful for categorical data. Factors differ from character objects in that character objects is a string of characters or symbols placed in a specific order. For example, the object \texttt{first\ =\ "George"} is a character object with six elements. In contrast, the collection of values ``George'' would instead represent a distinct value, or \emph{level}. We can create a factor object using the \texttt{factor()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)}
+\NormalTok{colors =}\StringTok{ }\KeywordTok{factor}\NormalTok{(colors)}
+\NormalTok{colors}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] red  blue red  red  blue
+## Levels: blue red
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(colors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor"
+\end{verbatim}
+
+Here the unique elements in the factor are called ``levels''. There are only two levels \texttt{red} and \texttt{blue}. There are five elements in our factor object.
 
 \hypertarget{data-frames}{%
 \section{Data Frames}\label{data-frames}}
@@ -888,15 +1325,24 @@ We can create a set of vectors of the same length and use the \texttt{data.frame
 ## 3  23 Female   FALSE
 \end{verbatim}
 
-\hypertarget{other-object-types}{%
-\section{Other Object Types}\label{other-object-types}}
+\hypertarget{other-object-types-and-the-global-environment}{%
+\section{Other Object Types and the Global Environment}\label{other-object-types-and-the-global-environment}}
 
-\begin{itemize}
-\item
-  Builtin Objects and Special Forms
-\item
-  Some specific types of objects are generated by specific functions.
-\end{itemize}
+There are more objects then what we have discussed above. For example, many of the advanced functions create specific objects generated by that specific function. There are hundreds, and possibly thousands, of such objects. These objects generally are special cases of lists, factors, and other various types of objects that we have defined in this section. The objects we have described here are the building blocks of most values we will be working with. Functions like \texttt{class()} and \texttt{length()} are also considered as objects, but are of a different type. We discuss functions in more detail in section @ref\{functions\}.
+
+There are also built-in, or special objects in R. For example, the object \texttt{pi} is an object already defined. These built-in values and functions can be written over, but that is not advised.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.141593
+\end{verbatim}
+
+Every time we create an object we see that the Global Environment tab in the top right pane updates. The object we have created is now listed in the Global Environment. This is a collection of all \emph{user created} objects in R, that R knows about, and that R can easily call. Built-in objects, such as \texttt{pi}, will not be listed here.
 
 \hypertarget{additional-resources-1}{%
 \section{Additional Resources}\label{additional-resources-1}}
@@ -911,19 +1357,19 @@ We can create a set of vectors of the same length and use the \texttt{data.frame
   \begin{itemize}
   \tightlist
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368642\&node=8487537\&a=1529691043\&autoplay=1}{Variables 1\textbar{} Types and Assignments}
+    \href{https://ucr.yuja.com/V/Video?v=2368642\&node=8487537\&a=1529691043\&autoplay=1}{Variables 1 \textbar{} Types and Assignments}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368641\&node=8487536\&a=957339369\&autoplay=1}{Variables 2\textbar{} Nameing Conventions and Best Practices}
+    \href{https://ucr.yuja.com/V/Video?v=2368641\&node=8487536\&a=957339369\&autoplay=1}{Variables 2 \textbar{} Nameing Conventions and Best Practices}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368859\&node=8488053\&a=283774152\&autoplay=1}{Vectors 1\textbar{} Introduction}
+    \href{https://ucr.yuja.com/V/Video?v=2368859\&node=8488053\&a=283774152\&autoplay=1}{Vectors 1 \textbar{} Introduction}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368857\&node=8488051\&a=1465899289\&autoplay=1}{Vectors 2\textbar Subsetting and Modifying}
+    \href{https://ucr.yuja.com/V/Video?v=2368857\&node=8488051\&a=1465899289\&autoplay=1}{Vectors 2 \textbar Subsetting and Modifying}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368856\&node=8488050\&a=612212822\&autoplay=1}{Vectors 3\textbar{} Vectorized Functions - Logical Comparisons}
+    \href{https://ucr.yuja.com/V/Video?v=2368856\&node=8488050\&a=612212822\&autoplay=1}{Vectors 3 \textbar{} Vectorized Functions - Logical Comparisons}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368855\&node=8488049\&a=447596964\&autoplay=1}{Matrices 1\textbar{} Introduction}
+    \href{https://ucr.yuja.com/V/Video?v=2368855\&node=8488049\&a=447596964\&autoplay=1}{Matrices 1 \textbar{} Introduction}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368854\&node=8488047\&a=1529352108\&autoplay=1}{Matrices 2\textbar{} Accessing Rows and Columns}
+    \href{https://ucr.yuja.com/V/Video?v=2368854\&node=8488047\&a=1529352108\&autoplay=1}{Matrices 2 \textbar{} Accessing Rows and Columns}
   \end{itemize}
 \end{itemize}
 
@@ -935,53 +1381,29 @@ We can create a set of vectors of the same length and use the \texttt{data.frame
 
 In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and gender.
 
-Name
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{name =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{, }\StringTok{"Eve"}\NormalTok{, }\StringTok{"Kim"}\NormalTok{, }\StringTok{"Max"}\NormalTok{, }\StringTok{"Ray"}\NormalTok{, }\StringTok{"Sam"}\NormalTok{)}
+\NormalTok{hair =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Red"}\NormalTok{, }\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Brown"}\NormalTok{, }\StringTok{"Black"}\NormalTok{)}
+\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{)}
 
-Hair Color
+\NormalTok{catagorical =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(name, hair, gender)}
+\KeywordTok{colnames}\NormalTok{(catagorical) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Name"}\NormalTok{, }\StringTok{"Hair Color"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{)}
 
-Gender
+\NormalTok{catagorical}
+\end{Highlighting}
+\end{Shaded}
 
-Amy
-
-Blonde
-
-Female
-
-Bob
-
-Black
-
-Male
-
-Eve
-
-Black
-
-Female
-
-Kim
-
-Red
-
-Female
-
-Max
-
-Blonde
-
-Male
-
-Ray
-
-Brown
-
-Male
-
-Sam
-
-Black
-
-Male
+\begin{verbatim}
+##   Name Hair Color Gender
+## 1  Amy     Blonde Female
+## 2  Bob      Black   Male
+## 3  Eve      Black Female
+## 4  Kim        Red Female
+## 5  Max     Blonde   Male
+## 6  Ray      Brown   Male
+## 7  Sam      Black   Male
+\end{verbatim}
 
 Here, the hair color and gender are the examples of categorical data. To store such categorical data, \texttt{R} has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In \texttt{R}, you can create a factor with the \texttt{factor()} function.
 
@@ -2898,7 +3320,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2906,7 +3328,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2914,7 +3336,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-3.pdf}
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
@@ -2924,7 +3346,7 @@ The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.
 
@@ -2939,7 +3361,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -2970,7 +3392,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
 
@@ -2984,7 +3406,7 @@ You can also place values on top of bars; which will help you interpret the grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
 
@@ -3003,7 +3425,7 @@ Often you want to compare the distributions of different variables within your d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
@@ -3015,7 +3437,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
 
@@ -3025,7 +3447,7 @@ The line in the center is the median. The bottom and top of the box are drawn at
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 \hypertarget{visualizing-qualitative-data}{%
 \section{Visualizing Qualitative Data}\label{visualizing-qualitative-data}}
@@ -3066,7 +3488,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -3077,7 +3499,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
 

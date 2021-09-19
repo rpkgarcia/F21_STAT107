@@ -2,16 +2,12 @@
 
 ## Atomic Objects 
 
-At its core, `R` is an objected-oriented computational and programming environment. Everything in `R` is an object belonging to a certain *class*.
-`R `can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, and `character`. We will look at some examples.
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain *class*.
+R can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, `character`, and `raw`. These are the basic fundamental objects we can use in R. In practice `raw` is rarely used.  For our class we will not need the `complex` type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating.  Instead, R guesses the type of object you are creating.  To check the object type we can use the  `class()` function.  function.  
 
 ### Numeric {-}
 
-
-
-There are different types of numeric objects.  Specifically, we will first consider real numbers (can have decimal values) and integers. We can examine how `R` stores these types of numbers using the `class()` function. 
-
-We will begin with decimal numbers.
+Numeric objects are perhaps the most common.  These are objects which contain a real number, that is, a number which can contain a decimal value.  These objects are comparable to `doubles` in `C`. 
 
 ```{r}
 a = 17.45
@@ -23,7 +19,10 @@ class(b)
 ```
 
 Both the variables `a` and `b` are `numeric` objects. When you type a number `R` will default to treating it as a `numeric` object which allows decimals. 
-You can use the `as.integer()` function to create a variable that is specifically an integer number. 
+
+### Integer {-}
+
+We can also create numeric objects which are specifically made to store integer values.  We can do this using the `as.integer()` function.
 
 ```{r}
 a = as.integer(a)
@@ -36,28 +35,23 @@ class(b)
 
 ### Logical {-}
 
-Logical values are either "true" or "false" and are created by logical statements that compare variables. There are several ways to do logical statements.  To check if two values or objects are equal to each other we use "==".  To see if a value/object is greater than or less than another we use the "<", ">", "<=", or ">=". 
+Logical values are either `TRUE` or `FALSE` and are created by using logical and relational operators.  In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section \@ref{operators}. 
 
 ```{r}
 b = 5
-2+3 == b
 n = (10<11)
 n
 class(n)
-e = (b >10)
-class(e)
 ```
 
-The symbols "&" "|", and "!" are used for the logical operations "and", "or", and "not". Two logical expressions connected by & (and) are true only if both are true. Two logical expressions connected by | (or) are true if either are true.  The ! (not) operation turns a true into a false and vice-versa.
+We can also assign a value as `TRUE` or `FALSE` manually by setting it equal to `TRUE` or `FALSE`, or by using `T` or `F`. 
 
 ```{r}
-e & n
-
-e | n 
-
-!n
-
+c = T
+c
+class(c)
 ```
+
 
 ### Character {-}
 
@@ -85,7 +79,7 @@ The function `paste()` concatenates two or more character strings with a separat
 
 ## Vectors
 
-All the objects we have created this far are single element **vectors**.  `R` is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature.  A vector is a collection of values of the same data type.  We can use the concatenate function, `c()`, to create vectors, and to make a vector larger. 
+All the objects we have created this far are single element *vectors*.  R is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature.  **A vector is a collection of values of the same data type**.  We can use the concatenate function, `c()`, to create vectors, and to make a vector larger. 
 
 ```{r}
 v1 = c(19, 390.3, pi, -32.1)
@@ -96,6 +90,12 @@ v2 = c(1.1, 6, -9.4, 32.1)
 v2
 class(v2)
 
+```
+
+If we try to create a vector with a mix of classes R will convert all the objects to be the same class.  In general, it is easiest to convert objects into a `character` but hard to convert `character` into something else.  Be cautious when mixing data types and vectors because you will not be notified if objects are converted, and they may not be converted to the class you intended. 
+
+```{r}
+
 v3 = c(v1, first)
 class(v3)
 
@@ -104,7 +104,7 @@ class(v4)
 ```
 
 
-The **length()** function can be used to obtain the number of elements in a vector. 
+The `length()` function can be used to obtain the number of elements in a vector. 
 
 ```{r}
 length(v1)
@@ -136,9 +136,38 @@ v3[c(3,2)]
 
 ## Lists 
 
+Lists are thought of as a vector with a variety of classes.  A list is made up of elements, and each element can be of a different class. 
+
+```{r}
+lst = list(4, v4, v2)
+lst
+class(lst)
+```
+
+We can observe the class of each element in the list by using the `str()` function. 
+
+```{r}
+str(lst)
+```
+
+The above output tells us we have a list of three objects.  The first object is a numeric vector with one element, the second object is a character vector with two elements, and third object is a numeric vector with four elements. We can subset elements in a list using double brackets we `[[]]`.  Inside these square brakets we state the element we would like to obtain. 
+
+```{r}
+lst[[1]]
+class(lst[[1]])
+```
+
+To determine how long our list is we can use the `length()` function.  
+
+```{r}
+length(lst)
+```
+
+ 
+
 ## Matrices
 
-A matrix is a two dimensional array of data of the same type. The matrix function, `matrix()`, can be used to create a new matrix.
+A matrix is a two dimensional array of data of **the same type**. The matrix function, `matrix()`, can be used to create a new matrix.
 
 ```{r}
 m = matrix(c(1, 9, 2, 0, 5, 7, 3, 8, 4), 
@@ -146,9 +175,7 @@ m = matrix(c(1, 9, 2, 0, 5, 7, 3, 8, 4),
 m
 ```
 
-`R` labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function.
-
-As with vectors, matrices can be used in arithmetic expressions with scalars and other matrices of the same size.
+R labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function. As with vectors, matrices can be used in arithmetic operations with scalars and other matrices of the same size.
 
 ```{r}
 m2 = m/2
@@ -166,9 +193,32 @@ m[,3]
 ```
 
 Some functions are particularly useful when using matrices.  For instance, `t()`, `dim()`, and `c()`. The transpose function, `t()`, switches the column and rows of a matrix. The dimension function, `dim()`, returns the dimensions (number of rows, columns) of a matrix. The concatenate function, `c()`, turns a matrix into a vector by concatenating the columns of the matrix.
+```{r}
+
+# Dimensions (row, column)
+dim(m)
+
+# Transpose
+t(m)
+
+# Convert to vector 
+c(m)
+```
+
 
 
 ## Factors
+
+Factors are useful for categorical data. Factors differ from character objects in that character objects is a string of characters or symbols placed in a specific order.  For example, the object `first = "George"` is a character object with six elements.  In contrast, the collection of values "George" would instead represent a distinct value, or *level*.  We can create a factor object using the `factor()` function. 
+
+```{r}
+colors = c("red", "blue", "red", "red", "blue")
+colors = factor(colors)
+colors
+class(colors)
+```
+
+Here the unique elements in the factor are called "levels".  There are only two levels `red` and `blue`.  There are five elements in our factor object. 
 
 ## Data Frames
 
@@ -191,24 +241,30 @@ library(xtable)
 options(xtable.comment = FALSE)
 ```
 
-## Other Object Types
+## Other Object Types and the Global Environment
 
-- Builtin Objects and Special Forms
+There are more objects then what we have discussed above. For example, many of the advanced functions create specific objects generated by that specific function.  There are hundreds, and possibly thousands, of such objects.  These objects generally are special cases of lists, factors, and other various types of objects that we have defined in this section.  The objects we have described here are the building blocks of most values we will be working with. Functions like `class()` and `length()` are also considered as objects, but are of a different type.  We discuss functions in more detail in section \@ref{functions}.  
 
-- Some specific types of objects are generated by specific functions. 
+There are also built-in, or special objects in R.  For example, the object `pi` is an object already defined. These built-in values and functions can be written over, but that is not advised.
+
+```{r}
+pi
+```
+
+Every time we create an object we see that the Global Environment tab in the top right pane updates.  The object we have created is now listed in the Global Environment. This is a collection of all *user created* objects in R, that R knows about, and that R can easily call.  Built-in objects, such as `pi`, will not be listed here. 
 
 
 ## Additional Resources 
 
 - Chapters 2, 3, 4.1, 4.3, 5.1-5.3, 6 of [CRAN Intro-to-R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
 - Videos: 
-    + [Variables 1| Types and Assignments](https://ucr.yuja.com/V/Video?v=2368642&node=8487537&a=1529691043&autoplay=1)
-    + [Variables 2| Nameing Conventions and Best Practices](https://ucr.yuja.com/V/Video?v=2368641&node=8487536&a=957339369&autoplay=1)
-    + [Vectors 1| Introduction](https://ucr.yuja.com/V/Video?v=2368859&node=8488053&a=283774152&autoplay=1)
-    + [Vectors 2|Subsetting and Modifying](https://ucr.yuja.com/V/Video?v=2368857&node=8488051&a=1465899289&autoplay=1)
-    + [Vectors 3| Vectorized Functions - Logical Comparisons](https://ucr.yuja.com/V/Video?v=2368856&node=8488050&a=612212822&autoplay=1)
-    + [Matrices 1| Introduction](https://ucr.yuja.com/V/Video?v=2368855&node=8488049&a=447596964&autoplay=1)
-    + [Matrices 2| Accessing Rows and Columns](https://ucr.yuja.com/V/Video?v=2368854&node=8488047&a=1529352108&autoplay=1)
+    + [Variables 1 | Types and Assignments](https://ucr.yuja.com/V/Video?v=2368642&node=8487537&a=1529691043&autoplay=1)
+    + [Variables 2 | Nameing Conventions and Best Practices](https://ucr.yuja.com/V/Video?v=2368641&node=8487536&a=957339369&autoplay=1)
+    + [Vectors 1 | Introduction](https://ucr.yuja.com/V/Video?v=2368859&node=8488053&a=283774152&autoplay=1)
+    + [Vectors 2 |Subsetting and Modifying](https://ucr.yuja.com/V/Video?v=2368857&node=8488051&a=1465899289&autoplay=1)
+    + [Vectors 3 | Vectorized Functions - Logical Comparisons](https://ucr.yuja.com/V/Video?v=2368856&node=8488050&a=612212822&autoplay=1)
+    + [Matrices 1 | Introduction](https://ucr.yuja.com/V/Video?v=2368855&node=8488049&a=447596964&autoplay=1)
+    + [Matrices 2 | Accessing Rows and Columns](https://ucr.yuja.com/V/Video?v=2368854&node=8488047&a=1529352108&autoplay=1)
 
 
 # More on R Objects 
@@ -217,15 +273,15 @@ options(xtable.comment = FALSE)
 
 In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and gender.
 
-```{r, echo = F, results = 'asis'}
+```{r}
 name = c("Amy", "Bob", "Eve", "Kim", "Max", "Ray", "Sam")
 hair = c("Blonde", "Black", "Black", "Red", "Blonde", "Brown", "Black")
 gender = c("Female", "Male", "Female", "Female", "Male", "Male", "Male")
 
-catagorical = cbind(name, hair, gender)
+catagorical = data.frame(name, hair, gender)
 colnames(catagorical) = c("Name", "Hair Color", "Gender")
 
-print(xtable(catagorical), include.rownames = F, type = "html")
+catagorical
 
 ```
 

@@ -1,4 +1,4 @@
-# Functions 
+# Functions {#functions}
 
 In `R` we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
 

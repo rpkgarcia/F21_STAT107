@@ -2,7 +2,6 @@
 
 This section was written primarily by @Desharnais2020, and was modified for our course.  I am grateful for his help.
 
-## History of R 
 
 ## The **RStudio** Interface 
 
@@ -99,6 +98,138 @@ df
 
 The columns are labeled with the names of the variables and the rows are labeled with the names of each car. Each row represents the data values for one car; that is, each row is one observation.
 
+## Comments 
+
+Often times we will want to add a comment to our script document so we can remember special aspects later, and make the code easier to read and modify in the future.  To add a comment start the comment with a `#` symbol. This will make the remaining characters in a line a comment and R will not try to compile these lines. Go to the script document and type the following.  Highlight what you have typed and press "Run". 
+
+```{r}
+# This is a comment 
+2+ 2
+
+2 + 3 # Comments can also start in the middle of a line. 
+```
+
+
+## Operators {#operators}
+
+An operator is a symbol that tells the compiler to preform a specific task.  There are several types of operators, some preeform mathematical tasks, logical checks, and create new objects.  We will review a few of the basic operators here.  We will continue to discuss and introduce operators throughout this document. 
+
+### Arithmetic Operators {-}
+
+R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively.  The first operators we discuss are a few of the basic arithmetic operations.  These are operations ismilar to that of a calculator. 
+
+```{r}
+# Addition 
+2+ 3
+
+# Subtraction 
+2 - 3
+
+# Multiplication 
+2*3
+
+# Division 
+2/3
+
+# Exponent 
+2^3
+```
+
+
+### Relational Operators {-}
+
+Relational operators are used to compare two values.  When using a relational operation R will return either `TRUE` or `FALSE`. 
+
+```{r}
+# Less than 
+2 < 3
+
+# Greater than 
+2 > 3
+
+# Less than or equal to 
+2 <= 3
+
+# Greater than or equal to 
+2>= 3
+
+# Not equal to 
+2 != 3
+
+# Equal to 
+2 == 3
+```
+
+
+We can use all the same operators above if our object contains more than one element.  This will preform the above comparisons element by element. 
+
+```{r}
+v
+v > 10
+```
+
+If we have two vectors of an unequal length then the checks will be preformed element-by-element but the values in the shorter vector will be *recycled*, or *repeated*.  
+
+```{r}
+w = c(10, 1)
+v > w
+```
+
+R evaluated the first and third element of `v` and compared it to the first element of `w`, and the second element of `v` to the second element of `w`.  In this case, R returned a *warning* alerting you that it recycled elements.  However, R will not always do this. 
+
+### Logical operators {-}
+
+Logical operators are similar to relational operators.  They are used to check "AND" and "OR" events.  We have the `&` symbol which returns `TRUE` only if BOTH conditions are true.  We also have the `|` symbol which returns `TRUE` if EITHER condition is true.  
+
+```{r}
+# Check if both operations are true. 
+(2 < 3) & (5 < 4)
+
+# Check if either operation is true. 
+(2 < 3) | (5 < 4)
+```
+
+We can also negate a `TRUE` or `FALSE` value using the `!` symbol. 
+
+```{r}
+# Negate an operation 
+!(2<3) 
+```
+
+Like relational operators from before, if we have more than one element the logical operations will be implemented element-by-element. 
+
+```{r}
+# AND event, compared element-by-element
+(v > 10) & (4 < 5) 
+
+# OR event, compared elmeent-by-elment
+(v > 10) | (4 < 5) 
+```
+
+We also have the symbols `&&` and `||` which will ensure that only the first element in an object will be compared. 
+
+```{r}
+# AND event, only check the first element
+(v > 10) && (4 < 5) 
+
+# OR event, only check the first element
+(v > 10) || (4 < 5) 
+```
+
+
+### Assignment Operators {-}
+
+Assignment operators are used to assign values to a new object.  There are many types of assignment operators, and they operate slightly differently.  The two most common assignment operators are `=` and `<-`.  With these operators the value to the left of the operator is the name of the new object and the value on the right is what the object is now equal to. 
+ 
+```{r}
+x = 5
+x
+
+x <- 5
+x
+```
+ 
+The majority of the time we can use these two assignment operators above interchangeably, there are some exceptions though.  There are several other assignment operators which are uncommon and should only be used by advanced users, `->`, `<<-`, and `->>`. 
 
 
 
@@ -106,6 +237,6 @@ The columns are labeled with the names of the variables and the rows are labeled
 
 - Chapters 1 of [CRAN Intro-to-R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
 - Videos: 
-    + [Getting Started 1| How to Download and Install RStudio](https://ucr.yuja.com/V/Video?v=2365045&node=8476457&a=437885577&autoplay=1)
-    + [Getting Started 2|Rstudio Introduction cont'd, More Tabs Explained](https://ucr.yuja.com/V/Video?v=2368643&node=8487538&a=437248619&autoplay=1)
+    + [Getting Started 1 | How to Download and Install RStudio](https://ucr.yuja.com/V/Video?v=2365045&node=8476457&a=437885577&autoplay=1)
+    + [Getting Started 2 | Rstudio Introduction cont'd, More Tabs Explained](https://ucr.yuja.com/V/Video?v=2368643&node=8487538&a=437248619&autoplay=1)
     

@@ -1,6 +1,7 @@
 introduction-to-r
-history-of-r
 the-rstudio-interface
+comments
+operators
 additional-resources
 introduction-to-r-objects
 atomic-objects
@@ -9,7 +10,7 @@ lists
 matrices
 factors
 data-frames
-other-object-types
+other-object-types-and-the-global-environment
 additional-resources-1
 more-on-r-objects
 factors-1
