@@ -51,6 +51,10 @@ Although built-in data sets are convient, most the time we need to load our own 
 
 ### Downloading Data {-}
 
+```{r}
+source("https://rpkgarcia.github.io/LearnRBook/data_sets/InsectData.csv")
+
+```
 
 
 ## Basic Data Manipulation
