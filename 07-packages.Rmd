@@ -11,11 +11,12 @@ library()
 ```
 
 
-To see a list of all packages that are currently loaded. 
+To see a list of all packages that are currently loaded (note that yours will likely look different). 
 
 ```{r}
 search()
 ```
+
 
 When adding a new package to our library we only have to install it once. We can do so with the following command.
 
@@ -44,6 +45,26 @@ install.packages("ggplot2")
 library("ggplot2")
 ```
 
+It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature.  We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag.  These packages are also always being updated at different rates with different features.  Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious.  Furthermore, there are several packages which contain objects and functions with the same name. 
+
+
+## Namespace Collisions  
+
+Every time we load a package into our environment the results for the `search()` function changes.  The most recently added package is always listed after the global environment, followed by the second most recent, and so on. 
+The `search()` function tells us how R searches for an object that we called.  For example, consider the following command. 
+
+```{r}
+v = c(1,2,3)
+mean(v)
+```
+
+In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the `search()` function.  The package `base` is always last.  In our case the function `mean()` is only defined in the base package.  If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by `::` and the desired command. 
+
+```{r}
+base::mean(v)
+```
+
+This can be useful, but is not usually necessary. 
 
 
 ```{r, eval = F,echo=F}

@@ -14,7 +14,7 @@ knitr::include_graphics("images/rstudio.png")
 ```
 
 
-Launch RStudio. You will see a window that looks like Fig. 1. There are four panels of the window:
+Launch RStudio. You will see a window that looks like the figure above. There are four panels of the window:
 
   - The R Command Console is where you type R commands for immediate execution.
 
@@ -26,7 +26,7 @@ Launch RStudio. You will see a window that looks like Fig. 1. There are four pan
     
 ### Bottom Left Pane {-}
 
-Let’s begin with the Console. This is where you type `R` commands for immediate execution. Click in the Command Console,  ">" symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:
+Let’s begin with the Console. This is where you type R commands for immediate execution. Click in the Command Console,  ">" symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:
 ```{r}
 1+2
 ```
@@ -37,11 +37,11 @@ exp(pi)
 ```
     
     
-In `R`, "pi" is a special constant to represent the number  and "exp" is the exponential function. The result tells you that the first (and only) element of the result is the number $e^{\pi}=$ 23.14069.
+In R, "pi" is a special constant to represent the number  and "exp" is the exponential function. The result tells you that the first (and only) element of the result is the number $e^{\pi}=$ 23.14069.
 
 ### Bottom Right Pane {-}
 
-Now let’s look at the *Files* tab of the notebook at the lower right of the window. Every `R` session has a working directory where `R` looks for and saves files. It is a good practice to create a different directory for every project and make that directory the working directory. For example, let’s make a new directory called *MyDirectory*. (You can chose another name if you wish). 
+Now let’s look at the *Files* tab of the notebook at the lower right of the window. Every R session has a working directory where R looks for and saves files. It is a good practice to create a different directory for every project and make that directory the working directory. For example, let’s make a new directory called *MyDirectory*. (You can chose another name if you wish). 
 
 1) Click on the **Files** tab of the notebook. You should see a listing of files in your default working directory.
 
@@ -112,7 +112,7 @@ Often times we will want to add a comment to our script document so we can remem
 
 ## Operators {#operators}
 
-An operator is a symbol that tells the compiler to preform a specific task.  There are several types of operators, some preeform mathematical tasks, logical checks, and create new objects.  We will review a few of the basic operators here.  We will continue to discuss and introduce operators throughout this document. 
+An operator is a symbol that tells the compiler to preform a specific task.  There are several types of operators, some preform mathematical tasks, logical checks, and create new objects.  We will review a few of the basic operators here.  We will continue to discuss and introduce operators throughout this document. 
 
 ### Arithmetic Operators {-}
 
@@ -235,7 +235,7 @@ The majority of the time we can use these two assignment operators above interch
 
 ## Additional Resources 
 
-- Chapters 1 of [CRAN Intro-to-R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+- [Chapter 1 of "CRAN Intro-to-R Manual"](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
 - Videos: 
     + [Getting Started 1 | How to Download and Install RStudio](https://ucr.yuja.com/V/Video?v=2365045&node=8476457&a=437885577&autoplay=1)
     + [Getting Started 2 | Rstudio Introduction cont'd, More Tabs Explained](https://ucr.yuja.com/V/Video?v=2368643&node=8487538&a=437248619&autoplay=1)

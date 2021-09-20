@@ -142,7 +142,7 @@ We will begin by looking at the RStudio software interface. Refer to Figure 1 as
 
 \includegraphics[width=35.53in]{images/rstudio}
 
-Launch RStudio. You will see a window that looks like Fig. 1. There are four panels of the window:
+Launch RStudio. You will see a window that looks like the figure above. There are four panels of the window:
 
 \begin{itemize}
 \item
@@ -159,7 +159,7 @@ Launch RStudio. You will see a window that looks like Fig. 1. There are four pan
 \subsection*{Bottom Left Pane}\label{bottom-left-pane}}
 \addcontentsline{toc}{subsection}{Bottom Left Pane}
 
-Let's begin with the Console. This is where you type \texttt{R} commands for immediate execution. Click in the Command Console, ``\textgreater{}'' symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:
+Let's begin with the Console. This is where you type R commands for immediate execution. Click in the Command Console, ``\textgreater{}'' symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -183,13 +183,13 @@ The result tells you that the line begins with the first (and only) element of t
 ## [1] 23.14069
 \end{verbatim}
 
-In \texttt{R}, ``pi'' is a special constant to represent the number and ``exp'' is the exponential function. The result tells you that the first (and only) element of the result is the number \(e^{\pi}=\) 23.14069.
+In R, ``pi'' is a special constant to represent the number and ``exp'' is the exponential function. The result tells you that the first (and only) element of the result is the number \(e^{\pi}=\) 23.14069.
 
 \hypertarget{bottom-right-pane}{%
 \subsection*{Bottom Right Pane}\label{bottom-right-pane}}
 \addcontentsline{toc}{subsection}{Bottom Right Pane}
 
-Now let's look at the \emph{Files} tab of the notebook at the lower right of the window. Every \texttt{R} session has a working directory where \texttt{R} looks for and saves files. It is a good practice to create a different directory for every project and make that directory the working directory. For example, let's make a new directory called \emph{MyDirectory}. (You can chose another name if you wish).
+Now let's look at the \emph{Files} tab of the notebook at the lower right of the window. Every R session has a working directory where R looks for and saves files. It is a good practice to create a different directory for every project and make that directory the working directory. For example, let's make a new directory called \emph{MyDirectory}. (You can chose another name if you wish).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -333,7 +333,7 @@ Often times we will want to add a comment to our script document so we can remem
 \hypertarget{operators}{%
 \section{Operators}\label{operators}}
 
-An operator is a symbol that tells the compiler to preform a specific task. There are several types of operators, some preeform mathematical tasks, logical checks, and create new objects. We will review a few of the basic operators here. We will continue to discuss and introduce operators throughout this document.
+An operator is a symbol that tells the compiler to preform a specific task. There are several types of operators, some preform mathematical tasks, logical checks, and create new objects. We will review a few of the basic operators here. We will continue to discuss and introduce operators throughout this document.
 
 \hypertarget{arithmetic-operators}{%
 \subsection*{Arithmetic Operators}\label{arithmetic-operators}}
@@ -635,7 +635,7 @@ The majority of the time we can use these two assignment operators above interch
 \begin{itemize}
 \tightlist
 \item
-  Chapters 1 of \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf}{CRAN Intro-to-R Manual}
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf}{Chapter 1 of ``CRAN Intro-to-R Manual''}
 \item
   Videos:
 
@@ -759,7 +759,7 @@ We can also create numeric objects which are specifically made to store integer 
 \subsection*{Logical}\label{logical}}
 \addcontentsline{toc}{subsection}{Logical}
 
-Logical values are either \texttt{TRUE} or \texttt{FALSE} and are created by using logical and relational operators. In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section @ref\{operators\}.
+Logical values are either \texttt{TRUE} or \texttt{FALSE} and are created by using logical and relational operators. In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section \ref{operators}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1328,7 +1328,7 @@ We can create a set of vectors of the same length and use the \texttt{data.frame
 \hypertarget{other-object-types-and-the-global-environment}{%
 \section{Other Object Types and the Global Environment}\label{other-object-types-and-the-global-environment}}
 
-There are more objects then what we have discussed above. For example, many of the advanced functions create specific objects generated by that specific function. There are hundreds, and possibly thousands, of such objects. These objects generally are special cases of lists, factors, and other various types of objects that we have defined in this section. The objects we have described here are the building blocks of most values we will be working with. Functions like \texttt{class()} and \texttt{length()} are also considered as objects, but are of a different type. We discuss functions in more detail in section @ref\{functions\}.
+There are more objects then what we have discussed above. For example, many of the advanced functions create specific objects generated by that specific function. There are hundreds, and possibly thousands, of such objects. These objects generally are special cases of lists, factors, and other various types of objects that we have defined in this section. The objects we have described here are the building blocks of most values we will be working with. Functions like \texttt{class()} and \texttt{length()} are also considered as objects, but are of a different type. We discuss functions in more detail in section \ref{functions}.
 
 There are also built-in, or special objects in R. For example, the object \texttt{pi} is an object already defined. These built-in values and functions can be written over, but that is not advised.
 
@@ -2690,12 +2690,12 @@ We can also remove rows from a data frame. Using negative index values has the s
 \hypertarget{functions}{%
 \chapter{Functions}\label{functions}}
 
-In \texttt{R} we have functions. We can build our own functions or we can use built in functions. I will cite \citet{r-func} \citet{dummies2015}
+In R we have functions. We can build our own functions or we can use built in functions. I will cite \citet{r-func} \citet{dummies2015}
 
 \hypertarget{build-your-own-function}{%
 \section{Build Your Own Function}\label{build-your-own-function}}
 
-To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as \texttt{R} objects just like anything else. In particular, they are \texttt{R} objects of class \emph{function}. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as R objects just like anything else. In particular, they are R objects of class \emph{function}. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
 
 Below is the \textbf{general template}
 
@@ -2842,20 +2842,19 @@ Observe:
 ## [1] 6
 \end{verbatim}
 
-With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.
-
-If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used.
-
 \hypertarget{lexical-scoping}{%
 \section{Lexical Scoping}\label{lexical-scoping}}
 
-\hypertarget{the-arguement}{%
-\section{The \ldots{} Arguement}\label{the-arguement}}
+With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.
+
+Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects \emph{scope}, or range of places that we can use this object. The system is rules R uses for searching for objects is called \emph{lexical scoping}, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.
+
+\includegraphics[width=11.29in]{images/types_namespace}
 
 \hypertarget{built-in-functions}{%
 \section{Built-In Functions}\label{built-in-functions}}
 
-\texttt{R} has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.
+R has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.
 
 \begin{itemize}
 \tightlist
@@ -3130,6 +3129,61 @@ If you are not sure exactly which function you want, you can use \texttt{??} fol
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{the-arguement}{%
+\section{The \ldots{} Arguement}\label{the-arguement}}
+
+There is a special argument function \texttt{...} that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the \texttt{...} argument as a general placeholder for passing along any additional arguments in a function call.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Using the ... argument}
+\CommentTok{# This function calls fun2}
+\NormalTok{fun1 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, ...)\{}
+\NormalTok{  y =}\StringTok{ }\KeywordTok{fun2}\NormalTok{(...)}
+\NormalTok{  z =}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y }
+  \KeywordTok{return}\NormalTok{(z)}
+\NormalTok{\}}
+
+\CommentTok{# Define fun2 }
+\NormalTok{fun2 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a)\{}
+\NormalTok{  b =}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2}
+  \KeywordTok{return}\NormalTok{(b)}
+\NormalTok{\}}
+
+\CommentTok{# Returns 1 + 2^2 = 5}
+\KeywordTok{fun1}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{additional-resources-2}{%
+\section{Additional Resources}\label{additional-resources-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 14 of ``R for Programming in Data Science''}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2390137\&node=8588230\&a=1409376127\&autoplay=1}{R Functions 1 \textbar{} Anatomy of a Function}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368890\&node=8488096\&a=1477744713\&autoplay=1}{R Functions 2 \textbar{} Getting Help}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368889\&node=8488095\&a=762120086\&autoplay=1}{R Functions 3 \textbar{} Argument Order and Default Values}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2700489\&node=9649685\&a=1404409900\&autoplay=1}{Writing Functions 1 \textbar{} Introduction}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2700492\&node=9649688\&a=604881114\&autoplay=1}{Writing Functions 2 \textbar{} 4 Fundamental Steps}
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{if-statements}{%
 \chapter{If Statements}\label{if-statements}}
 
@@ -3358,7 +3412,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3366,7 +3420,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3374,7 +3428,7 @@ We can look at graphical representations of this data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-3.pdf}
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
@@ -3384,7 +3438,7 @@ The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.
 
@@ -3399,7 +3453,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -3430,7 +3484,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
 
@@ -3444,7 +3498,7 @@ You can also place values on top of bars; which will help you interpret the grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
 
@@ -3463,7 +3517,7 @@ Often you want to compare the distributions of different variables within your d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
@@ -3475,7 +3529,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
 
@@ -3485,7 +3539,7 @@ The line in the center is the median. The bottom and top of the box are drawn at
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 \hypertarget{visualizing-qualitative-data}{%
 \section{Visualizing Qualitative Data}\label{visualizing-qualitative-data}}
@@ -3526,7 +3580,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -3537,7 +3591,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
 
 The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
 
@@ -3587,7 +3641,7 @@ To see a list of all packages installed on your device.
 \end{Highlighting}
 \end{Shaded}
 
-To see a list of all packages that are currently loaded.
+To see a list of all packages that are currently loaded (note that yours will likely look different).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3631,6 +3685,39 @@ For example, suppose we wanted to install and load the package ``ggplot2'', (a v
 \KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
+
+\hypertarget{namespace-collisions}{%
+\section{Namespace Collisions}\label{namespace-collisions}}
+
+Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
+The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+This can be useful, but is not usually necessary.
 
 \hypertarget{loops}{%
 \chapter{Loops}\label{loops}}

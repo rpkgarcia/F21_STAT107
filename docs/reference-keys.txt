@@ -21,9 +21,10 @@ basic-data-manipulation
 functions
 build-your-own-function
 lexical-scoping
-the-arguement
 built-in-functions
 help-files
+the-arguement
+additional-resources-2
 if-statements
 the-if-else-chain
 the-ifelse-function
@@ -31,6 +32,7 @@ base-r-plotting
 visualizing-quantitative-data
 visualizing-qualitative-data
 packages
+namespace-collisions
 loops
 while-loop
 for-loops

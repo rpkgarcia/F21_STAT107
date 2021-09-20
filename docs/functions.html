@@ -197,9 +197,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
 <li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
 <li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>5.2</b> Lexical Scoping</a></li>
-<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#the-arguement"><i class="fa fa-check"></i><b>5.3</b> The … Arguement</a></li>
-<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.4</b> Built-In Functions</a></li>
-<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.5</b> Help Files</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.3</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.4</b> Help Files</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#the-arguement"><i class="fa fa-check"></i><b>5.5</b> The … Arguement</a></li>
+<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#additional-resources-2"><i class="fa fa-check"></i><b>5.6</b> Additional Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
 <li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#the-if-else-chain"><i class="fa fa-check"></i><b>6.1</b> The <code>if else</code> chain</a></li>
@@ -209,7 +210,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#visualizing-quantitative-data"><i class="fa fa-check"></i><b>7.1</b> Visualizing Quantitative Data</a></li>
 <li class="chapter" data-level="7.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#visualizing-qualitative-data"><i class="fa fa-check"></i><b>7.2</b> Visualizing Qualitative Data</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages</a></li>
+<li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages</a><ul>
+<li class="chapter" data-level="8.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>8.1</b> Namespace Collisions</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>9</b> Loops</a><ul>
 <li class="chapter" data-level="9.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>9.1</b> While Loop</a></li>
 <li class="chapter" data-level="9.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>9.2</b> For Loops</a></li>
@@ -250,10 +253,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="functions" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Functions</h1>
-<p>In <code>R</code> we have functions. We can build our own functions or we can use built in functions. I will cite <span class="citation">John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine (<a href="#ref-r-func" role="doc-biblioref">2016</a>)</span> <span class="citation">Vries and Meys (<a href="#ref-dummies2015" role="doc-biblioref">2015</a>)</span></p>
+<p>In R we have functions. We can build our own functions or we can use built in functions. I will cite <span class="citation">John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine (<a href="#ref-r-func" role="doc-biblioref">2016</a>)</span> <span class="citation">Vries and Meys (<a href="#ref-dummies2015" role="doc-biblioref">2015</a>)</span></p>
 <div id="build-your-own-function" class="section level2">
 <h2><span class="header-section-number">5.1</span> Build Your Own Function</h2>
-<p>To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as <code>R</code> objects just like anything else. In particular, they are <code>R</code> objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
+<p>To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as R objects just like anything else. In particular, they are R objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
 <p>Below is the <strong>general template</strong></p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="functions.html#cb326-1"></a>function_name =<span class="st"> </span><span class="cf">function</span>(arg){</span>
 <span id="cb326-2"><a href="functions.html#cb326-2"></a>  <span class="co"># Function Body </span></span>
@@ -312,18 +315,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="functions.html#cb340-1"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<p>With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.</p>
-<p>If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used.</p>
 </div>
 <div id="lexical-scoping" class="section level2">
 <h2><span class="header-section-number">5.2</span> Lexical Scoping</h2>
-</div>
-<div id="the-arguement" class="section level2">
-<h2><span class="header-section-number">5.3</span> The … Arguement</h2>
+<p>With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.</p>
+<p>Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects <em>scope</em>, or range of places that we can use this object. The system is rules R uses for searching for objects is called <em>lexical scoping</em>, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.</p>
+<p><img src="images/types_namespace.png" width="406" /></p>
 </div>
 <div id="built-in-functions" class="section level2">
-<h2><span class="header-section-number">5.4</span> Built-In Functions</h2>
-<p><code>R</code> has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.</p>
+<h2><span class="header-section-number">5.3</span> Built-In Functions</h2>
+<p>R has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.</p>
 <ul>
 <li><code>c()</code></li>
 <li><code>class()</code></li>
@@ -406,7 +407,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One of the great advantages of using <code>R</code> is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about <code>R</code> functions is the <strong>Help files</strong>.</p>
 </div>
 <div id="help-files" class="section level2">
-<h2><span class="header-section-number">5.5</span> Help Files</h2>
+<h2><span class="header-section-number">5.4</span> Help Files</h2>
 <p>The Help files are in R and can be viewed from the lower right window by clicking the <em>Help</em> tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The <code>R</code> Help Files are typically the best resource to get help.</p>
 <p>The <code>R</code> Help files follow a fairly standard outline. You find most of the following sections in every <code>R</code> Help file:</p>
 <ul>
@@ -425,6 +426,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb368-3"><a href="functions.html#cb368-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
 <p>If you are not sure exactly which function you want, you can use <code>??</code> followed by what you believe the function name is to look at a list of functions.</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="functions.html#cb369-1"></a>??rep</span></code></pre></div>
+</div>
+<div id="the-arguement" class="section level2">
+<h2><span class="header-section-number">5.5</span> The … Arguement</h2>
+<p>There is a special argument function <code>...</code> that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the <code>...</code> argument as a general placeholder for passing along any additional arguments in a function call.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="functions.html#cb370-1"></a><span class="co"># Using the ... argument</span></span>
+<span id="cb370-2"><a href="functions.html#cb370-2"></a><span class="co"># This function calls fun2</span></span>
+<span id="cb370-3"><a href="functions.html#cb370-3"></a>fun1 =<span class="st"> </span><span class="cf">function</span>(x, ...){</span>
+<span id="cb370-4"><a href="functions.html#cb370-4"></a>  y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
+<span id="cb370-5"><a href="functions.html#cb370-5"></a>  z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y </span>
+<span id="cb370-6"><a href="functions.html#cb370-6"></a>  <span class="kw">return</span>(z)</span>
+<span id="cb370-7"><a href="functions.html#cb370-7"></a>}</span>
+<span id="cb370-8"><a href="functions.html#cb370-8"></a></span>
+<span id="cb370-9"><a href="functions.html#cb370-9"></a><span class="co"># Define fun2 </span></span>
+<span id="cb370-10"><a href="functions.html#cb370-10"></a>fun2 =<span class="st"> </span><span class="cf">function</span>(a){</span>
+<span id="cb370-11"><a href="functions.html#cb370-11"></a>  b =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb370-12"><a href="functions.html#cb370-12"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb370-13"><a href="functions.html#cb370-13"></a>}</span>
+<span id="cb370-14"><a href="functions.html#cb370-14"></a></span>
+<span id="cb370-15"><a href="functions.html#cb370-15"></a><span class="co"># Returns 1 + 2^2 = 5</span></span>
+<span id="cb370-16"><a href="functions.html#cb370-16"></a><span class="kw">fun1</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="additional-resources-2" class="section level2">
+<h2><span class="header-section-number">5.6</span> Additional Resources</h2>
+<ul>
+<li><a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument">Chapter 14 of “R for Programming in Data Science”</a></li>
+<li>Videos:
+<ul>
+<li><a href="https://ucr.yuja.com/V/Video?v=2390137&amp;node=8588230&amp;a=1409376127&amp;autoplay=1">R Functions 1 | Anatomy of a Function</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2368890&amp;node=8488096&amp;a=1477744713&amp;autoplay=1">R Functions 2 | Getting Help</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2368889&amp;node=8488095&amp;a=762120086&amp;autoplay=1">R Functions 3 | Argument Order and Default Values</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2700489&amp;node=9649685&amp;a=1404409900&amp;autoplay=1">Writing Functions 1 | Introduction</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2700492&amp;node=9649688&amp;a=604881114&amp;autoplay=1">Writing Functions 2 | 4 Fundamental Steps</a></li>
+</ul></li>
+</ul>
 
 </div>
 </div>

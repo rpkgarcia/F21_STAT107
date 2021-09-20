@@ -1,11 +1,11 @@
 # Functions {#functions}
 
-In `R` we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
+In R we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
 
 
 ## Build Your Own Function
 
- To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as `R` objects just like anything else. In particular, they are `R` objects of class *function*. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+ To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as R objects just like anything else. In particular, they are R objects of class *function*. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
 
 
 
@@ -98,17 +98,22 @@ example_func(a = 2, b = 3)
 ```
 
 
-With all these examples of functions, notice that in your global environment, only the function name was added.  The function arguments, return values, and all objects defined inside the function are not a part of the global environment.  This is not a mistake.  We can define objects locally, or temporarily, when using functions.  These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.  
 
-If you define an object inside a function that has the same name as a global environment (NOT recommended), then the value defined in the local environment will be used. 
 
 ## Lexical Scoping 
 
-## The ... Arguement 
+With all these examples of functions, notice that in your global environment, only the function name was added.  The function arguments, return values, and all objects defined inside the function are not a part of the global environment.  This is not a mistake.  We can define objects locally, or temporarily, when using functions.  These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.  
+
+Sometimes you may have an object defined in multiple places.  When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects *scope*, or range of places that we can use this object. The system is rules R uses for searching for objects is called *lexical scoping*, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.  
+
+```{r, echo = F, message=FALSE, warning=FALSE}
+library(knitr)
+knitr::include_graphics("images/types_namespace.png")
+```
 
 ## Built-In Functions
 
-`R` has functions built-in to it just like excel.  You can call these built-in function at any time.  We have already seen a few of these functions. 
+R has functions built-in to it just like excel.  You can call these built-in function at any time.  We have already seen a few of these functions. 
 
 - `c()`
 - `class()`
@@ -240,3 +245,39 @@ If you are not sure exactly which function you want, you can use `??` followed b
 ```{r}
 ??rep
 ```
+
+
+## The ... Arguement 
+
+There is a special argument function `...` that can be used.  Sometimes we call a function within a function that has a different set of arguments.  We can use the `...` argument as a general placeholder for passing along any additional arguments in a function call. 
+
+```{r}
+
+# Using the ... argument
+# This function calls fun2
+fun1 = function(x, ...){
+  y = fun2(...)
+  z = x + y 
+  return(z)
+}
+
+# Define fun2 
+fun2 = function(a){
+  b = a^2
+  return(b)
+}
+
+# Returns 1 + 2^2 = 5
+fun1(1, 2)
+```
+
+
+## Additional Resources
+
+- [Chapter 14 of "R for Programming in Data Science"](https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument) 
+- Videos:
+    + [R Functions 1 | Anatomy of a Function](https://ucr.yuja.com/V/Video?v=2390137&node=8588230&a=1409376127&autoplay=1)
+    + [R Functions 2 | Getting Help](https://ucr.yuja.com/V/Video?v=2368890&node=8488096&a=1477744713&autoplay=1)
+    + [R Functions 3 | Argument Order and Default Values](https://ucr.yuja.com/V/Video?v=2368889&node=8488095&a=762120086&autoplay=1)
+    + [Writing Functions 1 | Introduction](https://ucr.yuja.com/V/Video?v=2700489&node=9649685&a=1404409900&autoplay=1)
+    + [Writing Functions 2 | 4 Fundamental Steps](https://ucr.yuja.com/V/Video?v=2700492&node=9649688&a=604881114&autoplay=1)
