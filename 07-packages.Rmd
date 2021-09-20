@@ -4,7 +4,7 @@
 
 All the packages available in `R` language are listed at [R Packages](https://cran.r-project.org/web/packages/available_packages_by_name.html).
 
-To see a list of all packages installed on your device. 
+To see a list of all packages installed on your device. DELETE 
 
 ```{r}
 library()
