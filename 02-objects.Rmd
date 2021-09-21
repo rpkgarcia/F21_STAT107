@@ -1,8 +1,9 @@
 # Introduction to R Objects  
 
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain *class*.  In this chapter we begin by discussing **atomic** objects, these are the core fundamental objects used in R.  Next we discuss vectors, lists, and matrices.  These objects are among the most common type that are used.  Lastly we discuss factors and data frames.  Factors and data frames are known as dynamic objects, and are more complex.  All of these objects have special properties and a multitude of features that we can use.  We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document. 
+
 ## Atomic Objects 
 
-At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain *class*.
 R can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, `character`, and `raw`. These are the basic fundamental objects we can use in R. In practice `raw` is rarely used.  For our class we will not need the `complex` type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating.  Instead, R guesses the type of object you are creating.  To check the object type we can use the  `class()` function.  function.  
 
 ### Numeric {-}
@@ -269,35 +270,36 @@ Every time we create an object we see that the Global Environment tab in the top
 
 # More on R Objects 
 
+Factors and lists have especially unique properties that are often utilized.  In this chapter we take special care to discuss these properties. 
+
 ## Factors 
 
-In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and gender.
+In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and if they own a pet.
 
 ```{r}
 name = c("Amy", "Bob", "Eve", "Kim", "Max", "Ray", "Sam")
 hair = c("Blonde", "Black", "Black", "Red", "Blonde", "Brown", "Black")
-gender = c("Female", "Male", "Female", "Female", "Male", "Male", "Male")
+own_pets = c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE)
 
-catagorical = data.frame(name, hair, gender)
-colnames(catagorical) = c("Name", "Hair Color", "Gender")
+catagorical = data.frame(name, hair, own_pets)
+colnames(catagorical) = c("Name", "Hair Color", "Own Pets")
 
 catagorical
 
 ```
 
 
-Here, the hair color and gender are the examples of categorical data. To store such categorical data, `R` has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In `R`, you can create a factor with the `factor()` function. 
+Here, the hair color and gender are the examples of categorical data. To store such categorical data, R has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In R, you can create a factor with the `factor()` function. 
 
 ```{r}
-hcolors = c("Blonde", "Black", "Black", "Red", "Blonde", "Brown", "Black")
-f = factor(hcolors)
+f = factor(hair)
 f
 ```
 
 
 
 
-A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, `R` displays the distinct levels below the factor. `R` keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The `levels()` function shows all the levels from a factor.
+A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, R displays the distinct levels below the factor. R keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The `levels()` function shows all the levels from a factor.
 
 ```{r}
 gender = c("Female", "Male", "Female", "Female", "Male", "Male", "Male")
@@ -315,7 +317,7 @@ f = factor(directions)
 f
 ```
 
-Notice that the levels of your new factor do not contain the value “South”. So, `R` thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the `levels` argument of the function `factor()`.
+Notice that the levels of your new factor do not contain the value “South”. So, R thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the `levels` argument of the function `factor()`.
 
 ```{r}
 directions = c("North", "West", "North", "East", "North", "West", "East")
@@ -342,7 +344,7 @@ In market research, it’s very common to use a five point scale to measure perc
 
 **strongly disagree < disagree < neutral < agree < strongly agree**.
 
-Such kind of data that is possible to place in order or scale is known as **Ordinal data**. In `R`, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the `factor()` function with the argument `ordered=TRUE`.  
+Such kind of data that is possible to place in order or scale is known as **Ordinal data**. In R, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the `factor()` function with the argument `ordered=TRUE`.  
 
 ```{r}
 record = c("win", "tie", "loss", "tie", "loss", "win", "win")
@@ -381,8 +383,8 @@ The `summary()` function will give you a quick overview of the contents of a fac
 
 
 ```{r}
-gender = c("Female", "Male", "Female", "Female", "Male", "Male", "Male")
-f = factor(gender)
+f = factor(hair)
+f
 summary(f)
 ```
 
@@ -397,7 +399,7 @@ table(f)
 
 ## Lists 
 
-A *list* is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our workspace by using the `list()` function.
+A *list* is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the `list()` function.
 
 ```{r}
 lst = list(1, 2, 3)

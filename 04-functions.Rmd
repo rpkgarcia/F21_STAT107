@@ -1,6 +1,6 @@
 # Functions {#functions}
 
-In R we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
+In R we have functions, functions are another type of object in R.  We use functions in order to preform a series of tasks repeatedly, or preform these tasks in different settings.  They can make our code much more efficient.  We can build our own functions or we can use built in functions. Here we describe both types and their properties. Parts of this chapter where adapted by @r-func and @dummies2015. 
 
 
 ## Build Your Own Function

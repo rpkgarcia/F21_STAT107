@@ -133,14 +133,15 @@ Welcome to STAT 107! This document will contain and outline of the course notes 
 \hypertarget{introduction-to-r}{%
 \chapter{Introduction to R}\label{introduction-to-r}}
 
-This section was written primarily by \citet{Desharnais2020}, and was modified for our course. I am grateful for his help.
+In this chapter we will learn the basics of the Rstudio interface, and operations that will be used throughout this course.
+This chapter was written by the help of \citet{Desharnais2020}.
 
 \hypertarget{the-rstudio-interface}{%
 \section{\texorpdfstring{The \textbf{RStudio} Interface}{The RStudio Interface}}\label{the-rstudio-interface}}
 
 We will begin by looking at the RStudio software interface. Refer to Figure 1 as you follow the instructions below.
 
-\includegraphics[width=35.53in]{images/rstudio}
+\includegraphics[width=49.78in]{images/rstudio}
 
 Launch RStudio. You will see a window that looks like the figure above. There are four panels of the window:
 
@@ -651,10 +652,11 @@ The majority of the time we can use these two assignment operators above interch
 \hypertarget{introduction-to-r-objects}{%
 \chapter{Introduction to R Objects}\label{introduction-to-r-objects}}
 
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common type that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document.
+
 \hypertarget{atomic-objects}{%
 \section{Atomic Objects}\label{atomic-objects}}
 
-At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}.
 R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. In practice \texttt{raw} is rarely used. For our class we will not need the \texttt{complex} type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function. function.
 
 \hypertarget{numeric}{%
@@ -1379,38 +1381,37 @@ Every time we create an object we see that the Global Environment tab in the top
 \hypertarget{factors-1}{%
 \section{Factors}\label{factors-1}}
 
-In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and gender.
+In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and if they own a pet.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{name =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{, }\StringTok{"Eve"}\NormalTok{, }\StringTok{"Kim"}\NormalTok{, }\StringTok{"Max"}\NormalTok{, }\StringTok{"Ray"}\NormalTok{, }\StringTok{"Sam"}\NormalTok{)}
 \NormalTok{hair =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Red"}\NormalTok{, }\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Brown"}\NormalTok{, }\StringTok{"Black"}\NormalTok{)}
-\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{)}
+\NormalTok{own_pets =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
 
-\NormalTok{catagorical =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(name, hair, gender)}
-\KeywordTok{colnames}\NormalTok{(catagorical) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Name"}\NormalTok{, }\StringTok{"Hair Color"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{)}
+\NormalTok{catagorical =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(name, hair, own_pets)}
+\KeywordTok{colnames}\NormalTok{(catagorical) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Name"}\NormalTok{, }\StringTok{"Hair Color"}\NormalTok{, }\StringTok{"Own Pets"}\NormalTok{)}
 
 \NormalTok{catagorical}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   Name Hair Color Gender
-## 1  Amy     Blonde Female
-## 2  Bob      Black   Male
-## 3  Eve      Black Female
-## 4  Kim        Red Female
-## 5  Max     Blonde   Male
-## 6  Ray      Brown   Male
-## 7  Sam      Black   Male
+##   Name Hair Color Own Pets
+## 1  Amy     Blonde     TRUE
+## 2  Bob      Black    FALSE
+## 3  Eve      Black     TRUE
+## 4  Kim        Red     TRUE
+## 5  Max     Blonde    FALSE
+## 6  Ray      Brown    FALSE
+## 7  Sam      Black    FALSE
 \end{verbatim}
 
-Here, the hair color and gender are the examples of categorical data. To store such categorical data, \texttt{R} has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In \texttt{R}, you can create a factor with the \texttt{factor()} function.
+Here, the hair color and gender are the examples of categorical data. To store such categorical data, R has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In R, you can create a factor with the \texttt{factor()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{hcolors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Red"}\NormalTok{, }\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Brown"}\NormalTok{, }\StringTok{"Black"}\NormalTok{)}
-\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(hcolors)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(hair)}
 \NormalTok{f}
 \end{Highlighting}
 \end{Shaded}
@@ -1420,7 +1421,7 @@ Here, the hair color and gender are the examples of categorical data. To store s
 ## Levels: Black Blonde Brown Red
 \end{verbatim}
 
-A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, \texttt{R} displays the distinct levels below the factor. \texttt{R} keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The \texttt{levels()} function shows all the levels from a factor.
+A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, R displays the distinct levels below the factor. R keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The \texttt{levels()} function shows all the levels from a factor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1460,7 +1461,7 @@ If your vector contains only a subset of all the possible levels, then R will ha
 ## Levels: East North West
 \end{verbatim}
 
-Notice that the levels of your new factor do not contain the value ``South''. So, \texttt{R} thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the \texttt{levels} argument of the function \texttt{factor()}.
+Notice that the levels of your new factor do not contain the value ``South''. So, R thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the \texttt{levels} argument of the function \texttt{factor()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1501,7 +1502,7 @@ In market research, it's very common to use a five point scale to measure percep
 
 \textbf{strongly disagree \textless{} disagree \textless{} neutral \textless{} agree \textless{} strongly agree}.
 
-Such kind of data that is possible to place in order or scale is known as \textbf{Ordinal data}. In \texttt{R}, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the \texttt{factor()} function with the argument \texttt{ordered=TRUE}.
+Such kind of data that is possible to place in order or scale is known as \textbf{Ordinal data}. In R, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the \texttt{factor()} function with the argument \texttt{ordered=TRUE}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1566,15 +1567,25 @@ The \texttt{summary()} function will give you a quick overview of the contents o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{)}
-\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(gender)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(hair)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Blonde Black  Black  Red    Blonde Brown  Black 
+## Levels: Black Blonde Brown Red
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{summary}\NormalTok{(f)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Female   Male 
-##      3      4
+##  Black Blonde  Brown    Red 
+##      3      2      1      1
 \end{verbatim}
 
 The function \texttt{table()} tabulates observations.
@@ -1587,14 +1598,14 @@ The function \texttt{table()} tabulates observations.
 
 \begin{verbatim}
 ## f
-## Female   Male 
-##      3      4
+##  Black Blonde  Brown    Red 
+##      3      2      1      1
 \end{verbatim}
 
 \hypertarget{lists-1}{%
 \section{Lists}\label{lists-1}}
 
-A \emph{list} is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our workspace by using the \texttt{list()} function.
+A \emph{list} is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the \texttt{list()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2690,7 +2701,7 @@ We can also remove rows from a data frame. Using negative index values has the s
 \hypertarget{functions}{%
 \chapter{Functions}\label{functions}}
 
-In R we have functions. We can build our own functions or we can use built in functions. I will cite \citet{r-func} \citet{dummies2015}
+In R we have functions, functions are another type of object in R. We use functions in order to preform a series of tasks repeatedly, or preform these tasks in different settings. They can make our code much more efficient. We can build our own functions or we can use built in functions. Here we describe both types and their properties. Parts of this chapter where adapted by \citet{r-func} and \citet{dummies2015}.
 
 \hypertarget{build-your-own-function}{%
 \section{Build Your Own Function}\label{build-your-own-function}}

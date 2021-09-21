@@ -256,43 +256,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-if-else-chain" class="section level2">
 <h2><span class="header-section-number">6.1</span> The <code>if else</code> chain</h2>
 <p>In R, you can tell your code to run ONLY if a certain statement is true by making a <code>if else</code> chain. For example;</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="if-statements.html#cb372-1"></a>Do =<span class="st"> &quot;Add&quot;</span></span>
-<span id="cb372-2"><a href="if-statements.html#cb372-2"></a>X =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb372-3"><a href="if-statements.html#cb372-3"></a>Y =<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb372-4"><a href="if-statements.html#cb372-4"></a><span class="cf">if</span>(Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>){</span>
-<span id="cb372-5"><a href="if-statements.html#cb372-5"></a>  Z =<span class="st"> </span>X<span class="op">+</span>Y</span>
-<span id="cb372-6"><a href="if-statements.html#cb372-6"></a>}</span>
-<span id="cb372-7"><a href="if-statements.html#cb372-7"></a>Z</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="if-statements.html#cb374-1"></a>Do =<span class="st"> &quot;Add&quot;</span></span>
+<span id="cb374-2"><a href="if-statements.html#cb374-2"></a>X =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb374-3"><a href="if-statements.html#cb374-3"></a>Y =<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb374-4"><a href="if-statements.html#cb374-4"></a><span class="cf">if</span>(Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>){</span>
+<span id="cb374-5"><a href="if-statements.html#cb374-5"></a>  Z =<span class="st"> </span>X<span class="op">+</span>Y</span>
+<span id="cb374-6"><a href="if-statements.html#cb374-6"></a>}</span>
+<span id="cb374-7"><a href="if-statements.html#cb374-7"></a>Z</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>Only if the variable <code>Do</code> is equal to the character string <code>"Add"</code> will the variable <code>Z</code> be created. Otherwise, whatever is in the body of the <code>if</code> statement is not run.</p>
 <p>Here is an example of a silly function with an <code>if else</code> chain:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="if-statements.html#cb374-1"></a>Toyfun =<span class="st"> </span><span class="cf">function</span>(X,Y,Do){</span>
-<span id="cb374-2"><a href="if-statements.html#cb374-2"></a>  <span class="cf">if</span>(Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>){</span>
-<span id="cb374-3"><a href="if-statements.html#cb374-3"></a>    Z =<span class="st"> </span>X<span class="op">+</span>Y</span>
-<span id="cb374-4"><a href="if-statements.html#cb374-4"></a></span>
-<span id="cb374-5"><a href="if-statements.html#cb374-5"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Subtract&quot;</span>){</span>
-<span id="cb374-6"><a href="if-statements.html#cb374-6"></a>    Z =<span class="st"> </span>X<span class="op">-</span>Y</span>
-<span id="cb374-7"><a href="if-statements.html#cb374-7"></a></span>
-<span id="cb374-8"><a href="if-statements.html#cb374-8"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Multiply&quot;</span>){</span>
-<span id="cb374-9"><a href="if-statements.html#cb374-9"></a>    Z =<span class="st"> </span>X<span class="op">*</span>Y</span>
-<span id="cb374-10"><a href="if-statements.html#cb374-10"></a></span>
-<span id="cb374-11"><a href="if-statements.html#cb374-11"></a>    </span>
-<span id="cb374-12"><a href="if-statements.html#cb374-12"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Penguin&quot;</span>){</span>
-<span id="cb374-13"><a href="if-statements.html#cb374-13"></a>    Z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;(&#39;&#39; )&quot;</span>)</span>
-<span id="cb374-14"><a href="if-statements.html#cb374-14"></a>    </span>
-<span id="cb374-15"><a href="if-statements.html#cb374-15"></a>  } <span class="cf">else</span>{</span>
-<span id="cb374-16"><a href="if-statements.html#cb374-16"></a>    Z =<span class="st"> </span><span class="kw">c</span>(X,Y)</span>
-<span id="cb374-17"><a href="if-statements.html#cb374-17"></a>  }</span>
-<span id="cb374-18"><a href="if-statements.html#cb374-18"></a>  </span>
-<span id="cb374-19"><a href="if-statements.html#cb374-19"></a>  <span class="kw">return</span>(Z)</span>
-<span id="cb374-20"><a href="if-statements.html#cb374-20"></a>}</span>
-<span id="cb374-21"><a href="if-statements.html#cb374-21"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Add&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="if-statements.html#cb376-1"></a>Toyfun =<span class="st"> </span><span class="cf">function</span>(X,Y,Do){</span>
+<span id="cb376-2"><a href="if-statements.html#cb376-2"></a>  <span class="cf">if</span>(Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>){</span>
+<span id="cb376-3"><a href="if-statements.html#cb376-3"></a>    Z =<span class="st"> </span>X<span class="op">+</span>Y</span>
+<span id="cb376-4"><a href="if-statements.html#cb376-4"></a></span>
+<span id="cb376-5"><a href="if-statements.html#cb376-5"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Subtract&quot;</span>){</span>
+<span id="cb376-6"><a href="if-statements.html#cb376-6"></a>    Z =<span class="st"> </span>X<span class="op">-</span>Y</span>
+<span id="cb376-7"><a href="if-statements.html#cb376-7"></a></span>
+<span id="cb376-8"><a href="if-statements.html#cb376-8"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Multiply&quot;</span>){</span>
+<span id="cb376-9"><a href="if-statements.html#cb376-9"></a>    Z =<span class="st"> </span>X<span class="op">*</span>Y</span>
+<span id="cb376-10"><a href="if-statements.html#cb376-10"></a></span>
+<span id="cb376-11"><a href="if-statements.html#cb376-11"></a>    </span>
+<span id="cb376-12"><a href="if-statements.html#cb376-12"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Penguin&quot;</span>){</span>
+<span id="cb376-13"><a href="if-statements.html#cb376-13"></a>    Z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;(&#39;&#39; )&quot;</span>)</span>
+<span id="cb376-14"><a href="if-statements.html#cb376-14"></a>    </span>
+<span id="cb376-15"><a href="if-statements.html#cb376-15"></a>  } <span class="cf">else</span>{</span>
+<span id="cb376-16"><a href="if-statements.html#cb376-16"></a>    Z =<span class="st"> </span><span class="kw">c</span>(X,Y)</span>
+<span id="cb376-17"><a href="if-statements.html#cb376-17"></a>  }</span>
+<span id="cb376-18"><a href="if-statements.html#cb376-18"></a>  </span>
+<span id="cb376-19"><a href="if-statements.html#cb376-19"></a>  <span class="kw">return</span>(Z)</span>
+<span id="cb376-20"><a href="if-statements.html#cb376-20"></a>}</span>
+<span id="cb376-21"><a href="if-statements.html#cb376-21"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Add&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="if-statements.html#cb376-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Subtract&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="if-statements.html#cb378-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Subtract&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] -2</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="if-statements.html#cb378-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Penguin&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="if-statements.html#cb380-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Penguin&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;(&#39;&#39; )&quot;</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="if-statements.html#cb380-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>, <span class="st">&quot;Typo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="if-statements.html#cb382-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>, <span class="st">&quot;Typo&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 2 4</code></pre>
 <p>A few notes:</p>
 <ul>
@@ -305,16 +305,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.2</span> The <code>ifelse</code> function</h2>
 <p>There is a simple function that can check a logical argument or vector, and give back two answers; one if the statement is
 true, and another if the statement is false. This function is <code>ifelse()</code>. For a simple example:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="if-statements.html#cb382-1"></a>Pet =<span class="st"> &quot;Dog&quot;</span></span>
-<span id="cb382-2"><a href="if-statements.html#cb382-2"></a><span class="kw">ifelse</span>(Pet <span class="op">==</span><span class="st"> &quot;Dog&quot;</span>, <span class="st">&quot;Woof&quot;</span>,<span class="st">&quot;???&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Woof&quot;</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="if-statements.html#cb384-1"></a>Pet =<span class="st"> &quot;Cat&quot;</span></span>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="if-statements.html#cb384-1"></a>Pet =<span class="st"> &quot;Dog&quot;</span></span>
 <span id="cb384-2"><a href="if-statements.html#cb384-2"></a><span class="kw">ifelse</span>(Pet <span class="op">==</span><span class="st"> &quot;Dog&quot;</span>, <span class="st">&quot;Woof&quot;</span>,<span class="st">&quot;???&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Woof&quot;</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="if-statements.html#cb386-1"></a>Pet =<span class="st"> &quot;Cat&quot;</span></span>
+<span id="cb386-2"><a href="if-statements.html#cb386-2"></a><span class="kw">ifelse</span>(Pet <span class="op">==</span><span class="st"> &quot;Dog&quot;</span>, <span class="st">&quot;Woof&quot;</span>,<span class="st">&quot;???&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;???&quot;</code></pre>
 <p>We can also pass <code>ifelse()</code> a vector, and it will check the logical condition for each element of the vector. For example, in the <code>USArrests</code> data, if I want to find the proportion of states who had a murder rate of over 10 per 100,000 and an urban population of
 over 50%:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="if-statements.html#cb386-1"></a>dangerous =<span class="st"> </span><span class="kw">ifelse</span>(USArrests<span class="op">$</span>Murder <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>USArrests<span class="op">$</span>UrbanPop <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb386-2"><a href="if-statements.html#cb386-2"></a><span class="kw">sum</span>(dangerous)<span class="op">/</span><span class="kw">length</span>(dangerous)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="if-statements.html#cb388-1"></a>dangerous =<span class="st"> </span><span class="kw">ifelse</span>(USArrests<span class="op">$</span>Murder <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>USArrests<span class="op">$</span>UrbanPop <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb388-2"><a href="if-statements.html#cb388-2"></a><span class="kw">sum</span>(dangerous)<span class="op">/</span><span class="kw">length</span>(dangerous)</span></code></pre></div>
 <pre><code>## [1] 0.24</code></pre>
 
 </div>

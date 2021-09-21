@@ -1,6 +1,7 @@
 # Introduction to R
 
-This section was written primarily by @Desharnais2020, and was modified for our course.  I am grateful for his help.
+In this chapter we will learn the basics of the Rstudio interface, and operations that will be used throughout this course. 
+This chapter was written by the help of @Desharnais2020. 
 
 
 ## The **RStudio** Interface 
