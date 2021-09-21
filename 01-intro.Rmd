@@ -1,11 +1,12 @@
 # Introduction to R
 
-This section was written primarily by @Desharnais2020, and was modified for our course.  I am grateful for his help.
+In this chapter we will learn the basics of the Rstudio interface, and operators that will be used throughout this course. 
+This chapter was written by the help of @Desharnais2020. 
 
 
 ## The **RStudio** Interface 
 
-We will begin by looking at the RStudio software interface. Refer to Figure 1 as you follow the instructions below.
+We will begin by looking at the RStudio software interface. 
 
 
 ```{r, echo = F, message=FALSE, warning=FALSE}
@@ -16,13 +17,13 @@ knitr::include_graphics("images/rstudio.png")
 
 Launch RStudio. You will see a window that looks like the figure above. There are four panels of the window:
 
-  - The R Command Console is where you type R commands for immediate execution.
+  - The pane in the bottom right is the R Command Console is where you type R commands for immediate execution.
 
-  - The Notebook in the upper left portion of the window is an area for editing R source code for scripts and functions and for viewing R data frame objects. New tabs will be added as new R code files and data objects are opened.
+  - The pane in the upper left portion of the window is an area for editing R source code for scripts and functions and for viewing R data frame objects. New tabs will be added as new R code files and data objects are opened.
 
-  - The Notebook in the upper right portion of the window is an area for browsing the variables in the R workspace environment and the R command line history.
+  - The pane in the upper right portion of the window is an area for browsing the variables in the R workspace environment and the R command line history.
     
-   - The Notebook in the lower right portion of the window has several tabs. The Files tab is an area for browsing the files in the current working directory. The Plot tab is for viewing graphics produced using R commands. The Packages tab lists the R packages available. Other packages can be loaded. The Help tab provides access to the R documentation. The Viewer tab is for viewing local web content in the temporary session directory (not files on the web).
+   - The pane in the lower right portion of the window has several tabs. The Files tab is an area for browsing the files in the current working directory. The Plot tab is for viewing graphics produced using R commands. The Packages tab lists the R packages available. Other packages can be loaded. The Help tab provides access to the R documentation. The Viewer tab is for viewing local web content in the temporary session directory (not files on the web).
     
 ### Bottom Left Pane {-}
 
@@ -86,7 +87,7 @@ We will begin by taking advantage of a data frame object that was built into `R`
 df = mtcars
 ```
 
-Let's view the data. On the right side of the entry for the `df` object is a button we can use to view the entries of the data frame (see green arrow below). Click on the View Button. 
+Let's view the data. On the right side of the entry for the `df` object is a button we can use to view the entries of the data frame. Click on the View Button. 
 
 If your look in the notebook area in the upper left portion of the window, you can see a spreadsheet-like view of the data. This is for viewing only; you cannot edit the data. Use the scroll bars to view the data entries.
 
@@ -116,7 +117,7 @@ An operator is a symbol that tells the compiler to preform a specific task.  The
 
 ### Arithmetic Operators {-}
 
-R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively.  The first operators we discuss are a few of the basic arithmetic operations.  These are operations ismilar to that of a calculator. 
+R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively.  The first operators we discuss are a few of the basic arithmetic operations.  These are operations similar to that of a calculator. 
 
 ```{r}
 # Addition 
@@ -175,7 +176,7 @@ w = c(10, 1)
 v > w
 ```
 
-R evaluated the first and third element of `v` and compared it to the first element of `w`, and the second element of `v` to the second element of `w`.  In this case, R returned a *warning* alerting you that it recycled elements.  However, R will not always do this. 
+R evaluated the first and third element of `v` and compared it to the first element of `w`, and the second element of `v` to the second element of `w`.  In this case, R returned a *warning* alerting you that it recycled elements.  However, R will not always give a warning. 
 
 ### Logical operators {-}
 

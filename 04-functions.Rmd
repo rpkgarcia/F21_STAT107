@@ -1,11 +1,11 @@
 # Functions {#functions}
 
-In R we have functions.  We can build our own functions or we can use built in functions.  I will cite @r-func @dummies2015
+In R we have functions, functions are another type of object in R.  We use functions in order to preform a series of tasks repeatedly, or preform these tasks in different settings.  They can make our code much more efficient.  We can build our own functions or we can use built in functions. Here we describe both types and their properties. Parts of this chapter where adapted by @r-func and @dummies2015. 
 
 
 ## Build Your Own Function
 
- To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as R objects just like anything else. In particular, they are R objects of class *function*. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+ To define a function, a name is assigned and the keyword `function` is used to denote the start of the function and its argument list. Functions are created using the `function()` directive and are stored as R objects just like anything else. In particular, they are R objects of class *function*. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
 
 
 
@@ -19,14 +19,13 @@ function_name = function(arg){
 }
 ```
 
-In this template we have a few key components
+In this template we have the following key components
 
 - `function_name`: This is the actual name of the function. It is stored in R environment as an object with this name.
-- `function`: A directive which tells `R` a function is being created. 
+- `function`: A directive which tells R a function is being created. 
 - `arg`:  An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
 - `function body`:  The function body contains a collection of statements that defines what the function does.
-- `return_value`: The output value of the function.  If `return(return_value)` is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one thing. Now, this thing can be a vector of many different things
-(i.e, a list or a data frame or a vector made with c()), but you may only return one thing.
+- `return_value`: The output value of the function.  If `return(return_value)` is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one object. This object can be any class of object you desire, like a vector, list or data frame, but you may only return one object.
 
 
 Below is an example of converting a temperature from Fahrenheit to Celsius. 
@@ -81,13 +80,15 @@ example_func(b = 3)
 ```
 
 
-Further notice that `R` has three ways that arguments supplied by you are matched to the formal arguments of the function definition. 
+Further notice that R has three ways to match function inputs to the formal arguments of the function definition. R attempts to match inputs to arguements in the following order. 
 
 1) by complete name
 
 2) by partial name (matching on initial *n* characters of the argument name)
 
 3) by position
+
+After running a function command R first attempts to match arguments by complete name, then by partial name, and then by position.  If it unable to match inputs to an argument it then uses the default argument value, if one exists.
 
 Observe: 
 
@@ -104,11 +105,11 @@ example_func(a = 2, b = 3)
 
 With all these examples of functions, notice that in your global environment, only the function name was added.  The function arguments, return values, and all objects defined inside the function are not a part of the global environment.  This is not a mistake.  We can define objects locally, or temporarily, when using functions.  These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.  
 
-Sometimes you may have an object defined in multiple places.  When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects *scope*, or range of places that we can use this object. The system is rules R uses for searching for objects is called *lexical scoping*, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.  
+Sometimes you may have an object defined in multiple places.  When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects *scope*, or range of places that we can use this object. The system of rules R uses for searching for objects is called *lexical scoping*, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then any enclosing environments, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.  
 
-```{r, echo = F, message=FALSE, warning=FALSE}
+```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center', fig.height=3}
 library(knitr)
-knitr::include_graphics("images/types_namespace.png")
+knitr::include_graphics("images/Scoping.png")
 ```
 
 ## Built-In Functions
@@ -121,61 +122,44 @@ R has functions built-in to it just like excel.  You can call these built-in fun
 - `data.frame()`
 
 
-Below are a few more examples using the built-in dataset `cars`, we will use `cars$speed` as a vector of data to analyze. 
+Below are a few more examples using the built-in dataset `mtcars`, we will use `mtcars$mpg` as a vector of data to analyze. 
 
 
 * `mean()`: Takes in a vector, and returns the mean of the values in the vector.
 
 ```{r}
-mean(cars$speed)
+mean(mtcars$mpg)
 ```
 
 * `median()`: Takes in a vector, and returns the median of the values in the vector.
 
 ```{r}
-median(cars$speed)
+median(mtcars$mpg)
 ```
 
 * `var()`: Takes in a vector, and returns the variance of the values in the vector.
 
 ```{r}
-var(cars$speed)
+var(mtcars$mpg)
 ```
 
 * `sqrt()`: If you give it a vector, it returns the square root of each element in the vector.  If you give it a single number, it returns the square root of the number.
 
 ```{r}
-sqrt(cars$speed) 
+sqrt(mtcars$mpg) 
 ```
 
 * `sd()`: Takes in a vector, and returns the standard deviation of the values in the vector.
 
 ```{r}
-sd(cars$speed)
+sd(mtcars$mpg)
 ```
 
-* `fivenum()`: Takes in a vector, and returns the five number summary of the values in the vector.
-
-```{r}
-fivenum(cars$speed)
-```
-
-* `min()`: Takes in a vector, and returns the minimum of the values in the vector.
-
-```{r}
-min(cars$speed)
-```
-
-* `max()`: Takes in a vector, and returns the maximum of the values in the vector.
-
-```{r}
-max(cars$speed)
-```
 
 * `range()`: Takes in a vector, and returns the minimum AND maximum of the values in the vector.
 
 ```{r}
-range(cars$speed)
+range(mtcars$mpg)
 ```
 
 * `quantile()`: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument.  It will return the corresponding quantiles of the values in the first vector specified by the second vector.
@@ -183,15 +167,9 @@ range(cars$speed)
 To get the $10^{th}$ and $90^{th}$ percentiles:
 
 ```{r}
-quantile(cars$speed,c(0.10,0.90))
+quantile(mtcars$mpg,c(0.10,0.90))
 ```
 
-* `abs()`: If you give it a vector, it returns the absolute value of each element in the vector.  If you give it a single number, it returns the absolute value of the number.
-
-```{r, width = 60}
-abs(cars$speed)
-abs(-2)
-```
 
 * `summary()`: You can give this a dataset OR a vector.  It returns some summary information about the values in the dataset or vector.
 
@@ -199,18 +177,13 @@ abs(-2)
 summary(cars$speed)
 ```
 
-
-
-
-
-
-One of the great advantages of using `R` is that there is a ton of resources available to learn about it.  However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about `R` functions is the **Help files**.
+One of the great advantages of using R is that there is a ton of resources available to learn about it.  However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the **Help files**.
 
 ## Help Files 
 
-The Help files are in R and can be viewed from the lower right window by clicking the *Help* tab.  Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The `R` Help Files are typically the best resource to get help. 
+The Help files are in R and can be viewed from the lower right window by clicking the *Help* tab.  Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help. 
 
-The `R` Help files follow a fairly standard outline. You find most of the following sections in every `R` Help file:
+The R Help files follow a fairly standard outline. You find most of the following sections in every R Help file:
 
 - **Title**: A one-sentence overview of the function.
 
@@ -247,7 +220,7 @@ If you are not sure exactly which function you want, you can use `??` followed b
 ```
 
 
-## The ... Arguement 
+## The ... Argument
 
 There is a special argument function `...` that can be used.  Sometimes we call a function within a function that has a different set of arguments.  We can use the `...` argument as a general placeholder for passing along any additional arguments in a function call. 
 
@@ -270,6 +243,38 @@ fun2 = function(a){
 # Returns 1 + 2^2 = 5
 fun1(1, 2)
 ```
+
+
+We can also use the `...` arguement in a nested fashion. 
+
+```{r}
+fun1 = function(x, ...){
+  y = fun2(...)
+  z = x+ y
+  return(z)
+}
+
+fun2 = function(a, ... ){
+  b = fun3(...)
+  c = a^2 + b 
+  return(c)
+}
+
+fun3 = function(n){
+  n = sqrt(n)
+  return(n)
+}
+
+#  Returns:  1 + 2^2 + sqrt(4) = 7 
+fun1(1, 2, 4)
+
+# Returns:  1 + 2^2 + sqrt(4) = 7 
+# Define each input explicitly 
+fun1(x = 1, a = 2, n = 4)
+
+```
+
+When using the `...` argument it is customary to always place `...` at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function.  If possible, it is good practice to explicitly define the arguments to avoid an error. 
 
 
 ## Additional Resources
