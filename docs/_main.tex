@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-09-20}
+\date{2021-09-21}
 
 \begin{document}
 \maketitle
@@ -133,13 +133,13 @@ Welcome to STAT 107! This document will contain and outline of the course notes 
 \hypertarget{introduction-to-r}{%
 \chapter{Introduction to R}\label{introduction-to-r}}
 
-In this chapter we will learn the basics of the Rstudio interface, and operations that will be used throughout this course.
+In this chapter we will learn the basics of the Rstudio interface, and operators that will be used throughout this course.
 This chapter was written by the help of \citet{Desharnais2020}.
 
 \hypertarget{the-rstudio-interface}{%
 \section{\texorpdfstring{The \textbf{RStudio} Interface}{The RStudio Interface}}\label{the-rstudio-interface}}
 
-We will begin by looking at the RStudio software interface. Refer to Figure 1 as you follow the instructions below.
+We will begin by looking at the RStudio software interface.
 
 \includegraphics[width=49.78in]{images/rstudio}
 
@@ -147,13 +147,13 @@ Launch RStudio. You will see a window that looks like the figure above. There ar
 
 \begin{itemize}
 \item
-  The R Command Console is where you type R commands for immediate execution.
+  The pane in the bottom right is the R Command Console is where you type R commands for immediate execution.
 \item
-  The Notebook in the upper left portion of the window is an area for editing R source code for scripts and functions and for viewing R data frame objects. New tabs will be added as new R code files and data objects are opened.
+  The pane in the upper left portion of the window is an area for editing R source code for scripts and functions and for viewing R data frame objects. New tabs will be added as new R code files and data objects are opened.
 \item
-  The Notebook in the upper right portion of the window is an area for browsing the variables in the R workspace environment and the R command line history.
+  The pane in the upper right portion of the window is an area for browsing the variables in the R workspace environment and the R command line history.
 \item
-  The Notebook in the lower right portion of the window has several tabs. The Files tab is an area for browsing the files in the current working directory. The Plot tab is for viewing graphics produced using R commands. The Packages tab lists the R packages available. Other packages can be loaded. The Help tab provides access to the R documentation. The Viewer tab is for viewing local web content in the temporary session directory (not files on the web).
+  The pane in the lower right portion of the window has several tabs. The Files tab is an area for browsing the files in the current working directory. The Plot tab is for viewing graphics produced using R commands. The Packages tab lists the R packages available. Other packages can be loaded. The Help tab provides access to the R documentation. The Viewer tab is for viewing local web content in the temporary session directory (not files on the web).
 \end{itemize}
 
 \hypertarget{bottom-left-pane}{%
@@ -255,7 +255,7 @@ We will begin by taking advantage of a data frame object that was built into \te
 \end{Highlighting}
 \end{Shaded}
 
-Let's view the data. On the right side of the entry for the \texttt{df} object is a button we can use to view the entries of the data frame (see green arrow below). Click on the View Button.
+Let's view the data. On the right side of the entry for the \texttt{df} object is a button we can use to view the entries of the data frame. Click on the View Button.
 
 If your look in the notebook area in the upper left portion of the window, you can see a spreadsheet-like view of the data. This is for viewing only; you cannot edit the data. Use the scroll bars to view the data entries.
 
@@ -340,7 +340,7 @@ An operator is a symbol that tells the compiler to preform a specific task. Ther
 \subsection*{Arithmetic Operators}\label{arithmetic-operators}}
 \addcontentsline{toc}{subsection}{Arithmetic Operators}
 
-R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively. The first operators we discuss are a few of the basic arithmetic operations. These are operations ismilar to that of a calculator.
+R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively. The first operators we discuss are a few of the basic arithmetic operations. These are operations similar to that of a calculator.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -509,7 +509,7 @@ If we have two vectors of an unequal length then the checks will be preformed el
 ## [1]  TRUE  TRUE FALSE
 \end{verbatim}
 
-R evaluated the first and third element of \texttt{v} and compared it to the first element of \texttt{w}, and the second element of \texttt{v} to the second element of \texttt{w}. In this case, R returned a \emph{warning} alerting you that it recycled elements. However, R will not always do this.
+R evaluated the first and third element of \texttt{v} and compared it to the first element of \texttt{w}, and the second element of \texttt{v} to the second element of \texttt{w}. In this case, R returned a \emph{warning} alerting you that it recycled elements. However, R will not always give a warning.
 
 \hypertarget{logical-operators}{%
 \subsection*{Logical operators}\label{logical-operators}}
@@ -652,12 +652,12 @@ The majority of the time we can use these two assignment operators above interch
 \hypertarget{introduction-to-r-objects}{%
 \chapter{Introduction to R Objects}\label{introduction-to-r-objects}}
 
-At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common type that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document.
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common types that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document.
 
 \hypertarget{atomic-objects}{%
 \section{Atomic Objects}\label{atomic-objects}}
 
-R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. In practice \texttt{raw} is rarely used. For our class we will not need the \texttt{complex} type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function. function.
+R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. For our class we will not need the \texttt{complex} type which stores complex numbers, and in practice \texttt{raw} is rarely used. We will concentrate on the remaining four types. Unlike other object-oriented languages we do not need to specify what type of object we are creating when we create it. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function. function.
 
 \hypertarget{numeric}{%
 \subsection*{Numeric}\label{numeric}}
@@ -707,7 +707,7 @@ Numeric objects are perhaps the most common. These are objects which contain a r
 ## [1] "numeric"
 \end{verbatim}
 
-Both the variables \texttt{a} and \texttt{b} are \texttt{numeric} objects. When you type a number \texttt{R} will default to treating it as a \texttt{numeric} object which allows decimals.
+Both the variables \texttt{a} and \texttt{b} are \texttt{numeric} objects. When you type a number R will default to treating it as a \texttt{numeric} object which allows decimals.
 
 \hypertarget{integer}{%
 \subsection*{Integer}\label{integer}}
@@ -1276,7 +1276,7 @@ Some functions are particularly useful when using matrices. For instance, \textt
 \hypertarget{factors}{%
 \section{Factors}\label{factors}}
 
-Factors are useful for categorical data. Factors differ from character objects in that character objects is a string of characters or symbols placed in a specific order. For example, the object \texttt{first\ =\ "George"} is a character object with six elements. In contrast, the collection of values ``George'' would instead represent a distinct value, or \emph{level}. We can create a factor object using the \texttt{factor()} function.
+Factors are useful for categorical data. Factors differ from character objects in that a character object is a string of characters or symbols placed in a specific order. For example, the object \texttt{first\ =\ "George"} is a character object with six elements. In contrast, the collection of values ``George'' would instead represent a distinct value, or \emph{level}, for a factor object. We can create a factor object using the \texttt{factor()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1301,7 +1301,19 @@ Factors are useful for categorical data. Factors differ from character objects i
 ## [1] "factor"
 \end{verbatim}
 
-Here the unique elements in the factor are called ``levels''. There are only two levels \texttt{red} and \texttt{blue}. There are five elements in our factor object.
+Here the unique elements in the factor are called ``levels''. There are only two levels \texttt{red} and \texttt{blue}, and there are five elements in our factor object. We can index factors in the same way we index a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Return first element in the factor object }
+\NormalTok{colors[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] red
+## Levels: blue red
+\end{verbatim}
 
 \hypertarget{data-frames}{%
 \section{Data Frames}\label{data-frames}}
@@ -1312,20 +1324,34 @@ We can create a set of vectors of the same length and use the \texttt{data.frame
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{,}\DecValTok{37}\NormalTok{,}\DecValTok{23}\NormalTok{)}
-\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{,}\StringTok{"Female"}\NormalTok{)}
-\NormalTok{married =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\NormalTok{friends =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(age, gender, married)}
-\NormalTok{friends}
+\NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{31}\NormalTok{)}
+\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Female"}\NormalTok{,}\StringTok{"Male"}\NormalTok{)}
+\NormalTok{married =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{simpsons =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(age, gender, married)}
+\NormalTok{simpsons}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##   age gender married
-## 1  25   Male   FALSE
-## 2  37   Male    TRUE
-## 3  23 Female   FALSE
+## 1   1 Female   FALSE
+## 2   8 Female   FALSE
+## 3  10   Male   FALSE
+## 4  30 Female    TRUE
+## 5  31   Male    TRUE
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(simpsons)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+Data frames can be indexed using the same techniques as was done with matrices.
 
 \hypertarget{other-object-types-and-the-global-environment}{%
 \section{Other Object Types and the Global Environment}\label{other-object-types-and-the-global-environment}}
@@ -1365,7 +1391,7 @@ Every time we create an object we see that the Global Environment tab in the top
   \item
     \href{https://ucr.yuja.com/V/Video?v=2368859\&node=8488053\&a=283774152\&autoplay=1}{Vectors 1 \textbar{} Introduction}
   \item
-    \href{https://ucr.yuja.com/V/Video?v=2368857\&node=8488051\&a=1465899289\&autoplay=1}{Vectors 2 \textbar Subsetting and Modifying}
+    \href{https://ucr.yuja.com/V/Video?v=2368857\&node=8488051\&a=1465899289\&autoplay=1}{Vectors 2 \textbar{} Subsetting and Modifying}
   \item
     \href{https://ucr.yuja.com/V/Video?v=2368856\&node=8488050\&a=612212822\&autoplay=1}{Vectors 3 \textbar{} Vectorized Functions - Logical Comparisons}
   \item
@@ -1377,6 +1403,8 @@ Every time we create an object we see that the Global Environment tab in the top
 
 \hypertarget{more-on-r-objects}{%
 \chapter{More on R Objects}\label{more-on-r-objects}}
+
+Factors and lists have especially unique properties that are often utilized. In this chapter we take special care to discuss these properties.
 
 \hypertarget{factors-1}{%
 \section{Factors}\label{factors-1}}
@@ -1407,7 +1435,7 @@ In real-world problems, you often encounter data that can be classified in categ
 ## 7  Sam      Black    FALSE
 \end{verbatim}
 
-Here, the hair color and gender are the examples of categorical data. To store such categorical data, R has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In R, you can create a factor with the \texttt{factor()} function.
+Here, the hair color and pet ownership are examples of categorical data. For the hair color variable we will typically want to store it as a factor, as opposed to a character vector. The different values that the factor can take are called levels. In R, you can create a factor with the \texttt{factor()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1425,25 +1453,12 @@ A factor looks like a vector, but it has special properties. Levels are one of t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{)}
-\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(gender)}
 \KeywordTok{levels}\NormalTok{(f)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Female" "Male"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{f}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] Female Male   Female Female Male   Male   Male  
-## Levels: Female Male
+## [1] "Black"  "Blonde" "Brown"  "Red"
 \end{verbatim}
 
 If your vector contains only a subset of all the possible levels, then R will have an incomplete picture of the possible levels. Consider the following example of a vector consisting of directions:
@@ -1502,7 +1517,7 @@ In market research, it's very common to use a five point scale to measure percep
 
 \textbf{strongly disagree \textless{} disagree \textless{} neutral \textless{} agree \textless{} strongly agree}.
 
-Such kind of data that is possible to place in order or scale is known as \textbf{Ordinal data}. In R, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the \texttt{factor()} function with the argument \texttt{ordered=TRUE}.
+Such kind of data that is possible to place in order or scale is known as \textbf{ordinal data}. We can store ordinal data as an ordered factor. To create an ordered factor, use the \texttt{factor()} function with the argument \texttt{ordered=TRUE}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1605,7 +1620,7 @@ The function \texttt{table()} tabulates observations.
 \hypertarget{lists-1}{%
 \section{Lists}\label{lists-1}}
 
-A \emph{list} is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the \texttt{list()} function.
+A \emph{list} is an array of objects. Unlike vectors and matrices, the elements in a list can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the \texttt{list()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1987,41 +2002,6 @@ By using \texttt{append()} method you can append one or more elements to the lis
 ##  $ : chr "c"
 \end{verbatim}
 
-To remove a list element, select it by position or by name, and then assign \texttt{NULL} to it.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Remove element from list}
-\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{)}
-\NormalTok{lst[[}\DecValTok{3}\NormalTok{]] =}\StringTok{ }\OtherTok{NULL}
-\KeywordTok{str}\NormalTok{(lst)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## List of 4
-##  $ : chr "a"
-##  $ : chr "b"
-##  $ : chr "d"
-##  $ : chr "e"
-\end{verbatim}
-
-Using \texttt{{[}{]}}, you can delete more than one component at once.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Remove multiple elements at once}
-\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{)}
-\NormalTok{lst[}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{] =}\StringTok{ }\OtherTok{NULL}
-\KeywordTok{str}\NormalTok{(lst)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## List of 1
-##  $ : chr "e"
-\end{verbatim}
-
 By using a logical vector, you can remove list elements based on the condition.
 
 \begin{Shaded}
@@ -2090,7 +2070,7 @@ To find the length of a list, use \texttt{length()} function.
 \hypertarget{working-with-data-sets}{%
 \chapter{Working with Data Sets}\label{working-with-data-sets}}
 
-In this section we discuss different methods for loading data sets into our R session. There are many different files we can create and import. We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this document we introduce basic data manipulation strategies and helpful functions when working with data sets.
+In this section we discuss different methods for loading data sets into our R session. There are many different files we can create and import. We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this chapter we introduce basic data manipulation strategies and helpful functions when working with data sets.
 
 \hypertarget{getting-data-sets-in-our-working-environment}{%
 \section{Getting Data Sets in Our Working Environment}\label{getting-data-sets-in-our-working-environment}}
@@ -2180,7 +2160,7 @@ We can also download data sets from online in a variety of different ways. Below
 \hypertarget{basic-data-manipulation}{%
 \section{Basic Data Manipulation}\label{basic-data-manipulation}}
 
-Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created within R or imported from text or spreadsheet files or from the web.
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table or matrix of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created or called within R, imported from text or spreadsheet files, or imported from the web.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2267,7 +2247,7 @@ The \texttt{summary()} function is a powerful command that gives you some summar
 ##                     Max.   :40.0   Max.   :72
 \end{verbatim}
 
-The summary statistics are listed below the names of the variables. Since gender is a character variable, R gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+The summary statistics are listed below the names of the variables. Since pets is a logical variable, R gives you the frequencies of each unique value. In this example there are three values of \texttt{TRUE} and two values of \texttt{FALSE}. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
 
 The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table for the different groups.
 
@@ -2283,7 +2263,7 @@ The \texttt{table()} function can also be used to cross-tabulate categorical dat
 ##  3  2
 \end{verbatim}
 
-The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+We can also create a frequency table of pet status for both groups.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2302,7 +2282,7 @@ The zero is for nonsmokers and the one is for smokers. We can also create a freq
 \subsection*{Indexing}\label{indexing}}
 \addcontentsline{toc}{subsection}{Indexing}
 
-Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
+As with matrices, square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2337,7 +2317,7 @@ If you leave out the number before or after the comma, the entire column or row 
 ## [1] 35 30 31 28 40
 \end{verbatim}
 
-You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable.
+For data frame you can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2388,6 +2368,23 @@ You can use logical conditions to obtain subsets of the data. A logical value of
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{index_keep =}\StringTok{ }\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{"G1"}\NormalTok{)}
+\NormalTok{group1 =}\StringTok{ }\NormalTok{mydata[index_keep, ]}
+\NormalTok{group1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+This operation can also be accomplished by using the \texttt{subset()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{group1 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{ "G1"}\NormalTok{)}
 \NormalTok{group1}
 \end{Highlighting}
@@ -2404,14 +2401,15 @@ To subset by all values which are NOT equal to a condition we can use the logica
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{group2 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{gender }\OperatorTok{!=}\StringTok{ "G1"}\NormalTok{)}
+\NormalTok{group2 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{!=}\StringTok{ "G1"}\NormalTok{)}
 \NormalTok{group2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] group  age    height pets  
-## <0 rows> (or 0-length row.names)
+##   group age height pets
+## 2    G2  30     70 TRUE
+## 5    G2  40     68 TRUE
 \end{verbatim}
 
 \hypertarget{rearranging-rows}{%
@@ -2445,7 +2443,7 @@ Data can be sorted using the \texttt{order()} function. This function returns th
 ## 4    G1  28     72 FALSE
 \end{verbatim}
 
-The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, \texttt{weight}. We can sort by more than one variable. Let's first sort by \texttt{gender} alone and then by \texttt{gender} followed by \texttt{weight} and see what we get.
+The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, \texttt{weight}. We can sort by more than one variable. Let's first sort by \texttt{group} alone and then by \texttt{group} followed by \texttt{weight} and see what we get.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2493,7 +2491,7 @@ To reorder a vector from smallest to largest we can also condiser the sort() fun
 \subsection*{Adding Columns}\label{adding-columns}}
 \addcontentsline{toc}{subsection}{Adding Columns}
 
-One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a \texttt{weight} variable to the data frame.
+One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a \texttt{weight} variable to the data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2644,7 +2642,7 @@ Rows can be added to a data frame using the \texttt{rbind()} (row bind) function
 ## 6    G1  23     62 FALSE    160      Blue
 \end{verbatim}
 
-We can also use \texttt{rbind()} to append one data frame to another. We can do this with the variables \texttt{males} and \texttt{females} created above still exist in your R environment.
+We can also use \texttt{rbind()} to append one data frame to another. We can do this with the variables \texttt{group1} and \texttt{group2} created above still exist in your R environment.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2666,8 +2664,9 @@ We can also use \texttt{rbind()} to append one data frame to another. We can do 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] group  age    height pets  
-## <0 rows> (or 0-length row.names)
+##   group age height pets
+## 2    G2  30     70 TRUE
+## 5    G2  40     68 TRUE
 \end{verbatim}
 
 \begin{Shaded}
@@ -2681,6 +2680,8 @@ We can also use \texttt{rbind()} to append one data frame to another. We can do 
 ## 1    G1  35     65  TRUE
 ## 3    G1  31     60 FALSE
 ## 4    G1  28     72 FALSE
+## 2    G2  30     70  TRUE
+## 5    G2  40     68  TRUE
 \end{verbatim}
 
 We can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
@@ -2706,7 +2707,7 @@ In R we have functions, functions are another type of object in R. We use functi
 \hypertarget{build-your-own-function}{%
 \section{Build Your Own Function}\label{build-your-own-function}}
 
-To define a function, a name is assigned and the keyword function is used to denote the start of the function and its argument list. Functions are created using the function () directive and are stored as R objects just like anything else. In particular, they are R objects of class \emph{function}. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+To define a function, a name is assigned and the keyword \texttt{function} is used to denote the start of the function and its argument list. Functions are created using the \texttt{function()} directive and are stored as R objects just like anything else. In particular, they are R objects of class \emph{function}. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
 
 Below is the \textbf{general template}
 
@@ -2720,21 +2721,20 @@ Below is the \textbf{general template}
 \end{Highlighting}
 \end{Shaded}
 
-In this template we have a few key components
+In this template we have the following key components
 
 \begin{itemize}
 \tightlist
 \item
   \texttt{function\_name}: This is the actual name of the function. It is stored in R environment as an object with this name.
 \item
-  \texttt{function}: A directive which tells \texttt{R} a function is being created.
+  \texttt{function}: A directive which tells R a function is being created.
 \item
   \texttt{arg}: An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
 \item
   \texttt{function\ body}: The function body contains a collection of statements that defines what the function does.
 \item
-  \texttt{return\_value}: The output value of the function. If \texttt{return(return\_value)} is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one thing. Now, this thing can be a vector of many different things
-  (i.e, a list or a data frame or a vector made with c()), but you may only return one thing.
+  \texttt{return\_value}: The output value of the function. If \texttt{return(return\_value)} is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one object. This object can be any class of object you desire, like a vector, list or data frame, but you may only return one object.
 \end{itemize}
 
 Below is an example of converting a temperature from Fahrenheit to Celsius.
@@ -2809,7 +2809,7 @@ With functions we can define function arguments to have default values. These de
 ## [1] 5
 \end{verbatim}
 
-Further notice that \texttt{R} has three ways that arguments supplied by you are matched to the formal arguments of the function definition.
+Further notice that R has three ways to match function inputs to the formal arguments of the function definition. R attempts to match inputs to arguements in the following order.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -2820,6 +2820,8 @@ Further notice that \texttt{R} has three ways that arguments supplied by you are
 \item
   by position
 \end{enumerate}
+
+After running a function command R first attempts to match arguments by complete name, then by partial name, and then by position. If it unable to match inputs to an argument it then uses the default argument value, if one exists.
 
 Observe:
 
@@ -2858,9 +2860,9 @@ Observe:
 
 With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.
 
-Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects \emph{scope}, or range of places that we can use this object. The system is rules R uses for searching for objects is called \emph{lexical scoping}, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.
+Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects \emph{scope}, or range of places that we can use this object. The system of rules R uses for searching for objects is called \emph{lexical scoping}, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then any enclosing environments, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.
 
-\includegraphics[width=11.29in]{images/types_namespace}
+\begin{center}\includegraphics[width=36.5in]{images/Scoping} \end{center}
 
 \hypertarget{built-in-functions}{%
 \section{Built-In Functions}\label{built-in-functions}}
@@ -2879,7 +2881,7 @@ R has functions built-in to it just like excel. You can call these built-in func
   \texttt{data.frame()}
 \end{itemize}
 
-Below are a few more examples using the built-in dataset \texttt{cars}, we will use \texttt{cars\$speed} as a vector of data to analyze.
+Below are a few more examples using the built-in dataset \texttt{mtcars}, we will use \texttt{mtcars\$mpg} as a vector of data to analyze.
 
 \begin{itemize}
 \tightlist
@@ -2889,12 +2891,12 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 15.4
+## [1] 20.09062
 \end{verbatim}
 
 \begin{itemize}
@@ -2905,12 +2907,12 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{median}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\KeywordTok{median}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 15
+## [1] 19.2
 \end{verbatim}
 
 \begin{itemize}
@@ -2921,12 +2923,12 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{var}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\KeywordTok{var}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 27.95918
+## [1] 36.3241
 \end{verbatim}
 
 \begin{itemize}
@@ -2937,18 +2939,15 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sqrt}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed) }
+\KeywordTok{sqrt}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg) }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 2.000000 2.000000 2.645751 2.645751 2.828427 3.000000 3.162278 3.162278
-##  [9] 3.162278 3.316625 3.316625 3.464102 3.464102 3.464102 3.464102 3.605551
-## [17] 3.605551 3.605551 3.605551 3.741657 3.741657 3.741657 3.741657 3.872983
-## [25] 3.872983 3.872983 4.000000 4.000000 4.123106 4.123106 4.123106 4.242641
-## [33] 4.242641 4.242641 4.242641 4.358899 4.358899 4.358899 4.472136 4.472136
-## [41] 4.472136 4.472136 4.472136 4.690416 4.795832 4.898979 4.898979 4.898979
-## [49] 4.898979 5.000000
+##  [1] 4.582576 4.582576 4.774935 4.626013 4.324350 4.254409 3.781534 4.939636
+##  [9] 4.774935 4.381780 4.219005 4.049691 4.159327 3.898718 3.224903 3.224903
+## [17] 3.834058 5.692100 5.513620 5.822371 4.636809 3.937004 3.898718 3.646917
+## [25] 4.381780 5.224940 5.099020 5.513620 3.974921 4.438468 3.872983 4.626013
 \end{verbatim}
 
 \begin{itemize}
@@ -2959,60 +2958,12 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sd}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.287644
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{fivenum()}: Takes in a vector, and returns the five number summary of the values in the vector.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{fivenum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  4 12 15 19 25
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{min()}: Takes in a vector, and returns the minimum of the values in the vector.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{min}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{max()}: Takes in a vector, and returns the maximum of the values in the vector.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 25
+## [1] 6.026948
 \end{verbatim}
 
 \begin{itemize}
@@ -3023,12 +2974,12 @@ Below are a few more examples using the built-in dataset \texttt{cars}, we will 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\KeywordTok{range}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  4 25
+## [1] 10.4 33.9
 \end{verbatim}
 
 \begin{itemize}
@@ -3041,40 +2992,13 @@ To get the \(10^{th}\) and \(90^{th}\) percentiles:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{quantile}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed,}\KeywordTok{c}\NormalTok{(}\FloatTok{0.10}\NormalTok{,}\FloatTok{0.90}\NormalTok{))}
+\KeywordTok{quantile}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,}\KeywordTok{c}\NormalTok{(}\FloatTok{0.10}\NormalTok{,}\FloatTok{0.90}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  10%  90% 
-##  8.9 23.1
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{abs()}: If you give it a vector, it returns the absolute value of each element in the vector. If you give it a single number, it returns the absolute value of the number.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{abs}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
-## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{abs}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
+##   10%   90% 
+## 14.34 30.09
 \end{verbatim}
 
 \begin{itemize}
@@ -3094,14 +3018,14 @@ To get the \(10^{th}\) and \(90^{th}\) percentiles:
 ##     4.0    12.0    15.0    15.4    19.0    25.0
 \end{verbatim}
 
-One of the great advantages of using \texttt{R} is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about \texttt{R} functions is the \textbf{Help files}.
+One of the great advantages of using R is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the \textbf{Help files}.
 
 \hypertarget{help-files}{%
 \section{Help Files}\label{help-files}}
 
-The Help files are in R and can be viewed from the lower right window by clicking the \emph{Help} tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The \texttt{R} Help Files are typically the best resource to get help.
+The Help files are in R and can be viewed from the lower right window by clicking the \emph{Help} tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help.
 
-The \texttt{R} Help files follow a fairly standard outline. You find most of the following sections in every \texttt{R} Help file:
+The R Help files follow a fairly standard outline. You find most of the following sections in every R Help file:
 
 \begin{itemize}
 \item
@@ -3140,8 +3064,8 @@ If you are not sure exactly which function you want, you can use \texttt{??} fol
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{the-arguement}{%
-\section{The \ldots{} Arguement}\label{the-arguement}}
+\hypertarget{the-argument}{%
+\section{The \ldots{} Argument}\label{the-argument}}
 
 There is a special argument function \texttt{...} that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the \texttt{...} argument as a general placeholder for passing along any additional arguments in a function call.
 
@@ -3169,6 +3093,50 @@ There is a special argument function \texttt{...} that can be used. Sometimes we
 \begin{verbatim}
 ## [1] 5
 \end{verbatim}
+
+We can also use the \texttt{...} arguement in a nested fashion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fun1 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, ...)\{}
+\NormalTok{  y =}\StringTok{ }\KeywordTok{fun2}\NormalTok{(...)}
+\NormalTok{  z =}\StringTok{ }\NormalTok{x}\OperatorTok{+}\StringTok{ }\NormalTok{y}
+  \KeywordTok{return}\NormalTok{(z)}
+\NormalTok{\}}
+
+\NormalTok{fun2 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, ... )\{}
+\NormalTok{  b =}\StringTok{ }\KeywordTok{fun3}\NormalTok{(...)}
+\NormalTok{  c =}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b }
+  \KeywordTok{return}\NormalTok{(c)}
+\NormalTok{\}}
+
+\NormalTok{fun3 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n)\{}
+\NormalTok{  n =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n)}
+  \KeywordTok{return}\NormalTok{(n)}
+\NormalTok{\}}
+
+\CommentTok{#  Returns:  1 + 2^2 + sqrt(4) = 7 }
+\KeywordTok{fun1}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Returns:  1 + 2^2 + sqrt(4) = 7 }
+\CommentTok{# Define each input explicitly }
+\KeywordTok{fun1}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{a =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+When using the \texttt{...} argument it is customary to always place \texttt{...} at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.
 
 \hypertarget{additional-resources-2}{%
 \section{Additional Resources}\label{additional-resources-2}}
@@ -3198,30 +3166,99 @@ There is a special argument function \texttt{...} that can be used. Sometimes we
 \hypertarget{if-statements}{%
 \chapter{If Statements}\label{if-statements}}
 
-\hypertarget{the-if-else-chain}{%
-\section{\texorpdfstring{The \texttt{if\ else} chain}{The if else chain}}\label{the-if-else-chain}}
+If statements are a type of control flow structure. Control structures help us control how many times code is executed, and when it will be executed. This is helpful because sometime we only want our program to run if certain conditions are met.
 
-In R, you can tell your code to run ONLY if a certain statement is true by making a \texttt{if\ else} chain. For example;
+\hypertarget{if}{%
+\section{If}\label{if}}
+
+In R we can also execute commands only if certain conditions are met using the \texttt{if} operator. This feature in R checks a logical value (\texttt{\textless{}value\textgreater{}}) and if it is \texttt{TRUE} then a sequence of commands within \texttt{\{\}} will be ran. If \texttt{\textless{}value\textgreater{}} is \texttt{FALSE}, then the commands inside of \texttt{\{\}} will not be ran.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Do =}\StringTok{ "Add"}
-\NormalTok{X =}\StringTok{ }\DecValTok{2}
-\NormalTok{Y =}\StringTok{ }\DecValTok{4}
-\ControlFlowTok{if}\NormalTok{(Do }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{)\{}
-\NormalTok{  Z =}\StringTok{ }\NormalTok{X}\OperatorTok{+}\NormalTok{Y}
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{<}\NormalTok{value}\OperatorTok{>}\NormalTok{)\{}
+  \CommentTok{# Commands }
 \NormalTok{\}}
-\NormalTok{Z}
+\end{Highlighting}
+\end{Shaded}
+
+Below we have an example. The code will only be executed if \texttt{x} is a positive number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{3}
+
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "positive"}
+\NormalTok{\}}
+\NormalTok{type }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6
+## [1] "positive"
 \end{verbatim}
 
-Only if the variable \texttt{Do} is equal to the character string \texttt{"Add"} will the variable \texttt{Z} be created. Otherwise, whatever is in the body of the \texttt{if} statement is not run.
+In the example above we have a relational operator which returns a logical value. This logical value was equal to \texttt{TRUE} so the code was executed.
 
-Here is an example of a silly function with an \texttt{if\ else} chain:
+\hypertarget{if-else}{%
+\section{If Else}\label{if-else}}
+
+We can pair an \texttt{if} statement with an \texttt{else} value. After the \texttt{else} object we can define another sequence of commands inside of \texttt{\{\}}. The \texttt{else} value is paired with the immediate previous \texttt{if} statement. If this \texttt{if} statement is \texttt{FALSE} then the \texttt{else} code will run. If the \texttt{if} statement is \texttt{TRUE} then the \texttt{else} code will not be executed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{-3}
+
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{class}\NormalTok{(x) }\OperatorTok{==}\StringTok{ "numeric"}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "number"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  type =}\StringTok{ "not a number"}
+\NormalTok{\}}
+\NormalTok{type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "number"
+\end{verbatim}
+
+\hypertarget{else-if}{%
+\section{Else If}\label{else-if}}
+
+Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous \texttt{if} statements were \texttt{FALSE} and another criteria is \texttt{TRUE}. We can use \texttt{else\ if} to implement these rules.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{-3}
+
+
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{    type =}\StringTok{ "positive"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{<}\DecValTok{0}\NormalTok{) \{}
+\NormalTok{    type =}\StringTok{ "negative"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{    type =}\StringTok{ "zero"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    type =}\StringTok{ "Error"}
+\NormalTok{\}}
+
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "negative"
+\end{verbatim}
+
+The command for the \texttt{if} statement will only run if \texttt{x\textgreater{}0}, and the rest of the code will not be implemented.
+
+The first \texttt{else\ if} commands will only execute if the first \texttt{if} statement was \texttt{FALSE} and \texttt{x\textless{}0}.
+
+The second \texttt{else\ if} commands will only execute if the previous \texttt{else\ if} and \texttt{if} statements were \texttt{FALSE} and \texttt{x==0}.
+
+If the previous \texttt{if} statement and all previous \texttt{else\ if} statements are \texttt{FALSE} then the \texttt{else} code will be executed.
+
+Here is another example with an \texttt{if\ else} chain.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3283,58 +3320,90 @@ Here is an example of a silly function with an \texttt{if\ else} chain:
 ## [1] 2 4
 \end{verbatim}
 
-A few notes:
+\hypertarget{ifelse}{%
+\section{Ifelse}\label{ifelse}}
+
+We have a shortcut function that can help us keep our code more succinct using the \texttt{ifelse()} function. The first argument of this function is a logical value. the second and third arguments are what to do if the value is \texttt{TRUE} or \texttt{FALSE}, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{3}
+\NormalTok{type =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{,  }\StringTok{"positive"}\NormalTok{, }\StringTok{"nonpositive"}\NormalTok{)}
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "positive"
+\end{verbatim}
+
+We can also pass \texttt{ifelse()} a vector, and it will check the logical condition for each element of the vector. For example, in the \texttt{mtcars} data set, we can find the proportion of cars have \texttt{mpg\ \textgreater{}\ 25} and \texttt{hp\ \textgreater{}\ 60}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fast_efficient =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg }\OperatorTok{>}\StringTok{ }\DecValTok{25} \OperatorTok{&}\StringTok{ }\NormalTok{mtcars}\OperatorTok{$}\NormalTok{hp}\OperatorTok{>}\DecValTok{60}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(fast_efficient)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(fast_efficient)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.15625
+\end{verbatim}
+
+\hypertarget{nested-if-chains}{%
+\section{Nested If Chains}\label{nested-if-chains}}
+
+We can make \texttt{if-else} chains nested within each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{105}
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{     type =}\StringTok{ "large positive number"}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{     type =}\StringTok{ "positive number"}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{<}\DecValTok{0}\NormalTok{) \{}
+\NormalTok{  type =}\StringTok{ "negative number"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "zero"}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  type =}\StringTok{ "Error"}
+\NormalTok{\}}
+
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "large positive number"
+\end{verbatim}
+
+\hypertarget{additional-resources-3}{%
+\section{Additional Resources}\label{additional-resources-3}}
 
 \begin{itemize}
+\tightlist
 \item
-  \texttt{if} will be written initially in the if statement code.
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 13 of ``R for Programming in Data Science''}
 \item
-  \texttt{else} if will be executed if code if is not true.
-\item
-  \texttt{else} will be executed if none of them are true.
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369005\&node=8488277\&a=1089164180\&autoplay=1}{Control Flow 1 \textbar{} if Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369004\&node=8488276\&a=68950775\&autoplay=1}{Control Flow 2 \textbar{} if else Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369003\&node=8488275\&a=577245814\&autoplay=1}{Control Flow 3 \textbar{} else if Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369002\&node=8488274\&a=2043700498\&autoplay=1}{Control Flow 4 \textbar{} ifelse Function}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369001\&node=8488273\&a=523725749\&autoplay=1}{Control Flow 5 \textbar{} switch Function}
+  \end{itemize}
 \end{itemize}
-
-\hypertarget{the-ifelse-function}{%
-\section{\texorpdfstring{The \texttt{ifelse} function}{The ifelse function}}\label{the-ifelse-function}}
-
-There is a simple function that can check a logical argument or vector, and give back two answers; one if the statement is
-true, and another if the statement is false. This function is \texttt{ifelse()}. For a simple example:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Pet =}\StringTok{ "Dog"}
-\KeywordTok{ifelse}\NormalTok{(Pet }\OperatorTok{==}\StringTok{ "Dog"}\NormalTok{, }\StringTok{"Woof"}\NormalTok{,}\StringTok{"???"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Woof"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Pet =}\StringTok{ "Cat"}
-\KeywordTok{ifelse}\NormalTok{(Pet }\OperatorTok{==}\StringTok{ "Dog"}\NormalTok{, }\StringTok{"Woof"}\NormalTok{,}\StringTok{"???"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "???"
-\end{verbatim}
-
-We can also pass \texttt{ifelse()} a vector, and it will check the logical condition for each element of the vector. For example, in the \texttt{USArrests} data, if I want to find the proportion of states who had a murder rate of over 10 per 100,000 and an urban population of
-over 50\%:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dangerous =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(USArrests}\OperatorTok{$}\NormalTok{Murder }\OperatorTok{>}\StringTok{ }\DecValTok{10} \OperatorTok{&}\StringTok{ }\NormalTok{USArrests}\OperatorTok{$}\NormalTok{UrbanPop }\OperatorTok{>}\StringTok{ }\DecValTok{50}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{sum}\NormalTok{(dangerous)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(dangerous)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.24
-\end{verbatim}
 
 \hypertarget{base-r-plotting}{%
 \chapter{Base R Plotting}\label{base-r-plotting}}
@@ -3661,10 +3730,10 @@ To see a list of all packages that are currently loaded (note that yours will li
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] ".GlobalEnv"        "package:xtable"    "package:knitr"    
-##  [4] "package:stats"     "package:graphics"  "package:grDevices"
-##  [7] "package:utils"     "package:datasets"  "package:methods"  
-## [10] "Autoloads"         "package:base"
+##  [1] ".GlobalEnv"        "package:knitr"     "package:stats"    
+##  [4] "package:graphics"  "package:grDevices" "package:utils"    
+##  [7] "package:datasets"  "package:methods"   "Autoloads"        
+## [10] "package:base"
 \end{verbatim}
 
 When adding a new package to our library we only have to install it once. We can do so with the following command.
@@ -3733,12 +3802,14 @@ This can be useful, but is not usually necessary.
 \hypertarget{loops}{%
 \chapter{Loops}\label{loops}}
 
+Loops are another type of control flow structure. They dictate how many times a series of commands should be run. There are two type of loops, a \texttt{while} loop and a \texttt{for} loop. These two loops operate similarly and are found in other programming languages such as \texttt{C} and \texttt{Python}.
+
 \hypertarget{while-loop}{%
 \section{While Loop}\label{while-loop}}
 
-A while loop is used when you want to perform a task indefinitely, until a particular condition is met. It's a condition-controlled loop.
+A \texttt{while} loop is used when you want to perform a task indefinitely, until a particular condition is met. It's a condition-controlled loop.
 
-\includegraphics[width=14.5in]{images/WhileLoop}
+\begin{center}\includegraphics[width=14.5in]{images/WhileLoop} \end{center}
 
 The loop will continue until the condition is \texttt{FALSE}.
 
@@ -3776,41 +3847,12 @@ If the condition is false at the start, the while loop will never be executed at
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{break} statement is used to exit the loop immediately. It simply jumps out of the loop altogether, and the program continues after the loop.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x =}\StringTok{ }\DecValTok{5}
-
-\CommentTok{# If statement starts as TRUE,  the loop will never run }
-\ControlFlowTok{while}\NormalTok{ (x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{ ) \{}
-  \KeywordTok{print}\NormalTok{(x)}
-\NormalTok{  x =}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{1}
-  
-  \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)\{}
-    \KeywordTok{print}\NormalTok{(}\StringTok{"Entered IF statement, stop loop"}\NormalTok{)}
-    \ControlFlowTok{break} 
-\NormalTok{  \}}
-  
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 5
-## [1] 4
-## [1] 3
-## [1] "Entered IF statement, stop loop"
-\end{verbatim}
-
-If not given an adequate stopping criteria or break statement the loop will continue forever. For example, if we started the above examples at \texttt{x\ =\ -2}.
-
 \hypertarget{for-loops}{%
 \section{For Loops}\label{for-loops}}
 
-The \texttt{for} statement in \texttt{R} is a bit different from what you usually use in other programming languages. Rather than iterating over a numeric progression, \texttt{R}'s \texttt{for} statement iterates over the items of a vector or a list. The items are iterated in the order that they appear in the vector.
+The \texttt{for} statement in R is a bit different from what you usually use in other programming languages. Rather than iterating over a numeric progression, R's \texttt{for} statement iterates over the items of a vector or a list. The items are iterated in the order that they appear in the vector.
 
-\includegraphics[width=16.11in]{images/ForLoop}
+\begin{center}\includegraphics[width=16.11in]{images/ForLoop} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3878,7 +3920,39 @@ If you need to execute a group of statements for a specified number of times, us
 ## [1] 64
 \end{verbatim}
 
-Like the while loop, the \texttt{break} statement is used to exit the loop immediately. It simply jumps out of the loop altogether, and the program continues after the loop.
+\hypertarget{break}{%
+\section{Break}\label{break}}
+
+The \texttt{break} statement is used to exit the loop immediately. It simply jumps out of the loop altogether, and the program continues after the loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+
+\CommentTok{# If statement starts as TRUE,  the loop will never run }
+\ControlFlowTok{while}\NormalTok{ (x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{ ) \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+  
+  \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"Entered IF statement, stop loop"}\NormalTok{)}
+    \ControlFlowTok{break} 
+\NormalTok{  \}}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+## [1] 4
+## [1] 3
+## [1] "Entered IF statement, stop loop"
+\end{verbatim}
+
+\textbf{If not given an adequate stopping criteria or break statement the loop will continue forever.} For example, if we started the above examples at \texttt{x\ =\ -2}. The \texttt{break} statement is particularly important for the \texttt{while} loop.
+
+The \texttt{break} statement can also be used in a \texttt{for} loop. It simply jumps out of the loop altogether, and the program continues after the loop.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3897,7 +3971,40 @@ Like the while loop, the \texttt{break} statement is used to exit the loop immed
 ## [1] "green"
 \end{verbatim}
 
-For loops do not have the same risk of ``running forever'', like while loops have.
+The \texttt{for} loops do not have the same risk of ``running forever'', like \texttt{while} loops have.
+
+\hypertarget{next}{%
+\section{Next}\label{next}}
+
+We can also use the \texttt{next} command in both \texttt{for} loops and \texttt{while} loops in order to skip executing a command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+  
+\NormalTok{  i =}\StringTok{ }\NormalTok{i}\OperatorTok{^}\DecValTok{2}
+  
+  \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{<}\DecValTok{5}\NormalTok{)\{}
+    \ControlFlowTok{next}
+\NormalTok{  \}}
+  
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+## [1] 16
+## [1] 25
+## [1] 36
+## [1] 49
+## [1] 64
+## [1] 81
+## [1] 100
+\end{verbatim}
+
+The code inside the loop will run until it reaches the \texttt{next} statement. Once
 
 \hypertarget{bisection}{%
 \section{Bisection}\label{bisection}}
@@ -3905,124 +4012,34 @@ For loops do not have the same risk of ``running forever'', like while loops hav
 \hypertarget{nested-loops}{%
 \section{Nested Loops}\label{nested-loops}}
 
-\hypertarget{switch}{%
-\section{Switch}\label{switch}}
+\hypertarget{additional-resources-4}{%
+\section{Additional Resources}\label{additional-resources-4}}
 
-\hypertarget{next}{%
-\section{Next}\label{next}}
-
-\hypertarget{break}{%
-\section{Break}\label{break}}
-
-\hypertarget{practice-problems}{%
-\section*{Practice Problems}\label{practice-problems}}
-\addcontentsline{toc}{section}{Practice Problems}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
+\begin{itemize}
+\tightlist
 \item
-  Create the function which has one arguement \texttt{n}. Have this function generate the first n fibannaci numbers using a \textbf{while} loop. Note that the Fibanacci sequence is formed by starting with the number 0, 1 and then adding the last two numbers to get the next number: 0, 1, 1, 2, 3, 5, 8, etc.
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 13 of ``R for Programming in Data Science''}
 \item
-  Create the function which has one arguement \texttt{n}. Have this function generate the first n fibannaci numbers using a \textbf{for} loop. Note that the Fibanacci sequence is formed by starting with the number 0, 1 and then adding the last two numbers to get the next number: 0, 1, 1, 2, 3, 5, 8, etc.
-\item
-  Create a function which has one argument \texttt{num}. Have this function generate the factorial of this number using any iteration technique you would like. Recall that a factorial of a number is product of all whole numbers from our chosen number down to 1. For example, 4! (4 factorial) = 4(3)(2)(1) = 24
-\item
-  Write a function which has only one argument \texttt{n}. Have this function display the \texttt{n} terms of odd natural number and their sum.
-\end{enumerate}
+  Videos:
 
-\textbf{Answer 1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Generate the first n fibannaci numbers}
-
-\NormalTok{gen_fib =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n)\{}
-
-  \CommentTok{# Initiate the fib sequence }
-\NormalTok{  fib =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
-\NormalTok{  current_n =}\StringTok{ }\KeywordTok{length}\NormalTok{(fib)}
-  
-  \ControlFlowTok{while}\NormalTok{(current_n}\OperatorTok{<}\NormalTok{n)\{}
-    \CommentTok{# Generate the next number }
-\NormalTok{    next_number =}\StringTok{ }\NormalTok{fib[}\KeywordTok{c}\NormalTok{(current_n}\DecValTok{-1}\NormalTok{)] }\OperatorTok{+}\StringTok{ }\NormalTok{fib[current_n]}
-    
-    \CommentTok{# Add new number }
-\NormalTok{    fib =}\StringTok{ }\KeywordTok{c}\NormalTok{(fib, next_number)}
-    
-    \CommentTok{# Update the length }
-\NormalTok{    current_n =}\StringTok{ }\KeywordTok{length}\NormalTok{(fib)}
-\NormalTok{  \}}
-  
-  \KeywordTok{return}\NormalTok{(fib)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Answer 2}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Generate the first n fibannaci numbers}
-
-\NormalTok{gen_fib =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n)\{}
-
-  \CommentTok{# Initiate the fib sequence}
-\NormalTok{  fib =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{, }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{c}\NormalTok{(n}\DecValTok{-2}\NormalTok{)))}
-  
-  \ControlFlowTok{for}\NormalTok{(index }\ControlFlowTok{in} \DecValTok{3}\OperatorTok{:}\KeywordTok{length}\NormalTok{(fib))\{}
-    \CommentTok{# Generate the next number }
-\NormalTok{    next_number =}\StringTok{ }\NormalTok{fib[}\KeywordTok{c}\NormalTok{(index}\DecValTok{-2}\NormalTok{)] }\OperatorTok{+}\StringTok{ }\NormalTok{fib[index}\DecValTok{-1}\NormalTok{]}
-    
-    \CommentTok{# Add new number }
-\NormalTok{    fib[index] =}\StringTok{ }\NormalTok{next_number}
-\NormalTok{  \}}
-  
-  \KeywordTok{return}\NormalTok{(fib)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Answer 3}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_factorial =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(num)\{}
-\NormalTok{  my_answer =}\StringTok{ }\DecValTok{1}
-  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{num)\{}
-\NormalTok{    my_answer =}\StringTok{ }\NormalTok{my_answer }\OperatorTok{*}\StringTok{ }\NormalTok{i }
-\NormalTok{  \}}
-  \KeywordTok{print}\NormalTok{(my_answer)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Answer 4}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{odd_numbers =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n)\{}
-\NormalTok{    odd_vector =}\StringTok{ }\OtherTok{NA}
-  
-  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
-\NormalTok{    odd_vector[i] =}\StringTok{ }\DecValTok{2}\OperatorTok{*}\NormalTok{i }\OperatorTok{-}\StringTok{ }\DecValTok{1}
-\NormalTok{  \}}
-    
-\NormalTok{ return_me =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{vector =}\NormalTok{ odd_vector, }
-                  \DataTypeTok{the_sum =} \KeywordTok{sum}\NormalTok{(odd_vector))}
- \KeywordTok{return}\NormalTok{(return_me)}
-\NormalTok{\}}
-
-\KeywordTok{odd_numbers}\NormalTok{(}\DecValTok{5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $vector
-## [1] 1 3 5 7 9
-## 
-## $the_sum
-## [1] 25
-\end{verbatim}
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369000\&node=8488272\&a=151697133\&autoplay=1}{Control Flow 6 \textbar{} while loops}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368999\&node=8488271\&a=621919520\&autoplay=1}{Control Flow 7 \textbar{} while loops Bisection Method}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368998\&node=8488270\&a=1160986069\&autoplay=1}{Control Flow 8 \textbar{} infinite while loops}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368997\&node=8488269\&a=148930850\&autoplay=1}{Control Flow 9 \textbar{} for loop Intro}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368996\&node=8488268\&a=160173707\&autoplay=1}{Control Flow 10 \textbar{} break and next}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368995\&node=8488267\&a=316843892\&autoplay=1}{Control Flow 11 \textbar{} nested for loops}
+  \item
+    \href{https://www.youtube.com/watch?v=HXNhEYqFo0o}{Programming Loops vs.~Recursion - Computerphile}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{apply-family-of-functions}{%
 \chapter{Apply Family of Functions}\label{apply-family-of-functions}}
@@ -4333,8 +4350,8 @@ Description of the required \texttt{sapply()} arguments:
 ## 23 20
 \end{verbatim}
 
-\hypertarget{practice-problems-1}{%
-\section*{Practice Problems}\label{practice-problems-1}}
+\hypertarget{practice-problems}{%
+\section*{Practice Problems}\label{practice-problems}}
 \addcontentsline{toc}{section}{Practice Problems}
 
 \begin{enumerate}

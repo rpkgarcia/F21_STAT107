@@ -1,6 +1,6 @@
 # Working with Data Sets
 
-In this section we discuss different methods for loading data sets into our R session.  There are many different files we can create and import.  We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this document we introduce basic data manipulation strategies and helpful functions when working with data sets. 
+In this section we discuss different methods for loading data sets into our R session.  There are many different files we can create and import.  We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this chapter we introduce basic data manipulation strategies and helpful functions when working with data sets. 
 
 
 ## Getting Data Sets in Our Working Environment
@@ -62,7 +62,7 @@ the_data = read.csv(the_url)
 
 ## Basic Data Manipulation
 
-Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created within R or imported from text or spreadsheet files or from the web. 
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table or matrix of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created or called within R, imported from text or spreadsheet files, or imported from the web. 
 
 ```{r}
 group = c("G1", "G2", "G1", "G1", "G2")
@@ -98,7 +98,7 @@ The `summary()` function is a powerful command that gives you some summary stati
 summary(mydata)
 ```
 
-The summary statistics are listed below the names of the variables. Since gender is a character variable, R gives you the frequencies of each unique value. In this example there are three values of F and two values of M. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+The summary statistics are listed below the names of the variables. Since pets is a logical variable, R gives you the frequencies of each unique value. In this example there are three values of `TRUE` and two values of  `FALSE`. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
 
 
 The `table()` function can also be used to cross-tabulate categorical data.  Let’s create a frequency table for the different groups.
@@ -107,7 +107,7 @@ The `table()` function can also be used to cross-tabulate categorical data.  Let
 table(mydata$group)
 ```
 
-The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
+ We can also create a frequency table of pet status for both groups. 
 
 ```{r}
 table(mydata$group, mydata$pets)
@@ -115,7 +115,7 @@ table(mydata$group, mydata$pets)
 
 ### Indexing {-}
 
-Square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
+As with matrices, square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
 
 ```{r}
 mydata[3,2]
@@ -130,7 +130,7 @@ mydata[,2]
 
 ```
 
-You can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable. 
+For data frame you can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable. 
 
 ```{r}
 mydata$height[4]
@@ -149,6 +149,14 @@ mydata$age[3:5]
 You can use logical conditions to obtain subsets of the data. A logical value of `TRUE` will return a data row and a logical of `FALSE` omits that row.
 
 ```{r}
+index_keep = (mydata$group =="G1")
+group1 = mydata[index_keep, ]
+group1
+```
+
+This operation can also be accomplished by using the `subset()` function. 
+
+```{r}
 group1 = subset(mydata, mydata$group == "G1")
 group1
 ```
@@ -156,7 +164,7 @@ group1
 
 To subset by all values which are NOT equal to a condition we can use the logical operator `!=`.
 ```{r}
-group2 = subset(mydata, mydata$gender != "G1")
+group2 = subset(mydata, mydata$group != "G1")
 group2
 ```
 
@@ -170,7 +178,7 @@ order(mydata$height)
 mydata[order(mydata$height),]
 ```
 
-The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, `weight`. We can sort by more than one variable. Let’s first sort by `gender` alone and then by `gender` followed by `weight` and see what we get.
+The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, `weight`. We can sort by more than one variable. Let’s first sort by `group` alone and then by `group` followed by `weight` and see what we get.
 
 
 ```{r}
@@ -188,7 +196,7 @@ sort(mydata$age)
 
 ### Adding Columns {-}
 
-One can add and remove variables and observations from a data frame. One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a `weight` variable to the data frame.
+One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a `weight` variable to the data frame.
 
 ```{r}
 wghts = c(169, 161, 149, 165, 155)
@@ -250,7 +258,7 @@ newdata = rbind(mydata, newobs)
 newdata
 ```
 
-We can also use `rbind()` to append one data frame to another. We can do this with the variables `males` and `females` created above still exist in your R environment. 
+We can also use `rbind()` to append one data frame to another. We can do this with the variables `group1` and `group2` created above still exist in your R environment. 
 
 ```{r}
 group1

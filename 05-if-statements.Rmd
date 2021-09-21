@@ -1,21 +1,79 @@
 # If Statements
 
+If statements are a type of control flow structure.  Control structures help us control how many times code is executed, and when it will be executed.  This is helpful because sometime we only want our program to run if certain conditions are met.  
 
-## The `if else` chain
+## If 
 
-In R, you can tell your code to run ONLY if a certain statement is true by making a `if else` chain.  For example;
-```{r}
-Do = "Add"
-X = 2
-Y = 4
-if(Do == "Add"){
-  Z = X+Y
+In R we can also execute commands only if certain conditions are met using the `if` operator.  This feature in R checks a logical value (`<value>`) and if it is `TRUE` then a sequence of commands within `{}` will be ran.  If `<value>` is `FALSE`, then the commands inside of `{}` will not be ran. 
+
+
+```{r, eval = FALSE}
+if(<value>){
+  # Commands 
 }
-Z
+
 ```
-Only if the variable `Do` is equal to the character string `"Add"` will the variable `Z` be created.  Otherwise, whatever is in the body of the `if` statement is not run.
- 
-Here is an example of a silly function with an `if else` chain:
+
+
+Below we have an example. The code will only be executed if `x` is a positive number. 
+
+```{r}
+x = 3
+
+if(x>0){
+  type = "positive"
+}
+type 
+```
+
+In the example above we have a relational operator which returns a logical value. This logical value was equal to `TRUE` so the code was executed. 
+
+## If Else 
+
+We can pair an  `if` statement with an `else` value.  After the `else` object we can define another sequence of commands inside of `{}`.  The `else` value is paired with the immediate previous `if` statement.  If this `if` statement is `FALSE` then the `else` code will run.  If the `if` statement is `TRUE` then the `else` code will not be executed. 
+
+```{r}
+x = -3
+
+if(class(x) == "numeric"){
+  type = "number"
+} else {
+  type = "not a number"
+}
+type
+```
+
+## Else If 
+
+Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous `if` statements were `FALSE` and another criteria is `TRUE`.  We can use `else if` to implement these rules. 
+
+```{r}
+x = -3
+
+
+if(x>0){
+    type = "positive"
+} else if (x <0) {
+    type = "negative"
+} else if(x == 0){
+    type = "zero"
+} else {
+    type = "Error"
+}
+
+type 
+```
+
+The command for the `if` statement will only run if `x>0`, and the rest of the code will not be implemented. 
+
+The first `else if` commands will only execute if the first `if` statement was `FALSE` and `x<0`. 
+
+The second `else if` commands will only execute if the previous `else if` and `if` statements were `FALSE` and `x==0`.  
+
+If the previous `if` statement and all previous `else if` statements are `FALSE` then the `else` code will be executed. 
+
+
+Here is another example with an `if else` chain.
 ```{r}
 Toyfun = function(X,Y,Do){
   if(Do == "Add"){
@@ -43,29 +101,55 @@ Toyfun(2,4,"Penguin")
 Toyfun(2,4, "Typo")
 ```
 
-A few notes:
 
-- `if` will be written initially in the if statement code.
+## Ifelse
 
-- `else` if will be executed if code if is not true.
-
-- `else` will be executed if none of them are true.
-
-
-## The `ifelse` function
-There is a simple function that can check a logical argument or vector, and give back two answers; one if the statement is
-true, and another if the statement is false. This function is `ifelse()`. For a simple example:
-```{r}
-Pet = "Dog"
-ifelse(Pet == "Dog", "Woof","???")
-Pet = "Cat"
-ifelse(Pet == "Dog", "Woof","???")
-```
-
-We can also pass `ifelse()` a vector, and it will check the logical condition for each element of the vector.  For example, in the `USArrests` data, if I want to find the proportion of states who had a murder rate of over 10 per 100,000 and an urban population of 
-over 50%:
+We have a shortcut function that can help us keep our code more succinct using the `ifelse()` function.  The first argument of this function is a logical value.  the second and third arguments are what to do if the value is `TRUE` or `FALSE`, respectively.   
 
 ```{r}
-dangerous = ifelse(USArrests$Murder > 10 & USArrests$UrbanPop > 50, TRUE, FALSE)
-sum(dangerous)/length(dangerous)
+x = 3
+type = ifelse(x>0,  "positive", "nonpositive")
+type 
 ```
+
+
+We can also pass `ifelse()` a vector, and it will check the logical condition for each element of the vector. For example, in the `mtcars` data set, we can find the proportion of cars have `mpg > 25` and `hp > 60`
+
+```{r}
+fast_efficient = ifelse(mtcars$mpg > 25 & mtcars$hp>60, TRUE, FALSE)
+sum(fast_efficient)/length(fast_efficient)
+```
+
+
+## Nested If Chains
+
+We can make `if-else` chains nested within each other. 
+
+```{r}
+x = 105
+if(x>0){
+  if(x>100){
+     type = "large positive number"
+  } else {
+     type = "positive number"
+  }
+} else if(x<0) {
+  type = "negative number"
+} else if(x==0){
+  type = "zero"
+}else {
+  type = "Error"
+}
+
+type 
+```
+
+## Additional Resources
+
+- [Chapter 13 of "R for Programming in Data Science"](https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument) 
+- Videos:
+    + [Control Flow 1 | if Statements](https://ucr.yuja.com/V/Video?v=2369005&node=8488277&a=1089164180&autoplay=1)
+    + [Control Flow 2 | if else Statements](https://ucr.yuja.com/V/Video?v=2369004&node=8488276&a=68950775&autoplay=1)
+    + [Control Flow 3 | else if Statements](https://ucr.yuja.com/V/Video?v=2369003&node=8488275&a=577245814&autoplay=1)
+    + [Control Flow 4 | ifelse Function](https://ucr.yuja.com/V/Video?v=2369002&node=8488274&a=2043700498&autoplay=1)
+    + [Control Flow 5 | switch Function](https://ucr.yuja.com/V/Video?v=2369001&node=8488273&a=523725749&autoplay=1)

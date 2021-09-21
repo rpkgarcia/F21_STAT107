@@ -1,10 +1,10 @@
 # Introduction to R Objects  
 
-At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain *class*.  In this chapter we begin by discussing **atomic** objects, these are the core fundamental objects used in R.  Next we discuss vectors, lists, and matrices.  These objects are among the most common type that are used.  Lastly we discuss factors and data frames.  Factors and data frames are known as dynamic objects, and are more complex.  All of these objects have special properties and a multitude of features that we can use.  We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document. 
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain *class*.  In this chapter we begin by discussing **atomic** objects, these are the core fundamental objects used in R.  Next we discuss vectors, lists, and matrices.  These objects are among the most common types that are used.  Lastly we discuss factors and data frames.  Factors and data frames are known as dynamic objects, and are more complex.  All of these objects have special properties and a multitude of features that we can use.  We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document. 
 
 ## Atomic Objects 
 
-R can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, `character`, and `raw`. These are the basic fundamental objects we can use in R. In practice `raw` is rarely used.  For our class we will not need the `complex` type which stores complex numbers. Unlike other object-oriented languages we do not need to specify what type of object we are creating.  Instead, R guesses the type of object you are creating.  To check the object type we can use the  `class()` function.  function.  
+R can represent different types of data. The types include `numeric`, `integer`, `complex`, `logical`, `character`, and `raw`. These are the basic fundamental objects we can use in R. For our class we will not need the `complex` type which stores complex numbers, and in practice `raw` is rarely used. We will concentrate on the remaining four types. Unlike other object-oriented languages we do not need to specify what type of object we are creating when we create it.  Instead, R guesses the type of object you are creating.  To check the object type we can use the  `class()` function.  function.  
 
 ### Numeric {-}
 
@@ -19,7 +19,7 @@ b
 class(b)
 ```
 
-Both the variables `a` and `b` are `numeric` objects. When you type a number `R` will default to treating it as a `numeric` object which allows decimals. 
+Both the variables `a` and `b` are `numeric` objects. When you type a number R will default to treating it as a `numeric` object which allows decimals. 
 
 ### Integer {-}
 
@@ -210,7 +210,7 @@ c(m)
 
 ## Factors
 
-Factors are useful for categorical data. Factors differ from character objects in that character objects is a string of characters or symbols placed in a specific order.  For example, the object `first = "George"` is a character object with six elements.  In contrast, the collection of values "George" would instead represent a distinct value, or *level*.  We can create a factor object using the `factor()` function. 
+Factors are useful for categorical data. Factors differ from character objects in that a character object is a string of characters or symbols placed in a specific order.  For example, the object `first = "George"` is a character object with six elements.  In contrast, the collection of values "George" would instead represent a distinct value, or *level*, for a factor object.  We can create a factor object using the `factor()` function. 
 
 ```{r}
 colors = c("red", "blue", "red", "red", "blue")
@@ -219,7 +219,13 @@ colors
 class(colors)
 ```
 
-Here the unique elements in the factor are called "levels".  There are only two levels `red` and `blue`.  There are five elements in our factor object. 
+Here the unique elements in the factor are called "levels".  There are only two levels `red` and `blue`, and there are five elements in our factor object. We can index factors in the same way we index a list.  
+
+```{r}
+# Return first element in the factor object 
+colors[1]
+```
+
 
 ## Data Frames
 
@@ -228,19 +234,16 @@ Like a matrix, a data frame is a rectangular array of values where each column i
 We can create a set of vectors of the same length and use the `data.frame()` function to make a data frame object.
 
 ```{r}
-age = c(25,37,23)
-gender = c("Male","Male","Female")
-married = c(FALSE, TRUE, FALSE)
-friends = data.frame(age, gender, married)
-friends
+age = c(1, 8, 10, 30, 31)
+gender = c("Female", "Female", "Male","Female","Male")
+married = c(FALSE, FALSE, FALSE, TRUE, TRUE)
+simpsons = data.frame(age, gender, married)
+simpsons
+class(simpsons)
 ```
 
 
-
-```{r, echo = F}
-library(xtable)
-options(xtable.comment = FALSE)
-```
+Data frames can be indexed using the same techniques as was done with matrices. 
 
 ## Other Object Types and the Global Environment
 
@@ -262,7 +265,7 @@ Every time we create an object we see that the Global Environment tab in the top
     + [Variables 1 | Types and Assignments](https://ucr.yuja.com/V/Video?v=2368642&node=8487537&a=1529691043&autoplay=1)
     + [Variables 2 | Nameing Conventions and Best Practices](https://ucr.yuja.com/V/Video?v=2368641&node=8487536&a=957339369&autoplay=1)
     + [Vectors 1 | Introduction](https://ucr.yuja.com/V/Video?v=2368859&node=8488053&a=283774152&autoplay=1)
-    + [Vectors 2 |Subsetting and Modifying](https://ucr.yuja.com/V/Video?v=2368857&node=8488051&a=1465899289&autoplay=1)
+    + [Vectors 2 | Subsetting and Modifying](https://ucr.yuja.com/V/Video?v=2368857&node=8488051&a=1465899289&autoplay=1)
     + [Vectors 3 | Vectorized Functions - Logical Comparisons](https://ucr.yuja.com/V/Video?v=2368856&node=8488050&a=612212822&autoplay=1)
     + [Matrices 1 | Introduction](https://ucr.yuja.com/V/Video?v=2368855&node=8488049&a=447596964&autoplay=1)
     + [Matrices 2 | Accessing Rows and Columns](https://ucr.yuja.com/V/Video?v=2368854&node=8488047&a=1529352108&autoplay=1)
@@ -289,23 +292,17 @@ catagorical
 ```
 
 
-Here, the hair color and gender are the examples of categorical data. To store such categorical data, R has a special data structure called factors. A factor is an ordered collection of items. The different values that the factor can take are called levels. In R, you can create a factor with the `factor()` function. 
+Here, the hair color and pet ownership are examples of categorical data. For the hair color variable we will typically want to store it as a factor, as opposed to a character vector. The different values that the factor can take are called levels. In R, you can create a factor with the `factor()` function. 
 
 ```{r}
 f = factor(hair)
 f
 ```
 
-
-
-
 A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, R displays the distinct levels below the factor. R keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The `levels()` function shows all the levels from a factor.
 
 ```{r}
-gender = c("Female", "Male", "Female", "Female", "Male", "Male", "Male")
-f = factor(gender)
 levels(f)
-f
 ```
 
 
@@ -344,7 +341,7 @@ In market research, it’s very common to use a five point scale to measure perc
 
 **strongly disagree < disagree < neutral < agree < strongly agree**.
 
-Such kind of data that is possible to place in order or scale is known as **Ordinal data**. In R, there is a special data type for ordinal data. This type is called ordered factors. To create an ordered factor, use the `factor()` function with the argument `ordered=TRUE`.  
+Such kind of data that is possible to place in order or scale is known as **ordinal data**. We can store ordinal data as an ordered factor. To create an ordered factor, use the `factor()` function with the argument `ordered=TRUE`.  
 
 ```{r}
 record = c("win", "tie", "loss", "tie", "loss", "win", "win")
@@ -399,7 +396,7 @@ table(f)
 
 ## Lists 
 
-A *list* is an array of objects. Unlike vectors and matrices, the objects can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the `list()` function.
+A *list* is an array of objects. Unlike vectors and matrices, the elements in a list can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the `list()` function.
 
 ```{r}
 lst = list(1, 2, 3)
@@ -571,23 +568,6 @@ str(lst)
 
 ```
 
-To remove a list element, select it by position or by name, and then assign `NULL` to it.
-
-```{r}
-# Remove element from list
-lst = list("a","b","c","d","e")
-lst[[3]] = NULL
-str(lst)
-```
-
-Using `[]`, you can delete more than one component at once.
-
-```{r}
-# Remove multiple elements at once
-lst = list("a","b","c","d","e")
-lst[1:4] = NULL
-str(lst)
-```
 
 By using a logical vector, you can remove list elements based on the condition.
 
