@@ -133,8 +133,37 @@ Welcome to STAT 107! This document will contain and outline of the course notes 
 \hypertarget{introduction-to-r}{%
 \chapter{Introduction to R}\label{introduction-to-r}}
 
-In this chapter we will learn the basics of the Rstudio interface, and operators that will be used throughout this course.
-This chapter was written by the help of \citet{Desharnais2020}.
+In this chapter we introduce R and RStudio, which you'll be using throughout this course to learn how to analyze real data and come to informed conclusions. To straighten out which is which: R is the name of the programming language itself, and RStudio is a convenient interface for using R.
+
+As the course progresses, you are encouraged to explore beyond what we discuss; a willingness to experiment will make you a much better scientist and researcher. Before we get to that stage, however, you need to build some competence in R. We begin with some of the fundamental building blocks of R and Rstudio: the interface, data types, variables, importing data, and plotting data.
+
+R is widely used by the scientific community as a no-cost alternative to expensive commercial software packages like SPSS and MATLAB. It is both a statistical software analysis system and a programming environment for developing scientific applications. Scientists routinely make available for free R programs they have developed that might be of use to others. Hundreds of packages can be downloaded for all types of scientific computing applications. This chapter was written by the help of \citet{Desharnais2020}.
+
+\hypertarget{download-and-install-r-and-rstudio}{%
+\section{Download and Install R and Rstudio}\label{download-and-install-r-and-rstudio}}
+
+To get started, you need to download both the R and Rstudio software. Both are available for free and there are versions for \emph{Linux}, \emph{Mac OS X}, and \emph{Windows}. It is suggested that you download R first and then Rstudio. R can be used without RStudio, but RStudio provides a convenient user interface and programming environment for R.
+
+The details for downloading and installing these software packages varies depending on your computer and operating system. You may need permission to install the software on your computer. The links below provide access to a mirror archive at UCLA for downloading R and the developer's site for downloading RStudio.
+
+\begin{itemize}
+\item
+  To download R, go to the url \url{https://ftp.osuosl.org/pub/cran}. Choose the binary distribution appropriate for your computer.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Windows} users will want to click on the link to ``Download R for Windows'' and choose ``install R for the first time,'' then ``Download R 3.5.2 for Windows.''
+  \item
+    \emph{Mac OS} users will want to click ``Download R for (Mac) OS X.'' Download the install package for version R-3.5.2 If you are using Mac OS X 10.9-10.10, install version R-3.3.3. If you are using OS X 10.6-10.8, install version R-3.2.1.
+  \item
+    \emph{Linux} users will want to click on the link to ``Download R for Linux.'' You will need to choose the version of Linux that corresponds to your installation. Versions are available for Debian, RedHat, SUSE, and Ubuntu.
+  \end{itemize}
+\item
+  For RStudio, use the url \url{https://www.rstudio.com/products/rstudio/download/}. Choose the binary distribution appropriate for your computer. Installers are provided for a variety of platforms.
+\item
+  For additional help please see this video: \href{https://ucr.yuja.com/V/Video?v=2365045\&node=8476457\&a=437885577\&autoplay=1}{Getting Started 1 \textbar{} How to Download and Install RStudio}
+\end{itemize}
 
 \hypertarget{the-rstudio-interface}{%
 \section{\texorpdfstring{The \textbf{RStudio} Interface}{The RStudio Interface}}\label{the-rstudio-interface}}
