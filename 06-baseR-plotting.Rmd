@@ -3,7 +3,10 @@
 ## Visualizing Quantitative Data 
 
 ```{r basic}
+getwd()
+library(knitr)
 plot(1:10)
+#knitr::include_graphics("docs/_main_files/figure-html/basic-1.png")
 ```
 
 
