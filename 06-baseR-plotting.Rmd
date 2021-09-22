@@ -42,6 +42,7 @@ hist(cdc$height)
 hist(cdc$weight)
 hist(cdc$age)
 ```
+## Histograms 
 
 The output appears in the *Plots* panel of *RStudio*. You can use the arrows to the left of the *Zoom* button the switch among the three plots.
 
