@@ -1,6 +1,6 @@
 # Base R Plotting
 
-## Visualizing Quantitative Data 
+## Histograms
 
 ```{r basic}
 getwd()
