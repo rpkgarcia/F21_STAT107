@@ -3437,33 +3437,8 @@ We can make \texttt{if-else} chains nested within each other.
 \hypertarget{base-r-plotting}{%
 \chapter{Base R Plotting}\label{base-r-plotting}}
 
-\hypertarget{visualizing-quantitative-data}{%
-\section{Visualizing Quantitative Data}\label{visualizing-quantitative-data}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getwd}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "/Users/rebeccakurtz-garcia/Documents/GitHub/F21_STAT107"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(knitr)}
-\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/basic-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#knitr::include_graphics("docs/_main_files/figure-html/basic-1.png")}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
 
 Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (\url{http://www.cdc.gov/brfss}) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.
 

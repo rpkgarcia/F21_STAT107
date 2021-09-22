@@ -34,7 +34,7 @@ ifelse
 nested-if-chains
 additional-resources-3
 base-r-plotting
-visualizing-quantitative-data
+histograms
 visualizing-qualitative-data
 packages
 namespace-collisions
@@ -51,4 +51,3 @@ apply-function
 lapply-function
 sapply-function
 tapply-function
-histograms
