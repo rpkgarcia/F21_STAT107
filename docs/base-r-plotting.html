@@ -259,12 +259,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 7</span> Base R Plotting</h1>
 <div id="visualizing-quantitative-data" class="section level2">
 <h2><span class="header-section-number">7.1</span> Visualizing Quantitative Data</h2>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="base-r-plotting.html#cb389-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/basic-1.png" width="672" /></p>
 <p>Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (<a href="http://www.cdc.gov/brfss" class="uri">http://www.cdc.gov/brfss</a>) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.</p>
 <p>We begin by loading the data set of 20,000 observations into the R workspace and examine some of its attributes.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="base-r-plotting.html#cb389-1"></a><span class="kw">source</span>(<span class="st">&quot;http://www.openintro.org/stat/data/cdc.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="base-r-plotting.html#cb390-1"></a><span class="kw">source</span>(<span class="st">&quot;http://www.openintro.org/stat/data/cdc.R&quot;</span>)</span></code></pre></div>
 <p>After a brief time, a new data frame cdc appears in the workspace. Each row representing a case (a person surveyed) and each column representing a variable.</p>
 <p>To get general information on each variable, use the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="base-r-plotting.html#cb390-1"></a><span class="kw">summary</span>(cdc)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="base-r-plotting.html#cb391-1"></a><span class="kw">summary</span>(cdc)</span></code></pre></div>
 <pre><code>##       genhlth        exerany          hlthplan         smoke100     
 ##  excellent:4657   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
 ##  very good:6972   1st Qu.:0.0000   1st Qu.:1.0000   1st Qu.:0.0000  
@@ -281,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  Max.   :93.00   Max.   :500.0   Max.   :680.0   Max.   :99.00</code></pre>
 <p>The variables <code>genhlth</code> and <code>gender</code> are character variables. The <code>summary()</code> command reports the frequencies of the unique values. The variables <code>exerany</code>, <code>hlthplan</code>, and <code>smoke100</code> are yes/no variables coded as 1=yes or 0=no. They represent the existence or absence or regular exercise, the presence of a healthcare plan, and whether or not the person smoked 100 cigarettes in their lifetime. The means are the proportion of “yes” responses. The variables <code>height</code>, <code>weight</code>, <code>wtdesire</code>, and <code>age</code> are numeric variables. The <code>summary()</code> command gives information on the means, medians, quartiles and range of values.</p>
 <p>Since this is a very large data set, we wouldn’t want to list all the data. We can use the functions <code>head()</code> and <code>tail()</code> to list the first and last few rows.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="base-r-plotting.html#cb392-1"></a><span class="kw">head</span>(cdc)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="base-r-plotting.html#cb393-1"></a><span class="kw">head</span>(cdc)</span></code></pre></div>
 <pre><code>##     genhlth exerany hlthplan smoke100 height weight wtdesire age gender
 ## 1      good       0        1        0     70    175      175  77      m
 ## 2      good       0        1        1     64    125      115  33      f
@@ -289,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      good       1        1        0     66    132      124  42      f
 ## 5 very good       0        1        0     61    150      130  55      f
 ## 6 very good       1        1        0     64    114      114  55      f</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="base-r-plotting.html#cb394-1"></a><span class="kw">tail</span>(cdc)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="base-r-plotting.html#cb395-1"></a><span class="kw">tail</span>(cdc)</span></code></pre></div>
 <pre><code>##         genhlth exerany hlthplan smoke100 height weight wtdesire age gender
 ## 19995      good       0        1        1     69    224      224  73      m
 ## 19996      good       1        1        0     66    215      140  23      f
@@ -298,21 +300,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 19999      good       1        1        0     67    165      165  81      f
 ## 20000      good       1        1        1     69    170      165  83      m</code></pre>
 <p>We can look at graphical representations of this data.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="base-r-plotting.html#cb396-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="base-r-plotting.html#cb397-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="base-r-plotting.html#cb397-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="base-r-plotting.html#cb398-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-127-2.png" width="672" /></p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="base-r-plotting.html#cb398-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="base-r-plotting.html#cb399-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>age)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-127-3.png" width="672" /></p>
 <p>The output appears in the <em>Plots</em> panel of <em>RStudio</em>. You can use the arrows to the left of the <em>Zoom</em> button the switch among the three plots.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="base-r-plotting.html#cb399-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="base-r-plotting.html#cb400-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.</p>
 <p>Use <code>col</code> argument to change the colors used for the bars. By using the <code>border</code> argument, you can even change the color used for the border of the bars.</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="base-r-plotting.html#cb400-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,</span>
-<span id="cb400-2"><a href="base-r-plotting.html#cb400-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>, </span>
-<span id="cb400-3"><a href="base-r-plotting.html#cb400-3"></a>     <span class="dt">border =</span> <span class="st">&quot;mediumpurple4&quot;</span>,</span>
-<span id="cb400-4"><a href="base-r-plotting.html#cb400-4"></a>     <span class="dt">col =</span> <span class="st">&quot;mediumpurple1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="base-r-plotting.html#cb401-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,</span>
+<span id="cb401-2"><a href="base-r-plotting.html#cb401-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>, </span>
+<span id="cb401-3"><a href="base-r-plotting.html#cb401-3"></a>     <span class="dt">border =</span> <span class="st">&quot;mediumpurple4&quot;</span>,</span>
+<span id="cb401-4"><a href="base-r-plotting.html#cb401-4"></a>     <span class="dt">col =</span> <span class="st">&quot;mediumpurple1&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>There are several ways we can add <strong>colors</strong> to <code>R</code>.</p>
 <ul>
@@ -322,70 +324,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Using a Color Palette</strong>: R programming offers 5 built in color palettes which can be used to quickly generate color vectors of desired length. They are: <code>rainbow()</code>, <code>heat.colors()</code>, <code>terrain.colors()</code>, <code>topo.colors()</code> and <code>cm.colors()</code>. We pass in the number of colors that we want</p></li>
 </ul>
 <p>Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the <code>abline()</code> function.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="base-r-plotting.html#cb401-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,</span>
-<span id="cb401-2"><a href="base-r-plotting.html#cb401-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>, </span>
-<span id="cb401-3"><a href="base-r-plotting.html#cb401-3"></a>     <span class="dt">border =</span> <span class="st">&quot;mediumpurple4&quot;</span>,</span>
-<span id="cb401-4"><a href="base-r-plotting.html#cb401-4"></a>     <span class="dt">col =</span> <span class="st">&quot;mediumpurple1&quot;</span>)</span>
-<span id="cb401-5"><a href="base-r-plotting.html#cb401-5"></a></span>
-<span id="cb401-6"><a href="base-r-plotting.html#cb401-6"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(cdc<span class="op">$</span>weight),</span>
-<span id="cb401-7"><a href="base-r-plotting.html#cb401-7"></a>       <span class="dt">col=</span><span class="st">&quot;mediumblue&quot;</span>,</span>
-<span id="cb401-8"><a href="base-r-plotting.html#cb401-8"></a>       <span class="dt">lty=</span><span class="dv">2</span>,</span>
-<span id="cb401-9"><a href="base-r-plotting.html#cb401-9"></a>       <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="base-r-plotting.html#cb402-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>weight, <span class="dt">breaks=</span><span class="dv">20</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Weight&quot;</span>,</span>
+<span id="cb402-2"><a href="base-r-plotting.html#cb402-2"></a>     <span class="dt">xlab=</span><span class="st">&quot;Weight (kg)&quot;</span>, </span>
+<span id="cb402-3"><a href="base-r-plotting.html#cb402-3"></a>     <span class="dt">border =</span> <span class="st">&quot;mediumpurple4&quot;</span>,</span>
+<span id="cb402-4"><a href="base-r-plotting.html#cb402-4"></a>     <span class="dt">col =</span> <span class="st">&quot;mediumpurple1&quot;</span>)</span>
+<span id="cb402-5"><a href="base-r-plotting.html#cb402-5"></a></span>
+<span id="cb402-6"><a href="base-r-plotting.html#cb402-6"></a><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(cdc<span class="op">$</span>weight),</span>
+<span id="cb402-7"><a href="base-r-plotting.html#cb402-7"></a>       <span class="dt">col=</span><span class="st">&quot;mediumblue&quot;</span>,</span>
+<span id="cb402-8"><a href="base-r-plotting.html#cb402-8"></a>       <span class="dt">lty=</span><span class="dv">2</span>,</span>
+<span id="cb402-9"><a href="base-r-plotting.html#cb402-9"></a>       <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <p>You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="base-r-plotting.html#cb402-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>],</span>
-<span id="cb402-2"><a href="base-r-plotting.html#cb402-2"></a>     <span class="dt">col=</span><span class="st">&quot;dodgerblue3&quot;</span>,</span>
-<span id="cb402-3"><a href="base-r-plotting.html#cb402-3"></a>     <span class="dt">labels=</span><span class="ot">TRUE</span>, </span>
-<span id="cb402-4"><a href="base-r-plotting.html#cb402-4"></a>     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), </span>
-<span id="cb402-5"><a href="base-r-plotting.html#cb402-5"></a>     <span class="dt">breaks =</span> <span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="base-r-plotting.html#cb403-1"></a><span class="kw">hist</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>],</span>
+<span id="cb403-2"><a href="base-r-plotting.html#cb403-2"></a>     <span class="dt">col=</span><span class="st">&quot;dodgerblue3&quot;</span>,</span>
+<span id="cb403-3"><a href="base-r-plotting.html#cb403-3"></a>     <span class="dt">labels=</span><span class="ot">TRUE</span>, </span>
+<span id="cb403-4"><a href="base-r-plotting.html#cb403-4"></a>     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), </span>
+<span id="cb403-5"><a href="base-r-plotting.html#cb403-5"></a>     <span class="dt">breaks =</span> <span class="dv">18</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the <code>add</code> argument of the second histogram to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="base-r-plotting.html#cb403-1"></a><span class="co"># random numbers</span></span>
-<span id="cb403-2"><a href="base-r-plotting.html#cb403-2"></a>h1 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">6</span>)</span>
-<span id="cb403-3"><a href="base-r-plotting.html#cb403-3"></a>h2 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">4</span>)</span>
-<span id="cb403-4"><a href="base-r-plotting.html#cb403-4"></a></span>
-<span id="cb403-5"><a href="base-r-plotting.html#cb403-5"></a><span class="co"># Overlay two histograms</span></span>
-<span id="cb403-6"><a href="base-r-plotting.html#cb403-6"></a><span class="kw">hist</span>(h1,</span>
-<span id="cb403-7"><a href="base-r-plotting.html#cb403-7"></a>     <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.25</span>))</span>
-<span id="cb403-8"><a href="base-r-plotting.html#cb403-8"></a><span class="kw">hist</span>(h2,</span>
-<span id="cb403-9"><a href="base-r-plotting.html#cb403-9"></a>     <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.25</span>),</span>
-<span id="cb403-10"><a href="base-r-plotting.html#cb403-10"></a>     <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="base-r-plotting.html#cb404-1"></a><span class="co"># random numbers</span></span>
+<span id="cb404-2"><a href="base-r-plotting.html#cb404-2"></a>h1 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">6</span>)</span>
+<span id="cb404-3"><a href="base-r-plotting.html#cb404-3"></a>h2 =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">4</span>)</span>
+<span id="cb404-4"><a href="base-r-plotting.html#cb404-4"></a></span>
+<span id="cb404-5"><a href="base-r-plotting.html#cb404-5"></a><span class="co"># Overlay two histograms</span></span>
+<span id="cb404-6"><a href="base-r-plotting.html#cb404-6"></a><span class="kw">hist</span>(h1,</span>
+<span id="cb404-7"><a href="base-r-plotting.html#cb404-7"></a>     <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.25</span>))</span>
+<span id="cb404-8"><a href="base-r-plotting.html#cb404-8"></a><span class="kw">hist</span>(h2,</span>
+<span id="cb404-9"><a href="base-r-plotting.html#cb404-9"></a>     <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.25</span>),</span>
+<span id="cb404-10"><a href="base-r-plotting.html#cb404-10"></a>     <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>For more options, look up “hist” in the <em>Help</em> panel of <em>RStudio</em>.</p>
 <p>Let’s produce a boxplot for the first 1000 values of the height variable.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="base-r-plotting.html#cb404-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="base-r-plotting.html#cb405-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>The line in the center is the median. The bottom and top of the box are drawn at the first (<span class="math inline">\(Q_1\)</span>) and third (<span class="math inline">\(Q_3\)</span>) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (<span class="math inline">\(Q_3-Q_1\)</span>). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, <span class="math inline">\(Q3 +1.5(Q_3-Q_1)\)</span>, or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, <span class="math inline">\(Q1-1.5(Q_3-Q_1)\)</span>, or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="base-r-plotting.html#cb405-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>] <span class="op">~</span><span class="st"> </span>cdc<span class="op">$</span>gender[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="base-r-plotting.html#cb406-1"></a><span class="kw">boxplot</span>(cdc<span class="op">$</span>height[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>] <span class="op">~</span><span class="st"> </span>cdc<span class="op">$</span>gender[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 </div>
 <div id="visualizing-qualitative-data" class="section level2">
 <h2><span class="header-section-number">7.2</span> Visualizing Qualitative Data</h2>
 <p>We will now look at some of the qualitative data that are not numbers, but categories or groups. The <code>table()</code> function can be used to tabulate categorical data. The <code>genhlth</code> variable has five categories, we can use <code>table()</code> to find the frequencies.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="base-r-plotting.html#cb406-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="base-r-plotting.html#cb407-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth)</span></code></pre></div>
 <pre><code>## 
 ## excellent very good      good      fair      poor 
 ##      4657      6972      5675      2019       677</code></pre>
 <p>Since the sample size is 20,000, we can divide by n to get proportions.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="base-r-plotting.html#cb408-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="base-r-plotting.html#cb409-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span></span></code></pre></div>
 <pre><code>## 
 ## excellent very good      good      fair      poor 
 ##   0.23285   0.34860   0.28375   0.10095   0.03385</code></pre>
 <p>Pie charts are also used for categorical data. Options are also available for the <code>pie()</code> function.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="base-r-plotting.html#cb410-1"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="base-r-plotting.html#cb411-1"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Options are also available for the pie() function.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="base-r-plotting.html#cb411-1"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;pink&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb411-2"><a href="base-r-plotting.html#cb411-2"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>, <span class="dt">col =</span> colors, <span class="dt">main =</span> <span class="st">&quot;General Health&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="base-r-plotting.html#cb412-1"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;pink&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb412-2"><a href="base-r-plotting.html#cb412-2"></a><span class="kw">pie</span>(<span class="kw">table</span>(cdc<span class="op">$</span>genhlth)<span class="op">/</span><span class="dv">20000</span>, <span class="dt">col =</span> colors, <span class="dt">main =</span> <span class="st">&quot;General Health&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>The <code>table()</code> function can also be used to cross-tabulate categorical data. Let’s create a frequency table of smokers and non-smokers for both genders.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="base-r-plotting.html#cb412-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>smoke100, cdc<span class="op">$</span>gender)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="base-r-plotting.html#cb413-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>smoke100, cdc<span class="op">$</span>gender)</span></code></pre></div>
 <pre><code>##    
 ##        m    f
 ##   0 4547 6012
 ##   1 5022 4419</code></pre>
 <p>The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="base-r-plotting.html#cb414-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth, cdc<span class="op">$</span>gender)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="base-r-plotting.html#cb415-1"></a><span class="kw">table</span>(cdc<span class="op">$</span>genhlth, cdc<span class="op">$</span>gender)</span></code></pre></div>
 <pre><code>##            
 ##                m    f
 ##   excellent 2298 2359
