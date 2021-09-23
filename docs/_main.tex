@@ -681,12 +681,12 @@ The majority of the time we can use these two assignment operators above interch
 \hypertarget{introduction-to-r-objects}{%
 \chapter{Introduction to R Objects}\label{introduction-to-r-objects}}
 
-At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common types that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout this document.
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common types that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout the course.
 
 \hypertarget{atomic-objects}{%
 \section{Atomic Objects}\label{atomic-objects}}
 
-R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. For our class we will not need the \texttt{complex} type which stores complex numbers, and in practice \texttt{raw} is rarely used. We will concentrate on the remaining four types. Unlike other object-oriented languages we do not need to specify what type of object we are creating when we create it. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function. function.
+R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. For our class we will not need the \texttt{complex} type which stores complex numbers, and in practice \texttt{raw} is rarely used. We will concentrate on the remaining four types. Unlike other object-oriented languages we do not need to specify what type of object we are creating when we create it. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function.
 
 \hypertarget{numeric}{%
 \subsection*{Numeric}\label{numeric}}
@@ -3437,8 +3437,8 @@ We can make \texttt{if-else} chains nested within each other.
 \hypertarget{base-r-plotting}{%
 \chapter{Base R Plotting}\label{base-r-plotting}}
 
-\hypertarget{histograms}{%
-\section{Histograms}\label{histograms}}
+\hypertarget{load-a-big-data-set}{%
+\section{Load A Big Data Set}\label{load-a-big-data-set}}
 
 Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (\url{http://www.cdc.gov/brfss}) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.
 
@@ -3513,10 +3513,19 @@ Since this is a very large data set, we wouldn't want to list all the data. We c
 ## 20000      good       1        1        1     69    170      165  83      m
 \end{verbatim}
 
-We can look at graphical representations of this data.
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
+
+Histograms are one of the fundamental ways that we can represent a data set. In a histogram we typically have the frequency or proportion on the y-axis, and the x-axis is segmented into mutually exclusive sections. The height of the bins corresponds to amount of observations that fall within a specific range. We can create a histogram using the \texttt{hist()} function.
+
+Most of the basic R plots have default settings. For example, the x-axis, y-axis, number of bins, titles, and labels all change depending on the vector supplied into the function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Look at the help file }
+\NormalTok{?hist }
+
+
 \KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
 \end{Highlighting}
 \end{Shaded}
@@ -3538,19 +3547,29 @@ We can look at graphical representations of this data.
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-127-3.pdf}
-\#\# Histograms
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
+There are several settings in base R plots that are similar. For example, in base R plots typically we can change the title, x-axis label, and y-axis label with \texttt{main}, \texttt{xlab}, and \texttt{ylab} arguments.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
-We specified that we want 20 cells for the histogram, added a main title, and title for the x-axis.
+There are also function specific arguments. For example, we can control the number of bins to create.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{,}
+     \DataTypeTok{breaks =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 Use \texttt{col} argument to change the colors used for the bars. By using the \texttt{border} argument, you can even change the color used for the border of the bars.
 
@@ -3563,7 +3582,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -3577,24 +3596,6 @@ There are several ways we can add \textbf{colors} to \texttt{R}.
 \item
   \textbf{Using a Color Palette}: R programming offers 5 built in color palettes which can be used to quickly generate color vectors of desired length. They are: \texttt{rainbow()}, \texttt{heat.colors()}, \texttt{terrain.colors()}, \texttt{topo.colors()} and \texttt{cm.colors()}. We pass in the number of colors that we want
 \end{itemize}
-
-Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
-     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
-     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
-     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
-
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
-       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
-       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
-       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
 
@@ -3629,7 +3630,53 @@ Often you want to compare the distributions of different variables within your d
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
+
+Notice that the \texttt{abline()} function had arguments \texttt{lty}, and \texttt{lwd}. The description for these arguments is in the \texttt{par} help file which contains a master set of graphical parameter arguments. In this file we can also see that \texttt{main}, \texttt{xlab}, and \texttt{ylab} are also listed.
+
+The \texttt{par} file contains graphical arguments that are common in base R graphics functions, and it is a function that can adjust global plotting window parameters. For example, suppose we wish to have multiple plots on plotting window. We can control this with \texttt{mfrow}. When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Change plot window to have 3 columns and 1 row of plots}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+
+\CommentTok{# Three plots in one window }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Revert back to default }
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
+
+\hypertarget{boxplot}{%
+\section{Boxplot}\label{boxplot}}
 
 Let's produce a boxplot for the first 1000 values of the height variable.
 
@@ -3639,9 +3686,11 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
-The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. One can use boxplots to compare different groups.
+The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data.
+
+One can use boxplots to compare different groups using \texttt{\textasciitilde{}} character. On the right side of \texttt{\textasciitilde{}} is the numeric variable, and the left side of \texttt{\textasciitilde{}} is a grouping variable (character, logical, factor).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3649,10 +3698,13 @@ The line in the center is the median. The bottom and top of the box are drawn at
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
-\hypertarget{visualizing-qualitative-data}{%
-\section{Visualizing Qualitative Data}\label{visualizing-qualitative-data}}
+\hypertarget{scatter-plot}{%
+\section{Scatter Plot}\label{scatter-plot}}
+
+\hypertarget{pie-charts}{%
+\section{Pie Charts}\label{pie-charts}}
 
 We will now look at some of the qualitative data that are not numbers, but categories or groups. The \texttt{table()} function can be used to tabulate categorical data. The \texttt{genhlth} variable has five categories, we can use \texttt{table()} to find the frequencies.
 
@@ -3690,7 +3742,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -3701,40 +3753,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
-
-The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table of smokers and non-smokers for both genders.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{smoke100, cdc}\OperatorTok{$}\NormalTok{gender)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    
-##        m    f
-##   0 4547 6012
-##   1 5022 4419
-\end{verbatim}
-
-The zero is for nonsmokers and the one is for smokers. We can also create a frequency table of general health classifications for both genders.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth, cdc}\OperatorTok{$}\NormalTok{gender)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##            
-##                m    f
-##   excellent 2298 2359
-##   very good 3382 3590
-##   good      2722 2953
-##   fair       884 1135
-##   poor       283  394
-\end{verbatim}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1.pdf}
 
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}
@@ -4378,112 +4397,6 @@ Description of the required \texttt{sapply()} arguments:
 \begin{verbatim}
 ##  F  M 
 ## 23 20
-\end{verbatim}
-
-\hypertarget{practice-problems}{%
-\section*{Practice Problems}\label{practice-problems}}
-\addcontentsline{toc}{section}{Practice Problems}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\tightlist
-\item
-  Using one of the apply functions (\texttt{apply(),\ lapply,\ sapply(),} or \texttt{tapply()}), recreate the results that the \texttt{summary()} function produces for the built-in data set \texttt{mtcars}.
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(mtcars)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
-##       drat             wt             qsec             vs        
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
-##        am              gear            carb      
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
-##  Median :0.0000   Median :4.000   Median :2.000  
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
-##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
-\end{verbatim}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Retry Homework 4 using \emph{apply(), lapply, sapply(),} and \emph{tapply()} functions.
-\end{enumerate}
-
-\newpage
-
-\textbf{Answer 1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_summary =}\StringTok{ }\KeywordTok{apply}\NormalTok{(mtcars, }\DecValTok{2}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(column)\{}
-  
-  \CommentTok{# Min}
-\NormalTok{  the_min =}\StringTok{ }\KeywordTok{min}\NormalTok{(column)}
-  
-  \CommentTok{# First Qurtile}
-\NormalTok{  the_Q1 =}\StringTok{ }\KeywordTok{quantile}\NormalTok{(column, }\FloatTok{.25}\NormalTok{)}
-  
-  \CommentTok{# Median}
-\NormalTok{  the_median =}\StringTok{ }\KeywordTok{median}\NormalTok{(column)}
-  
-  \CommentTok{# Mean }
-\NormalTok{  the_mean =}\StringTok{ }\KeywordTok{mean}\NormalTok{(column)}
-  
-  \CommentTok{# Third Quartile}
-\NormalTok{  the_Q3 =}\StringTok{ }\KeywordTok{quantile}\NormalTok{(column, }\FloatTok{.75}\NormalTok{)}
-  
-  \CommentTok{# Max}
-\NormalTok{  the_max =}\StringTok{ }\KeywordTok{max}\NormalTok{(column)}
-  
-  \CommentTok{# Return values}
-\NormalTok{  return_me =}\StringTok{ }\KeywordTok{c}\NormalTok{(the_min, the_Q1, the_median,}
-\NormalTok{                the_mean, the_Q3, the_max)}
-  \KeywordTok{names}\NormalTok{(return_me) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Min.:"}\NormalTok{, }\StringTok{"1st Qu.:"}\NormalTok{, }
-                       \StringTok{"Median:"}\NormalTok{, }\StringTok{"Mean:"}\NormalTok{, }
-                       \StringTok{"3rd Qu.:"}\NormalTok{, }\StringTok{"Max.:"}\NormalTok{)}
-  
-  \KeywordTok{return}\NormalTok{(return_me)}
-\NormalTok{\})}
-
-\NormalTok{my_summary}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##               mpg    cyl     disp       hp     drat      wt     qsec     vs
-## Min.:    10.40000 4.0000  71.1000  52.0000 2.760000 1.51300 14.50000 0.0000
-## 1st Qu.: 15.42500 4.0000 120.8250  96.5000 3.080000 2.58125 16.89250 0.0000
-## Median:  19.20000 6.0000 196.3000 123.0000 3.695000 3.32500 17.71000 0.0000
-## Mean:    20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375
-## 3rd Qu.: 22.80000 8.0000 326.0000 180.0000 3.920000 3.61000 18.90000 1.0000
-## Max.:    33.90000 8.0000 472.0000 335.0000 4.930000 5.42400 22.90000 1.0000
-##               am   gear   carb
-## Min.:    0.00000 3.0000 1.0000
-## 1st Qu.: 0.00000 3.0000 2.0000
-## Median:  0.00000 4.0000 2.0000
-## Mean:    0.40625 3.6875 2.8125
-## 3rd Qu.: 1.00000 4.0000 4.0000
-## Max.:    1.00000 5.0000 8.0000
 \end{verbatim}
 
   \bibliography{book.bib,packages.bib}

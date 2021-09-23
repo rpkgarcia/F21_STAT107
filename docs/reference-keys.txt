@@ -34,8 +34,11 @@ ifelse
 nested-if-chains
 additional-resources-3
 base-r-plotting
+load-a-big-data-set
 histograms
-visualizing-qualitative-data
+boxplot
+scatter-plot
+pie-charts
 packages
 namespace-collisions
 loops
@@ -51,4 +54,3 @@ apply-function
 lapply-function
 sapply-function
 tapply-function
-histograms-1
