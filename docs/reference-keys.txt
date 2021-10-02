@@ -1,4 +1,5 @@
 introduction-to-r
+download-and-install-r-and-rstudio
 the-rstudio-interface
 comments
 operators
@@ -33,8 +34,11 @@ ifelse
 nested-if-chains
 additional-resources-3
 base-r-plotting
-visualizing-quantitative-data
-visualizing-qualitative-data
+load-a-big-data-set
+histograms
+boxplot
+scatter-plot
+pie-charts
 packages
 namespace-collisions
 loops
