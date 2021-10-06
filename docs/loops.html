@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-09-22" />
+<meta name="date" content="2021-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,60 +265,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A <code>while</code> loop is used when you want to perform a task indefinitely, until a particular condition is met. It’s a condition-controlled loop.</p>
 <p><img src="images/WhileLoop.png" width="522" style="display: block; margin: auto;" /></p>
 <p>The loop will continue until the condition is <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="loops.html#cb425-1"></a>x =<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb425-2"><a href="loops.html#cb425-2"></a></span>
-<span id="cb425-3"><a href="loops.html#cb425-3"></a><span class="co"># If statement is true, keep running the loop </span></span>
-<span id="cb425-4"><a href="loops.html#cb425-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
-<span id="cb425-5"><a href="loops.html#cb425-5"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb425-6"><a href="loops.html#cb425-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb425-7"><a href="loops.html#cb425-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="loops.html#cb427-1"></a>x =<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb427-2"><a href="loops.html#cb427-2"></a></span>
+<span id="cb427-3"><a href="loops.html#cb427-3"></a><span class="co"># If statement is true, keep running the loop </span></span>
+<span id="cb427-4"><a href="loops.html#cb427-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
+<span id="cb427-5"><a href="loops.html#cb427-5"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb427-6"><a href="loops.html#cb427-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb427-7"><a href="loops.html#cb427-7"></a>}</span></code></pre></div>
 <pre><code>## [1] 5
 ## [1] 4
 ## [1] 3
 ## [1] 2
 ## [1] 1</code></pre>
 <p>If the condition is false at the start, the while loop will never be executed at all.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="loops.html#cb427-1"></a>x =<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb427-2"><a href="loops.html#cb427-2"></a></span>
-<span id="cb427-3"><a href="loops.html#cb427-3"></a><span class="co"># If statement starts as TRUE,  the loop will never run </span></span>
-<span id="cb427-4"><a href="loops.html#cb427-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
-<span id="cb427-5"><a href="loops.html#cb427-5"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb427-6"><a href="loops.html#cb427-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb427-7"><a href="loops.html#cb427-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="loops.html#cb429-1"></a>x =<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb429-2"><a href="loops.html#cb429-2"></a></span>
+<span id="cb429-3"><a href="loops.html#cb429-3"></a><span class="co"># If statement starts as TRUE,  the loop will never run </span></span>
+<span id="cb429-4"><a href="loops.html#cb429-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
+<span id="cb429-5"><a href="loops.html#cb429-5"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb429-6"><a href="loops.html#cb429-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb429-7"><a href="loops.html#cb429-7"></a>}</span></code></pre></div>
 </div>
 <div id="for-loops" class="section level2">
 <h2><span class="header-section-number">9.2</span> For Loops</h2>
 <p>The <code>for</code> statement in R is a bit different from what you usually use in other programming languages. Rather than iterating over a numeric progression, R’s <code>for</code> statement iterates over the items of a vector or a list. The items are iterated in the order that they appear in the vector.</p>
 <p><img src="images/ForLoop.png" width="580" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="loops.html#cb428-1"></a><span class="co"># Iterate through a vector</span></span>
-<span id="cb428-2"><a href="loops.html#cb428-2"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>)</span>
-<span id="cb428-3"><a href="loops.html#cb428-3"></a></span>
-<span id="cb428-4"><a href="loops.html#cb428-4"></a><span class="cf">for</span> (x <span class="cf">in</span> colors) {</span>
-<span id="cb428-5"><a href="loops.html#cb428-5"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb428-6"><a href="loops.html#cb428-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="loops.html#cb430-1"></a><span class="co"># Iterate through a vector</span></span>
+<span id="cb430-2"><a href="loops.html#cb430-2"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>)</span>
+<span id="cb430-3"><a href="loops.html#cb430-3"></a></span>
+<span id="cb430-4"><a href="loops.html#cb430-4"></a><span class="cf">for</span> (x <span class="cf">in</span> colors) {</span>
+<span id="cb430-5"><a href="loops.html#cb430-5"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb430-6"><a href="loops.html#cb430-6"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;red&quot;
 ## [1] &quot;green&quot;
 ## [1] &quot;blue&quot;
 ## [1] &quot;yellow&quot;</code></pre>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="loops.html#cb430-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="fl">3.14</span>, <span class="st">&quot;Hi&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb430-2"><a href="loops.html#cb430-2"></a></span>
-<span id="cb430-3"><a href="loops.html#cb430-3"></a><span class="cf">for</span> (i <span class="cf">in</span> lst) {</span>
-<span id="cb430-4"><a href="loops.html#cb430-4"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb430-5"><a href="loops.html#cb430-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops.html#cb432-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="fl">3.14</span>, <span class="st">&quot;Hi&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb432-2"><a href="loops.html#cb432-2"></a></span>
+<span id="cb432-3"><a href="loops.html#cb432-3"></a><span class="cf">for</span> (i <span class="cf">in</span> lst) {</span>
+<span id="cb432-4"><a href="loops.html#cb432-4"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb432-5"><a href="loops.html#cb432-5"></a>}</span></code></pre></div>
 <pre><code>## [1] 3.14
 ## [1] &quot;Hi&quot;
 ## [1] 1 2 3</code></pre>
 <p>If you need to execute a group of statements for a specified number of times, use sequence operator : or built-in function <code>seq()</code>.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops.html#cb432-1"></a><span class="co"># Print &#39;Hello!&#39; 3 times</span></span>
-<span id="cb432-2"><a href="loops.html#cb432-2"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
-<span id="cb432-3"><a href="loops.html#cb432-3"></a>  <span class="kw">print</span>(<span class="st">&quot;Hello!&quot;</span>)</span>
-<span id="cb432-4"><a href="loops.html#cb432-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="loops.html#cb434-1"></a><span class="co"># Print &#39;Hello!&#39; 3 times</span></span>
+<span id="cb434-2"><a href="loops.html#cb434-2"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb434-3"><a href="loops.html#cb434-3"></a>  <span class="kw">print</span>(<span class="st">&quot;Hello!&quot;</span>)</span>
+<span id="cb434-4"><a href="loops.html#cb434-4"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Hello!&quot;
 ## [1] &quot;Hello!&quot;
 ## [1] &quot;Hello!&quot;</code></pre>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="loops.html#cb434-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">2</span>,<span class="dt">to=</span><span class="dv">8</span>,<span class="dt">by=</span><span class="dv">2</span>)) {</span>
-<span id="cb434-2"><a href="loops.html#cb434-2"></a>  <span class="kw">print</span>(x<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb434-3"><a href="loops.html#cb434-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="loops.html#cb436-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">2</span>,<span class="dt">to=</span><span class="dv">8</span>,<span class="dt">by=</span><span class="dv">2</span>)) {</span>
+<span id="cb436-2"><a href="loops.html#cb436-2"></a>  <span class="kw">print</span>(x<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb436-3"><a href="loops.html#cb436-3"></a>}</span></code></pre></div>
 <pre><code>## [1] 4
 ## [1] 16
 ## [1] 36
@@ -327,32 +327,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="break" class="section level2">
 <h2><span class="header-section-number">9.3</span> Break</h2>
 <p>The <code>break</code> statement is used to exit the loop immediately. It simply jumps out of the loop altogether, and the program continues after the loop.</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="loops.html#cb436-1"></a>x =<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb436-2"><a href="loops.html#cb436-2"></a></span>
-<span id="cb436-3"><a href="loops.html#cb436-3"></a><span class="co"># If statement starts as TRUE,  the loop will never run </span></span>
-<span id="cb436-4"><a href="loops.html#cb436-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
-<span id="cb436-5"><a href="loops.html#cb436-5"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb436-6"><a href="loops.html#cb436-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb436-7"><a href="loops.html#cb436-7"></a>  </span>
-<span id="cb436-8"><a href="loops.html#cb436-8"></a>  <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>){</span>
-<span id="cb436-9"><a href="loops.html#cb436-9"></a>    <span class="kw">print</span>(<span class="st">&quot;Entered IF statement, stop loop&quot;</span>)</span>
-<span id="cb436-10"><a href="loops.html#cb436-10"></a>    <span class="cf">break</span> </span>
-<span id="cb436-11"><a href="loops.html#cb436-11"></a>  }</span>
-<span id="cb436-12"><a href="loops.html#cb436-12"></a>  </span>
-<span id="cb436-13"><a href="loops.html#cb436-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="loops.html#cb438-1"></a>x =<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb438-2"><a href="loops.html#cb438-2"></a></span>
+<span id="cb438-3"><a href="loops.html#cb438-3"></a><span class="co"># If statement starts as TRUE,  the loop will never run </span></span>
+<span id="cb438-4"><a href="loops.html#cb438-4"></a><span class="cf">while</span> (x <span class="op">!=</span><span class="st"> </span><span class="dv">0</span> ) {</span>
+<span id="cb438-5"><a href="loops.html#cb438-5"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb438-6"><a href="loops.html#cb438-6"></a>  x =<span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb438-7"><a href="loops.html#cb438-7"></a>  </span>
+<span id="cb438-8"><a href="loops.html#cb438-8"></a>  <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>){</span>
+<span id="cb438-9"><a href="loops.html#cb438-9"></a>    <span class="kw">print</span>(<span class="st">&quot;Entered IF statement, stop loop&quot;</span>)</span>
+<span id="cb438-10"><a href="loops.html#cb438-10"></a>    <span class="cf">break</span> </span>
+<span id="cb438-11"><a href="loops.html#cb438-11"></a>  }</span>
+<span id="cb438-12"><a href="loops.html#cb438-12"></a>  </span>
+<span id="cb438-13"><a href="loops.html#cb438-13"></a>}</span></code></pre></div>
 <pre><code>## [1] 5
 ## [1] 4
 ## [1] 3
 ## [1] &quot;Entered IF statement, stop loop&quot;</code></pre>
 <p><strong>If not given an adequate stopping criteria or break statement the loop will continue forever.</strong> For example, if we started the above examples at <code>x = -2</code>. The <code>break</code> statement is particularly important for the <code>while</code> loop.</p>
 <p>The <code>break</code> statement can also be used in a <code>for</code> loop. It simply jumps out of the loop altogether, and the program continues after the loop.</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="loops.html#cb438-1"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>)</span>
-<span id="cb438-2"><a href="loops.html#cb438-2"></a><span class="cf">for</span> (x <span class="cf">in</span> colors) {</span>
-<span id="cb438-3"><a href="loops.html#cb438-3"></a>  <span class="cf">if</span> (x <span class="op">==</span><span class="st"> &quot;blue&quot;</span>){</span>
-<span id="cb438-4"><a href="loops.html#cb438-4"></a>       <span class="cf">break</span> </span>
-<span id="cb438-5"><a href="loops.html#cb438-5"></a>  }</span>
-<span id="cb438-6"><a href="loops.html#cb438-6"></a>  <span class="kw">print</span>(x)</span>
-<span id="cb438-7"><a href="loops.html#cb438-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="loops.html#cb440-1"></a>colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>)</span>
+<span id="cb440-2"><a href="loops.html#cb440-2"></a><span class="cf">for</span> (x <span class="cf">in</span> colors) {</span>
+<span id="cb440-3"><a href="loops.html#cb440-3"></a>  <span class="cf">if</span> (x <span class="op">==</span><span class="st"> &quot;blue&quot;</span>){</span>
+<span id="cb440-4"><a href="loops.html#cb440-4"></a>       <span class="cf">break</span> </span>
+<span id="cb440-5"><a href="loops.html#cb440-5"></a>  }</span>
+<span id="cb440-6"><a href="loops.html#cb440-6"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb440-7"><a href="loops.html#cb440-7"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;red&quot;
 ## [1] &quot;green&quot;</code></pre>
 <p>The <code>for</code> loops do not have the same risk of “running forever”, like <code>while</code> loops have.</p>
@@ -360,16 +360,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="next" class="section level2">
 <h2><span class="header-section-number">9.4</span> Next</h2>
 <p>We can also use the <code>next</code> command in both <code>for</code> loops and <code>while</code> loops in order to skip executing a command.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="loops.html#cb440-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</span>
-<span id="cb440-2"><a href="loops.html#cb440-2"></a>  </span>
-<span id="cb440-3"><a href="loops.html#cb440-3"></a>  i =<span class="st"> </span>i<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb440-4"><a href="loops.html#cb440-4"></a>  </span>
-<span id="cb440-5"><a href="loops.html#cb440-5"></a>  <span class="cf">if</span>(i <span class="op">&lt;</span><span class="dv">5</span>){</span>
-<span id="cb440-6"><a href="loops.html#cb440-6"></a>    <span class="cf">next</span></span>
-<span id="cb440-7"><a href="loops.html#cb440-7"></a>  }</span>
-<span id="cb440-8"><a href="loops.html#cb440-8"></a>  </span>
-<span id="cb440-9"><a href="loops.html#cb440-9"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb440-10"><a href="loops.html#cb440-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="loops.html#cb442-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</span>
+<span id="cb442-2"><a href="loops.html#cb442-2"></a>  </span>
+<span id="cb442-3"><a href="loops.html#cb442-3"></a>  i =<span class="st"> </span>i<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb442-4"><a href="loops.html#cb442-4"></a>  </span>
+<span id="cb442-5"><a href="loops.html#cb442-5"></a>  <span class="cf">if</span>(i <span class="op">&lt;</span><span class="dv">5</span>){</span>
+<span id="cb442-6"><a href="loops.html#cb442-6"></a>    <span class="cf">next</span></span>
+<span id="cb442-7"><a href="loops.html#cb442-7"></a>  }</span>
+<span id="cb442-8"><a href="loops.html#cb442-8"></a>  </span>
+<span id="cb442-9"><a href="loops.html#cb442-9"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb442-10"><a href="loops.html#cb442-10"></a>}</span></code></pre></div>
 <pre><code>## [1] 9
 ## [1] 16
 ## [1] 25

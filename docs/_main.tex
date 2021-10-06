@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-09-22}
+\date{2021-10-06}
 
 \begin{document}
 \maketitle
@@ -3675,6 +3675,12 @@ The \texttt{par} file contains graphical arguments that are common in base R gra
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?hist}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{boxplot}{%
 \section{Boxplot}\label{boxplot}}
 
@@ -3686,7 +3692,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data.
 
@@ -3698,10 +3704,18 @@ One can use boxplots to compare different groups using \texttt{\textasciitilde{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 \hypertarget{scatter-plot}{%
 \section{Scatter Plot}\label{scatter-plot}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
 
 \hypertarget{pie-charts}{%
 \section{Pie Charts}\label{pie-charts}}
@@ -3742,7 +3756,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -3753,7 +3767,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}

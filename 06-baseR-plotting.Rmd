@@ -142,6 +142,11 @@ par(mfrow = c(1,1))
 
 For more options, look up “hist” in the *Help* panel of *RStudio*.
 
+```{r}
+?hist
+```
+
+
 ## Boxplot
 
 Let’s produce a boxplot for the first 1000 values of the height variable.
@@ -159,6 +164,11 @@ boxplot(cdc$height[1:1000] ~ cdc$gender[1:1000])
 ```
 
 ## Scatter Plot
+
+
+```{r}
+plot(1:10)
+```
 
 
 ## Pie Charts
