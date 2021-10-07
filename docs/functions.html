@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-10-06" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,7 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.3</b> Built-In Functions</a></li>
 <li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.4</b> Help Files</a></li>
 <li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>5.5</b> The … Argument</a></li>
-<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#additional-resources-2"><i class="fa fa-check"></i><b>5.6</b> Additional Resources</a></li>
+<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>5.6</b> Generic Functions</a></li>
+<li class="chapter" data-level="5.7" data-path="functions.html"><a href="functions.html#additional-resources-2"><i class="fa fa-check"></i><b>5.7</b> Additional Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
 <li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>6.1</b> If</a></li>
@@ -217,6 +218,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>7.3</b> Boxplot</a></li>
 <li class="chapter" data-level="7.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>7.4</b> Scatter Plot</a></li>
 <li class="chapter" data-level="7.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>7.5</b> Pie Charts</a></li>
+<li class="chapter" data-level="7.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-extra-linespointselements-to-a-graph"><i class="fa fa-check"></i><b>7.6</b> Adding Extra Lines/Points/Elements to a Graph</a></li>
+<li class="chapter" data-level="7.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>7.7</b> The par() Help File</a></li>
+<li class="chapter" data-level="7.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>7.8</b> Adding Legends</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages</a><ul>
 <li class="chapter" data-level="8.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>8.1</b> Namespace Collisions</a></li>
@@ -454,8 +458,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 7</code></pre>
 <p>When using the <code>...</code> argument it is customary to always place <code>...</code> at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.</p>
 </div>
+<div id="generic-functions" class="section level2">
+<h2><span class="header-section-number">5.6</span> Generic Functions</h2>
+<p>In R we have something called <em>generic functions</em> which are functions that behave differently depending on the class type of one of the arguments. Typically generic functions depend on the class of the first argument. The functions <code>mean()</code>, <code>summary()</code>, and <code>plot()</code> are all generic functions. These functions act as a “middle man” or a “dispatcher”. The generic function calls the actual function you desire. For example, when we call <code>summary()</code> and the first argument is a <code>lm</code> object, then the summary function that is actually run is <code>summary.lm()</code> which may have its own help file.</p>
+</div>
 <div id="additional-resources-2" class="section level2">
-<h2><span class="header-section-number">5.6</span> Additional Resources</h2>
+<h2><span class="header-section-number">5.7</span> Additional Resources</h2>
 <ul>
 <li><a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument">Chapter 14 of “R for Programming in Data Science”</a></li>
 <li>Videos:

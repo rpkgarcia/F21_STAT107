@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-10-06}
+\date{2021-10-07}
 
 \begin{document}
 \maketitle
@@ -3167,6 +3167,11 @@ We can also use the \texttt{...} arguement in a nested fashion.
 
 When using the \texttt{...} argument it is customary to always place \texttt{...} at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.
 
+\hypertarget{generic-functions}{%
+\section{Generic Functions}\label{generic-functions}}
+
+In R we have something called \emph{generic functions} which are functions that behave differently depending on the class type of one of the arguments. Typically generic functions depend on the class of the first argument. The functions \texttt{mean()}, \texttt{summary()}, and \texttt{plot()} are all generic functions. These functions act as a ``middle man'' or a ``dispatcher''. The generic function calls the actual function you desire. For example, when we call \texttt{summary()} and the first argument is a \texttt{lm} object, then the summary function that is actually run is \texttt{summary.lm()} which may have its own help file.
+
 \hypertarget{additional-resources-2}{%
 \section{Additional Resources}\label{additional-resources-2}}
 
@@ -3630,49 +3635,6 @@ Often you want to compare the distributions of different variables within your d
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
-Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
-     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
-     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
-     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
-
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
-       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
-       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
-       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
-
-Notice that the \texttt{abline()} function had arguments \texttt{lty}, and \texttt{lwd}. The description for these arguments is in the \texttt{par} help file which contains a master set of graphical parameter arguments. In this file we can also see that \texttt{main}, \texttt{xlab}, and \texttt{ylab} are also listed.
-
-The \texttt{par} file contains graphical arguments that are common in base R graphics functions, and it is a function that can adjust global plotting window parameters. For example, suppose we wish to have multiple plots on plotting window. We can control this with \texttt{mfrow}. When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Change plot window to have 3 columns and 1 row of plots}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{))}
-
-\CommentTok{# Three plots in one window }
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
-\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Revert back to default }
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
 \begin{Shaded}
@@ -3692,9 +3654,9 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
-The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data.
+The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are considered outliers (according to the \(IQR\) method, see Homework 2) and are plotted as circles. Boxplots are often used to represent numeric data.
 
 One can use boxplots to compare different groups using \texttt{\textasciitilde{}} character. On the right side of \texttt{\textasciitilde{}} is the numeric variable, and the left side of \texttt{\textasciitilde{}} is a grouping variable (character, logical, factor).
 
@@ -3704,18 +3666,70 @@ One can use boxplots to compare different groups using \texttt{\textasciitilde{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 \hypertarget{scatter-plot}{%
 \section{Scatter Plot}\label{scatter-plot}}
 
+We can create a scatter plot using the \texttt{plot()} function in R. This is generic function, which means that it will behave differently depending on the inputted values. For now we will on creating a simple \(X\) vs \(Y\) plot, which is what we typically want.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
+\CommentTok{# Help file for the GENERIC function}
+\NormalTok{?plot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Help on topic 'plot' was found in the following packages:
+## 
+##   Package               Library
+##   graphics              /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+##   base                  /Library/Frameworks/R.framework/Resources/library
+## 
+## 
+## Using the first match ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Help file for plot when using a simple X vs Y input}
+\NormalTok{?plot.default}
+        
+\CommentTok{# Run the command    }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+
+Notice that this help file has many of the same arguments as we saw with the \texttt{hist()} function. For example, \texttt{xlab}, \texttt{ylab}, \texttt{main}, and \texttt{col}. A lot of Base R plotting functions are related and use the same techniques and arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot using HEX color system }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"#33F3FF"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+Other interesting features we may want to consider is having different colors points on our plot. We can supple the \texttt{col} argument for a vector the colors we want plotted. If the vector of is the same length as the number of rows in our data set, then the index of the vector of colors corresponds to the index of the point being plotted. If the vector of colors is not the size, then colors are generated using recycling. For example, below only two colors were supplied. This means every other point in the data set had a different color.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot using HEX color system }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"#33F3FF"}\NormalTok{, }\StringTok{"#A833FF"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
+There are lots of other features we can change. Consider changing \texttt{cex}, \texttt{type}, \texttt{bg}, \texttt{pch}, \texttt{ylim}, \texttt{xlim}.
 
 \hypertarget{pie-charts}{%
 \section{Pie Charts}\label{pie-charts}}
@@ -3768,6 +3782,165 @@ Options are also available for the pie() function.
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
+
+\hypertarget{adding-extra-linespointselements-to-a-graph}{%
+\section{Adding Extra Lines/Points/Elements to a Graph}\label{adding-extra-linespointselements-to-a-graph}}
+
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on a histogram }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# Make a dashed line}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{wtdesire), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
+
+Similarly we can also add points to any base R graph using the \texttt{points()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height), }\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# Sample random points to plot }
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{62}\NormalTok{)}
+\NormalTok{random_index =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(cdc), }\DecValTok{20}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[random_index], cdc}\OperatorTok{$}\NormalTok{weight[random_index], }
+       \DataTypeTok{col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
+
+In the \texttt{points()} help file we can see a separate section called \texttt{pch\ values} which contains the different types of points that Base R can create.
+
+Notice that the \texttt{abline()} function had arguments \texttt{lty}, and \texttt{lwd}. In addition, the \texttt{points} function had \texttt{cex} and \texttt{bg}. The description for these arguments is in the \texttt{par} help file which contains a master set of graphical parameter arguments. In this file we can also see that \texttt{main}, \texttt{xlab}, and \texttt{ylab} are also listed.
+
+\hypertarget{the-par-help-file}{%
+\section{The par() Help File}\label{the-par-help-file}}
+
+The \texttt{par} file contains graphical arguments that are common in base R graphics functions. We can look inside this help file for even more arguments that may not be listed in the Base R plotting functions like \texttt{hist()}, \texttt{plot()}, \texttt{points()}, and \texttt{abline()}.
+
+It is also a function that can adjust global plotting window parameters. For example, suppose we wish to have multiple plots on plotting window. We can control this with \texttt{mfrow}. When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Change plot window to have 3 columns and 1 row of plots}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+
+\CommentTok{# Three plots in one window }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Revert back to default }
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{adding-legends}{%
+\section{Adding Legends}\label{adding-legends}}
+
+We can also consider adding a legend to our new graph using the \texttt{legend()} function. This function lets us put our own unique labels on different plotting aspects we created. Note that the function arguments like \texttt{col}, \texttt{lty}, and \texttt{pch} are used to dictate what should be on the legend.
+
+We control were the legend goes by using the first argument. This first argument \texttt{x} can be the the location on the x-axis, or it can be a keyword such as: ``bottomright'', ``bottom'', ``bottomleft'', ``left'', ``topleft'', ``top'', ``topright'', ``right'' and ``center''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on a histogram }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Mean Weight"}\NormalTok{),}
+       \DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }
+       \DataTypeTok{col =} \StringTok{"mediumblue"}\NormalTok{, }
+       \DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# Add a single point}
+\KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height), }\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# Sample random points to plot }
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{62}\NormalTok{)}
+\NormalTok{random_index =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(cdc), }\DecValTok{20}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[random_index], cdc}\OperatorTok{$}\NormalTok{weight[random_index], }
+       \DataTypeTok{col =} \StringTok{"orange"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{8}\NormalTok{)}
+
+\CommentTok{# Make a legend}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"All Data Values"}\NormalTok{, }
+                  \StringTok{"Mean"}\NormalTok{, }
+                  \StringTok{"Sample"}\NormalTok{, }
+                  \StringTok{"Median Weight"}\NormalTok{), }
+       \DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{8}\NormalTok{, }\OtherTok{NA}\NormalTok{), }
+       \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1.pdf}
 
 \hypertarget{packages}{%
 \chapter{Packages}\label{packages}}

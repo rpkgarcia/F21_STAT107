@@ -276,6 +276,9 @@ fun1(x = 1, a = 2, n = 4)
 
 When using the `...` argument it is customary to always place `...` at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function.  If possible, it is good practice to explicitly define the arguments to avoid an error. 
 
+## Generic Functions 
+
+In R we have something called *generic functions* which are functions that behave differently depending on the class type of one of the arguments.  Typically generic functions depend on the class of the first argument.  The functions `mean()`, `summary()`, and `plot()` are all generic functions. These functions act as a "middle man" or a "dispatcher". The generic function calls the actual function you desire.  For example, when we call `summary()` and the first argument is a `lm` object, then the summary function that is actually run is `summary.lm()` which may have its own help file. 
 
 ## Additional Resources
 

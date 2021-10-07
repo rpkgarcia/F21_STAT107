@@ -106,40 +106,6 @@ hist(h2,
 ```
 
 
-
-Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the `abline()` function.
-
-```{r}
-hist(cdc$weight, breaks=20, main="Distribution of Weight",
-     xlab="Weight (kg)", 
-     border = "mediumpurple4",
-     col = "mediumpurple1")
-
-abline(v=mean(cdc$weight),
-       col="mediumblue",
-       lty=2,
-       lwd=2)
-```
-
-Notice that the `abline()` function had arguments `lty`, and `lwd`.  The description for these arguments is in the `par` help file which contains a master set of graphical parameter arguments. In this file we can also see that `main`, `xlab`, and `ylab` are also listed. 
-
-The `par` file contains graphical arguments that are common in base R graphics functions, and it is a function that can adjust global plotting window parameters.  For example, suppose we wish to have multiple plots on plotting window.  We can control this with `mfrow`.  When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.  
-
-
-```{r}
-# Change plot window to have 3 columns and 1 row of plots
-par(mfrow = c(1, 3))
-
-# Three plots in one window 
-hist(cdc$height)
-hist(cdc$weight)
-hist(cdc$age)
-
-# Revert back to default 
-par(mfrow = c(1,1))
-```
-
-
 For more options, look up “hist” in the *Help* panel of *RStudio*.
 
 ```{r}
@@ -155,7 +121,7 @@ Let’s produce a boxplot for the first 1000 values of the height variable.
 boxplot(cdc$height[1:1000])
 ```
 
-The line in the center is the median. The bottom and top of the box are drawn at the first ($Q_1$) and third ($Q_3$) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range ($Q_3-Q_1$). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, $Q3 +1.5(Q_3-Q_1)$, or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, $Q1-1.5(Q_3-Q_1)$, or the smallest data value, whichever is largest. If data values exceed the whiskers, they are plotted as circles. Boxplots are often used to represent numeric data. 
+The line in the center is the median. The bottom and top of the box are drawn at the first ($Q_1$) and third ($Q_3$) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range ($Q_3-Q_1$). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, $Q3 +1.5(Q_3-Q_1)$, or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, $Q1-1.5(Q_3-Q_1)$, or the smallest data value, whichever is largest. If data values exceed the whiskers, they are considered outliers (according to the $IQR$ method, see Homework 2) and are plotted as circles. Boxplots are often used to represent numeric data. 
 
 One can use boxplots to compare different groups using `~` character.  On the right side of `~` is the numeric variable, and the left side of `~` is a grouping variable (character, logical, factor). 
 
@@ -165,11 +131,39 @@ boxplot(cdc$height[1:1000] ~ cdc$gender[1:1000])
 
 ## Scatter Plot
 
+We can create a scatter plot using the `plot()` function in R.  This is generic function, which means that it will behave differently depending on the inputted values. For now we will on creating a simple $X$ vs $Y$ plot, which is what we typically want. 
 
 ```{r}
-plot(1:10)
+
+# Help file for the GENERIC function
+?plot
+
+# Help file for plot when using a simple X vs Y input
+?plot.default
+        
+# Run the command    
+plot(cdc$height, cdc$weight)
 ```
 
+Notice that this help file has many of the same arguments as we saw with the `hist()` function.  For example, `xlab`, `ylab`, `main`, and `col`. A lot of Base R plotting functions are related and use the same techniques and arguments. 
+
+```{r}
+# Plot using HEX color system 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = "#33F3FF")
+```
+Other interesting features we may want to consider is having different colors points on our plot.  We can supple the `col` argument for a vector the colors we want plotted. If the vector of is the same length as the number of rows in our data set, then the index of the vector of colors corresponds to the index of the point being plotted.  If the vector of colors is not the size, then colors are generated using recycling. For example, below only two colors were supplied.  This means every other point in the data set had a different color. 
+
+```{r}
+# Plot using HEX color system 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = c("#33F3FF", "#A833FF"))
+```
+There are lots of other features we can change.  Consider changing `cex`, `type`, `bg`, `pch`, `ylim`, `xlim`. 
 
 ## Pie Charts
 
@@ -200,4 +194,143 @@ pie(table(cdc$genhlth)/20000, col = colors, main = "General Health")
 ```
 
 
+
+## Adding Extra Lines/Points/Elements to a Graph
+
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the `abline()` function.
+
+```{r}
+
+# Add a line on a histogram 
+hist(cdc$weight, breaks=20, main="Distribution of Weight",
+     xlab="Weight (kg)", 
+     border = "mediumpurple4",
+     col = "mediumpurple1")
+
+abline(v=mean(cdc$weight),
+       col="mediumblue",
+       lty=2,
+       lwd=2)
+```
+
+
+```{r}
+# Add a line on scatter plot 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = "darkblue")
+
+# Make a solid line 
+abline(h = median(cdc$weight), col = "red", lwd = 2)
+
+# Make a dashed line
+abline(h = median(cdc$wtdesire), col = "red", lty = 2)
+```
+
+
+Similarly we can also add points to any base R graph using the `points()` function. 
+
+```{r}
+# Add a line on scatter plot 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = "darkblue")
+
+# Make a solid line 
+points(mean(cdc$height), mean(cdc$weight), col = "red", pch = 16)
+
+# Sample random points to plot 
+set.seed(62)
+random_index = sample(1:nrow(cdc), 20)
+points(cdc$height[random_index], cdc$weight[random_index], 
+       col = "yellow", pch = 8)
+```
+
+In the `points()` help file we can see a separate section called `pch values` which contains the different types of points that Base R can create. 
+
+
+Notice that the `abline()` function had arguments `lty`, and `lwd`.  In addition, the `points()` function had the arguments `cex` and `bg`.  The description for these arguments is in the `par` help file which contains a master set of graphical parameter arguments. In this file we can also see that `main`, `xlab`, and `ylab` are also listed. 
+
+## The par() Help File 
+
+The `par` file contains graphical arguments that are common in base R graphics functions.  We can look inside this help file for even more arguments that may not be listed in the Base R plotting functions like `hist()`, `plot()`, `points()`, and `abline()`.  
+
+
+It is also a function that can adjust global plotting window parameters.  For example, suppose we wish to have multiple plots on plotting window.  We can control this with `mfrow`.  When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.  
+
+
+```{r}
+# Change plot window to have 3 columns and 1 row of plots
+par(mfrow = c(1, 3))
+
+# Three plots in one window 
+hist(cdc$height)
+hist(cdc$weight)
+hist(cdc$age)
+
+# Revert back to default 
+par(mfrow = c(1,1))
+```
+
+## Adding Legends
+
+We can also consider adding a legend to our new graph using the `legend()` function. This function lets us put our own unique labels on different plotting aspects we created.  Note that the function arguments like `col`, `lty`, and `pch` are used to dictate what should be on the legend.  
+
+We control were the legend goes by using the first argument. This first argument `x` can be the the location on the x-axis, or it can be a keyword such as: "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center". 
+
+
+```{r}
+
+# Add a line on a histogram 
+hist(cdc$weight, breaks=20, main="Distribution of Weight",
+     xlab="Weight (kg)", 
+     border = "mediumpurple4",
+     col = "mediumpurple1")
+
+abline(v=mean(cdc$weight),
+       col="mediumblue",
+       lty=2,
+       lwd=2)
+
+legend("topright", 
+       legend = c("Mean Weight"),
+       lty = 2, 
+       col = "mediumblue", 
+       lwd = 2)
+```
+
+
+
+```{r}
+# Add a line on scatter plot 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = "darkblue")
+
+# Make a solid line 
+abline(h = median(cdc$weight), col = "red", lwd = 2)
+
+# Add a single point
+points(mean(cdc$height), mean(cdc$weight), col = "red", pch = 16)
+
+# Sample random points to plot 
+set.seed(62)
+random_index = sample(1:nrow(cdc), 20)
+points(cdc$height[random_index], cdc$weight[random_index], 
+       col = "orange", pch = 8)
+
+# Make a legend
+legend("topleft", 
+       legend = c("All Data Values", 
+                  "Mean", 
+                  "Sample", 
+                  "Median Weight"), 
+       pch = c(1, 16, 8, NA), 
+       col = c("darkblue", "red", "orange", "red"), 
+       lty = c(NA, NA, NA, 1))
+
+```
 
