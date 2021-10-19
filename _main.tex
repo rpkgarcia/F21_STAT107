@@ -1,0 +1,4740 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont[]{Arial}
+  \setmonofont[]{Courier New}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAT 107 Outline of Class Notes},
+  pdfauthor={Rebecca Kurtz-Garcia},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{STAT 107 Outline of Class Notes}
+\author{Rebecca Kurtz-Garcia}
+\date{2021-10-18}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{welcome}{%
+\chapter*{Welcome}\label{welcome}}
+\addcontentsline{toc}{chapter}{Welcome}
+
+Welcome to STAT 107! This document will contain and outline of the course notes throughout the quarter. Please see the course website for an approximate schedule. In each of the chapters there will be a list of links, resources, and videos for learning more about an individual topic. This document will be updated constantly, be sure to check here for periodic updates. In addition, this document does not serve as a substitute for in class instruction, but more as a guide for the general content we discuss. Students are still expected to attend every lecture.
+
+\hypertarget{introduction-to-r}{%
+\chapter{Introduction to R}\label{introduction-to-r}}
+
+In this chapter we introduce R and RStudio, which you'll be using throughout this course to learn how to analyze real data and come to informed conclusions. To straighten out which is which: R is the name of the programming language itself, and RStudio is a convenient interface for using R.
+
+As the course progresses, you are encouraged to explore beyond what we discuss; a willingness to experiment will make you a much better scientist and researcher. Before we get to that stage, however, you need to build some competence in R. We begin with some of the fundamental building blocks of R and Rstudio: the interface, data types, variables, importing data, and plotting data.
+
+R is widely used by the scientific community as a no-cost alternative to expensive commercial software packages like SPSS and MATLAB. It is both a statistical software analysis system and a programming environment for developing scientific applications. Scientists routinely make available for free R programs they have developed that might be of use to others. Hundreds of packages can be downloaded for all types of scientific computing applications. This chapter was written by the help of \citet{Desharnais2020}.
+
+\hypertarget{download-and-install-r-and-rstudio}{%
+\section{Download and Install R and Rstudio}\label{download-and-install-r-and-rstudio}}
+
+To get started, you need to download both the R and Rstudio software. Both are available for free and there are versions for \emph{Linux}, \emph{Mac OS X}, and \emph{Windows}. It is suggested that you download R first and then Rstudio. R can be used without RStudio, but RStudio provides a convenient user interface and programming environment for R.
+
+The details for downloading and installing these software packages varies depending on your computer and operating system. You may need permission to install the software on your computer. The links below provide access to a mirror archive at UCLA for downloading R and the developer's site for downloading RStudio.
+
+\begin{itemize}
+\item
+  To download R, go to the url \url{https://ftp.osuosl.org/pub/cran}. Choose the binary distribution appropriate for your computer.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Windows} users will want to click on the link to ``Download R for Windows'' and choose ``install R for the first time,'' then ``Download R 3.5.2 for Windows.''
+  \item
+    \emph{Mac OS} users will want to click ``Download R for (Mac) OS X.'' Download the install package for version R-3.5.2 If you are using Mac OS X 10.9-10.10, install version R-3.3.3. If you are using OS X 10.6-10.8, install version R-3.2.1.
+  \item
+    \emph{Linux} users will want to click on the link to ``Download R for Linux.'' You will need to choose the version of Linux that corresponds to your installation. Versions are available for Debian, RedHat, SUSE, and Ubuntu.
+  \end{itemize}
+\item
+  For RStudio, use the url \url{https://www.rstudio.com/products/rstudio/download/}. Choose the binary distribution appropriate for your computer. Installers are provided for a variety of platforms.
+\item
+  For additional help please see this video: \href{https://ucr.yuja.com/V/Video?v=2365045\&node=8476457\&a=437885577\&autoplay=1}{Getting Started 1 \textbar{} How to Download and Install RStudio}
+\end{itemize}
+
+\hypertarget{the-rstudio-interface}{%
+\section{\texorpdfstring{The \textbf{RStudio} Interface}{The RStudio Interface}}\label{the-rstudio-interface}}
+
+We will begin by looking at the RStudio software interface.
+
+\includegraphics[width=49.78in]{images/rstudio}
+
+Launch RStudio. You will see a window that looks like the figure above. There are four panels of the window:
+
+\begin{itemize}
+\item
+  The pane in the bottom left is the R Command Console is where you type R commands for immediate execution.
+\item
+  The pane in the upper left portion of the window is an area for editing R source code for scripts and functions and for viewing R data frame objects. New tabs will be added as new R code files and data objects are opened.
+\item
+  The pane in the upper right portion of the window is an area for browsing the variables in the R workspace environment and the R command line history.
+\item
+  The pane in the lower right portion of the window has several tabs. The Files tab is an area for browsing the files in the current working directory. The Plot tab is for viewing graphics produced using R commands. The Packages tab lists the R packages available. Other packages can be loaded. The Help tab provides access to the R documentation. The Viewer tab is for viewing local web content in the temporary session directory (not files on the web).
+\end{itemize}
+
+\hypertarget{bottom-left-pane}{%
+\subsection*{Bottom Left Pane}\label{bottom-left-pane}}
+\addcontentsline{toc}{subsection}{Bottom Left Pane}
+
+Let's begin with the Console. This is where you type R commands for immediate execution. Click in the Command Console, ``\textgreater{}'' symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{+}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+The result tells you that the line begins with the first (and only) element of the result which is the number 3. You can also execute R's built-in functions (or functions you add). Type the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{exp}\NormalTok{(pi)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23.14069
+\end{verbatim}
+
+In R, ``pi'' is a special constant to represent the number and ``exp'' is the exponential function. The result tells you that the first (and only) element of the result is the number \(e^{\pi}=\) 23.14069.
+
+\hypertarget{bottom-right-pane}{%
+\subsection*{Bottom Right Pane}\label{bottom-right-pane}}
+\addcontentsline{toc}{subsection}{Bottom Right Pane}
+
+Now let's look at the \emph{Files} tab of the notebook at the lower right of the window. Every R session has a working directory where R looks for and saves files. It is a good practice to create a different directory for every project and make that directory the working directory. For example, let's make a new directory called \emph{MyDirectory}. (You can chose another name if you wish).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Click on the \textbf{Files} tab of the notebook. You should see a listing of files in your default working directory.
+\item
+  Click on the small button with an ellipsis image on the right side of the file path above the directory listing.
+\item
+  Navigate to the folder where you want to create the new directory and click the \textbf{OK} button.
+\item
+  Click on the \textbf{New Folder} button just below the Files tab (see right).
+\item
+  Type \textbf{MyDirectory} in the panel that opens click on the folder in the Notebook.
+\item
+  Click the \textbf{More} button to the right of the New Folder button and select the menu option \textbf{Set as Working Directory}. This new folder is now the working directory for the current R session. This menu option is a short cut for a command that was automatically entered into the R console.
+\end{enumerate}
+
+\hypertarget{top-right-pane}{%
+\subsection*{Top Right Pane}\label{top-right-pane}}
+\addcontentsline{toc}{subsection}{Top Right Pane}
+
+Next we will look at the \emph{R environment}, also called the \emph{R workspace}. This is where you can see the names and other information on the variables that were created during your \texttt{R} session and are available for use in other commands.
+
+In the \texttt{R} console type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\FloatTok{29.325}
+\NormalTok{b =}\StringTok{ }\KeywordTok{log}\NormalTok{(a)}
+\NormalTok{c =}\StringTok{ }\NormalTok{a}\OperatorTok{/}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+Look at the Environment pane. The variables \texttt{a}, \texttt{b}, and \texttt{c} are now part of your R work space. You can reuse those variables as part of other commands.
+
+In the \texttt{R} console type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v=}\StringTok{ }\KeywordTok{c}\NormalTok{(a, b, c)}
+\NormalTok{v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.325000  3.378440  8.680041
+\end{verbatim}
+
+The variable \texttt{v} is a vector created using the \emph{concatenate} function \texttt{c()}. (The concatenate should not be confused with the variable c that was created earlier. Functions are always followed by parentheses that contain the function arguments.) This function combines its arguments into a vector or list. Look at the Environment panel. The text \texttt{num\ {[}1:3{]}} tells us that the variable \texttt{v} is a vector with elements \texttt{v{[}1{]}}, \texttt{v{[}2{]}}, and \texttt{v{[}3{]}}.
+
+\hypertarget{top-left-pane}{%
+\subsection*{Top Left Pane}\label{top-left-pane}}
+\addcontentsline{toc}{subsection}{Top Left Pane}
+
+Now let's look at the \texttt{R} viewer notebook. This panel can be used to data which are data frame objects or \emph{matrix objects} in \texttt{R}.
+
+We will begin by taking advantage of a data frame object that was built into \texttt{R} for demonstration purposes. We will copy it into a data frame object. In the \texttt{R} console, type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df =}\StringTok{ }\NormalTok{mtcars}
+\end{Highlighting}
+\end{Shaded}
+
+Let's view the data. On the right side of the entry for the \texttt{df} object is a button we can use to view the entries of the data frame. Click on the View Button.
+
+If your look in the notebook area in the upper left portion of the window, you can see a spreadsheet-like view of the data. This is for viewing only; you cannot edit the data. Use the scroll bars to view the data entries.
+
+You can also list the data in the console by typing the name of the data fame object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+\end{verbatim}
+
+The columns are labeled with the names of the variables and the rows are labeled with the names of each car. Each row represents the data values for one car; that is, each row is one observation.
+
+\hypertarget{comments}{%
+\section{Comments}\label{comments}}
+
+Often times we will want to add a comment to our script document so we can remember special aspects later, and make the code easier to read and modify in the future. To add a comment start the comment with a \texttt{\#} symbol. This will make the remaining characters in a line a comment and R will not try to compile these lines. Go to the script document and type the following. Highlight what you have typed and press ``Run''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# This is a comment }
+\DecValTok{2}\OperatorTok{+}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3} \CommentTok{# Comments can also start in the middle of a line. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{operators}{%
+\section{Operators}\label{operators}}
+
+An operator is a symbol that tells the compiler to preform a specific task. There are several types of operators, some preform mathematical tasks, logical checks, and create new objects. We will review a few of the basic operators here. We will continue to discuss and introduce operators throughout this document.
+
+\hypertarget{arithmetic-operators}{%
+\subsection*{Arithmetic Operators}\label{arithmetic-operators}}
+\addcontentsline{toc}{subsection}{Arithmetic Operators}
+
+R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively. The first operators we discuss are a few of the basic arithmetic operations. These are operations similar to that of a calculator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Addition }
+\DecValTok{2}\OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Subtraction }
+\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Multiplication }
+\DecValTok{2}\OperatorTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Division }
+\DecValTok{2}\OperatorTok{/}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6666667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Exponent }
+\DecValTok{2}\OperatorTok{^}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\hypertarget{relational-operators}{%
+\subsection*{Relational Operators}\label{relational-operators}}
+\addcontentsline{toc}{subsection}{Relational Operators}
+
+Relational operators are used to compare two values. When using a relational operation R will return either \texttt{TRUE} or \texttt{FALSE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Less than }
+\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Greater than }
+\DecValTok{2} \OperatorTok{>}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Less than or equal to }
+\DecValTok{2} \OperatorTok{<=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Greater than or equal to }
+\DecValTok{2}\OperatorTok{>=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Not equal to }
+\DecValTok{2} \OperatorTok{!=}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Equal to }
+\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+We can use all the same operators above if our object contains more than one element. This will preform the above comparisons element by element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.325000  3.378440  8.680041
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OperatorTok{>}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE FALSE
+\end{verbatim}
+
+If we have two vectors of an unequal length then the checks will be preformed element-by-element but the values in the shorter vector will be \emph{recycled}, or \emph{repeated}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{v }\OperatorTok{>}\StringTok{ }\NormalTok{w}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in v > w: longer object length is not a multiple of shorter object
+## length
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  TRUE  TRUE FALSE
+\end{verbatim}
+
+R evaluated the first and third element of \texttt{v} and compared it to the first element of \texttt{w}, and the second element of \texttt{v} to the second element of \texttt{w}. In this case, R returned a \emph{warning} alerting you that it recycled elements. However, R will not always give a warning.
+
+\hypertarget{logical-operators}{%
+\subsection*{Logical operators}\label{logical-operators}}
+\addcontentsline{toc}{subsection}{Logical operators}
+
+Logical operators are similar to relational operators. They are used to check ``AND'' and ``OR'' events. We have the \texttt{\&} symbol which returns \texttt{TRUE} only if BOTH conditions are true. We also have the \texttt{\textbar{}} symbol which returns \texttt{TRUE} if EITHER condition is true.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Check if both operations are true. }
+\NormalTok{(}\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(}\DecValTok{5} \OperatorTok{<}\StringTok{ }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Check if either operation is true. }
+\NormalTok{(}\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(}\DecValTok{5} \OperatorTok{<}\StringTok{ }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+We can also negate a \texttt{TRUE} or \texttt{FALSE} value using the \texttt{!} symbol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Negate an operation }
+\OperatorTok{!}\NormalTok{(}\DecValTok{2}\OperatorTok{<}\DecValTok{3}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+Like relational operators from before, if we have more than one element the logical operations will be implemented element-by-element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# AND event, compared element-by-element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# OR event, compared elmeent-by-elment}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{|}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE TRUE TRUE
+\end{verbatim}
+
+We also have the symbols \texttt{\&\&} and \texttt{\textbar{}\textbar{}} which will ensure that only the first element in an object will be compared.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# AND event, only check the first element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{&&}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# OR event, only check the first element}
+\NormalTok{(v }\OperatorTok{>}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{||}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{assignment-operators}{%
+\subsection*{Assignment Operators}\label{assignment-operators}}
+\addcontentsline{toc}{subsection}{Assignment Operators}
+
+Assignment operators are used to assign values to a new object. There are many types of assignment operators, and they operate slightly differently. The two most common assignment operators are \texttt{=} and \texttt{\textless{}-}. With these operators the value to the left of the operator is the name of the new object and the value on the right is what the object is now equal to.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+The majority of the time we can use these two assignment operators above interchangeably, there are some exceptions though. There are several other assignment operators which are uncommon and should only be used by advanced users, \texttt{-\textgreater{}}, \texttt{\textless{}\textless{}-}, and \texttt{-\textgreater{}\textgreater{}}.
+
+\hypertarget{additional-resources}{%
+\section{Additional Resources}\label{additional-resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf}{Chapter 1 of ``CRAN Intro-to-R Manual''}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2365045\&node=8476457\&a=437885577\&autoplay=1}{Getting Started 1 \textbar{} How to Download and Install RStudio}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368643\&node=8487538\&a=437248619\&autoplay=1}{Getting Started 2 \textbar{} Rstudio Introduction cont'd, More Tabs Explained}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{introduction-to-r-objects}{%
+\chapter{Introduction to R Objects}\label{introduction-to-r-objects}}
+
+At its core, R is an objected-oriented computational and programming environment. Everything in R is an object belonging to a certain \emph{class}. In this chapter we begin by discussing \textbf{atomic} objects, these are the core fundamental objects used in R. Next we discuss vectors, lists, and matrices. These objects are among the most common types that are used. Lastly we discuss factors and data frames. Factors and data frames are known as dynamic objects, and are more complex. All of these objects have special properties and a multitude of features that we can use. We discuss some of their key properties here, but will continue exploring and learning about their features, and introducing more object types throughout the course.
+
+\hypertarget{atomic-objects}{%
+\section{Atomic Objects}\label{atomic-objects}}
+
+R can represent different types of data. The types include \texttt{numeric}, \texttt{integer}, \texttt{complex}, \texttt{logical}, \texttt{character}, and \texttt{raw}. These are the basic fundamental objects we can use in R. For our class we will not need the \texttt{complex} type which stores complex numbers, and in practice \texttt{raw} is rarely used. We will concentrate on the remaining four types. Unlike other object-oriented languages we do not need to specify what type of object we are creating when we create it. Instead, R guesses the type of object you are creating. To check the object type we can use the \texttt{class()} function.
+
+\hypertarget{numeric}{%
+\subsection*{Numeric}\label{numeric}}
+\addcontentsline{toc}{subsection}{Numeric}
+
+Numeric objects are perhaps the most common. These are objects which contain a real number, that is, a number which can contain a decimal value. These objects are comparable to \texttt{doubles} in \texttt{C}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\FloatTok{17.45}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17.45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b =}\StringTok{ }\DecValTok{5}
+\NormalTok{b }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+Both the variables \texttt{a} and \texttt{b} are \texttt{numeric} objects. When you type a number R will default to treating it as a \texttt{numeric} object which allows decimals.
+
+\hypertarget{integer}{%
+\subsection*{Integer}\label{integer}}
+\addcontentsline{toc}{subsection}{Integer}
+
+We can also create numeric objects which are specifically made to store integer values. We can do this using the \texttt{as.integer()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a =}\StringTok{ }\KeywordTok{as.integer}\NormalTok{(a)}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b =}\StringTok{ }\KeywordTok{as.integer}\NormalTok{(b)}
+\NormalTok{b }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\hypertarget{logical}{%
+\subsection*{Logical}\label{logical}}
+\addcontentsline{toc}{subsection}{Logical}
+
+Logical values are either \texttt{TRUE} or \texttt{FALSE} and are created by using logical and relational operators. In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section \ref{operators}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b =}\StringTok{ }\DecValTok{5}
+\NormalTok{n =}\StringTok{ }\NormalTok{(}\DecValTok{10}\OperatorTok{<}\DecValTok{11}\NormalTok{)}
+\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+We can also assign a value as \texttt{TRUE} or \texttt{FALSE} manually by setting it equal to \texttt{TRUE} or \texttt{FALSE}, or by using \texttt{T} or \texttt{F}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c =}\StringTok{ }\NormalTok{T}
+\NormalTok{c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+\hypertarget{character}{%
+\subsection*{Character}\label{character}}
+\addcontentsline{toc}{subsection}{Character}
+
+\texttt{Character} values are text. They are often used as data values and labels.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{first =}\StringTok{ "George"}
+\NormalTok{first }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "George"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(first)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{last =}\StringTok{ "Washington"}
+\NormalTok{last}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Washington"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(last)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+There are several functions that can operate on character strings.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{full =}\StringTok{ }\KeywordTok{paste}\NormalTok{(first, last)}
+\NormalTok{full }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "George Washington"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nchar}\NormalTok{(full)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tolower}\NormalTok{(full)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "george washington"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{toupper}\NormalTok{(full)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GEORGE WASHINGTON"
+\end{verbatim}
+
+The function \texttt{paste()} concatenates two or more character strings with a separator, which is a space by default. The function \texttt{nchar()} returns the number of characters in a string. The functions \texttt{tolower()} and \texttt{toupper()} changes any upper case characters to lower case and vice-versa.
+
+\hypertarget{vectors}{%
+\section{Vectors}\label{vectors}}
+
+All the objects we have created this far are single element \emph{vectors}. R is a vectorized language, meaning most of the procedures, functions, and operations have been optimized to work with vectors. It is typically advantageous to utilize this feature. \textbf{A vector is a collection of values of the same data type}. We can use the concatenate function, \texttt{c()}, to create vectors, and to make a vector larger.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{, }\FloatTok{390.3}\NormalTok{, pi, }\FloatTok{-32.1}\NormalTok{)}
+\NormalTok{v1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  19.000000 390.300000   3.141593 -32.100000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(v1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v2 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{1.1}\NormalTok{, }\DecValTok{6}\NormalTok{, }\FloatTok{-9.4}\NormalTok{, }\FloatTok{32.1}\NormalTok{)}
+\NormalTok{v2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1.1  6.0 -9.4 32.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(v2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+If we try to create a vector with a mix of classes R will convert all the objects to be the same class. In general, it is easiest to convert objects into a \texttt{character} but hard to convert \texttt{character} into something else. Be cautious when mixing data types and vectors because you will not be notified if objects are converted, and they may not be converted to the class you intended.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v3 =}\StringTok{ }\KeywordTok{c}\NormalTok{(v1, first)}
+\KeywordTok{class}\NormalTok{(v3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v4 =}\StringTok{ }\KeywordTok{c}\NormalTok{(first, last)}
+\KeywordTok{class}\NormalTok{(v4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+The \texttt{length()} function can be used to obtain the number of elements in a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(v1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+Vectors can be used in arithmetic computations. If the two vectors are of the same length, the computations are performed element-by-element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\OperatorTok{+}\StringTok{ }\NormalTok{v2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  20.100000 396.300000  -6.258407   0.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\OperatorTok{*}\StringTok{ }\NormalTok{v2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]    20.90000  2341.80000   -29.53097 -1030.41000
+\end{verbatim}
+
+Single numbers (scalars) will operate on all the vector elements in an expression.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\OperatorTok{*}\NormalTok{v1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   95.00000 1951.50000   15.70796 -160.50000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1}\OperatorTok{/}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   6.333333 130.100000   1.047198 -10.700000
+\end{verbatim}
+
+Individual elements of a vector can be obtained using an index in square brackets. A negative index removes that element from the vector. The \texttt{v2{[}-1{]}} is the vector \texttt{v2} with the first element removed. The concatenate function can be used to obtain two or more elements of a vector in any desired order. Here \texttt{v1{[}c(3,2){]}} returns the third and second elements of the vector \texttt{v1}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.141593
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v2[}\OperatorTok{-}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  6.0 -9.4 32.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v3[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "3.14159265358979" "390.3"
+\end{verbatim}
+
+\hypertarget{lists}{%
+\section{Lists}\label{lists}}
+
+Lists are thought of as a vector with a variety of classes. A list is made up of elements, and each element can be of a different class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{4}\NormalTok{, v4, v2)}
+\NormalTok{lst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] "George"     "Washington"
+## 
+## [[3]]
+## [1]  1.1  6.0 -9.4 32.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+We can observe the class of each element in the list by using the \texttt{str()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 3
+##  $ : num 4
+##  $ : chr [1:2] "George" "Washington"
+##  $ : num [1:4] 1.1 6 -9.4 32.1
+\end{verbatim}
+
+The above output tells us we have a list of three objects. The first object is a numeric vector with one element, the second object is a character vector with two elements, and third object is a numeric vector with four elements. We can subset elements in a list using double brackets we \texttt{{[}{[}{]}{]}}. Inside these square brakets we state the element we would like to obtain.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lst[[}\DecValTok{1}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+To determine how long our list is we can use the \texttt{length()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\hypertarget{matrices}{%
+\section{Matrices}\label{matrices}}
+
+A matrix is a two dimensional array of data of \textbf{the same type}. The matrix function, \texttt{matrix()}, can be used to create a new matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{), }
+           \DataTypeTok{nrow=}\DecValTok{3}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{3}\NormalTok{)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    0    3
+## [2,]    9    5    8
+## [3,]    2    7    4
+\end{verbatim}
+
+R labels the rows and columns for us in the output. The matrix is filled column-by-column using the elements of the vector created by the concatenate function. As with vectors, matrices can be used in arithmetic operations with scalars and other matrices of the same size.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m2 =}\StringTok{ }\NormalTok{m}\OperatorTok{/}\DecValTok{2}
+\NormalTok{m2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]  0.5  0.0  1.5
+## [2,]  4.5  2.5  4.0
+## [3,]  1.0  3.5  2.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m }\OperatorTok{*}\NormalTok{m2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]  0.5  0.0  4.5
+## [2,] 40.5 12.5 32.0
+## [3,]  2.0 24.5  8.0
+\end{verbatim}
+
+Indices can be used to obtain the elements of a matrix, but now we must consider both the row and column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m[}\DecValTok{2}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9 5 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m[,}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 8 4
+\end{verbatim}
+
+Some functions are particularly useful when using matrices. For instance, \texttt{t()}, \texttt{dim()}, and \texttt{c()}. The transpose function, \texttt{t()}, switches the column and rows of a matrix. The dimension function, \texttt{dim()}, returns the dimensions (number of rows, columns) of a matrix. The concatenate function, \texttt{c()}, turns a matrix into a vector by concatenating the columns of the matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Dimensions (row, column)}
+\KeywordTok{dim}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Transpose}
+\KeywordTok{t}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    9    2
+## [2,]    0    5    7
+## [3,]    3    8    4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Convert to vector }
+\KeywordTok{c}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 9 2 0 5 7 3 8 4
+\end{verbatim}
+
+\hypertarget{factors}{%
+\section{Factors}\label{factors}}
+
+Factors are useful for categorical data. Factors differ from character objects in that a character object is a string of characters or symbols placed in a specific order. For example, the object \texttt{first\ =\ "George"} is a character object with six elements. In contrast, the collection of values ``George'' would instead represent a distinct value, or \emph{level}, for a factor object. We can create a factor object using the \texttt{factor()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)}
+\NormalTok{colors =}\StringTok{ }\KeywordTok{factor}\NormalTok{(colors)}
+\NormalTok{colors}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] red  blue red  red  blue
+## Levels: blue red
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(colors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor"
+\end{verbatim}
+
+Here the unique elements in the factor are called ``levels''. There are only two levels \texttt{red} and \texttt{blue}, and there are five elements in our factor object. We can index factors in the same way we index a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Return first element in the factor object }
+\NormalTok{colors[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] red
+## Levels: blue red
+\end{verbatim}
+
+\hypertarget{data-frames}{%
+\section{Data Frames}\label{data-frames}}
+
+Like a matrix, a data frame is a rectangular array of values where each column is a vector, However, unlike a matrix, the columns can be different data types.
+
+We can create a set of vectors of the same length and use the \texttt{data.frame()} function to make a data frame object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{31}\NormalTok{)}
+\NormalTok{gender =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Female"}\NormalTok{,}\StringTok{"Male"}\NormalTok{)}
+\NormalTok{married =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{simpsons =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(age, gender, married)}
+\NormalTok{simpsons}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   age gender married
+## 1   1 Female   FALSE
+## 2   8 Female   FALSE
+## 3  10   Male   FALSE
+## 4  30 Female    TRUE
+## 5  31   Male    TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(simpsons)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+Data frames can be indexed using the same techniques as was done with matrices.
+
+\hypertarget{other-object-types-and-the-global-environment}{%
+\section{Other Object Types and the Global Environment}\label{other-object-types-and-the-global-environment}}
+
+There are more objects then what we have discussed above. For example, many of the advanced functions create specific objects generated by that specific function. There are hundreds, and possibly thousands, of such objects. These objects generally are special cases of lists, factors, and other various types of objects that we have defined in this section. The objects we have described here are the building blocks of most values we will be working with. Functions like \texttt{class()} and \texttt{length()} are also considered as objects, but are of a different type. We discuss functions in more detail in section \ref{functions}.
+
+There are also built-in, or special objects in R. For example, the object \texttt{pi} is an object already defined. These built-in values and functions can be written over, but that is not advised.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.141593
+\end{verbatim}
+
+Every time we create an object we see that the Global Environment tab in the top right pane updates. The object we have created is now listed in the Global Environment. This is a collection of all \emph{user created} objects in R, that R knows about, and that R can easily call. Built-in objects, such as \texttt{pi}, will not be listed here.
+
+\hypertarget{additional-resources-1}{%
+\section{Additional Resources}\label{additional-resources-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Chapters 2, 3, 4.1, 4.3, 5.1-5.3, 6 of \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf}{CRAN Intro-to-R Manual}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368642\&node=8487537\&a=1529691043\&autoplay=1}{Variables 1 \textbar{} Types and Assignments}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368641\&node=8487536\&a=957339369\&autoplay=1}{Variables 2 \textbar{} Nameing Conventions and Best Practices}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368859\&node=8488053\&a=283774152\&autoplay=1}{Vectors 1 \textbar{} Introduction}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368857\&node=8488051\&a=1465899289\&autoplay=1}{Vectors 2 \textbar{} Subsetting and Modifying}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368856\&node=8488050\&a=612212822\&autoplay=1}{Vectors 3 \textbar{} Vectorized Functions - Logical Comparisons}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368855\&node=8488049\&a=447596964\&autoplay=1}{Matrices 1 \textbar{} Introduction}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368854\&node=8488047\&a=1529352108\&autoplay=1}{Matrices 2 \textbar{} Accessing Rows and Columns}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{more-on-r-objects}{%
+\chapter{More on R Objects}\label{more-on-r-objects}}
+
+Factors and lists have especially unique properties that are often utilized. In this chapter we take special care to discuss these properties.
+
+\hypertarget{factors-1}{%
+\section{Factors}\label{factors-1}}
+
+In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and if they own a pet.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{name =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{, }\StringTok{"Eve"}\NormalTok{, }\StringTok{"Kim"}\NormalTok{, }\StringTok{"Max"}\NormalTok{, }\StringTok{"Ray"}\NormalTok{, }\StringTok{"Sam"}\NormalTok{)}
+\NormalTok{hair =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Red"}\NormalTok{, }\StringTok{"Blonde"}\NormalTok{, }\StringTok{"Brown"}\NormalTok{, }\StringTok{"Black"}\NormalTok{)}
+\NormalTok{own_pets =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+
+\NormalTok{catagorical =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(name, hair, own_pets)}
+\KeywordTok{colnames}\NormalTok{(catagorical) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Name"}\NormalTok{, }\StringTok{"Hair Color"}\NormalTok{, }\StringTok{"Own Pets"}\NormalTok{)}
+
+\NormalTok{catagorical}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Name Hair Color Own Pets
+## 1  Amy     Blonde     TRUE
+## 2  Bob      Black    FALSE
+## 3  Eve      Black     TRUE
+## 4  Kim        Red     TRUE
+## 5  Max     Blonde    FALSE
+## 6  Ray      Brown    FALSE
+## 7  Sam      Black    FALSE
+\end{verbatim}
+
+Here, the hair color and pet ownership are examples of categorical data. For the hair color variable we will typically want to store it as a factor, as opposed to a character vector. The different values that the factor can take are called levels. In R, you can create a factor with the \texttt{factor()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(hair)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Blonde Black  Black  Red    Blonde Brown  Black 
+## Levels: Black Blonde Brown Red
+\end{verbatim}
+
+A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, R displays the distinct levels below the factor. R keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The \texttt{levels()} function shows all the levels from a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{levels}\NormalTok{(f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Black"  "Blonde" "Brown"  "Red"
+\end{verbatim}
+
+If your vector contains only a subset of all the possible levels, then R will have an incomplete picture of the possible levels. Consider the following example of a vector consisting of directions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{directions =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"North"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"North"}\NormalTok{, }\StringTok{"East"}\NormalTok{, }\StringTok{"North"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"East"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(directions)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] North West  North East  North West  East 
+## Levels: East North West
+\end{verbatim}
+
+Notice that the levels of your new factor do not contain the value ``South''. So, R thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the \texttt{levels} argument of the function \texttt{factor()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{directions =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"North"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"North"}\NormalTok{, }\StringTok{"East"}\NormalTok{, }\StringTok{"North"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"East"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(directions,}
+            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"North"}\NormalTok{, }\StringTok{"East"}\NormalTok{, }\StringTok{"South"}\NormalTok{, }\StringTok{"West"}\NormalTok{))}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] North West  North East  North West  East 
+## Levels: North East South West
+\end{verbatim}
+
+R lets you assign abbreviated names for the levels. You can do this by specifying the \texttt{labels} argument of \texttt{factor()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{directions =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"North"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"South"}\NormalTok{, }\StringTok{"East"}\NormalTok{, }\StringTok{"West"}\NormalTok{, }\StringTok{"North"}\NormalTok{, }\StringTok{"South"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(directions,}
+            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"North"}\NormalTok{, }\StringTok{"East"}\NormalTok{, }\StringTok{"South"}\NormalTok{, }\StringTok{"West"}\NormalTok{),}
+            \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"E"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"W"}\NormalTok{))}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] N W S E W N S
+## Levels: N E S W
+\end{verbatim}
+
+Sometimes data has some kind of natural order between elements. For example, sports analysts use a three-point scale to determine how well a sports team is competing:
+
+\textbf{loss \textless{} tie \textless{} win}.
+
+In market research, it's very common to use a five point scale to measure perceptions:
+
+\textbf{strongly disagree \textless{} disagree \textless{} neutral \textless{} agree \textless{} strongly agree}.
+
+Such kind of data that is possible to place in order or scale is known as \textbf{ordinal data}. We can store ordinal data as an ordered factor. To create an ordered factor, use the \texttt{factor()} function with the argument \texttt{ordered=TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{record =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"win"}\NormalTok{, }\StringTok{"tie"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"tie"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"win"}\NormalTok{, }\StringTok{"win"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(record, }
+            \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] win  tie  loss tie  loss win  win 
+## Levels: loss < tie < win
+\end{verbatim}
+
+You can also reverse the order of levels using the \texttt{rev()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{record =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"win"}\NormalTok{, }\StringTok{"tie"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"tie"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"win"}\NormalTok{, }\StringTok{"win"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(record, }
+            \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{, }
+            \DataTypeTok{levels =} \KeywordTok{rev}\NormalTok{(}\KeywordTok{levels}\NormalTok{(f)))}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] win  tie  loss tie  loss win  win 
+## Levels: win < tie < loss
+\end{verbatim}
+
+If you have no observations in one of the levels, you can drop it using the \texttt{droplevels()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{record =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"win"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"win"}\NormalTok{, }\StringTok{"loss"}\NormalTok{, }\StringTok{"win"}\NormalTok{)}
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(record,}
+            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"loss"}\NormalTok{, }\StringTok{"tie"}\NormalTok{, }\StringTok{"win"}\NormalTok{))}
+
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] win  loss loss win  loss win 
+## Levels: loss tie win
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{droplevels}\NormalTok{(f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] win  loss loss win  loss win 
+## Levels: loss win
+\end{verbatim}
+
+The \texttt{summary()} function will give you a quick overview of the contents of a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f =}\StringTok{ }\KeywordTok{factor}\NormalTok{(hair)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Blonde Black  Black  Red    Blonde Brown  Black 
+## Levels: Black Blonde Brown Red
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Black Blonde  Brown    Red 
+##      3      2      1      1
+\end{verbatim}
+
+The function \texttt{table()} tabulates observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## f
+##  Black Blonde  Brown    Red 
+##      3      2      1      1
+\end{verbatim}
+
+\hypertarget{lists-1}{%
+\section{Lists}\label{lists-1}}
+
+A \emph{list} is an array of objects. Unlike vectors and matrices, the elements in a list can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the \texttt{list()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+
+\CommentTok{# A list of characters}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)}
+
+\CommentTok{# A list of mixed datatypes}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"abc"}\NormalTok{, }\FloatTok{1.23}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The best way to understand the contents of a list is to use the structure function \texttt{str()}. It provides a compact display of the internal structure of a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"abc"}\NormalTok{, }\FloatTok{1.23}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ : num 1
+##  $ : chr "abc"
+##  $ : num 1.23
+##  $ : logi TRUE
+\end{verbatim}
+
+A list can contain sublists, which in turn can contain sublists themselves, and so on. This is known as \emph{nested list} or \emph{recursive vectors}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\StringTok{"abc"}\NormalTok{, }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{), }\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 5
+##  $ : num 1
+##  $ : num 3
+##  $ : chr "abc"
+##  $ :List of 3
+##   ..$ : chr "a"
+##   ..$ : chr "b"
+##   ..$ : chr "c"
+##  $ : logi TRUE
+\end{verbatim}
+
+There are two ways to extract elements from a list:
+
+\begin{itemize}
+\tightlist
+\item
+  Using \texttt{{[}{[}{]}{]}} gives you the element itself.
+\item
+  Using \texttt{{[}{]}} gives you a list with the selected elements
+\end{itemize}
+
+You can use \texttt{{[}{]}} to extract either a single element or multiple elements from a list. However, the result will always be a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract 2nd element}
+\NormalTok{lst[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract 5th element}
+\NormalTok{lst[}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# select 1st, 3rd and 5th element}
+\NormalTok{lst[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "abc"
+## 
+## [[3]]
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# exclude 1st, 3rd and 5th element}
+\NormalTok{lst[}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\OperatorTok{-}\DecValTok{5}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [[2]][[1]]
+## [1] "a"
+## 
+## [[2]][[2]]
+## [1] "b"
+## 
+## [[2]][[3]]
+## [1] "c"
+\end{verbatim}
+
+You can use \texttt{{[}{[}{]}{]}} to extract only a single element from a list. Unlike \texttt{{[}{]}}, \texttt{{[}{[}{]}{]}} gives you the element itself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract 2nd element}
+\NormalTok{lst[[}\DecValTok{2}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract 5th element}
+\NormalTok{lst[[}\DecValTok{5}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+You can't use logical vectors or negative numbers as indices when using \texttt{{[}{[}{]}{]}}. The difference between \texttt{{[}{]}} and \texttt{{[}{[}{]}{]}} is really important for lists, because \texttt{{[}{[}{]}{]}} returns the element itself while \texttt{{[}{]}} returns a list with the selected elements. The difference becomes clear when we inspect the structure of the output -- one is a character and the other one is a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{,}\StringTok{"f"}\NormalTok{)}
+
+\KeywordTok{class}\NormalTok{(lst[[}\DecValTok{1}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lst[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+Each list element can have a name. You can access individual element by specifying its name in double square brackets \texttt{{[}{[}{]}{]}} or use \texttt{\$} operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{months =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{JAN=}\DecValTok{1}\NormalTok{, }\DataTypeTok{FEB=}\DecValTok{2}\NormalTok{, }\DataTypeTok{MAR=}\DecValTok{3}\NormalTok{, }\DataTypeTok{APR=}\DecValTok{4}\NormalTok{)}
+
+\CommentTok{# extract element by its name}
+\NormalTok{months[[}\StringTok{"MAR"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# same as above but using the $ operator}
+\NormalTok{months}\OperatorTok{$}\NormalTok{MAR}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract multiple elements}
+\NormalTok{months[}\KeywordTok{c}\NormalTok{(}\StringTok{"JAN"}\NormalTok{,}\StringTok{"APR"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $JAN
+## [1] 1
+## 
+## $APR
+## [1] 4
+\end{verbatim}
+
+You can access individual items in a nested list by using the combination of \texttt{{[}{[}{]}{]}} or \texttt{\$} operator and the \texttt{{[}{]}} operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \FloatTok{3.14}\NormalTok{,}
+            \DataTypeTok{item2 =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{item2a =} \DecValTok{5}\OperatorTok{:}\DecValTok{10}\NormalTok{,}
+                         \DataTypeTok{item2b =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{)))}
+
+\CommentTok{# preserve the output as a list}
+\NormalTok{lst[[}\DecValTok{2}\NormalTok{]][}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item2a
+## [1]  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# same as above but simplify the output}
+\NormalTok{lst[[}\DecValTok{2}\NormalTok{]][[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# same as above with names}
+\NormalTok{lst[[}\StringTok{"item2"}\NormalTok{]][[}\StringTok{"item2a"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# same as above with $ operator}
+\NormalTok{lst}\OperatorTok{$}\NormalTok{item2}\OperatorTok{$}\NormalTok{item2a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# extract individual element}
+\NormalTok{lst[[}\DecValTok{2}\NormalTok{]][[}\DecValTok{2}\NormalTok{]][}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "c"
+\end{verbatim}
+
+Modifying a list element is pretty straightforward. You use either the \texttt{{[}{[}{]}{]}} or the \texttt{\$} to access that element, and simply assign a new value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Modify 3rd list element}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{,}\StringTok{"f"}\NormalTok{)}
+\NormalTok{lst[[}\DecValTok{3}\NormalTok{]] =}\StringTok{ }\DecValTok{1}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 6
+##  $ : chr "a"
+##  $ : chr "b"
+##  $ : num 1
+##  $ : chr "d"
+##  $ : chr "e"
+##  $ : chr "f"
+\end{verbatim}
+
+You can modify components using \texttt{{[}{]}} as well, but you have to assign a list of components.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Modify 3rd list element using []}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{,}\StringTok{"f"}\NormalTok{)}
+\NormalTok{lst[}\DecValTok{3}\NormalTok{] =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 6
+##  $ : chr "a"
+##  $ : chr "b"
+##  $ : num 1
+##  $ : chr "d"
+##  $ : chr "e"
+##  $ : chr "f"
+\end{verbatim}
+
+Using \texttt{{[}{]}} allows you to modify more than one component at once.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Modify first three list elements}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{,}\StringTok{"f"}\NormalTok{)}
+\NormalTok{lst[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{] =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 6
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+##  $ : chr "d"
+##  $ : chr "e"
+##  $ : chr "f"
+\end{verbatim}
+
+You can use same method for modifying elements and adding new one. If the element is already present in the list, it is updated else, a new element is added to the list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add elements to a list}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{lst[[}\DecValTok{4}\NormalTok{]] =}\StringTok{ }\DecValTok{4}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+##  $ : num 4
+\end{verbatim}
+
+By using \texttt{append()} method you can append one or more elements to the list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add more than one element to a list}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{append}\NormalTok{(lst,}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 6
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+##  $ : chr "a"
+##  $ : chr "b"
+##  $ : chr "c"
+\end{verbatim}
+
+By using a logical vector, you can remove list elements based on the condition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Remove all negative list elements}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{lst[lst }\OperatorTok{<=}\StringTok{ }\DecValTok{0}\NormalTok{] =}\StringTok{ }\OtherTok{NULL}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+##  $ : num 4
+\end{verbatim}
+
+The \texttt{c()} does a lot more than just creating vectors. It can be used to combine lists into a new list as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst1 =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\StringTok{"c"}\NormalTok{)}
+\NormalTok{lst2 =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{lst =}\StringTok{ }\KeywordTok{c}\NormalTok{(lst1, lst2)}
+\KeywordTok{str}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 6
+##  $ : chr "a"
+##  $ : chr "b"
+##  $ : chr "c"
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+\end{verbatim}
+
+Basic statistical functions work on vectors but not on lists. For example, you cannot directly compute the mean of list of numbers. In that case, you have to flatten the list into a vector using \texttt{unlist()} first and then compute the mean of the result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{25}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(lst))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15
+\end{verbatim}
+
+To find the length of a list, use \texttt{length()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(lst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{working-with-data-sets}{%
+\chapter{Working with Data Sets}\label{working-with-data-sets}}
+
+In this section we discuss different methods for loading data sets into our R session. There are many different files we can create and import. We will focus our attention on loading csv files because they tend to be easier to import, and they are one of the more typical file types that are used. In the second half of the this chapter we introduce basic data manipulation strategies and helpful functions when working with data sets.
+
+\hypertarget{getting-data-sets-in-our-working-environment}{%
+\section{Getting Data Sets in Our Working Environment}\label{getting-data-sets-in-our-working-environment}}
+
+\hypertarget{built-in-data}{%
+\subsection*{Built-In Data}\label{built-in-data}}
+\addcontentsline{toc}{subsection}{Built-In Data}
+
+As discussed last week, there are built in objects which are not loaded into the global environment, but can be called upon at any time. For example \texttt{pi} returns the value 3.1415927. Similarly, there are built in data sets that are ready to be used and loaded at a moments notice.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  To see a list of built in data sets type in the console:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  These data sets can be used even if they are not listed in the global environment. For example, if you would like to load the data set \texttt{cars} in the global environment, run the following command:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"cars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{importing-from-your-computer}{%
+\subsection*{Importing From Your Computer}\label{importing-from-your-computer}}
+\addcontentsline{toc}{subsection}{Importing From Your Computer}
+
+Although built-in data sets are convient, most the time we need to load our own datasets. We load our own data sets by using a function specifically designed for the file type of interest. This function usually uses the file path location as an argument. This can be done in many different ways; however, we will only go over two.
+
+\textbf{Option 1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Download the file \texttt{InsectData.csv} from \textbf{ELearn}. Save this file in a spot in your computer you will remember.
+\item
+  In the \textbf{Environment} window (upper left window), click on the \textbf{Import Dataset} button. A drop down menu will appear. Select the \textbf{From Text (base)\ldots{}} option. Find the file \texttt{InsectData.csv} and select it.
+\item
+  A pop up menu will appear giving you options for loading in the file, and showing a preview of what the file will look like once loaded. Select the appropriate options and click \textbf{Import}.
+\item
+  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new R session and would like to use this file.
+\end{enumerate}
+
+\textbf{Option 2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Download the file \texttt{InsectData.csv} from \textbf{ELearn}. Save this file in a spot in your computer you will remember.
+\item
+  In the lower right hand window select the \textbf{File} tab. Now search for the file which you have saved \texttt{InsectData.csv}.
+\item
+  Click on the file \texttt{InsectData.csv} in order to see a dropdown menu. Select \textbf{Import Dataset\ldots{}}
+\item
+  A window will appear which will give you options and a preview of your file. Select appropriate options if needed then click \textbf{Import}.
+\item
+  A new line of code has generated in the console which will read the data into your current environment. Copy and paste this into your R script document if you would like to save this line of code for later. You will have to reload this file into your environment each time you start a new R session and would like to use this file.
+\end{enumerate}
+
+\hypertarget{import-from-online}{%
+\subsection*{Import From Online}\label{import-from-online}}
+\addcontentsline{toc}{subsection}{Import From Online}
+
+We can also download data sets from online in a variety of different ways. Below is one option. With this method we are using the same \texttt{InsectData.csv} file, but it has been posted online. We feed the url of where the data set has been posted into the \texttt{read.csv()} function in order to open the file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{the_url =}\StringTok{ "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/InsectData.csv"}
+\NormalTok{the_data =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(the_url)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-data-manipulation}{%
+\section{Basic Data Manipulation}\label{basic-data-manipulation}}
+
+Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table or matrix of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created or called within R, imported from text or spreadsheet files, or imported from the web.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"G1"}\NormalTok{, }\StringTok{"G2"}\NormalTok{, }\StringTok{"G1"}\NormalTok{, }\StringTok{"G1"}\NormalTok{, }\StringTok{"G2"}\NormalTok{)}
+\NormalTok{age =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+\NormalTok{height =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{65}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{68}\NormalTok{)}
+\NormalTok{pets =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(group, age, height, pets)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 2    G2  30     70  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+## 5    G2  40     68  TRUE
+\end{verbatim}
+
+We have various R functions that help provide information about the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How many rows}
+\KeywordTok{nrow}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# How many columns}
+\KeywordTok{ncol}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Rows, Columns}
+\KeywordTok{dim}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Colnames}
+\KeywordTok{colnames}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "group"  "age"    "height" "pets"
+\end{verbatim}
+
+The \texttt{summary()} function is a powerful command that gives you some summary statistics about the variales in the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     group                age           height      pets        
+##  Length:5           Min.   :28.0   Min.   :60   Mode :logical  
+##  Class :character   1st Qu.:30.0   1st Qu.:65   FALSE:2        
+##  Mode  :character   Median :31.0   Median :68   TRUE :3        
+##                     Mean   :32.8   Mean   :67                  
+##                     3rd Qu.:35.0   3rd Qu.:70                  
+##                     Max.   :40.0   Max.   :72
+\end{verbatim}
+
+The summary statistics are listed below the names of the variables. Since pets is a logical variable, R gives you the frequencies of each unique value. In this example there are three values of \texttt{TRUE} and two values of \texttt{FALSE}. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.
+
+The \texttt{table()} function can also be used to cross-tabulate categorical data. Let's create a frequency table for the different groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## G1 G2 
+##  3  2
+\end{verbatim}
+
+We can also create a frequency table of pet status for both groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group, mydata}\OperatorTok{$}\NormalTok{pets)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     
+##      FALSE TRUE
+##   G1     2    1
+##   G2     0    2
+\end{verbatim}
+
+\hypertarget{indexing}{%
+\subsection*{Indexing}\label{indexing}}
+\addcontentsline{toc}{subsection}{Indexing}
+
+As with matrices, square brackets followed by the row, column can be used to return a specific data value. For example, to get the datum in the 3rd row, 2nd column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31
+\end{verbatim}
+
+If you leave out the number before or after the comma, the entire column or row is returned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{3}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 3    G1  31     60 FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 35 30 31 28 40
+\end{verbatim}
+
+For data frame you can also access variables by name instead of column number. Use a dollar sign and the name of the variable (no spaces). This usually makes the R code more readable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{height[}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 72
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{height}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 65 70 60 72 68
+\end{verbatim}
+
+The colon operator can be used to generate a sequence of indices. Typing a:b will produce a range of integers \(a\), \(a+1\),\ldots, \(b\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{2}\OperatorTok{:}\DecValTok{4}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 2    G2  30     70  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{age[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31 28 40
+\end{verbatim}
+
+You can use logical conditions to obtain subsets of the data. A logical value of \texttt{TRUE} will return a data row and a logical of \texttt{FALSE} omits that row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{index_keep =}\StringTok{ }\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{"G1"}\NormalTok{)}
+\NormalTok{group1 =}\StringTok{ }\NormalTok{mydata[index_keep, ]}
+\NormalTok{group1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+This operation can also be accomplished by using the \texttt{subset()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group1 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{ "G1"}\NormalTok{)}
+\NormalTok{group1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+To subset by all values which are NOT equal to a condition we can use the logical operator \texttt{!=}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group2 =}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, mydata}\OperatorTok{$}\NormalTok{group }\OperatorTok{!=}\StringTok{ "G1"}\NormalTok{)}
+\NormalTok{group2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height pets
+## 2    G2  30     70 TRUE
+## 5    G2  40     68 TRUE
+\end{verbatim}
+
+\hypertarget{rearranging-rows}{%
+\subsection*{Rearranging Rows}\label{rearranging-rows}}
+\addcontentsline{toc}{subsection}{Rearranging Rows}
+
+Data can be sorted using the \texttt{order()} function. This function returns the ranks of the variable being sorted. Including more than one variable allows a ``nested sort,'' where the second variable, third variable, etc., is used when there are ties in the sorting based on the previous variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 1 5 2 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{height),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 3    G1  31     60 FALSE
+## 1    G1  35     65  TRUE
+## 5    G2  40     68  TRUE
+## 2    G2  30     70  TRUE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+The ranks are used as row indices for the data frame. Notice that the observations are sorted by the last column, \texttt{weight}. We can sort by more than one variable. Let's first sort by \texttt{group} alone and then by \texttt{group} followed by \texttt{weight} and see what we get.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+## 2    G2  30     70  TRUE
+## 5    G2  40     68  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\KeywordTok{order}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{group, mydata}\OperatorTok{$}\NormalTok{height), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 3    G1  31     60 FALSE
+## 1    G1  35     65  TRUE
+## 4    G1  28     72 FALSE
+## 5    G2  40     68  TRUE
+## 2    G2  30     70  TRUE
+\end{verbatim}
+
+To reorder a vector from smallest to largest we can also condiser the sort() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28 30 31 35 40
+\end{verbatim}
+
+\hypertarget{adding-columns}{%
+\subsection*{Adding Columns}\label{adding-columns}}
+\addcontentsline{toc}{subsection}{Adding Columns}
+
+One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a \texttt{weight} variable to the data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wghts =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{169}\NormalTok{, }\DecValTok{161}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{165}\NormalTok{, }\DecValTok{155}\NormalTok{)}
+\NormalTok{wghts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 169 161 149 165 155
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{weight =}\StringTok{ }\NormalTok{wghts}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight
+## 1    G1  35     65  TRUE    169
+## 2    G2  30     70  TRUE    161
+## 3    G1  31     60 FALSE    149
+## 4    G1  28     72 FALSE    165
+## 5    G2  40     68  TRUE    155
+\end{verbatim}
+
+We can also add a new column using the \texttt{cbind()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(mydata, wghts)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight wghts
+## 1    G1  35     65  TRUE    169   169
+## 2    G2  30     70  TRUE    161   161
+## 3    G1  31     60 FALSE    149   149
+## 4    G1  28     72 FALSE    165   165
+## 5    G2  40     68  TRUE    155   155
+\end{verbatim}
+
+\hypertarget{na-values}{%
+\subsection*{NA values}\label{na-values}}
+\addcontentsline{toc}{subsection}{NA values}
+
+In addition, if we have a missing value, or a blank value, we can use the object \texttt{NA} to indicate the lack of a value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fav_color =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Red"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"Purple"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"Red"}\NormalTok{)}
+
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(mydata, fav_color)}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight wghts fav_color
+## 1    G1  35     65  TRUE    169   169       Red
+## 2    G2  30     70  TRUE    161   161      <NA>
+## 3    G1  31     60 FALSE    149   149    Purple
+## 4    G1  28     72 FALSE    165   165      <NA>
+## 5    G2  40     68  TRUE    155   155       Red
+\end{verbatim}
+
+We can drop check for \texttt{NA} values using the \texttt{is.na()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.na}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      group   age height  pets weight wghts fav_color
+## [1,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
+## [2,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
+## [3,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
+## [4,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
+## [5,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
+\end{verbatim}
+
+We can remove all rows with \texttt{NA} values using \texttt{na.omit()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{na.omit}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight wghts fav_color
+## 1    G1  35     65  TRUE    169   169       Red
+## 3    G1  31     60 FALSE    149   149    Purple
+## 5    G2  40     68  TRUE    155   155       Red
+\end{verbatim}
+
+\hypertarget{null}{%
+\subsection*{NULL}\label{null}}
+\addcontentsline{toc}{subsection}{NULL}
+
+One can drop a variable (column) by setting it equal to the \texttt{R} value \texttt{NULL}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{wghts =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{mydata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 2    G2  30     70  TRUE    161      <NA>
+## 3    G1  31     60 FALSE    149    Purple
+## 4    G1  28     72 FALSE    165      <NA>
+## 5    G2  40     68  TRUE    155       Red
+\end{verbatim}
+
+Be careful using these methods. Once a variable or row is dropped, it's gone.
+
+\hypertarget{adding-rows}{%
+\subsection*{Adding Rows}\label{adding-rows}}
+\addcontentsline{toc}{subsection}{Adding Rows}
+
+Rows can be added to a data frame using the \texttt{rbind()} (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newobs =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"G1"}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{62}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\DecValTok{160}\NormalTok{, }\StringTok{"Blue"}\NormalTok{)}
+\NormalTok{newdata =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(mydata, newobs)}
+\NormalTok{newdata}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 2    G2  30     70  TRUE    161      <NA>
+## 3    G1  31     60 FALSE    149    Purple
+## 4    G1  28     72 FALSE    165      <NA>
+## 5    G2  40     68  TRUE    155       Red
+## 6    G1  23     62 FALSE    160      Blue
+\end{verbatim}
+
+We can also use \texttt{rbind()} to append one data frame to another. We can do this with the variables \texttt{group1} and \texttt{group2} created above still exist in your R environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height pets
+## 2    G2  30     70 TRUE
+## 5    G2  40     68 TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbind}\NormalTok{(group1, group2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets
+## 1    G1  35     65  TRUE
+## 3    G1  31     60 FALSE
+## 4    G1  28     72 FALSE
+## 2    G2  30     70  TRUE
+## 5    G2  40     68  TRUE
+\end{verbatim}
+
+We can also remove rows from a data frame. Using negative index values has the same effect as including all the indices except the negative ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group age height  pets weight fav_color
+## 1    G1  35     65  TRUE    169       Red
+## 3    G1  31     60 FALSE    149    Purple
+## 5    G2  40     68  TRUE    155       Red
+\end{verbatim}
+
+\hypertarget{functions}{%
+\chapter{Functions}\label{functions}}
+
+In R we have functions, functions are another type of object in R. We use functions in order to preform a series of tasks repeatedly, or preform these tasks in different settings. They can make our code much more efficient. We can build our own functions or we can use built in functions. Here we describe both types and their properties. Parts of this chapter where adapted by \citet{r-func} and \citet{dummies2015}.
+
+\hypertarget{build-your-own-function}{%
+\section{Build Your Own Function}\label{build-your-own-function}}
+
+To define a function, a name is assigned and the keyword \texttt{function} is used to denote the start of the function and its argument list. Functions are created using the \texttt{function()} directive and are stored as R objects just like anything else. In particular, they are R objects of class \emph{function}. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.
+
+Below is the \textbf{general template}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function_name =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(arg)\{}
+  \CommentTok{# Function Body }
+\NormalTok{  ....}
+  \KeywordTok{return}\NormalTok{(return_value)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+In this template we have the following key components
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{function\_name}: This is the actual name of the function. It is stored in R environment as an object with this name.
+\item
+  \texttt{function}: A directive which tells R a function is being created.
+\item
+  \texttt{arg}: An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
+\item
+  \texttt{function\ body}: The function body contains a collection of statements that defines what the function does.
+\item
+  \texttt{return\_value}: The output value of the function. If \texttt{return(return\_value)} is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one object. This object can be any class of object you desire, like a vector, list or data frame, but you may only return one object.
+\end{itemize}
+
+Below is an example of converting a temperature from Fahrenheit to Celsius.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fahrenheit_to_celsius =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(temp_F)\{}
+\NormalTok{  temp_C =}\StringTok{ }\NormalTok{(temp_F }\OperatorTok{-}\StringTok{ }\DecValTok{32}\NormalTok{) }\OperatorTok{*}\StringTok{ }\DecValTok{5} \OperatorTok{/}\StringTok{ }\DecValTok{9}
+  \KeywordTok{return}\NormalTok{(temp_C)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+In this example the function name is \texttt{fahrenheit\_to\_celsius}, there is only one input or argument, \texttt{temp\_F}, and the output is the object \texttt{temp\_C}.
+
+Now if we would like to ``call'' this function we can simply put into the command console the function name and desired input.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Convert 87F to Celsius}
+\KeywordTok{fahrenheit_to_celsius}\NormalTok{(}\DataTypeTok{temp_F =} \DecValTok{87}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30.55556
+\end{verbatim}
+
+What would happen if we tried to call this function without supplying an input? This would result in an error.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# temp_F not defined. }
+\KeywordTok{fahrenheit_to_celsius}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in fahrenheit_to_celsius() : 
+  argument "temp_F" is missing, with no default
+\end{verbatim}
+
+With functions we can define function arguments to have default values. These default values are used only if the user did not supply an argument value. Observe the example below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# An example function }
+\NormalTok{example_func =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\NormalTok{, b)\{}
+\NormalTok{  c =}\StringTok{ }\NormalTok{a }\OperatorTok{+}\StringTok{ }\NormalTok{b}
+\NormalTok{  d =}\StringTok{ }\NormalTok{c }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+  
+  \CommentTok{# returns a+b+1}
+  \KeywordTok{return}\NormalTok{(d)}
+\NormalTok{\}}
+
+\CommentTok{# Call example function}
+\KeywordTok{example_func}\NormalTok{(}\DataTypeTok{a=} \DecValTok{2}\NormalTok{, }\DataTypeTok{b=} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{example_func}\NormalTok{(}\DataTypeTok{b =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+Further notice that R has three ways to match function inputs to the formal arguments of the function definition. R attempts to match inputs to arguements in the following order.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  by complete name
+\item
+  by partial name (matching on initial \emph{n} characters of the argument name)
+\item
+  by position
+\end{enumerate}
+
+After running a function command R first attempts to match arguments by complete name, then by partial name, and then by position. If it unable to match inputs to an argument it then uses the default argument value, if one exists.
+
+Observe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{example_func}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{example_func}\NormalTok{(}\DataTypeTok{b =} \DecValTok{3}\NormalTok{, }\DataTypeTok{a =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{example_func}\NormalTok{(}\DataTypeTok{a =} \DecValTok{2}\NormalTok{, }\DataTypeTok{b =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\hypertarget{lexical-scoping}{%
+\section{Lexical Scoping}\label{lexical-scoping}}
+
+With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.
+
+Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects \emph{scope}, or range of places that we can use this object. The system of rules R uses for searching for objects is called \emph{lexical scoping}, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then any enclosing environments, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.
+
+\begin{center}\includegraphics[width=36.5in]{images/Scoping} \end{center}
+
+\hypertarget{built-in-functions}{%
+\section{Built-In Functions}\label{built-in-functions}}
+
+R has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{c()}
+\item
+  \texttt{class()}
+\item
+  \texttt{matrix()}
+\item
+  \texttt{data.frame()}
+\end{itemize}
+
+Below are a few more examples using the built-in dataset \texttt{mtcars}, we will use \texttt{mtcars\$mpg} as a vector of data to analyze.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mean()}: Takes in a vector, and returns the mean of the values in the vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.09062
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{median()}: Takes in a vector, and returns the median of the values in the vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{median}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.2
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{var()}: Takes in a vector, and returns the variance of the values in the vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36.3241
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sqrt()}: If you give it a vector, it returns the square root of each element in the vector. If you give it a single number, it returns the square root of the number.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 4.582576 4.582576 4.774935 4.626013 4.324350 4.254409 3.781534 4.939636
+##  [9] 4.774935 4.381780 4.219005 4.049691 4.159327 3.898718 3.224903 3.224903
+## [17] 3.834058 5.692100 5.513620 5.822371 4.636809 3.937004 3.898718 3.646917
+## [25] 4.381780 5.224940 5.099020 5.513620 3.974921 4.438468 3.872983 4.626013
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sd()}: Takes in a vector, and returns the standard deviation of the values in the vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.026948
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{range()}: Takes in a vector, and returns the minimum AND maximum of the values in the vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.4 33.9
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{quantile()}: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument. It will return the corresponding quantiles of the values in the first vector specified by the second vector.
+\end{itemize}
+
+To get the \(10^{th}\) and \(90^{th}\) percentiles:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,}\KeywordTok{c}\NormalTok{(}\FloatTok{0.10}\NormalTok{,}\FloatTok{0.90}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   10%   90% 
+## 14.34 30.09
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{summary()}: You can give this a dataset OR a vector. It returns some summary information about the values in the dataset or vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cars}\OperatorTok{$}\NormalTok{speed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     4.0    12.0    15.0    15.4    19.0    25.0
+\end{verbatim}
+
+One of the great advantages of using R is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the \textbf{Help files}.
+
+\hypertarget{help-files}{%
+\section{Help Files}\label{help-files}}
+
+The Help files are in R and can be viewed from the lower right window by clicking the \emph{Help} tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help.
+
+The R Help files follow a fairly standard outline. You find most of the following sections in every R Help file:
+
+\begin{itemize}
+\item
+  \textbf{Title}: A one-sentence overview of the function.
+\item
+  \textbf{Description}: An introduction to the high-level objectives of the function, typically about one paragraph long.
+\item
+  \textbf{Usage}: A description of the syntax of the function (in other words, how the function is called). This is where you find all the arguments that you can supply to the function, as well as any default values of these arguments.
+\item
+  \textbf{Arguments}: A description of each argument. Usually this includes a specification of the class (for example, character, numeric, list, and so on). This section is an important one to understand, because arguments are frequently a cause of errors in R.
+\item
+  \textbf{Details}: Extended details about how the function works, provides longer descriptions of the various ways to call the function (if applicable), and a longer discussion of the arguments.
+\item
+  \textbf{Value}: A description of the class of the value returned by the function.
+\item
+  \textbf{See also}: Links to other relevant functions. In most of the R editors, you can click these links to read the Help files for these functions.
+\item
+  \textbf{Examples}: Worked examples of real R code that you can paste into your console and run.
+\end{itemize}
+
+An alternative way to view a functions help file is by typing \texttt{?} followed by the function name, or by typing \texttt{help(function\_name)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Find a help file for the function `rep`}
+\NormalTok{?rep}
+\KeywordTok{help}\NormalTok{(rep)}
+\end{Highlighting}
+\end{Shaded}
+
+If you are not sure exactly which function you want, you can use \texttt{??} followed by what you believe the function name is to look at a list of functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{??rep}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-argument}{%
+\section{The \ldots{} Argument}\label{the-argument}}
+
+There is a special argument function \texttt{...} that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the \texttt{...} argument as a general placeholder for passing along any additional arguments in a function call.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Using the ... argument}
+\CommentTok{# This function calls fun2}
+\NormalTok{fun1 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, ...)\{}
+\NormalTok{  y =}\StringTok{ }\KeywordTok{fun2}\NormalTok{(...)}
+\NormalTok{  z =}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y }
+  \KeywordTok{return}\NormalTok{(z)}
+\NormalTok{\}}
+
+\CommentTok{# Define fun2 }
+\NormalTok{fun2 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a)\{}
+\NormalTok{  b =}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2}
+  \KeywordTok{return}\NormalTok{(b)}
+\NormalTok{\}}
+
+\CommentTok{# Returns 1 + 2^2 = 5}
+\KeywordTok{fun1}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+We can also use the \texttt{...} arguement in a nested fashion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fun1 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, ...)\{}
+\NormalTok{  y =}\StringTok{ }\KeywordTok{fun2}\NormalTok{(...)}
+\NormalTok{  z =}\StringTok{ }\NormalTok{x}\OperatorTok{+}\StringTok{ }\NormalTok{y}
+  \KeywordTok{return}\NormalTok{(z)}
+\NormalTok{\}}
+
+\NormalTok{fun2 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, ... )\{}
+\NormalTok{  b =}\StringTok{ }\KeywordTok{fun3}\NormalTok{(...)}
+\NormalTok{  c =}\StringTok{ }\NormalTok{a}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{b }
+  \KeywordTok{return}\NormalTok{(c)}
+\NormalTok{\}}
+
+\NormalTok{fun3 =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n)\{}
+\NormalTok{  n =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n)}
+  \KeywordTok{return}\NormalTok{(n)}
+\NormalTok{\}}
+
+\CommentTok{#  Returns:  1 + 2^2 + sqrt(4) = 7 }
+\KeywordTok{fun1}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Returns:  1 + 2^2 + sqrt(4) = 7 }
+\CommentTok{# Define each input explicitly }
+\KeywordTok{fun1}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{a =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+When using the \texttt{...} argument it is customary to always place \texttt{...} at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.
+
+\hypertarget{generic-functions}{%
+\section{Generic Functions}\label{generic-functions}}
+
+In R we have something called \emph{generic functions} which are functions that behave differently depending on the class type of one of the arguments. Typically generic functions depend on the class of the first argument. The functions \texttt{mean()}, \texttt{summary()}, and \texttt{plot()} are all generic functions. These functions act as a ``middle man'' or a ``dispatcher''. The generic function calls the actual function you desire. For example, when we call \texttt{summary()} and the first argument is a \texttt{lm} object, then the summary function that is actually run is \texttt{summary.lm()} which may have its own help file.
+
+\hypertarget{additional-resources-2}{%
+\section{Additional Resources}\label{additional-resources-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 14 of ``R for Programming in Data Science''}
+\item
+  \href{https://adv-r.hadley.nz/s3.html}{Chapter 13 of ``Advanced R''}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2390137\&node=8588230\&a=1409376127\&autoplay=1}{R Functions 1 \textbar{} Anatomy of a Function}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368890\&node=8488096\&a=1477744713\&autoplay=1}{R Functions 2 \textbar{} Getting Help}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368889\&node=8488095\&a=762120086\&autoplay=1}{R Functions 3 \textbar{} Argument Order and Default Values}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2700489\&node=9649685\&a=1404409900\&autoplay=1}{Writing Functions 1 \textbar{} Introduction}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2700492\&node=9649688\&a=604881114\&autoplay=1}{Writing Functions 2 \textbar{} 4 Fundamental Steps}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{if-statements}{%
+\chapter{If Statements}\label{if-statements}}
+
+If statements are a type of control flow structure. Control structures help us control how many times code is executed, and when it will be executed. This is helpful because sometime we only want our program to run if certain conditions are met.
+
+\hypertarget{if}{%
+\section{If}\label{if}}
+
+In R we can also execute commands only if certain conditions are met using the \texttt{if} operator. This feature in R checks a logical value (\texttt{\textless{}value\textgreater{}}) and if it is \texttt{TRUE} then a sequence of commands within \texttt{\{\}} will be ran. If \texttt{\textless{}value\textgreater{}} is \texttt{FALSE}, then the commands inside of \texttt{\{\}} will not be ran.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{<}\NormalTok{value}\OperatorTok{>}\NormalTok{)\{}
+  \CommentTok{# Commands }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Below we have an example. The code will only be executed if \texttt{x} is a positive number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{3}
+
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "positive"}
+\NormalTok{\}}
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "positive"
+\end{verbatim}
+
+In the example above we have a relational operator which returns a logical value. This logical value was equal to \texttt{TRUE} so the code was executed.
+
+\hypertarget{if-else}{%
+\section{If Else}\label{if-else}}
+
+We can pair an \texttt{if} statement with an \texttt{else} value. After the \texttt{else} object we can define another sequence of commands inside of \texttt{\{\}}. The \texttt{else} value is paired with the immediate previous \texttt{if} statement. If this \texttt{if} statement is \texttt{FALSE} then the \texttt{else} code will run. If the \texttt{if} statement is \texttt{TRUE} then the \texttt{else} code will not be executed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{-3}
+
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{class}\NormalTok{(x) }\OperatorTok{==}\StringTok{ "numeric"}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "number"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  type =}\StringTok{ "not a number"}
+\NormalTok{\}}
+\NormalTok{type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "number"
+\end{verbatim}
+
+\hypertarget{else-if}{%
+\section{Else If}\label{else-if}}
+
+Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous \texttt{if} statements were \texttt{FALSE} and another criteria is \texttt{TRUE}. We can use \texttt{else\ if} to implement these rules.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{-3}
+
+
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{    type =}\StringTok{ "positive"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{<}\DecValTok{0}\NormalTok{) \{}
+\NormalTok{    type =}\StringTok{ "negative"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{    type =}\StringTok{ "zero"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    type =}\StringTok{ "Error"}
+\NormalTok{\}}
+
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "negative"
+\end{verbatim}
+
+The command for the \texttt{if} statement will only run if \texttt{x\textgreater{}0}, and the rest of the code will not be implemented.
+
+The first \texttt{else\ if} commands will only execute if the first \texttt{if} statement was \texttt{FALSE} and \texttt{x\textless{}0}.
+
+The second \texttt{else\ if} commands will only execute if the previous \texttt{else\ if} and \texttt{if} statements were \texttt{FALSE} and \texttt{x==0}.
+
+If the previous \texttt{if} statement and all previous \texttt{else\ if} statements are \texttt{FALSE} then the \texttt{else} code will be executed.
+
+Here is another example with an \texttt{if\ else} chain.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Toyfun =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(X,Y,Do)\{}
+  \ControlFlowTok{if}\NormalTok{(Do }\OperatorTok{==}\StringTok{ "Add"}\NormalTok{)\{}
+\NormalTok{    Z =}\StringTok{ }\NormalTok{X}\OperatorTok{+}\NormalTok{Y}
+
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(Do }\OperatorTok{==}\StringTok{"Subtract"}\NormalTok{)\{}
+\NormalTok{    Z =}\StringTok{ }\NormalTok{X}\OperatorTok{-}\NormalTok{Y}
+
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(Do }\OperatorTok{==}\StringTok{"Multiply"}\NormalTok{)\{}
+\NormalTok{    Z =}\StringTok{ }\NormalTok{X}\OperatorTok{*}\NormalTok{Y}
+
+    
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(Do }\OperatorTok{==}\StringTok{"Penguin"}\NormalTok{)\{}
+\NormalTok{    Z =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"<('' )"}\NormalTok{)}
+    
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    Z =}\StringTok{ }\KeywordTok{c}\NormalTok{(X,Y)}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{(Z)}
+\NormalTok{\}}
+\KeywordTok{Toyfun}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\StringTok{"Add"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Toyfun}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\StringTok{"Subtract"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Toyfun}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\StringTok{"Penguin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "<('' )"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Toyfun}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{, }\StringTok{"Typo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 4
+\end{verbatim}
+
+\hypertarget{ifelse}{%
+\section{Ifelse}\label{ifelse}}
+
+We have a shortcut function that can help us keep our code more succinct using the \texttt{ifelse()} function. The first argument of this function is a logical value. the second and third arguments are what to do if the value is \texttt{TRUE} or \texttt{FALSE}, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{3}
+\NormalTok{type =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{,  }\StringTok{"positive"}\NormalTok{, }\StringTok{"nonpositive"}\NormalTok{)}
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "positive"
+\end{verbatim}
+
+We can also pass \texttt{ifelse()} a vector, and it will check the logical condition for each element of the vector. For example, in the \texttt{mtcars} data set, we can find the proportion of cars have \texttt{mpg\ \textgreater{}\ 25} and \texttt{hp\ \textgreater{}\ 60}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fast_efficient =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg }\OperatorTok{>}\StringTok{ }\DecValTok{25} \OperatorTok{&}\StringTok{ }\NormalTok{mtcars}\OperatorTok{$}\NormalTok{hp}\OperatorTok{>}\DecValTok{60}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{sum}\NormalTok{(fast_efficient)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(fast_efficient)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.15625
+\end{verbatim}
+
+\hypertarget{nested-if-chains}{%
+\section{Nested If Chains}\label{nested-if-chains}}
+
+We can make \texttt{if-else} chains nested within each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{105}
+\ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{>}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{     type =}\StringTok{ "large positive number"}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{     type =}\StringTok{ "positive number"}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{<}\DecValTok{0}\NormalTok{) \{}
+\NormalTok{  type =}\StringTok{ "negative number"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(x}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  type =}\StringTok{ "zero"}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  type =}\StringTok{ "Error"}
+\NormalTok{\}}
+
+\NormalTok{type }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "large positive number"
+\end{verbatim}
+
+\hypertarget{additional-resources-3}{%
+\section{Additional Resources}\label{additional-resources-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 13 of ``R for Programming in Data Science''}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369005\&node=8488277\&a=1089164180\&autoplay=1}{Control Flow 1 \textbar{} if Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369004\&node=8488276\&a=68950775\&autoplay=1}{Control Flow 2 \textbar{} if else Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369003\&node=8488275\&a=577245814\&autoplay=1}{Control Flow 3 \textbar{} else if Statements}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369002\&node=8488274\&a=2043700498\&autoplay=1}{Control Flow 4 \textbar{} ifelse Function}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369001\&node=8488273\&a=523725749\&autoplay=1}{Control Flow 5 \textbar{} switch Function}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{base-r-plotting}{%
+\chapter{Base R Plotting}\label{base-r-plotting}}
+
+\hypertarget{load-a-big-data-set}{%
+\section{Load A Big Data Set}\label{load-a-big-data-set}}
+
+Let use some of the methods above, and others, to analyze a real data set. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site (\url{http://www.cdc.gov/brfss}) contains a complete description of the survey, including the research questions that motivate the study and many interesting results derived from the data. We will focus on a random sample of 20,000 people from the BRFSS survey conducted in the year 2000. While there are over 200 variables in this data set, we will work with a smaller subset.
+
+We begin by loading the data set of 20,000 observations into the R workspace and examine some of its attributes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"http://www.openintro.org/stat/data/cdc.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+After a brief time, a new data frame cdc appears in the workspace. Each row representing a case (a person surveyed) and each column representing a variable.
+
+To get general information on each variable, use the \texttt{summary()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       genhlth        exerany          hlthplan         smoke100     
+##  excellent:4657   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+##  very good:6972   1st Qu.:0.0000   1st Qu.:1.0000   1st Qu.:0.0000  
+##  good     :5675   Median :1.0000   Median :1.0000   Median :0.0000  
+##  fair     :2019   Mean   :0.7457   Mean   :0.8738   Mean   :0.4721  
+##  poor     : 677   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##                   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+##      height          weight         wtdesire          age        gender   
+##  Min.   :48.00   Min.   : 68.0   Min.   : 68.0   Min.   :18.00   m: 9569  
+##  1st Qu.:64.00   1st Qu.:140.0   1st Qu.:130.0   1st Qu.:31.00   f:10431  
+##  Median :67.00   Median :165.0   Median :150.0   Median :43.00            
+##  Mean   :67.18   Mean   :169.7   Mean   :155.1   Mean   :45.07            
+##  3rd Qu.:70.00   3rd Qu.:190.0   3rd Qu.:175.0   3rd Qu.:57.00            
+##  Max.   :93.00   Max.   :500.0   Max.   :680.0   Max.   :99.00
+\end{verbatim}
+
+The variables \texttt{genhlth} and \texttt{gender} are character variables. The \texttt{summary()} command reports the frequencies of the unique values. The variables \texttt{exerany}, \texttt{hlthplan}, and \texttt{smoke100} are yes/no variables coded as 1=yes or 0=no. They represent the existence or absence or regular exercise, the presence of a healthcare plan, and whether or not the person smoked 100 cigarettes in their lifetime. The means are the proportion of ``yes'' responses. The variables \texttt{height}, \texttt{weight}, \texttt{wtdesire}, and \texttt{age} are numeric variables. The \texttt{summary()} command gives information on the means, medians, quartiles and range of values.
+
+Since this is a very large data set, we wouldn't want to list all the data. We can use the functions \texttt{head()} and \texttt{tail()} to list the first and last few rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     genhlth exerany hlthplan smoke100 height weight wtdesire age gender
+## 1      good       0        1        0     70    175      175  77      m
+## 2      good       0        1        1     64    125      115  33      f
+## 3      good       1        1        1     60    105      105  49      f
+## 4      good       1        1        0     66    132      124  42      f
+## 5 very good       0        1        0     61    150      130  55      f
+## 6 very good       1        1        0     64    114      114  55      f
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(cdc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         genhlth exerany hlthplan smoke100 height weight wtdesire age gender
+## 19995      good       0        1        1     69    224      224  73      m
+## 19996      good       1        1        0     66    215      140  23      f
+## 19997 excellent       0        1        0     73    200      185  35      m
+## 19998      poor       0        1        0     65    216      150  57      f
+## 19999      good       1        1        0     67    165      165  81      f
+## 20000      good       1        1        1     69    170      165  83      m
+\end{verbatim}
+
+\hypertarget{histograms}{%
+\section{Histograms}\label{histograms}}
+
+Histograms are one of the fundamental ways that we can represent a data set. In a histogram we typically have the frequency or proportion on the y-axis, and the x-axis is segmented into mutually exclusive sections. The height of the bins corresponds to amount of observations that fall within a specific range. We can create a histogram using the \texttt{hist()} function.
+
+Most of the basic R plots have default settings. For example, the x-axis, y-axis, number of bins, titles, and labels all change depending on the vector supplied into the function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the help file }
+\NormalTok{?hist }
+
+
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-3.pdf}
+
+The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
+
+There are several settings in base R plots that are similar. For example, in base R plots typically we can change the title, x-axis label, and y-axis label with \texttt{main}, \texttt{xlab}, and \texttt{ylab} arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+
+There are also function specific arguments. For example, we can control the number of bins to create.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{,}
+     \DataTypeTok{breaks =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+
+Use \texttt{col} argument to change the colors used for the bars. By using the \texttt{border} argument, you can even change the color used for the border of the bars.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
+
+There are several ways we can add \textbf{colors} to \texttt{R}.
+
+\begin{itemize}
+\item
+  \textbf{Using Color Names}: \texttt{R} programming has names for 657 colors. You can take a look at them all with the \texttt{colors()} function, or simply check this R color pdf.
+\item
+  \textbf{Using Hex Values as Colors}: Instead of using a color name, color can also be defined with a hexadecimal value. We define a color as a 6 hexadecimal digit number of the form \texttt{\#RRGGBB}. Where the \texttt{RR} is for red, \texttt{GG} for green and \texttt{BB} for blue and value ranges from \texttt{00} to \texttt{FF}. For example, \texttt{\#FF0000} would be red and \texttt{\#00FF00} would be green similarly, \#FFFFFF would be white and \texttt{\#000000} would be black.
+\item
+  \textbf{Using RGB Values} The function \texttt{rgb()} allows us to specify red, green and blue component with a number between 0 and 1. This function returns the corresponding hex code discussed above.
+\item
+  \textbf{Using a Color Palette}: R programming offers 5 built in color palettes which can be used to quickly generate color vectors of desired length. They are: \texttt{rainbow()}, \texttt{heat.colors()}, \texttt{terrain.colors()}, \texttt{topo.colors()} and \texttt{cm.colors()}. We pass in the number of colors that we want
+\end{itemize}
+
+You can also place values on top of bars; which will help you interpret the graph correctly. You can add them by setting the labels argument to \texttt{TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{],}
+     \DataTypeTok{col=}\StringTok{"dodgerblue3"}\NormalTok{,}
+     \DataTypeTok{labels=}\OtherTok{TRUE}\NormalTok{, }
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{), }
+     \DataTypeTok{breaks =} \DecValTok{18}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+
+Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# random numbers}
+\NormalTok{h1 =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{h2 =}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+\CommentTok{# Overlay two histograms}
+\KeywordTok{hist}\NormalTok{(h1,}
+     \DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.25}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(h2,}
+     \DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.25}\NormalTok{),}
+     \DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+
+For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?hist}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{boxplot}{%
+\section{Boxplot}\label{boxplot}}
+
+Let's produce a boxplot for the first 1000 values of the height variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+
+The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are considered outliers (according to the \(IQR\) method, see Homework 2) and are plotted as circles. Boxplots are often used to represent numeric data.
+
+One can use boxplots to compare different groups using \texttt{\textasciitilde{}} character. On the right side of \texttt{\textasciitilde{}} is the numeric variable, and the left side of \texttt{\textasciitilde{}} is a grouping variable (character, logical, factor).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{] }\OperatorTok{~}\StringTok{ }\NormalTok{cdc}\OperatorTok{$}\NormalTok{gender[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+
+\hypertarget{scatter-plot}{%
+\section{Scatter Plot}\label{scatter-plot}}
+
+We can create a scatter plot using the \texttt{plot()} function in R. This is generic function, which means that it will behave differently depending on the inputted values. For now we will on creating a simple \(X\) vs \(Y\) plot, which is what we typically want.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Help file for the GENERIC function}
+\NormalTok{?plot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Help on topic 'plot' was found in the following packages:
+## 
+##   Package               Library
+##   graphics              /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+##   base                  /Library/Frameworks/R.framework/Resources/library
+## 
+## 
+## Using the first match ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Help file for plot when using a simple X vs Y input}
+\NormalTok{?plot.default}
+        
+\CommentTok{# Run the command    }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+
+Notice that this help file has many of the same arguments as we saw with the \texttt{hist()} function. For example, \texttt{xlab}, \texttt{ylab}, \texttt{main}, and \texttt{col}. A lot of Base R plotting functions are related and use the same techniques and arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot using HEX color system }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"#33F3FF"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+Other interesting features we may want to consider is having different colors points on our plot. We can supple the \texttt{col} argument for a vector the colors we want plotted. If the vector of is the same length as the number of rows in our data set, then the index of the vector of colors corresponds to the index of the point being plotted. If the vector of colors is not the size, then colors are generated using recycling. For example, below only two colors were supplied. This means every other point in the data set had a different color.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot using HEX color system }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"#33F3FF"}\NormalTok{, }\StringTok{"#A833FF"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
+There are lots of other features we can change. Consider changing \texttt{cex}, \texttt{type}, \texttt{bg}, \texttt{pch}, \texttt{ylim}, \texttt{xlim}.
+
+\hypertarget{pie-charts}{%
+\section{Pie Charts}\label{pie-charts}}
+
+We will now look at some of the qualitative data that are not numbers, but categories or groups. The \texttt{table()} function can be used to tabulate categorical data. The \texttt{genhlth} variable has five categories, we can use \texttt{table()} to find the frequencies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## excellent very good      good      fair      poor 
+##      4657      6972      5675      2019       677
+\end{verbatim}
+
+Since the sample size is 20,000, we can divide by n to get proportions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## excellent very good      good      fair      poor 
+##   0.23285   0.34860   0.28375   0.10095   0.03385
+\end{verbatim}
+
+Pie charts are also used for categorical data. Options are also available for the \texttt{pie()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pie}\NormalTok{(}\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1.pdf}
+
+Options are also available for the pie() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"pink"}\NormalTok{, }\StringTok{"red"}\NormalTok{)}
+\KeywordTok{pie}\NormalTok{(}\KeywordTok{table}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{genhlth)}\OperatorTok{/}\DecValTok{20000}\NormalTok{, }\DataTypeTok{col =}\NormalTok{ colors, }\DataTypeTok{main =} \StringTok{"General Health"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
+
+\hypertarget{adding-extra-linespointselements-to-a-graph}{%
+\section{Adding Extra Lines/Points/Elements to a Graph}\label{adding-extra-linespointselements-to-a-graph}}
+
+Often you want to draw attention to specific values or observations in your graphic to provide unique insight. You can do this by adding markers to your graphic. For example, adding mean line will give you an idea about how much of the distribution is above and below the average. You can add such marker by using the \texttt{abline()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on a histogram }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# Make a dashed line}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{wtdesire), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
+
+Sometimes, we would rather add a line connecting two points, rather than a continuous vertical, horizontal or linear line. To do this we can use the \texttt{lines()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Add a line connecting two points. }
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{55}\NormalTok{, }\DecValTok{84}\NormalTok{),}
+      \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{400}\NormalTok{, }\DecValTok{200}\NormalTok{),  }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# Add a line connecting a series of points}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{,   }\DecValTok{60}\NormalTok{,  }\DecValTok{70}\NormalTok{,  }\DecValTok{80}\NormalTok{,  }\DecValTok{90}\NormalTok{),}
+      \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{350}\NormalTok{, }\DecValTok{225}\NormalTok{, }\DecValTok{300}\NormalTok{, }\DecValTok{425}\NormalTok{), }\DataTypeTok{col =} \StringTok{"green"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
+
+Similarly we can also add points to any base R graph using the \texttt{points()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height), }\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# Sample random points to plot }
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{62}\NormalTok{)}
+\NormalTok{random_index =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(cdc), }\DecValTok{20}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[random_index], cdc}\OperatorTok{$}\NormalTok{weight[random_index], }
+       \DataTypeTok{col =} \StringTok{"yellow"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1.pdf}
+
+In the \texttt{points()} help file we can see a separate section called \texttt{pch\ values} which contains the different types of points that Base R can create.
+
+Notice that the \texttt{abline()} function had arguments \texttt{lty}, and \texttt{lwd}. In addition, the \texttt{points()} function had the arguments \texttt{cex} and \texttt{bg}. The description for these arguments is in the \texttt{par} help file which contains a master set of graphical parameter arguments. In this file we can also see that \texttt{main}, \texttt{xlab}, and \texttt{ylab} are also listed.
+
+\hypertarget{the-par-help-file}{%
+\section{The par() Help File}\label{the-par-help-file}}
+
+The \texttt{par} file contains graphical arguments that are common in base R graphics functions. We can look inside this help file for even more arguments that may not be listed in the Base R plotting functions like \texttt{hist()}, \texttt{plot()}, \texttt{points()}, and \texttt{abline()}.
+
+It is also a function that can adjust global plotting window parameters. For example, suppose we wish to have multiple plots on plotting window. We can control this with \texttt{mfrow}. When adjusting global plotting parameters it is best to always revert back to the default settings when you are done.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Change plot window to have 3 columns and 1 row of plots}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+
+\CommentTok{# Three plots in one window }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight)}
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Revert back to default }
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{adding-legends}{%
+\section{Adding Legends}\label{adding-legends}}
+
+We can also consider adding a legend to our new graph using the \texttt{legend()} function. This function lets us put our own unique labels on different plotting aspects we created. Note that the function arguments like \texttt{col}, \texttt{lty}, and \texttt{pch} are used to dictate what should be on the legend.
+
+We control were the legend goes by using the first argument. This first argument \texttt{x} can be the the location on the x-axis, or it can be a keyword such as: ``bottomright'', ``bottom'', ``bottomleft'', ``left'', ``topleft'', ``top'', ``topright'', ``right'' and ``center''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on a histogram }
+\KeywordTok{hist}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Distribution of Weight"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Weight (kg)"}\NormalTok{, }
+     \DataTypeTok{border =} \StringTok{"mediumpurple4"}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"mediumpurple1"}\NormalTok{)}
+
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight),}
+       \DataTypeTok{col=}\StringTok{"mediumblue"}\NormalTok{,}
+       \DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}
+       \DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Mean Weight"}\NormalTok{),}
+       \DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }
+       \DataTypeTok{col =} \StringTok{"mediumblue"}\NormalTok{, }
+       \DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add a line on scatter plot }
+\KeywordTok{plot}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height, cdc}\OperatorTok{$}\NormalTok{weight, }
+     \DataTypeTok{xlab =} \StringTok{"Height"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Weight"}\NormalTok{, }
+     \DataTypeTok{col =} \StringTok{"darkblue"}\NormalTok{)}
+
+\CommentTok{# Make a solid line }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{median}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{# Add a single point}
+\KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height), }\KeywordTok{mean}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+
+\CommentTok{# Sample random points to plot }
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{62}\NormalTok{)}
+\NormalTok{random_index =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(cdc), }\DecValTok{20}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(cdc}\OperatorTok{$}\NormalTok{height[random_index], cdc}\OperatorTok{$}\NormalTok{weight[random_index], }
+       \DataTypeTok{col =} \StringTok{"orange"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{8}\NormalTok{)}
+
+\CommentTok{# Make a legend}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"All Data Values"}\NormalTok{, }
+                  \StringTok{"Mean"}\NormalTok{, }
+                  \StringTok{"Sample"}\NormalTok{, }
+                  \StringTok{"Median Weight"}\NormalTok{), }
+       \DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{8}\NormalTok{, }\OtherTok{NA}\NormalTok{), }
+       \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"darkblue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }
+       \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-149-1.pdf}
+
+\hypertarget{the-maps-package}{%
+\section{The ``maps'' Package}\label{the-maps-package}}
+
+Base R plotting is very powerful and has many features. However, sometimes you want to create something specialized or create a more unique type of plot. There are a lot of plotting tools that can be added to base R plots by using packages. Packages are covered in more detail in Section \ref{packages}.
+
+We specifically consider the \texttt{maps} package which lets us create different types of maps in R. For this package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'maps' was built under R version 4.0.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
+This package can let us graph different types of plots : ``world'', ``usa'', ``state'', and ``county''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\CommentTok{# world map }
+\KeywordTok{map}\NormalTok{(}\StringTok{"world"}\NormalTok{)}
+
+\CommentTok{# USA map }
+\KeywordTok{map}\NormalTok{(}\StringTok{"usa"}\NormalTok{)}
+\KeywordTok{map}\NormalTok{(}\StringTok{"state"}\NormalTok{)}
+\KeywordTok{map}\NormalTok{(}\StringTok{"county"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Within these maps we can specify specific regions that we may want plotted. In general, it supports the names of countries, and states in the US.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{map}\NormalTok{(}\StringTok{"world"}\NormalTok{, }\DataTypeTok{regions =} \StringTok{"Switzerland"}\NormalTok{)}
+\KeywordTok{map}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\DataTypeTok{regions =} \StringTok{"oklahoma"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+These functions have some of the same features of our normal Base R functions. For example, we can still add points and lines to these graphs, but now we have to do it in the correct coordinate system.
+
+For example, we can plot the locations of world cities that are capitals using the data set \texttt{world.cities} which is part of the \texttt{maps} package using the base R plot function \texttt{points()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map}\NormalTok{(}\StringTok{"world"}\NormalTok{)}
+\NormalTok{captial_cities =}\StringTok{ }\NormalTok{world.cities[world.cities}\OperatorTok{$}\NormalTok{capital}\OperatorTok{==}\DecValTok{1}\NormalTok{, ]}
+\KeywordTok{points}\NormalTok{(captial_cities}\OperatorTok{$}\NormalTok{long, captial_cities}\OperatorTok{$}\NormalTok{lat, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1.pdf}
+The maps package does not work with labels well. However, if we wish to add labels we can instead use the function \texttt{map.text()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\CommentTok{# Default Label }
+\KeywordTok{map.text}\NormalTok{(}\StringTok{"world"}\NormalTok{, }\DataTypeTok{regions =} \StringTok{"Switzerland"}\NormalTok{)}
+
+\CommentTok{# Custom Label }
+\KeywordTok{map.text}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\DataTypeTok{regions =} \StringTok{"oklahoma"}\NormalTok{, }\DataTypeTok{labels =} \StringTok{"Custom Label Here"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{what-makes-a-good-plot}{%
+\section{What makes a good plot?}\label{what-makes-a-good-plot}}
+
+It takes practice both to create and identify good plots. In general plots should have the following properties.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Informative Title
+\item
+  Appropriate Labelled Axis
+\item
+  Nothing Cutoff
+\item
+  Units of measurement listed
+\item
+  Legends (when applicable)
+\item
+  Communicate a clear message
+\end{enumerate}
+
+This is not an exhaustive list, but contains a general quick check list of items to consider when creating plots.
+
+\hypertarget{packages}{%
+\chapter{Packages}\label{packages}}
+
+\texttt{R} packages are a collection of \texttt{R} functions, complied code and sample data. They are stored under a directory called ``library'' in the \texttt{R} environment. By default, \texttt{R} installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the \texttt{R} console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the \texttt{R} program that is going to use them.
+
+All the packages available in \texttt{R} language are listed at \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{R Packages}.
+
+To see a list of all packages installed on your device.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+To see a list of all packages that are currently loaded (note that yours will likely look different).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{search}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] ".GlobalEnv"        "package:maps"      "package:knitr"    
+##  [4] "package:stats"     "package:graphics"  "package:grDevices"
+##  [7] "package:utils"     "package:datasets"  "package:methods"  
+## [10] "Autoloads"         "package:base"
+\end{verbatim}
+
+When adding a new package to our library we only have to install it once. We can do so with the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Alternatively, we can also go to the lower left hand window and select the \emph{Packages} tab. Then hit the button \textbf{Install}. A dropdown menu will appear where we can search for the package name.
+
+Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For example, suppose we wanted to install and load the package ``ggplot2'', (a very popular package for making plots). We would type the following commands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Install package (only need to do this once)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+
+\CommentTok{# Load into working environment (need to do this for each new R session)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
+
+\hypertarget{namespace-collisions}{%
+\section{Namespace Collisions}\label{namespace-collisions}}
+
+Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
+The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+This can be useful, but is not usually necessary.
+
+\hypertarget{loops}{%
+\chapter{Loops}\label{loops}}
+
+Loops are another type of control flow structure. They dictate how many times a series of commands should be run. There are two type of loops, a \texttt{while} loop and a \texttt{for} loop. These two loops operate similarly and are found in other programming languages such as \texttt{C} and \texttt{Python}.
+
+\hypertarget{while-loop}{%
+\section{While Loop}\label{while-loop}}
+
+A \texttt{while} loop is used when you want to perform a task indefinitely, until a particular condition is met. It's a condition-controlled loop.
+
+\begin{center}\includegraphics[width=14.5in]{images/WhileLoop} \end{center}
+
+The loop will continue until the condition is \texttt{FALSE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+
+\CommentTok{# If statement is true, keep running the loop }
+\ControlFlowTok{while}\NormalTok{ (x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{ ) \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+## [1] 4
+## [1] 3
+## [1] 2
+## [1] 1
+\end{verbatim}
+
+If the condition is false at the start, the while loop will never be executed at all.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# If statement starts as TRUE,  the loop will never run }
+\ControlFlowTok{while}\NormalTok{ (x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{ ) \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{for-loops}{%
+\section{For Loops}\label{for-loops}}
+
+The \texttt{for} statement in R is a bit different from what you usually use in other programming languages. Rather than iterating over a numeric progression, R's \texttt{for} statement iterates over the items of a vector or a list. The items are iterated in the order that they appear in the vector.
+
+\begin{center}\includegraphics[width=16.11in]{images/ForLoop} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Iterate through a vector}
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{,}\StringTok{"yellow"}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (x }\ControlFlowTok{in}\NormalTok{ colors) \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "red"
+## [1] "green"
+## [1] "blue"
+## [1] "yellow"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\FloatTok{3.14}\NormalTok{, }\StringTok{"Hi"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ lst) \{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.14
+## [1] "Hi"
+## [1] 1 2 3
+\end{verbatim}
+
+If you need to execute a group of statements for a specified number of times, use sequence operator : or built-in function \texttt{seq()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print 'Hello!' 3 times}
+\ControlFlowTok{for}\NormalTok{ (x }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"Hello!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello!"
+## [1] "Hello!"
+## [1] "Hello!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (x }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{2}\NormalTok{,}\DataTypeTok{to=}\DecValTok{8}\NormalTok{,}\DataTypeTok{by=}\DecValTok{2}\NormalTok{)) \{}
+  \KeywordTok{print}\NormalTok{(x}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+## [1] 16
+## [1] 36
+## [1] 64
+\end{verbatim}
+
+\hypertarget{break}{%
+\section{Break}\label{break}}
+
+The \texttt{break} statement is used to exit the loop immediately. It simply jumps out of the loop altogether, and the program continues after the loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+
+\CommentTok{# If statement starts as TRUE,  the loop will never run }
+\ControlFlowTok{while}\NormalTok{ (x }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{ ) \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+  
+  \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"Entered IF statement, stop loop"}\NormalTok{)}
+    \ControlFlowTok{break} 
+\NormalTok{  \}}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+## [1] 4
+## [1] 3
+## [1] "Entered IF statement, stop loop"
+\end{verbatim}
+
+\textbf{If not given an adequate stopping criteria or break statement the loop will continue forever.} For example, if we started the above examples at \texttt{x\ =\ -2}. The \texttt{break} statement is particularly important for the \texttt{while} loop.
+
+The \texttt{break} statement can also be used in a \texttt{for} loop. It simply jumps out of the loop altogether, and the program continues after the loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{,}\StringTok{"green"}\NormalTok{,}\StringTok{"blue"}\NormalTok{,}\StringTok{"yellow"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (x }\ControlFlowTok{in}\NormalTok{ colors) \{}
+  \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ "blue"}\NormalTok{)\{}
+       \ControlFlowTok{break} 
+\NormalTok{  \}}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "red"
+## [1] "green"
+\end{verbatim}
+
+The \texttt{for} loops do not have the same risk of ``running forever'', like \texttt{while} loops have.
+
+\hypertarget{next}{%
+\section{Next}\label{next}}
+
+We can also use the \texttt{next} command in both \texttt{for} loops and \texttt{while} loops in order to skip executing a command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+  
+\NormalTok{  i =}\StringTok{ }\NormalTok{i}\OperatorTok{^}\DecValTok{2}
+  
+  \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{<}\DecValTok{5}\NormalTok{)\{}
+    \ControlFlowTok{next}
+\NormalTok{  \}}
+  
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+## [1] 16
+## [1] 25
+## [1] 36
+## [1] 49
+## [1] 64
+## [1] 81
+## [1] 100
+\end{verbatim}
+
+The code inside the loop will run until it reaches the \texttt{next} statement. Once
+
+\hypertarget{bisection}{%
+\section{Bisection}\label{bisection}}
+
+\hypertarget{nested-loops}{%
+\section{Nested Loops}\label{nested-loops}}
+
+\hypertarget{additional-resources-4}{%
+\section{Additional Resources}\label{additional-resources-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://bookdown.org/rdpeng/rprogdatascience/functions.html\#the-...-argument}{Chapter 13 of ``R for Programming in Data Science''}
+\item
+  Videos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2369000\&node=8488272\&a=151697133\&autoplay=1}{Control Flow 6 \textbar{} while loops}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368999\&node=8488271\&a=621919520\&autoplay=1}{Control Flow 7 \textbar{} while loops Bisection Method}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368998\&node=8488270\&a=1160986069\&autoplay=1}{Control Flow 8 \textbar{} infinite while loops}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368997\&node=8488269\&a=148930850\&autoplay=1}{Control Flow 9 \textbar{} for loop Intro}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368996\&node=8488268\&a=160173707\&autoplay=1}{Control Flow 10 \textbar{} break and next}
+  \item
+    \href{https://ucr.yuja.com/V/Video?v=2368995\&node=8488267\&a=316843892\&autoplay=1}{Control Flow 11 \textbar{} nested for loops}
+  \item
+    \href{https://www.youtube.com/watch?v=HXNhEYqFo0o}{Programming Loops vs.~Recursion - Computerphile}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{apply-family-of-functions}{%
+\chapter{Apply Family of Functions}\label{apply-family-of-functions}}
+
+Loops (like \texttt{for}, and \texttt{while}) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.
+
+\texttt{R} has a more efficient and quick approach to perform iterations -- \textbf{The apply family}.
+
+The apply family consists of vectorized functions. Below are the most common forms of apply functions.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{apply()}
+\item
+  \texttt{lapply()}
+\item
+  \texttt{sapply()}
+\item
+  \texttt{tapply()}
+\end{itemize}
+
+These functions let you take data in batches and process the whole batch at once.
+
+There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function.
+
+\hypertarget{apply-function}{%
+\section{apply() function}\label{apply-function}}
+
+The \texttt{apply()}function is used to apply a function to the rows or columns of matrices or data frames. It assembles the returned values into a vector, and then returns that vector.
+
+If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e.~either all numeric values or all character strings) Otherwise, R will force all columns to have identical types. This may not be what you want. In that case, use the \texttt{lapply()} or \texttt{sapply()} functions.
+
+Description of the required \texttt{apply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A matrix , data frame or array
+\item
+  \texttt{MARGIN}: A vector giving the subscripts which the function will be applied over.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    1 indicates rows
+  \item
+    2 indicates columns
+  \item
+    c(1, 2) indicates rows and columns
+  \end{itemize}
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get column means }
+\NormalTok{data =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{3}\NormalTok{)}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 5 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get row means }
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{1}\NormalTok{, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12 15 18
+\end{verbatim}
+
+You can use user-defined functions as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x)\{}
+  
+  \CommentTok{# Standard deviation formula }
+\NormalTok{  y =}\StringTok{ }\KeywordTok{sum}\NormalTok{(x }\OperatorTok{-}\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(x)}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+  
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{  \})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 0
+\end{verbatim}
+
+\hypertarget{lapply-function}{%
+\section{lapply() function}\label{lapply-function}}
+
+The \texttt{lapply()} function is used to apply a function to each element of the list. It collects the returned values into a list, and then \textbf{returns that list}.
+
+Description of the required \texttt{lapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A matrix , data frame or array
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
+             \DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{36}\NormalTok{,}\DecValTok{8}\NormalTok{),}
+             \DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{))}
+\NormalTok{data_lst }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_vector =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{data_vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5 6 7 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(data_lst, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 15
+## 
+## $item2
+## [1] 100
+## 
+## $item3
+## [1] 25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(data_vector, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 6
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 8
+\end{verbatim}
+
+\hypertarget{sapply-function}{%
+\section{sapply() function}\label{sapply-function}}
+
+The \texttt{sapply()} and \texttt{lapply()} work basically the same.
+
+The only difference is that \texttt{lapply()} always returns a list, whereas \texttt{sapply()} tries to simplify the result into a vector or matrix.
+
+\begin{itemize}
+\item
+  If the return value is a list where every element is length 1, you get a vector.
+\item
+  If the return value is a list where every element is a vector of the same length (\textgreater{} 1), you get a matrix.
+\item
+  If the lengths vary, simplification is impossible and you get a list.
+\end{itemize}
+
+Description of the required \texttt{sapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A matrix , data frame or array
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_lst =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
+                 \DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{36}\NormalTok{,}\DecValTok{8}\NormalTok{),}
+                 \DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{))}
+\NormalTok{data_lst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(data_lst, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## item1 item2 item3 
+##    15   100    25
+\end{verbatim}
+
+\hypertarget{tapply-function}{%
+\section{tapply() function}\label{tapply-function}}
+
+The \texttt{tapply()} function breaks the data set up into groups and applies a function to each group.
+
+Description of the required \texttt{sapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A matrix , data frame or array
+\item
+  \texttt{INDEX}: A grouping factor or a list of factors
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Max"}\NormalTok{,}\StringTok{"Ray"}\NormalTok{,}\StringTok{"Kim"}\NormalTok{,}\StringTok{"Sam"}\NormalTok{,}\StringTok{"Eve"}\NormalTok{,}\StringTok{"Bob"}\NormalTok{), }
+                  \DataTypeTok{age=}\KeywordTok{c}\NormalTok{(}\DecValTok{24}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{21}\NormalTok{),}
+                  \DataTypeTok{gender=}\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{))) }
+
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   name age gender
+## 1  Amy  24      F
+## 2  Max  22      M
+## 3  Ray  21      M
+## 4  Kim  23      F
+## 5  Sam  20      M
+## 6  Eve  24      F
+## 7  Bob  21      M
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(data}\OperatorTok{$}\NormalTok{age, data}\OperatorTok{$}\NormalTok{gender, min)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  F  M 
+## 23 20
+\end{verbatim}
+
+\hypertarget{text-analysis}{%
+\chapter{Text Analysis}\label{text-analysis}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

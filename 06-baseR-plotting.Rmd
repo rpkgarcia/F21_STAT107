@@ -228,6 +228,24 @@ abline(h = median(cdc$weight), col = "red", lwd = 2)
 abline(h = median(cdc$wtdesire), col = "red", lty = 2)
 ```
 
+Sometimes, we would rather add a line connecting two points, rather than a continuous vertical, horizontal or linear line.  To do this we can use the `lines()` function.  
+
+```{r}
+# Add a line on scatter plot 
+plot(cdc$height, cdc$weight, 
+     xlab = "Height", 
+     ylab = "Weight", 
+     col = "darkblue")
+
+# Add a line connecting two points. 
+lines(x = c(55, 84),
+      y = c(400, 200),  col = "red", lwd = 2)
+
+# Add a line connecting a series of points
+lines(x = c(50,   60,  70,  80,  90),
+      y = c(100, 350, 225, 300, 425), col = "green", lwd = 2)
+```
+
 
 Similarly we can also add points to any base R graph using the `points()` function. 
 
@@ -334,3 +352,74 @@ legend("topleft",
 
 ```
 
+## The "maps" Package
+
+Base R plotting is very powerful and has many features.  However, sometimes you want to create something specialized or create a more unique type of plot.  There are a lot of plotting tools that can be added to base R plots by using packages. Packages are covered in more detail in Section \@ref(packages). 
+
+We specifically consider the `maps` package which lets us create different types of maps in R. For this package.
+
+```{r}
+library(maps)
+map()
+```
+This package can let us graph different types of plots : "world", "usa", "state", and "county". 
+
+```{r}
+par(mfrow = c(2, 2))
+# world map 
+map("world")
+
+# USA map 
+map("usa")
+map("state")
+map("county")
+par(mfrow = c(1,1))
+```
+
+Within these maps we can specify specific regions that we may want plotted. In general, it supports the names of countries, and states in the US. 
+
+```{r}
+par(mfrow = c(1,2))
+map("world", regions = "Switzerland")
+map("state", regions = "oklahoma")
+par(mfrow = c(1,1))
+```
+
+These functions have some of the same features of our normal Base R functions.  For example, we can still add points and lines to these graphs, but now we have to do it in the correct coordinate system.  
+
+
+For example, we can plot the locations of world cities that are capitals using the data set `world.cities` which is part of the `maps` package using the base R plot function `points()`. 
+
+```{r}
+map("world")
+captial_cities = world.cities[world.cities$capital==1, ]
+points(captial_cities$long, captial_cities$lat, col = "red")
+```
+The maps package does not work with labels well.  However, if we wish to add labels we can instead use the function `map.text()`. 
+
+```{r}
+par(mfrow = c(1,2))
+# Default Label 
+map.text("world", regions = "Switzerland")
+
+# Custom Label 
+map.text("state", regions = "oklahoma", labels = "Custom Label Here")
+par(mfrow = c(1,1))
+```
+## What makes a good plot? 
+
+It takes practice both to create and identify good plots.  In general plots should have the following properties. 
+
+1) Informative Title
+
+2) Appropriate Labelled Axis
+
+3) Nothing Cutoff 
+
+4) Units of measurement listed
+
+5) Legends (when applicable)
+
+6) Communicate a clear message
+
+This is not an exhaustive list, but contains a general quick check list of items to consider when creating plots. 

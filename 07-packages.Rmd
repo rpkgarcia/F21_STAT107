@@ -1,4 +1,4 @@
-# Packages 
+# Packages {#packages}
 
 `R` packages are a collection of `R` functions, complied code and sample data. They are stored under a directory called "library" in the `R` environment. By default, `R` installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the `R` console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the `R` program that is going to use them.
 

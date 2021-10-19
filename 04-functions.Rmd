@@ -283,6 +283,7 @@ In R we have something called *generic functions* which are functions that behav
 ## Additional Resources
 
 - [Chapter 14 of "R for Programming in Data Science"](https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument) 
+- [Chapter 13 of "Advanced R"](https://adv-r.hadley.nz/s3.html)
 - Videos:
     + [R Functions 1 | Anatomy of a Function](https://ucr.yuja.com/V/Video?v=2390137&node=8588230&a=1409376127&autoplay=1)
     + [R Functions 2 | Getting Help](https://ucr.yuja.com/V/Video?v=2368890&node=8488096&a=1477744713&autoplay=1)
