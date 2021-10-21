@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,9 +232,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>9.2</b> For Loops</a></li>
 <li class="chapter" data-level="9.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>9.3</b> Break</a></li>
 <li class="chapter" data-level="9.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>9.4</b> Next</a></li>
-<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#bisection"><i class="fa fa-check"></i><b>9.5</b> Bisection</a></li>
-<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.6</b> Nested Loops</a></li>
-<li class="chapter" data-level="9.7" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>9.7</b> Additional Resources</a></li>
+<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.5</b> Nested Loops</a></li>
+<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>9.6</b> Additional Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>10</b> Apply Family of Functions</a><ul>
 <li class="chapter" data-level="10.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>10.1</b> apply() function</a></li>
@@ -387,14 +386,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 100</code></pre>
 <p>The code inside the loop will run until it reaches the <code>next</code> statement. Once</p>
 </div>
-<div id="bisection" class="section level2">
-<h2><span class="header-section-number">9.5</span> Bisection</h2>
-</div>
 <div id="nested-loops" class="section level2">
-<h2><span class="header-section-number">9.6</span> Nested Loops</h2>
+<h2><span class="header-section-number">9.5</span> Nested Loops</h2>
+<p>We can also create loops within loops. We refer to creating loops within other loops as a nested loop.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="loops.html#cb463-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</span>
+<span id="cb463-2"><a href="loops.html#cb463-2"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>){</span>
+<span id="cb463-3"><a href="loops.html#cb463-3"></a>    statement =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;i=&quot;</span>, i, <span class="st">&quot;, j=&quot;</span>, j)</span>
+<span id="cb463-4"><a href="loops.html#cb463-4"></a>    <span class="kw">print</span>(statement)</span>
+<span id="cb463-5"><a href="loops.html#cb463-5"></a>  }</span>
+<span id="cb463-6"><a href="loops.html#cb463-6"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;i= 1 , j= 1&quot;
+## [1] &quot;i= 1 , j= 2&quot;
+## [1] &quot;i= 1 , j= 3&quot;
+## [1] &quot;i= 2 , j= 1&quot;
+## [1] &quot;i= 2 , j= 2&quot;
+## [1] &quot;i= 2 , j= 3&quot;
+## [1] &quot;i= 3 , j= 1&quot;
+## [1] &quot;i= 3 , j= 2&quot;
+## [1] &quot;i= 3 , j= 3&quot;
+## [1] &quot;i= 4 , j= 1&quot;
+## [1] &quot;i= 4 , j= 2&quot;
+## [1] &quot;i= 4 , j= 3&quot;
+## [1] &quot;i= 5 , j= 1&quot;
+## [1] &quot;i= 5 , j= 2&quot;
+## [1] &quot;i= 5 , j= 3&quot;
+## [1] &quot;i= 6 , j= 1&quot;
+## [1] &quot;i= 6 , j= 2&quot;
+## [1] &quot;i= 6 , j= 3&quot;
+## [1] &quot;i= 7 , j= 1&quot;
+## [1] &quot;i= 7 , j= 2&quot;
+## [1] &quot;i= 7 , j= 3&quot;
+## [1] &quot;i= 8 , j= 1&quot;
+## [1] &quot;i= 8 , j= 2&quot;
+## [1] &quot;i= 8 , j= 3&quot;
+## [1] &quot;i= 9 , j= 1&quot;
+## [1] &quot;i= 9 , j= 2&quot;
+## [1] &quot;i= 9 , j= 3&quot;
+## [1] &quot;i= 10 , j= 1&quot;
+## [1] &quot;i= 10 , j= 2&quot;
+## [1] &quot;i= 10 , j= 3&quot;</code></pre>
+<p>Here is an example of a nested loop which changes the elements of matrix to be the product of the row and column location.</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="loops.html#cb465-1"></a>my_matrix =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb465-2"><a href="loops.html#cb465-2"></a></span>
+<span id="cb465-3"><a href="loops.html#cb465-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_matrix)){</span>
+<span id="cb465-4"><a href="loops.html#cb465-4"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_matrix)){</span>
+<span id="cb465-5"><a href="loops.html#cb465-5"></a>    my_matrix[i,j] =<span class="st"> </span>i<span class="op">*</span>j</span>
+<span id="cb465-6"><a href="loops.html#cb465-6"></a>  }</span>
+<span id="cb465-7"><a href="loops.html#cb465-7"></a>}</span>
+<span id="cb465-8"><a href="loops.html#cb465-8"></a></span>
+<span id="cb465-9"><a href="loops.html#cb465-9"></a>my_matrix</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    2    4    6    8   10
+## [3,]    3    6    9   12   15
+## [4,]    4    8   12   16   20
+## [5,]    5   10   15   20   25</code></pre>
 </div>
 <div id="additional-resources-4" class="section level2">
-<h2><span class="header-section-number">9.7</span> Additional Resources</h2>
+<h2><span class="header-section-number">9.6</span> Additional Resources</h2>
 <ul>
 <li><a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument">Chapter 13 of “R for Programming in Data Science”</a></li>
 <li>Videos:

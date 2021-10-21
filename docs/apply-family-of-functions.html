@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-10-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,9 +232,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>9.2</b> For Loops</a></li>
 <li class="chapter" data-level="9.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>9.3</b> Break</a></li>
 <li class="chapter" data-level="9.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>9.4</b> Next</a></li>
-<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#bisection"><i class="fa fa-check"></i><b>9.5</b> Bisection</a></li>
-<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.6</b> Nested Loops</a></li>
-<li class="chapter" data-level="9.7" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>9.7</b> Additional Resources</a></li>
+<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.5</b> Nested Loops</a></li>
+<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>9.6</b> Additional Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>10</b> Apply Family of Functions</a><ul>
 <li class="chapter" data-level="10.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply-function"><i class="fa fa-check"></i><b>10.1</b> apply() function</a></li>
@@ -292,26 +291,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><code>FUN</code>: The function to be applied</li>
 </ul>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="apply-family-of-functions.html#cb463-1"></a><span class="co"># Get column means </span></span>
-<span id="cb463-2"><a href="apply-family-of-functions.html#cb463-2"></a>data =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb463-3"><a href="apply-family-of-functions.html#cb463-3"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="apply-family-of-functions.html#cb467-1"></a><span class="co"># Get column means </span></span>
+<span id="cb467-2"><a href="apply-family-of-functions.html#cb467-2"></a>data =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb467-3"><a href="apply-family-of-functions.html#cb467-3"></a>data</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="apply-family-of-functions.html#cb465-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="apply-family-of-functions.html#cb469-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, mean)</span></code></pre></div>
 <pre><code>## [1] 2 5 8</code></pre>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="apply-family-of-functions.html#cb467-1"></a><span class="co"># Get row means </span></span>
-<span id="cb467-2"><a href="apply-family-of-functions.html#cb467-2"></a><span class="kw">apply</span>(data, <span class="dv">1</span>, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="apply-family-of-functions.html#cb471-1"></a><span class="co"># Get row means </span></span>
+<span id="cb471-2"><a href="apply-family-of-functions.html#cb471-2"></a><span class="kw">apply</span>(data, <span class="dv">1</span>, sum)</span></code></pre></div>
 <pre><code>## [1] 12 15 18</code></pre>
 <p>You can use user-defined functions as well.</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="apply-family-of-functions.html#cb469-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, <span class="cf">function</span>(x){</span>
-<span id="cb469-2"><a href="apply-family-of-functions.html#cb469-2"></a>  </span>
-<span id="cb469-3"><a href="apply-family-of-functions.html#cb469-3"></a>  <span class="co"># Standard deviation formula </span></span>
-<span id="cb469-4"><a href="apply-family-of-functions.html#cb469-4"></a>  y =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb469-5"><a href="apply-family-of-functions.html#cb469-5"></a>  </span>
-<span id="cb469-6"><a href="apply-family-of-functions.html#cb469-6"></a>  <span class="kw">return</span>(y)</span>
-<span id="cb469-7"><a href="apply-family-of-functions.html#cb469-7"></a>  })</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="apply-family-of-functions.html#cb473-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, <span class="cf">function</span>(x){</span>
+<span id="cb473-2"><a href="apply-family-of-functions.html#cb473-2"></a>  </span>
+<span id="cb473-3"><a href="apply-family-of-functions.html#cb473-3"></a>  <span class="co"># Standard deviation formula </span></span>
+<span id="cb473-4"><a href="apply-family-of-functions.html#cb473-4"></a>  y =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb473-5"><a href="apply-family-of-functions.html#cb473-5"></a>  </span>
+<span id="cb473-6"><a href="apply-family-of-functions.html#cb473-6"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb473-7"><a href="apply-family-of-functions.html#cb473-7"></a>  })</span></code></pre></div>
 <pre><code>## [1] 0 0 0</code></pre>
 </div>
 <div id="lapply-function" class="section level2">
@@ -322,10 +321,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>X</code>: A matrix , data frame or array</li>
 <li><code>FUN</code>: The function to be applied</li>
 </ul>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="apply-family-of-functions.html#cb471-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
-<span id="cb471-2"><a href="apply-family-of-functions.html#cb471-2"></a>             <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
-<span id="cb471-3"><a href="apply-family-of-functions.html#cb471-3"></a>             <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
-<span id="cb471-4"><a href="apply-family-of-functions.html#cb471-4"></a>data_lst </span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="apply-family-of-functions.html#cb475-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb475-2"><a href="apply-family-of-functions.html#cb475-2"></a>             <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb475-3"><a href="apply-family-of-functions.html#cb475-3"></a>             <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb475-4"><a href="apply-family-of-functions.html#cb475-4"></a>data_lst </span></code></pre></div>
 <pre><code>## $item1
 ## [1] 1 2 3 4 5
 ## 
@@ -334,10 +333,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $item3
 ## [1] 1 3 5 7 9</code></pre>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="apply-family-of-functions.html#cb473-1"></a>data_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
-<span id="cb473-2"><a href="apply-family-of-functions.html#cb473-2"></a>data_vector</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="apply-family-of-functions.html#cb477-1"></a>data_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb477-2"><a href="apply-family-of-functions.html#cb477-2"></a>data_vector</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="apply-family-of-functions.html#cb475-1"></a><span class="kw">lapply</span>(data_lst, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="apply-family-of-functions.html#cb479-1"></a><span class="kw">lapply</span>(data_lst, sum)</span></code></pre></div>
 <pre><code>## $item1
 ## [1] 15
 ## 
@@ -346,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $item3
 ## [1] 25</code></pre>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="apply-family-of-functions.html#cb477-1"></a><span class="kw">lapply</span>(data_vector, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="apply-family-of-functions.html#cb481-1"></a><span class="kw">lapply</span>(data_vector, sum)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -385,10 +384,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>X</code>: A matrix , data frame or array</li>
 <li><code>FUN</code>: The function to be applied</li>
 </ul>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="apply-family-of-functions.html#cb479-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
-<span id="cb479-2"><a href="apply-family-of-functions.html#cb479-2"></a>                 <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
-<span id="cb479-3"><a href="apply-family-of-functions.html#cb479-3"></a>                 <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
-<span id="cb479-4"><a href="apply-family-of-functions.html#cb479-4"></a>data_lst</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="apply-family-of-functions.html#cb483-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb483-2"><a href="apply-family-of-functions.html#cb483-2"></a>                 <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb483-3"><a href="apply-family-of-functions.html#cb483-3"></a>                 <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb483-4"><a href="apply-family-of-functions.html#cb483-4"></a>data_lst</span></code></pre></div>
 <pre><code>## $item1
 ## [1] 1 2 3 4 5
 ## 
@@ -397,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $item3
 ## [1] 1 3 5 7 9</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="apply-family-of-functions.html#cb481-1"></a><span class="kw">sapply</span>(data_lst, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="apply-family-of-functions.html#cb485-1"></a><span class="kw">sapply</span>(data_lst, sum)</span></code></pre></div>
 <pre><code>## item1 item2 item3 
 ##    15   100    25</code></pre>
 </div>
@@ -410,11 +409,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>INDEX</code>: A grouping factor or a list of factors</li>
 <li><code>FUN</code>: The function to be applied</li>
 </ul>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="apply-family-of-functions.html#cb483-1"></a>data =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Max&quot;</span>,<span class="st">&quot;Ray&quot;</span>,<span class="st">&quot;Kim&quot;</span>,<span class="st">&quot;Sam&quot;</span>,<span class="st">&quot;Eve&quot;</span>,<span class="st">&quot;Bob&quot;</span>), </span>
-<span id="cb483-2"><a href="apply-family-of-functions.html#cb483-2"></a>                  <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">21</span>),</span>
-<span id="cb483-3"><a href="apply-family-of-functions.html#cb483-3"></a>                  <span class="dt">gender=</span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>))) </span>
-<span id="cb483-4"><a href="apply-family-of-functions.html#cb483-4"></a></span>
-<span id="cb483-5"><a href="apply-family-of-functions.html#cb483-5"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="apply-family-of-functions.html#cb487-1"></a>data =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Max&quot;</span>,<span class="st">&quot;Ray&quot;</span>,<span class="st">&quot;Kim&quot;</span>,<span class="st">&quot;Sam&quot;</span>,<span class="st">&quot;Eve&quot;</span>,<span class="st">&quot;Bob&quot;</span>), </span>
+<span id="cb487-2"><a href="apply-family-of-functions.html#cb487-2"></a>                  <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">21</span>),</span>
+<span id="cb487-3"><a href="apply-family-of-functions.html#cb487-3"></a>                  <span class="dt">gender=</span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>))) </span>
+<span id="cb487-4"><a href="apply-family-of-functions.html#cb487-4"></a></span>
+<span id="cb487-5"><a href="apply-family-of-functions.html#cb487-5"></a>data</span></code></pre></div>
 <pre><code>##   name age gender
 ## 1  Amy  24      F
 ## 2  Max  22      M
@@ -423,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5  Sam  20      M
 ## 6  Eve  24      F
 ## 7  Bob  21      M</code></pre>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="apply-family-of-functions.html#cb485-1"></a><span class="kw">tapply</span>(data<span class="op">$</span>age, data<span class="op">$</span>gender, min)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="apply-family-of-functions.html#cb489-1"></a><span class="kw">tapply</span>(data<span class="op">$</span>age, data<span class="op">$</span>gender, min)</span></code></pre></div>
 <pre><code>##  F  M 
 ## 23 20</code></pre>
 

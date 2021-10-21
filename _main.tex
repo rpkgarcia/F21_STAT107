@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2021-10-18}
+\date{2021-10-20}
 
 \begin{document}
 \maketitle
@@ -4388,11 +4388,79 @@ We can also use the \texttt{next} command in both \texttt{for} loops and \texttt
 
 The code inside the loop will run until it reaches the \texttt{next} statement. Once
 
-\hypertarget{bisection}{%
-\section{Bisection}\label{bisection}}
-
 \hypertarget{nested-loops}{%
 \section{Nested Loops}\label{nested-loops}}
+
+We can also create loops within loops. We refer to creating loops within other loops as a nested loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)\{}
+\NormalTok{    statement =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"i="}\NormalTok{, i, }\StringTok{", j="}\NormalTok{, j)}
+    \KeywordTok{print}\NormalTok{(statement)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "i= 1 , j= 1"
+## [1] "i= 1 , j= 2"
+## [1] "i= 1 , j= 3"
+## [1] "i= 2 , j= 1"
+## [1] "i= 2 , j= 2"
+## [1] "i= 2 , j= 3"
+## [1] "i= 3 , j= 1"
+## [1] "i= 3 , j= 2"
+## [1] "i= 3 , j= 3"
+## [1] "i= 4 , j= 1"
+## [1] "i= 4 , j= 2"
+## [1] "i= 4 , j= 3"
+## [1] "i= 5 , j= 1"
+## [1] "i= 5 , j= 2"
+## [1] "i= 5 , j= 3"
+## [1] "i= 6 , j= 1"
+## [1] "i= 6 , j= 2"
+## [1] "i= 6 , j= 3"
+## [1] "i= 7 , j= 1"
+## [1] "i= 7 , j= 2"
+## [1] "i= 7 , j= 3"
+## [1] "i= 8 , j= 1"
+## [1] "i= 8 , j= 2"
+## [1] "i= 8 , j= 3"
+## [1] "i= 9 , j= 1"
+## [1] "i= 9 , j= 2"
+## [1] "i= 9 , j= 3"
+## [1] "i= 10 , j= 1"
+## [1] "i= 10 , j= 2"
+## [1] "i= 10 , j= 3"
+\end{verbatim}
+
+Here is an example of a nested loop which changes the elements of matrix to be the product of the row and column location.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_matrix =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{5}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{5}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(my_matrix))\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(my_matrix))\{}
+\NormalTok{    my_matrix[i,j] =}\StringTok{ }\NormalTok{i}\OperatorTok{*}\NormalTok{j}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{my_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    2    4    6    8   10
+## [3,]    3    6    9   12   15
+## [4,]    4    8   12   16   20
+## [5,]    5   10   15   20   25
+\end{verbatim}
 
 \hypertarget{additional-resources-4}{%
 \section{Additional Resources}\label{additional-resources-4}}

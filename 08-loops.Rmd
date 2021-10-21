@@ -142,9 +142,35 @@ for(i in 1:10){
 
 The code inside the loop will run until it reaches the `next` statement.  Once 
 
-## Bisection
-
 ## Nested Loops
+
+We can also create loops within loops.  We refer to creating loops within other loops as a nested loop. 
+
+
+```{r}
+for(i in 1:10){
+  for(j in 1:3){
+    statement = paste("i=", i, ", j=", j)
+    print(statement)
+  }
+}
+```
+
+Here is an example of a nested loop which changes the elements of matrix to be the product of the row and column location. 
+
+```{r}
+my_matrix = matrix(NA, nrow = 5, ncol = 5)
+
+for(i in 1:nrow(my_matrix)){
+  for(j in 1:nrow(my_matrix)){
+    my_matrix[i,j] = i*j
+  }
+}
+
+my_matrix
+```
+
+
 
 ## Additional Resources
 
