@@ -199,7 +199,7 @@ We can read in the file with the following commands.
 
 ```{r}
 the_url = "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt"
-al = readLines(the_url, warn = FALSE)
+al1 = readLines(the_url, warn = FALSE)
 
 # How many lines in the file 
 length(al1)

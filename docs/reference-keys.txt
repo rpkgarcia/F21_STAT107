@@ -55,11 +55,14 @@ next
 nested-loops
 additional-resources-4
 apply-family-of-functions
-apply-function
-lapply-function
-sapply-function
-tapply-function
-text-analysis
+apply
+lapply
+sapply
+tapply
+mapply
+replicate
+how-to-pick-a-method
+more-examples
 introduction-to-text-data-analysis
 making-strings
 substring-operations
@@ -68,6 +71,5 @@ converting-objects-into-strings
 versatility-of-the-paste-function
 gsub-sub
 text-of-some-importance
-more-text
 search
 word-count-tables
