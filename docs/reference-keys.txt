@@ -60,3 +60,14 @@ lapply-function
 sapply-function
 tapply-function
 text-analysis
+introduction-to-text-data-analysis
+making-strings
+substring-operations
+dividing-strings-into-vectors
+converting-objects-into-strings
+versatility-of-the-paste-function
+gsub-sub
+text-of-some-importance
+more-text
+search
+word-count-tables

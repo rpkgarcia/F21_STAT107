@@ -176,12 +176,12 @@ Default value of `collapse` is `NULL` -- that is, it won't use it.
 gsub is all occurances, and sub is first occurance. 
 
 
-Text of Some Importance
-=========
+## Text of Some Importance
 
 
-  If we shall suppose that American slavery is one of those
-  offenses which, in the providence of God, must needs come, but which, having
+
+  >"If we shall suppose that American slavery is one of those
+  >offenses which, in the providence of God, must needs come, but which, having
   continued through His appointed time, He now wills to remove, and that He
   gives to both North and South this terrible war as the woe due to those by
   whom the offense came, shall we discern therein any departure from those
@@ -195,13 +195,16 @@ Text of Some Importance
   altogether."
 
 
-
-More text
-=========
+We can read in the file with the following commands. 
 
 ```{r}
-al2 <- readLines("al.txt")
+the_url = "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al.txt"
+al2 = readLines(the_url, warn = FALSE)
+
+# How many lines in the file 
 length(al2)
+
+# See the first few lines
 head(al2)
 ```
 
