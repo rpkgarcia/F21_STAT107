@@ -1,3 +1,201 @@
+--- 
+title: "STAT 107 Outline of Class Notes"
+author: "Rebecca Kurtz-Garcia"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+mainfont: Arial
+monofont: "Courier New"
+#monotonoptions: "Scale =0.7"
+---
+--- 
+title: "STAT 107 Outline of Class Notes"
+author: "Rebecca Kurtz-Garcia"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+mainfont: Arial
+monofont: "Courier New"
+#monotonoptions: "Scale =0.7"
+---
+
+# Welcome {-}
+
+Welcome to STAT 107! This document will contain and outline of the course notes throughout the quarter.  Please see the course website for an approximate schedule.  In each of the chapters there will be a list of links, resources, and videos for learning more about an individual topic.  This document will be updated constantly, be sure to check here for periodic updates.  In addition, this document does not serve as a substitute for in class instruction, but more as a guide for the general content we discuss.  Students are still expected to attend every lecture.  
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introduction to R
+
+Placeholder
+
+
+## Download and Install R and Rstudio
+## The **RStudio** Interface 
+### Bottom Left Pane {-}
+### Bottom Right Pane {-}
+### Top Right Pane {-}
+### Top Left Pane {-}
+## Comments 
+## Operators {#operators}
+### Arithmetic Operators {-}
+### Relational Operators {-}
+### Logical operators {-}
+### Assignment Operators {-}
+## Additional Resources 
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# Introduction to R Objects  
+
+Placeholder
+
+
+## Atomic Objects 
+### Numeric {-}
+### Integer {-}
+### Logical {-}
+### Character {-}
+## Vectors
+## Lists 
+## Matrices
+## Factors
+## Data Frames
+## Other Object Types and the Global Environment
+## Additional Resources 
+## Factors 
+## Lists 
+
+<!--chapter:end:02-objects.Rmd-->
+
+
+# Working with Data Sets
+
+Placeholder
+
+
+## Getting Data Sets in Our Working Environment
+### Built-In Data {-}
+### Importing From Your Computer{-}
+### Import From Online {-}
+## Basic Data Manipulation
+### Indexing {-}
+### Rearranging Rows {-}
+### Adding Columns {-}
+### NA values {-}
+### NULL {-}
+### Adding Rows {-}
+
+<!--chapter:end:03-working-with-data.Rmd-->
+
+
+# Functions {#functions}
+
+Placeholder
+
+
+## Build Your Own Function
+## Lexical Scoping 
+## Built-In Functions
+## Help Files 
+## The ... Argument
+## Generic Functions 
+## Additional Resources
+
+<!--chapter:end:04-functions.Rmd-->
+
+
+# If Statements
+
+Placeholder
+
+
+## If 
+## If Else 
+## Else If 
+## Ifelse
+## Nested If Chains
+## Additional Resources
+
+<!--chapter:end:05-if-statements.Rmd-->
+
+
+# Base R Plotting
+
+Placeholder
+
+
+## Load A Big Data Set
+## Histograms 
+## Boxplot
+## Scatter Plot
+## Pie Charts
+## Adding Extra Lines/Points/Elements to a Graph
+## The par() Help File 
+## Adding Legends
+## The "maps" Package
+## What makes a good plot? 
+
+<!--chapter:end:06-baseR-plotting.Rmd-->
+
+
+# Packages {#packages}
+
+Placeholder
+
+
+## Namespace Collisions  
+
+<!--chapter:end:07-packages.Rmd-->
+
+
+# Loops
+
+Placeholder
+
+
+## While Loop
+## For Loops
+## Break 
+## Next 
+## Nested Loops
+## Additional Resources
+
+<!--chapter:end:08-loops.Rmd-->
+
+
+#  Apply Family of Functions
+
+Placeholder
+
+
+## apply() function 
+## lapply() function 
+## sapply() function 
+## tapply() function 
+
+<!--chapter:end:09-apply-family.Rmd-->
+
 # Introduction To Text Data Analysis
 
 In this section we give an introduction to strings and string operations, how to extracting and manipulating string objects, and an introduction to general search methods. 
@@ -267,4 +465,13 @@ wc["that"]
 which(names(wc)  == "That")
 wc["That"]
 ```
+
+
+<!--chapter:end:10-text-analysis.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:99-references.Rmd-->
 
