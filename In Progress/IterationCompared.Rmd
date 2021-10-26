@@ -1,0 +1,10 @@
+---
+title: "Text Analysis"
+author: "Rebecca Kurtz-Garcia"
+date: "10/8/2021"
+output: html_document
+---
+
+
+- https://www.r-project.org/doc/Rnews/Rnews_2008-1.pdf
+- http://vita.had.co.nz/papers/plyr.pdf
