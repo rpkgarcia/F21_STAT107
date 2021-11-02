@@ -1,4 +1,4 @@
-# Introduction To Text Data Analysis
+# Text Data
 
 In this section we give an introduction to strings and string operations, how to extracting and manipulating string objects, and an introduction to general search methods. 
 

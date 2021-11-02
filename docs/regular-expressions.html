@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Regular Expressions | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Regular Expressions | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Regular Expressions | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2021-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="text-data.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Outline of Class Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Download and Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#comments"><i class="fa fa-check"></i><b>1.3</b> Comments</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i><b>1.4</b> Operators</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operators"><i class="fa fa-check"></i>Arithmetic Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operators"><i class="fa fa-check"></i>Relational Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operators"><i class="fa fa-check"></i>Logical operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operators"><i class="fa fa-check"></i>Assignment Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.5</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#integer"><i class="fa fa-check"></i>Integer</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types-and-the-global-environment"><i class="fa fa-check"></i><b>2.7</b> Other Object Types and the Global Environment</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors-1"><i class="fa fa-check"></i><b>2.9</b> Factors</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists-1"><i class="fa fa-check"></i><b>2.10</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>3</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="3.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>3.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-from-your-computer"><i class="fa fa-check"></i>Importing From Your Computer</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#import-from-online"><i class="fa fa-check"></i>Import From Online</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>3.2</b> Basic Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#indexing"><i class="fa fa-check"></i>Indexing</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#rearranging-rows"><i class="fa fa-check"></i>Rearranging Rows</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-columns"><i class="fa fa-check"></i>Adding Columns</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#na-values"><i class="fa fa-check"></i>NA values</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#null"><i class="fa fa-check"></i>NULL</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-rows"><i class="fa fa-check"></i>Adding Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>4.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>4.2</b> Lexical Scoping</a></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>4.3</b> Built-In Functions</a></li>
+<li class="chapter" data-level="4.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>4.4</b> Help Files</a></li>
+<li class="chapter" data-level="4.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>4.5</b> The … Argument</a></li>
+<li class="chapter" data-level="4.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>4.6</b> Generic Functions</a></li>
+<li class="chapter" data-level="4.7" data-path="functions.html"><a href="functions.html#additional-resources-2"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>5</b> If Statements</a><ul>
+<li class="chapter" data-level="5.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>5.1</b> If</a></li>
+<li class="chapter" data-level="5.2" data-path="if-statements.html"><a href="if-statements.html#if-else"><i class="fa fa-check"></i><b>5.2</b> If Else</a></li>
+<li class="chapter" data-level="5.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>5.3</b> Else If</a></li>
+<li class="chapter" data-level="5.4" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>5.4</b> Ifelse</a></li>
+<li class="chapter" data-level="5.5" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>5.5</b> Nested If Chains</a></li>
+<li class="chapter" data-level="5.6" data-path="if-statements.html"><a href="if-statements.html#additional-resources-3"><i class="fa fa-check"></i><b>5.6</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>6</b> Base R Plotting</a><ul>
+<li class="chapter" data-level="6.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>6.1</b> Load A Big Data Set</a></li>
+<li class="chapter" data-level="6.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>6.2</b> Histograms</a></li>
+<li class="chapter" data-level="6.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>6.3</b> Boxplot</a></li>
+<li class="chapter" data-level="6.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>6.4</b> Scatter Plot</a></li>
+<li class="chapter" data-level="6.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>6.5</b> Pie Charts</a></li>
+<li class="chapter" data-level="6.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-extra-linespointselements-to-a-graph"><i class="fa fa-check"></i><b>6.6</b> Adding Extra Lines/Points/Elements to a Graph</a></li>
+<li class="chapter" data-level="6.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>6.7</b> The par() Help File</a></li>
+<li class="chapter" data-level="6.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>6.8</b> Adding Legends</a></li>
+<li class="chapter" data-level="6.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-maps-package"><i class="fa fa-check"></i><b>6.9</b> The “maps” Package</a></li>
+<li class="chapter" data-level="6.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>6.10</b> What makes a good plot?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a><ul>
+<li class="chapter" data-level="7.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>7.1</b> Namespace Collisions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> Loops</a><ul>
+<li class="chapter" data-level="8.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>8.1</b> While Loop</a></li>
+<li class="chapter" data-level="8.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>8.2</b> For Loops</a></li>
+<li class="chapter" data-level="8.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>8.3</b> Break</a></li>
+<li class="chapter" data-level="8.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>8.4</b> Next</a></li>
+<li class="chapter" data-level="8.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>8.5</b> Nested Loops</a></li>
+<li class="chapter" data-level="8.6" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>8.6</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply"><i class="fa fa-check"></i><b>9.1</b> apply()</a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply"><i class="fa fa-check"></i><b>9.2</b> lapply()</a></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply"><i class="fa fa-check"></i><b>9.3</b> sapply()</a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply"><i class="fa fa-check"></i><b>9.4</b> tapply()</a></li>
+<li class="chapter" data-level="9.5" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#mapply"><i class="fa fa-check"></i><b>9.5</b> mapply()</a></li>
+<li class="chapter" data-level="9.6" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#replicate"><i class="fa fa-check"></i><b>9.6</b> replicate()</a></li>
+<li class="chapter" data-level="9.7" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>9.7</b> How to Pick a Method</a></li>
+<li class="chapter" data-level="9.8" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#more-examples"><i class="fa fa-check"></i><b>9.8</b> More Examples</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#additional-resources-5"><i class="fa fa-check"></i>Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>10</b> Text Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="text-data.html"><a href="text-data.html#making-strings"><i class="fa fa-check"></i><b>10.1</b> Making Strings</a></li>
+<li class="chapter" data-level="10.2" data-path="text-data.html"><a href="text-data.html#substring-operations"><i class="fa fa-check"></i><b>10.2</b> Substring Operations</a></li>
+<li class="chapter" data-level="10.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors</a></li>
+<li class="chapter" data-level="10.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings</a></li>
+<li class="chapter" data-level="10.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function</a></li>
+<li class="chapter" data-level="10.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>10.6</b> gsub , sub</a></li>
+<li class="chapter" data-level="10.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance</a></li>
+<li class="chapter" data-level="10.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>10.8</b> Search</a></li>
+<li class="chapter" data-level="10.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.9</b> Word Count Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping</a></li>
+<li class="chapter" data-level="11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters</a></li>
+<li class="chapter" data-level="11.3" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers</a></li>
+<li class="chapter" data-level="11.4" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring</a></li>
+<li class="chapter" data-level="11.5" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp</a></li>
+<li class="chapter" data-level="11.6" data-path="regular-expressions.html"><a href="regular-expressions.html#an-example"><i class="fa fa-check"></i><b>11.6</b> An Example</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="regular-expressions.html"><a href="regular-expressions.html#match-locations-and-substrings"><i class="fa fa-check"></i><b>11.6.1</b> Match Locations and Substrings</a></li>
+<li class="chapter" data-level="11.6.2" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>11.6.2</b> Replacements</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#additional-resources-6"><i class="fa fa-check"></i>Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regular-expressions" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Regular Expressions</h1>
+<p>With basic string-manipulation functions, we saw how to do things like split
+up entries in a data file which are separated by commas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="regular-expressions.html#cb1-1"></a>text =<span class="st"> &quot;One Fish, Two Fish, Red Fish, Blue Fish&quot;</span></span>
+<span id="cb1-2"><a href="regular-expressions.html#cb1-2"></a><span class="kw">strsplit</span>(text,<span class="dt">split=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;One Fish&quot;   &quot; Two Fish&quot;  &quot; Red Fish&quot;  &quot; Blue Fish&quot;</code></pre>
+<p>or by single spaces</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="regular-expressions.html#cb3-1"></a><span class="kw">strsplit</span>(text,<span class="dt">split=</span><span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;One&quot;   &quot;Fish,&quot; &quot;Two&quot;   &quot;Fish,&quot; &quot;Red&quot;   &quot;Fish,&quot; &quot;Blue&quot;  &quot;Fish&quot;</code></pre>
+<p>or even a comma followed by a space</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="regular-expressions.html#cb5-1"></a><span class="kw">strsplit</span>(text,<span class="dt">split=</span><span class="st">&quot;, &quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;One Fish&quot;  &quot;Two Fish&quot;  &quot;Red Fish&quot;  &quot;Blue Fish&quot;</code></pre>
+<p>But we don’t know how to deal with situations like splitting on a comma,
+<strong>optionally</strong> followed by some number of spaces.</p>
+<p>Not only is it annoying to have such a simple thing defeat us, it’s an instance
+of a much broader class of problems. If we’re trying to extract data from webpages, we may want to get rid of all the formatting instructions buried in the source of the webpage. We might want to extract all the personal names from
+a document which are preceded by titles (such as Mr., Ms., Miss, Dr.), without
+knowing what those names are, or how long they are. And so forth.</p>
+<p>We need a language for telling R about patterns of strings. The most basic such language is that of <strong>regular expressions</strong>. Regular expressions are used to <strong>match</strong> sets of strings. Start with string constants, and build up by allowing “<em>this</em> and then <em>that</em>”, “either <em>this</em> or <em>that</em>”, “repeat <em>this</em>”, etc. These rules get expressed in a <strong>grammar</strong>, with special symbols.</p>
+<p>Every regular expression is a sequence of symbols, which specifies a set of text strings that follow some pattern that — match the regular expression. - Regular expressions are strings and therefore a regexp can be stored in a <code>character</code> variable. This means that regexps can be built up and changed using string-manipulating functions. A valid regular expression must conform to certain rules of grammar; it gets interpreted by the computer as rules for matching certain strings, but not others.</p>
+<p>Every string is a valid regexp. We say “regexp” as short hand for the phrase a <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">“regular expression as used in R”</a>. <code>fly</code> matches end of “fruitfly”, “why walk when you can fly” but it does not match “time flies like an arrow; fruit flies like a banana; a banana flies poorly”.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="regular-expressions.html#cb7-1"></a>fly_phrases =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fruitfly&quot;</span>, </span>
+<span id="cb7-2"><a href="regular-expressions.html#cb7-2"></a>                <span class="st">&quot;why walk when you can fly&quot;</span>, </span>
+<span id="cb7-3"><a href="regular-expressions.html#cb7-3"></a>                <span class="st">&quot;time flies like an arrow; fruit flies like a banana; a banana flies poorly&quot;</span>, </span>
+<span id="cb7-4"><a href="regular-expressions.html#cb7-4"></a>                <span class="st">&quot;superman flew&quot;</span>)</span>
+<span id="cb7-5"><a href="regular-expressions.html#cb7-5"></a></span>
+<span id="cb7-6"><a href="regular-expressions.html#cb7-6"></a><span class="co"># Returns which elements have the term &quot;fly&quot; </span></span>
+<span id="cb7-7"><a href="regular-expressions.html#cb7-7"></a><span class="kw">grep</span>(<span class="st">&quot;fly&quot;</span>, fly_phrases, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;fruitfly&quot;                  &quot;why walk when you can fly&quot;</code></pre>
+<p>If we did wish to match one regexp OR another regexp we cold use the “|” symbol. This symbol is used in the same way it was in section <a href="introduction-to-r.html#operators">1.4</a></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="regular-expressions.html#cb9-1"></a><span class="co"># Returns which elements have the term &quot;fly&quot; or &quot;flies&quot; </span></span>
+<span id="cb9-2"><a href="regular-expressions.html#cb9-2"></a><span class="kw">grep</span>(<span class="st">&quot;fly|flies&quot;</span>, fly_phrases, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;fruitfly&quot;                                                                  
+## [2] &quot;why walk when you can fly&quot;                                                 
+## [3] &quot;time flies like an arrow; fruit flies like a banana; a banana flies poorly&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="regular-expressions.html#cb11-1"></a><span class="co"># Returns which elements have the term &quot;fly&quot; or &quot;flies&quot; </span></span>
+<span id="cb11-2"><a href="regular-expressions.html#cb11-2"></a><span class="kw">grep</span>(<span class="st">&quot;flies|fly&quot;</span>, fly_phrases, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;fruitfly&quot;                                                                  
+## [2] &quot;why walk when you can fly&quot;                                                 
+## [3] &quot;time flies like an arrow; fruit flies like a banana; a banana flies poorly&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="regular-expressions.html#cb13-1"></a><span class="co"># Returns which elements have &quot;fly flies&quot; or &quot;time&quot; or &quot;flies&quot;  </span></span>
+<span id="cb13-2"><a href="regular-expressions.html#cb13-2"></a><span class="kw">grep</span>(<span class="st">&quot;time|fruit fly|flies&quot;</span>, fly_phrases, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;time flies like an arrow; fruit flies like a banana; a banana flies poorly&quot;</code></pre>
+<p>Parentheses are used to create groups.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="regular-expressions.html#cb15-1"></a>text_colors =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Some people say grey&quot;</span>, </span>
+<span id="cb15-2"><a href="regular-expressions.html#cb15-2"></a>         <span class="st">&quot;others say gray,&quot;</span>,</span>
+<span id="cb15-3"><a href="regular-expressions.html#cb15-3"></a>         <span class="st">&quot;and both are greatly used&quot;</span>)</span>
+<span id="cb15-4"><a href="regular-expressions.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="regular-expressions.html#cb15-5"></a><span class="co"># Searches for the same thing</span></span>
+<span id="cb15-6"><a href="regular-expressions.html#cb15-6"></a><span class="kw">grep</span>(<span class="st">&quot;gr(e|a)y&quot;</span>, text_colors, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Some people say grey&quot; &quot;others say gray,&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="regular-expressions.html#cb17-1"></a><span class="kw">grep</span>(<span class="st">&quot;grey|gray&quot;</span>, text_colors, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Some people say grey&quot; &quot;others say gray,&quot;</code></pre>
+<div id="ranges-escaping" class="section level2">
+<h2><span class="header-section-number">11.1</span> Ranges, Escaping</h2>
+<p>A character class is a list of characters enclosed between <code>[</code> and <code>]</code> which matches any single character in that list. We use these braces in regular expressions to indicate character <em>ranges</em>. For example the regexp <code>[0123456789]</code> matches any single digit.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="regular-expressions.html#cb19-1"></a>text =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1 Fish&quot;</span>, <span class="st">&quot;2 Fish&quot;</span>, <span class="st">&quot;red fish&quot;</span>, <span class="st">&quot;blue fish&quot;</span>) </span>
+<span id="cb19-2"><a href="regular-expressions.html#cb19-2"></a></span>
+<span id="cb19-3"><a href="regular-expressions.html#cb19-3"></a><span class="co"># Any numbers?</span></span>
+<span id="cb19-4"><a href="regular-expressions.html#cb19-4"></a><span class="kw">grep</span>(<span class="st">&quot;[0123456789]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;1 Fish&quot; &quot;2 Fish&quot;</code></pre>
+<p>If the first character of the list is the caret ^, then it matches any character <em>not</em> in the list. For example, <code>[^abc]</code> matches anything <em>except</em> the characters a, b or c.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="regular-expressions.html#cb21-1"></a><span class="co"># Any letters EXCEPT a, b, c</span></span>
+<span id="cb21-2"><a href="regular-expressions.html#cb21-2"></a><span class="kw">grep</span>(<span class="st">&quot;[^abc]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;1 Fish&quot;    &quot;2 Fish&quot;    &quot;red fish&quot;  &quot;blue fish&quot;</code></pre>
+<p>Another example: <code>t[aeiou]</code> matches any two-character sequence in which “t” is followed by a lowercase vowel.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="regular-expressions.html#cb23-1"></a>text_baseball =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ohhhhh&quot;</span>, </span>
+<span id="cb23-2"><a href="regular-expressions.html#cb23-2"></a>                  <span class="st">&quot;take me out&quot;</span>, </span>
+<span id="cb23-3"><a href="regular-expressions.html#cb23-3"></a>                  <span class="st">&quot;to the ball game&quot;</span>)</span>
+<span id="cb23-4"><a href="regular-expressions.html#cb23-4"></a></span>
+<span id="cb23-5"><a href="regular-expressions.html#cb23-5"></a><span class="co"># Match any two-character sequence in which “t” is followed by a lowercase vowel. </span></span>
+<span id="cb23-6"><a href="regular-expressions.html#cb23-6"></a><span class="kw">grep</span>(<span class="st">&quot;t[aeiou]&quot;</span>,text_baseball, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;take me out&quot;      &quot;to the ball game&quot;</code></pre>
+<p>This system of using ranges is used a lot, and there are certain named classes of characters are predefined, below are some of them.</p>
+<ul>
+<li><code>[:lower:]</code> : Lower-case letters, equivalent to <code>[a-z]</code></li>
+<li><code>[:upper:]</code> : Upper-case letters, equivalent to <code>[A-Z]</code></li>
+<li><code>[:alpha:]</code> : Alphabetic characters: <code>[:lower:]</code> and <code>[:upper:]</code>.</li>
+<li><code>[:digit:]</code> : Digits: 0 1 2 3 4 5 6 7 8 9, equivalent to <code>[0-9]</code></li>
+<li><code>\d</code> : digit, equivalent to <code>[:digit:]</code></li>
+<li><code>\D</code> : Non-digit</li>
+<li><code>[:alnum:]</code> : Alphanumeric characters: <code>[:alpha:]</code> and <code>[:digit:]</code>.</li>
+<li><code>[:blank:]</code> : Blank characters: space and tab, and possibly other locale-dependent characters such as non-breaking space.</li>
+<li><code>[:punct:]</code> : Punctuation characters:
+! " # $ % &amp; ’ ( ) * + , - . / : ; &lt; = &gt; ? @ [  ] ^ _ ` { | } ~.</li>
+<li><code>[:graph:]</code> : Graphical characters: <code>[:alnum:]</code> and <code>[:punct:]</code>.</li>
+<li><code>[:space:]</code> : Space characters: tab, newline, vertical tab, form feed, carriage return, space and possibly other locale-dependent characters.</li>
+<li><code>\s</code> : space</li>
+<li><code>\S</code> : not space</li>
+<li><code>\w</code>: word characters, equivalent to <code>[[:alnum:]_]</code> or <code>[A-z0-9]</code>.</li>
+<li><code>\W</code>: not word, equivalent to <code>[^A-z0-9_]</code>.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="regular-expressions.html#cb25-1"></a><span class="co"># Are any digits in the text?</span></span>
+<span id="cb25-2"><a href="regular-expressions.html#cb25-2"></a><span class="kw">grep</span>(<span class="st">&quot;[[:digit:]]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;1 Fish&quot; &quot;2 Fish&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="regular-expressions.html#cb27-1"></a><span class="co"># Are any upper case letters in the text?</span></span>
+<span id="cb27-2"><a href="regular-expressions.html#cb27-2"></a><span class="kw">grep</span>(<span class="st">&quot;[[:upper:]]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;1 Fish&quot; &quot;2 Fish&quot;</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="regular-expressions.html#cb29-1"></a><span class="co"># Are any lower case letters in the text?</span></span>
+<span id="cb29-2"><a href="regular-expressions.html#cb29-2"></a><span class="kw">grep</span>(<span class="st">&quot;[[:lower:]]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;1 Fish&quot;    &quot;2 Fish&quot;    &quot;red fish&quot;  &quot;blue fish&quot;</code></pre>
+</div>
+<div id="metacharacters" class="section level2">
+<h2><span class="header-section-number">11.2</span> Metacharacters</h2>
+<p>The fundamental building blocks are the regular expressions that match a single character. Most characters, including all letters and digits, are regular expressions that match themselves. However, we also use some of these characters to mean different things in order to match more intricate patterns. The characters reserved for special meanings (and not simply as characters to match) are called <em>metacharacters</em>. Any metacharacter with special meaning may be quoted by preceding it with a backslash. The metacharacters in extended regular expressions are .  | ( ) [ { ^ $ * + ?.</p>
+<p>We already saw <code>|</code> and <code>[]</code> in action above. Now lets talk about the <code>.</code> symbol. This symbol matches any single character. To match strings that have a “.” we need to use a backslash.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="regular-expressions.html#cb31-1"></a>text =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;There was a monster&quot;</span>,</span>
+<span id="cb31-2"><a href="regular-expressions.html#cb31-2"></a>        <span class="st">&quot;Superman flew over there.&quot;</span>, </span>
+<span id="cb31-3"><a href="regular-expressions.html#cb31-3"></a>         <span class="st">&quot;He made it in time.&quot;</span>, </span>
+<span id="cb31-4"><a href="regular-expressions.html#cb31-4"></a>        <span class="st">&quot;Yumm, pancakes!&quot;</span>, </span>
+<span id="cb31-5"><a href="regular-expressions.html#cb31-5"></a>        <span class="st">&quot;MMmm Mmmm they were good...&quot;</span>) </span>
+<span id="cb31-6"><a href="regular-expressions.html#cb31-6"></a></span>
+<span id="cb31-7"><a href="regular-expressions.html#cb31-7"></a><span class="co"># Looks for every character</span></span>
+<span id="cb31-8"><a href="regular-expressions.html#cb31-8"></a><span class="kw">grep</span>(<span class="st">&quot;.&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;There was a monster&quot;         &quot;Superman flew over there.&quot;  
+## [3] &quot;He made it in time.&quot;         &quot;Yumm, pancakes!&quot;            
+## [5] &quot;MMmm Mmmm they were good...&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="regular-expressions.html#cb33-1"></a><span class="co"># Matches only &quot;.&quot;</span></span>
+<span id="cb33-2"><a href="regular-expressions.html#cb33-2"></a><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Superman flew over there.&quot;   &quot;He made it in time.&quot;        
+## [3] &quot;MMmm Mmmm they were good...&quot;</code></pre>
+</div>
+<div id="quantifiers" class="section level2">
+<h2><span class="header-section-number">11.3</span> Quantifiers</h2>
+<p>Here is a list of some of the metacharacters and some of their features. These are all <em>quantifiers</em> and they control how many times the regexp should be matched. The following features all are considered <em>repetition quantifiers</em>.</p>
+<ul>
+<li><code>+</code> : The preceding item will be matched one or more times.</li>
+<li><code>*</code> : The preceding item will be matched zero or more times.</li>
+<li><code>?</code> : The preceding item is optional and will be matched at most once.</li>
+<li><code>{n}</code> : The preceding item is matched exactly “n” times.</li>
+<li><code>{n,}</code> : The preceding item is matched “n” or more times.</li>
+<li><code>{n,m}</code> : The preceding item is matched at least “n” times, but not more than “m” times.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="regular-expressions.html#cb35-1"></a><span class="co"># Detect the letter &quot;m&quot;</span></span>
+<span id="cb35-2"><a href="regular-expressions.html#cb35-2"></a><span class="kw">grep</span>(<span class="st">&quot;m&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;There was a monster&quot;         &quot;Superman flew over there.&quot;  
+## [3] &quot;He made it in time.&quot;         &quot;Yumm, pancakes!&quot;            
+## [5] &quot;MMmm Mmmm they were good...&quot;</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="regular-expressions.html#cb37-1"></a><span class="co"># Detect the letter &quot;m&quot; exactly one time </span></span>
+<span id="cb37-2"><a href="regular-expressions.html#cb37-2"></a><span class="kw">grep</span>(<span class="st">&quot;m{1}&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;There was a monster&quot;         &quot;Superman flew over there.&quot;  
+## [3] &quot;He made it in time.&quot;         &quot;Yumm, pancakes!&quot;            
+## [5] &quot;MMmm Mmmm they were good...&quot;</code></pre>
+<p>If we want to match a regexp exactly <code>{n}</code>, <code>{n,}</code> or <code>{n,m}</code> times then it looks for this sequence consecutively. For example, the following command does not output “He made it in time.”, despite this phrase having two “m”s in it.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regular-expressions.html#cb39-1"></a><span class="co"># Detect the letter &quot;m&quot; exactly two or more times (in a row)</span></span>
+<span id="cb39-2"><a href="regular-expressions.html#cb39-2"></a><span class="kw">grep</span>(<span class="st">&quot;m{2,}&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Yumm, pancakes!&quot;             &quot;MMmm Mmmm they were good...&quot;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regular-expressions.html#cb41-1"></a><span class="co"># Another example </span></span>
+<span id="cb41-2"><a href="regular-expressions.html#cb41-2"></a>text =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;3, 2, 1, GO!&quot;</span>,</span>
+<span id="cb41-3"><a href="regular-expressions.html#cb41-3"></a>         <span class="st">&quot;On the count of 3,&quot;</span>,</span>
+<span id="cb41-4"><a href="regular-expressions.html#cb41-4"></a>         <span class="st">&quot;Count to 100&quot;</span>, </span>
+<span id="cb41-5"><a href="regular-expressions.html#cb41-5"></a>         <span class="st">&quot;Wish upon 1 star.&quot;</span>)</span>
+<span id="cb41-6"><a href="regular-expressions.html#cb41-6"></a></span>
+<span id="cb41-7"><a href="regular-expressions.html#cb41-7"></a><span class="co"># Detect exactly two digits in a row. </span></span>
+<span id="cb41-8"><a href="regular-expressions.html#cb41-8"></a><span class="kw">grep</span>(<span class="st">&quot;[[:digit:]]{2}&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Count to 100&quot;</code></pre>
+<p>By default, quantifiers are “greedy” and they match as many repetitions as they can. Following a quantifier by <code>?</code> makes it match as few as possible.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="regular-expressions.html#cb43-1"></a><span class="co"># Only look for one digit then stop.  </span></span>
+<span id="cb43-2"><a href="regular-expressions.html#cb43-2"></a><span class="co"># It doesn&#39;t matter if there is more. </span></span>
+<span id="cb43-3"><a href="regular-expressions.html#cb43-3"></a><span class="kw">grep</span>(<span class="st">&quot;[[:digit:]]?&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;3, 2, 1, GO!&quot;       &quot;On the count of 3,&quot; &quot;Count to 100&quot;      
+## [4] &quot;Wish upon 1 star.&quot;</code></pre>
+</div>
+<div id="anchoring" class="section level2">
+<h2><span class="header-section-number">11.4</span> Anchoring</h2>
+<p>Anchoring is used to find regexps at specific locations in a string. For example, at the beginning or end of a word, or at the beginning or end of a phrase.</p>
+<ul>
+<li><code>$</code> means a pattern can only match at the end of a line or string</li>
+<li><code>^</code> means (outside of braces) the beginning of a line or string</li>
+<li><code>&lt;</code> and <code>&gt;</code> anchor to beginning or ending of words</li>
+<li><code>\b</code> anchors boundary (beginning <em>or</em> ending) of words, <code>\B</code> anywhere else</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="regular-expressions.html#cb45-1"></a><span class="co"># matches elements ending in a lower-case letter or comma</span></span>
+<span id="cb45-2"><a href="regular-expressions.html#cb45-2"></a><span class="kw">grep</span>(<span class="st">&quot;[a-z,]$&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;On the count of 3,&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="regular-expressions.html#cb47-1"></a><span class="co"># matches capital letters not at the beginning or ending of a word</span></span>
+<span id="cb47-2"><a href="regular-expressions.html#cb47-2"></a><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">B[A-Z]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;3, 2, 1, GO!&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="regular-expressions.html#cb49-1"></a><span class="co"># Find elements that end with a number </span></span>
+<span id="cb49-2"><a href="regular-expressions.html#cb49-2"></a><span class="kw">grep</span>(<span class="st">&quot;[[:digit:]]$&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Count to 100&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="regular-expressions.html#cb51-1"></a><span class="co"># Find elements that start with a number </span></span>
+<span id="cb51-2"><a href="regular-expressions.html#cb51-2"></a><span class="kw">grep</span>(<span class="st">&quot;^[[:digit:]]&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;3, 2, 1, GO!&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="regular-expressions.html#cb53-1"></a><span class="co"># Find elements that have a word that starts or ends with u</span></span>
+<span id="cb53-2"><a href="regular-expressions.html#cb53-2"></a><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">bu&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;Wish upon 1 star.&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="regular-expressions.html#cb55-1"></a><span class="co"># Find elements that have a word that starts or ends with t</span></span>
+<span id="cb55-2"><a href="regular-expressions.html#cb55-2"></a><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">bt&quot;</span>, text, <span class="dt">value =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;On the count of 3,&quot; &quot;Count to 100&quot;</code></pre>
+</div>
+<div id="splitting-on-a-regexp" class="section level2">
+<h2><span class="header-section-number">11.5</span> Splitting on a Regexp</h2>
+<p>We can use regexps in many R functions, we are not limited to just <code>grep()</code> and <code>grepl</code>. For example, <code>strsplit()</code> will take a regexp as its <code>split</code> argument. This means we can make splits a string into new strings at each instance of the regexp, just like it would if <code>split</code> were a string.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="regular-expressions.html#cb57-1"></a><span class="co"># Load data: </span></span>
+<span id="cb57-2"><a href="regular-expressions.html#cb57-2"></a>al2 =<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;http://www.stat.cmu.edu/~cshalizi/statcomp/14/lectures/04/al2.txt&quot;</span>)</span>
+<span id="cb57-3"><a href="regular-expressions.html#cb57-3"></a>al2 =<span class="st"> </span><span class="kw">paste</span>(al2, <span class="dt">collapse=</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb57-4"><a href="regular-expressions.html#cb57-4"></a></span>
+<span id="cb57-5"><a href="regular-expressions.html#cb57-5"></a><span class="co"># Split words by space</span></span>
+<span id="cb57-6"><a href="regular-expressions.html#cb57-6"></a>al2.words1 =<span class="st"> </span><span class="kw">strsplit</span>(al2, <span class="dt">split=</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb57-7"><a href="regular-expressions.html#cb57-7"></a></span>
+<span id="cb57-8"><a href="regular-expressions.html#cb57-8"></a><span class="co"># Lets see what this looks like </span></span>
+<span id="cb57-9"><a href="regular-expressions.html#cb57-9"></a><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(al2.words1)))</span></code></pre></div>
+<pre><code>## al2.words1
+##       -    &quot;the    &quot;Woe absorbs  accept achieve 
+##       1       1       1       1       1       1</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="regular-expressions.html#cb59-1"></a><span class="co"># Split words by space or by a punctuation symbol </span></span>
+<span id="cb59-2"><a href="regular-expressions.html#cb59-2"></a>al2.words2 =<span class="st"> </span><span class="kw">strsplit</span>(al2, <span class="dt">split=</span><span class="st">&quot;(</span><span class="ch">\\</span><span class="st">s|[[:punct:]])+&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb59-3"><a href="regular-expressions.html#cb59-3"></a><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(al2.words2)))</span></code></pre></div>
+<pre><code>## al2.words2
+## absorbs  accept achieve against  agents     aid 
+##       1       1       1       1       1       1</code></pre>
+<p>Closer examination shows there’s still a problem: “men’s” <span class="math inline">\(\rightarrow\)</span> “men”, “s”.
+To handle possessives: look for any number of white spaces, <em>or</em> at least one punctuation mark followed by at least one space</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="regular-expressions.html#cb61-1"></a>al2.words3 =<span class="st"> </span><span class="kw">strsplit</span>(al2, <span class="dt">split=</span><span class="st">&quot;</span><span class="ch">\\</span><span class="st">s+|([[:punct:]]+[[:space:]]+)&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb61-2"><a href="regular-expressions.html#cb61-2"></a><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(al2.words3)))</span></code></pre></div>
+<pre><code>## al2.words3
+##            &quot;the    &quot;Woe absorbs  accept achieve 
+##       1       1       1       1       1       1</code></pre>
+</div>
+<div id="an-example" class="section level2">
+<h2><span class="header-section-number">11.6</span> An Example</h2>
+<p><code>grep()</code> scans a character vector for matches to a regexp<br />
+returns either indices of matches, or matching strings</p>
+<pre><code>grep(x, pattern, value)</code></pre>
+<p>Example: scanning data files</p>
+<p><a href="http://www.stat.cmu.edu/~cshalizi/statcomp/14/lectures/05/ANSS.csv.html">ANSS.csv.html</a> catalogs earthquakes of magnitude 6+, 1/1/2002–1/1/2012</p>
+<pre><code>&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;NCEDC_Search_Results&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;Your search parameters are:&lt;ul&gt;
+&lt;li&gt;catalog=ANSS
+&lt;li&gt;start_time=2002/01/01,00:00:00
+&lt;li&gt;end_time=2012/01/01,00:00:00
+&lt;li&gt;minimum_magnitude=6.0
+&lt;li&gt;maximum_magnitude=10
+&lt;li&gt;event_type=E
+&lt;/ul&gt;
+&lt;PRE&gt;
+DateTime,Latitude,Longitude,Depth,Magnitude,MagType,NbStations,Gap,Distance,RMS,Source,EventID
+2002/01/01 10:39:06.82,-55.2140,-129.0000,10.00,6.00,Mw,78,,,1.07,NEI,2002010140</code></pre>
+<p>Now we work on extracting <em>just</em> the data, not the search parameters and so forth. Notice that every line of <em>data</em> begins with a date, YYYY/MM/DD. We can use this to find just the part of the data that we want.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="regular-expressions.html#cb65-1"></a>anss =<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;http://www.stat.cmu.edu/~cshalizi/statcomp/14/lectures/05/ANSS.csv.html&quot;</span>, <span class="dt">warn=</span><span class="ot">FALSE</span>)</span>
+<span id="cb65-2"><a href="regular-expressions.html#cb65-2"></a></span>
+<span id="cb65-3"><a href="regular-expressions.html#cb65-3"></a></span>
+<span id="cb65-4"><a href="regular-expressions.html#cb65-4"></a>initial_date =<span class="st"> &quot;^[0-9]{4}/[0-9]{2}/[0-9]{2}&quot;</span></span>
+<span id="cb65-5"><a href="regular-expressions.html#cb65-5"></a></span>
+<span id="cb65-6"><a href="regular-expressions.html#cb65-6"></a><span class="kw">head</span>(<span class="kw">grep</span>(<span class="dt">x=</span>anss,<span class="dt">pattern=</span>initial_date,<span class="dt">value=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;2002/01/01 10:39:06.82,-55.2140,-129.0000,10.00,6.00,Mw,78,,,1.07,NEI,2002010140&quot; 
+## [2] &quot;2002/01/01 11:29:22.73,6.3030,125.6500,138.10,6.30,Mw,236,,,0.90,NEI,2002010140&quot;  
+## [3] &quot;2002/01/02 14:50:33.49,-17.9830,178.7440,665.80,6.20,Mw,215,,,1.08,NEI,2002010240&quot;
+## [4] &quot;2002/01/02 17:22:48.76,-17.6000,167.8560,21.00,7.20,Mw,427,,,0.90,NEI,2002010240&quot; 
+## [5] &quot;2002/01/03 07:05:27.67,36.0880,70.6870,129.30,6.20,Mw,431,,,0.87,NEI,2002010340&quot;  
+## [6] &quot;2002/01/03 10:17:36.30,-17.6640,168.0040,10.00,6.60,Mw,386,,,1.14,NEI,2002010340&quot;</code></pre>
+<p>We can also use the <code>invert</code> option to find the <em>non</em>-matches.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="regular-expressions.html#cb67-1"></a><span class="kw">grep</span>(<span class="dt">x=</span>anss,<span class="dt">pattern=</span>initial_date,<span class="dt">invert=</span><span class="ot">TRUE</span>,<span class="dt">value=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;NCEDC_Search_Results&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;Your search parameters are:&lt;ul&gt;&quot;   
+##  [2] &quot;&lt;li&gt;catalog=ANSS&quot;                                                                              
+##  [3] &quot;&lt;li&gt;start_time=2002/01/01,00:00:00&quot;                                                            
+##  [4] &quot;&lt;li&gt;end_time=2012/01/01,00:00:00&quot;                                                              
+##  [5] &quot;&lt;li&gt;minimum_magnitude=6.0&quot;                                                                     
+##  [6] &quot;&lt;li&gt;maximum_magnitude=10&quot;                                                                      
+##  [7] &quot;&lt;li&gt;event_type=E&quot;                                                                              
+##  [8] &quot;&lt;/ul&gt;&quot;                                                                                         
+##  [9] &quot;&lt;PRE&gt;&quot;                                                                                         
+## [10] &quot;DateTime,Latitude,Longitude,Depth,Magnitude,MagType,NbStations,Gap,Distance,RMS,Source,EventID&quot;
+## [11] &quot;&lt;/PRE&gt;&quot;                                                                                        
+## [12] &quot;&lt;/BODY&gt;&lt;/HTML&gt;&quot;</code></pre>
+<div id="match-locations-and-substrings" class="section level3">
+<h3><span class="header-section-number">11.6.1</span> Match Locations and Substrings</h3>
+<p>When you just want a Boolean vector saying where the matches are use <code>grepl()</code>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="regular-expressions.html#cb69-1"></a><span class="kw">grepl</span>(<span class="dt">x=</span>anss,<span class="dt">pattern=</span>initial_date)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p>We can also consider the function <code>regexpr()</code> which returns location of first match in the target string, plus attributes like length of matching substring. The function <code>gregexpr()</code> is similar, but it returns a list of this for all matches. A location of <code>-1</code> means no match, and neither returns the <em>text</em> of the match</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="regular-expressions.html#cb71-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A and B&quot;</span>, </span>
+<span id="cb71-2"><a href="regular-expressions.html#cb71-2"></a>      <span class="st">&quot;A, B and C&quot;</span>, </span>
+<span id="cb71-3"><a href="regular-expressions.html#cb71-3"></a>      <span class="st">&quot;A, B, C and D&quot;</span>, </span>
+<span id="cb71-4"><a href="regular-expressions.html#cb71-4"></a>      <span class="st">&quot;foobar&quot;</span>)</span>
+<span id="cb71-5"><a href="regular-expressions.html#cb71-5"></a></span>
+<span id="cb71-6"><a href="regular-expressions.html#cb71-6"></a>pattern =<span class="st"> &quot;[[:space:]]*(,|and)[[:space:]]&quot;</span></span>
+<span id="cb71-7"><a href="regular-expressions.html#cb71-7"></a></span>
+<span id="cb71-8"><a href="regular-expressions.html#cb71-8"></a><span class="co"># Match data from regexpr()</span></span>
+<span id="cb71-9"><a href="regular-expressions.html#cb71-9"></a><span class="kw">regexpr</span>(pattern, x)</span></code></pre></div>
+<pre><code>## [1]  2  2  2 -1
+## attr(,&quot;match.length&quot;)
+## [1]  5  2  2 -1
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="regular-expressions.html#cb73-1"></a><span class="co"># Match data from gregexpr()</span></span>
+<span id="cb73-2"><a href="regular-expressions.html#cb73-2"></a><span class="kw">gregexpr</span>(pattern, x)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 2
+## attr(,&quot;match.length&quot;)
+## [1] 5
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE
+## 
+## [[2]]
+## [1] 2 5
+## attr(,&quot;match.length&quot;)
+## [1] 2 5
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE
+## 
+## [[3]]
+## [1] 2 5 8
+## attr(,&quot;match.length&quot;)
+## [1] 2 2 5
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE
+## 
+## [[4]]
+## [1] -1
+## attr(,&quot;match.length&quot;)
+## [1] -1
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE</code></pre>
+<p>To getting the matching text we can use <code>regmatches()</code> which takes the output of <code>regexpr()</code> or <code>gregexpr()</code> and a string, and returns the matching strings.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="regular-expressions.html#cb75-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A and B&quot;</span>, </span>
+<span id="cb75-2"><a href="regular-expressions.html#cb75-2"></a>      <span class="st">&quot;A, B and C&quot;</span>, </span>
+<span id="cb75-3"><a href="regular-expressions.html#cb75-3"></a>      <span class="st">&quot;A, B, C and D&quot;</span>, </span>
+<span id="cb75-4"><a href="regular-expressions.html#cb75-4"></a>      <span class="st">&quot;foobar&quot;</span>)</span>
+<span id="cb75-5"><a href="regular-expressions.html#cb75-5"></a></span>
+<span id="cb75-6"><a href="regular-expressions.html#cb75-6"></a>pattern =<span class="st"> &quot;[[:space:]]*(,|and)[[:space:]]&quot;</span></span>
+<span id="cb75-7"><a href="regular-expressions.html#cb75-7"></a></span>
+<span id="cb75-8"><a href="regular-expressions.html#cb75-8"></a><span class="co">## Match data from regexpr()</span></span>
+<span id="cb75-9"><a href="regular-expressions.html#cb75-9"></a>m =<span class="st"> </span><span class="kw">regexpr</span>(pattern, x)</span>
+<span id="cb75-10"><a href="regular-expressions.html#cb75-10"></a><span class="kw">regmatches</span>(x, m)</span></code></pre></div>
+<pre><code>## [1] &quot; and &quot; &quot;, &quot;    &quot;, &quot;</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="regular-expressions.html#cb77-1"></a><span class="kw">regmatches</span>(x, m, <span class="dt">invert =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;A&quot; &quot;B&quot;
+## 
+## [[2]]
+## [1] &quot;A&quot;       &quot;B and C&quot;
+## 
+## [[3]]
+## [1] &quot;A&quot;          &quot;B, C and D&quot;
+## 
+## [[4]]
+## [1] &quot;foobar&quot;</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="regular-expressions.html#cb79-1"></a><span class="co">## Match data from gregexpr()</span></span>
+<span id="cb79-2"><a href="regular-expressions.html#cb79-2"></a>m =<span class="st"> </span><span class="kw">gregexpr</span>(pattern, x)</span>
+<span id="cb79-3"><a href="regular-expressions.html#cb79-3"></a><span class="kw">regmatches</span>(x, m)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot; and &quot;
+## 
+## [[2]]
+## [1] &quot;, &quot;    &quot; and &quot;
+## 
+## [[3]]
+## [1] &quot;, &quot;    &quot;, &quot;    &quot; and &quot;
+## 
+## [[4]]
+## character(0)</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="regular-expressions.html#cb81-1"></a><span class="kw">regmatches</span>(x, m, <span class="dt">invert =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;A&quot; &quot;B&quot;
+## 
+## [[2]]
+## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;
+## 
+## [[3]]
+## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;
+## 
+## [[4]]
+## [1] &quot;foobar&quot;</code></pre>
+<p>Why separate <code>regexpr()</code> from <code>regmatches</code>? This lets us do things like count the number or length of matches with less work. It also lets us see what text in one file corresponds to matching locations in another file.</p>
+<p>Get the (latitude, longitude) pair for each earthquake.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="regular-expressions.html#cb83-1"></a>one_geo_coord =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;-?[0-9]+</span><span class="ch">\\</span><span class="st">.[0-9]{4}&quot;</span>)</span>
+<span id="cb83-2"><a href="regular-expressions.html#cb83-2"></a>pair_geo_coords =<span class="st"> </span><span class="kw">paste</span>(<span class="kw">rep</span>(one_geo_coord,<span class="dv">2</span>),<span class="dt">collapse=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb83-3"><a href="regular-expressions.html#cb83-3"></a>have_coords =<span class="st"> </span><span class="kw">grepl</span>(<span class="dt">x=</span>anss,<span class="dt">pattern=</span>pair_geo_coords)</span>
+<span id="cb83-4"><a href="regular-expressions.html#cb83-4"></a>coord.matches =<span class="st"> </span><span class="kw">gregexpr</span>(<span class="dt">pattern=</span>pair_geo_coords,<span class="dt">text=</span>anss[have_coords])</span>
+<span id="cb83-5"><a href="regular-expressions.html#cb83-5"></a>coords =<span class="st"> </span><span class="kw">regmatches</span>(<span class="dt">x=</span>anss[have_coords],<span class="dt">m=</span>coord.matches)</span>
+<span id="cb83-6"><a href="regular-expressions.html#cb83-6"></a><span class="kw">head</span>(coords)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;-55.2140,-129.0000&quot;
+## 
+## [[2]]
+## [1] &quot;6.3030,125.6500&quot;
+## 
+## [[3]]
+## [1] &quot;-17.9830,178.7440&quot;
+## 
+## [[4]]
+## [1] &quot;-17.6000,167.8560&quot;
+## 
+## [[5]]
+## [1] &quot;36.0880,70.6870&quot;
+## 
+## [[6]]
+## [1] &quot;-17.6640,168.0040&quot;</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="regular-expressions.html#cb85-1"></a>coord.matches[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 24
+## attr(,&quot;match.length&quot;)
+## [1] 18
+## attr(,&quot;index.type&quot;)
+## [1] &quot;chars&quot;
+## attr(,&quot;useBytes&quot;)
+## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="regular-expressions.html#cb87-1"></a>coords =<span class="kw">unlist</span>(coords)  <span class="co"># De-list-ify to vector</span></span>
+<span id="cb87-2"><a href="regular-expressions.html#cb87-2"></a>coord.pairs =<span class="st"> </span><span class="kw">strsplit</span>(coords,<span class="st">&quot;,&quot;</span>)  <span class="co"># Break apart latitude and longitude</span></span>
+<span id="cb87-3"><a href="regular-expressions.html#cb87-3"></a>coord.df =<span class="st"> </span><span class="kw">do.call</span>(rbind, coord.pairs) <span class="co"># De-list-ify to array</span></span>
+<span id="cb87-4"><a href="regular-expressions.html#cb87-4"></a>coord.df =<span class="st"> </span><span class="kw">apply</span>(coord.df,<span class="dv">2</span>,as.numeric) <span class="co"># Character to numeric</span></span>
+<span id="cb87-5"><a href="regular-expressions.html#cb87-5"></a>coord.df =<span class="st"> </span><span class="kw">as.data.frame</span>(coord.df)</span>
+<span id="cb87-6"><a href="regular-expressions.html#cb87-6"></a><span class="kw">colnames</span>(coord.df) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Latitude&quot;</span>,<span class="st">&quot;Longitude&quot;</span>)</span>
+<span id="cb87-7"><a href="regular-expressions.html#cb87-7"></a><span class="kw">head</span>(coord.df)</span></code></pre></div>
+<pre><code>##   Latitude Longitude
+## 1  -55.214  -129.000
+## 2    6.303   125.650
+## 3  -17.983   178.744
+## 4  -17.600   167.856
+## 5   36.088    70.687
+## 6  -17.664   168.004</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="regular-expressions.html#cb89-1"></a><span class="kw">library</span>(maps)</span></code></pre></div>
+<pre><code>## Warning: package &#39;maps&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="regular-expressions.html#cb91-1"></a><span class="kw">map</span>(<span class="st">&quot;world&quot;</span>)</span>
+<span id="cb91-2"><a href="regular-expressions.html#cb91-2"></a><span class="kw">points</span>(<span class="dt">x=</span>coord.df<span class="op">$</span>Longitude, <span class="dt">y=</span>coord.df<span class="op">$</span>Latitude, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="replacements" class="section level3">
+<h3><span class="header-section-number">11.6.2</span> Replacements</h3>
+<p>Assigning to <code>regmatches()</code> changes the matched string, just like <code>substr()</code></p>
+<p><code>sub()</code> and <code>gsub()</code> work like <code>regexpr()</code> and <code>gregexpr()</code>, but with an extra <code>replace</code> argument</p>
+<p><code>sub()</code> produces a new string, assigning to <code>regmatches()</code> modifies the original one</p>
+<p>Really, assigning to <code>regmatches()</code> creates a new string, destroys the old one, and assigns the new string the old name.</p>
+</div>
+</div>
+<div id="additional-resources-6" class="section level2 unnumbered">
+<h2>Additional Resources</h2>
+<ul>
+<li><a href="https://homerhanumat.github.io/r-notes/regex.html#regex">“Begining Computer Science with R” Chapter 12</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">R Help Page on Regular Expressions</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="text-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-regular-expressions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

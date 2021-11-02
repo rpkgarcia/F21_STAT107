@@ -63,7 +63,7 @@ mapply
 replicate
 how-to-pick-a-method
 more-examples
-introduction-to-text-data-analysis
+text-data
 making-strings
 substring-operations
 dividing-strings-into-vectors
@@ -73,3 +73,12 @@ gsub-sub
 text-of-some-importance
 search
 word-count-tables
+regular-expressions
+ranges-escaping
+metacharacters
+an-example
+replacements
+quantifiers
+anchoring
+splitting-on-a-regexp
+match-locations-and-substrings

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Text Data | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Text Data | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Text Data | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2021-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="apply-family-of-functions.html"/>
+<link rel="next" href="regular-expressions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Outline of Class Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Download and Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-left-pane"><i class="fa fa-check"></i>Bottom Left Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#bottom-right-pane"><i class="fa fa-check"></i>Bottom Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-right-pane"><i class="fa fa-check"></i>Top Right Pane</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#top-left-pane"><i class="fa fa-check"></i>Top Left Pane</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#comments"><i class="fa fa-check"></i><b>1.3</b> Comments</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i><b>1.4</b> Operators</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operators"><i class="fa fa-check"></i>Arithmetic Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operators"><i class="fa fa-check"></i>Relational Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operators"><i class="fa fa-check"></i>Logical operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operators"><i class="fa fa-check"></i>Assignment Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#additional-resources"><i class="fa fa-check"></i><b>1.5</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html"><i class="fa fa-check"></i><b>2</b> Introduction to R Objects</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#atomic-objects"><i class="fa fa-check"></i><b>2.1</b> Atomic Objects</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#numeric"><i class="fa fa-check"></i>Numeric</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#integer"><i class="fa fa-check"></i>Integer</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#logical"><i class="fa fa-check"></i>Logical</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#character"><i class="fa fa-check"></i>Character</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#vectors"><i class="fa fa-check"></i><b>2.2</b> Vectors</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#lists"><i class="fa fa-check"></i><b>2.3</b> Lists</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#matrices"><i class="fa fa-check"></i><b>2.4</b> Matrices</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#factors"><i class="fa fa-check"></i><b>2.5</b> Factors</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#data-frames"><i class="fa fa-check"></i><b>2.6</b> Data Frames</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#other-object-types-and-the-global-environment"><i class="fa fa-check"></i><b>2.7</b> Other Object Types and the Global Environment</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-r-objects.html"><a href="introduction-to-r-objects.html#additional-resources-1"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html"><i class="fa fa-check"></i><b>3</b> More on R Objects</a><ul>
+<li class="chapter" data-level="3.1" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#factors-1"><i class="fa fa-check"></i><b>3.1</b> Factors</a></li>
+<li class="chapter" data-level="3.2" data-path="more-on-r-objects.html"><a href="more-on-r-objects.html#lists-1"><i class="fa fa-check"></i><b>3.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html"><i class="fa fa-check"></i><b>4</b> Working with Data Sets</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#getting-data-sets-in-our-working-environment"><i class="fa fa-check"></i><b>4.1</b> Getting Data Sets in Our Working Environment</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#built-in-data"><i class="fa fa-check"></i>Built-In Data</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#importing-from-your-computer"><i class="fa fa-check"></i>Importing From Your Computer</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#import-from-online"><i class="fa fa-check"></i>Import From Online</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#basic-data-manipulation"><i class="fa fa-check"></i><b>4.2</b> Basic Data Manipulation</a><ul>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#indexing"><i class="fa fa-check"></i>Indexing</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#rearranging-rows"><i class="fa fa-check"></i>Rearranging Rows</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-columns"><i class="fa fa-check"></i>Adding Columns</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#na-values"><i class="fa fa-check"></i>NA values</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#null"><i class="fa fa-check"></i>NULL</a></li>
+<li class="chapter" data-level="" data-path="working-with-data-sets.html"><a href="working-with-data-sets.html#adding-rows"><i class="fa fa-check"></i>Adding Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>5.1</b> Build Your Own Function</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>5.2</b> Lexical Scoping</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>5.3</b> Built-In Functions</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>5.4</b> Help Files</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>5.5</b> The … Argument</a></li>
+<li class="chapter" data-level="5.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>5.6</b> Generic Functions</a></li>
+<li class="chapter" data-level="5.7" data-path="functions.html"><a href="functions.html#additional-resources-2"><i class="fa fa-check"></i><b>5.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>6</b> If Statements</a><ul>
+<li class="chapter" data-level="6.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>6.1</b> If</a></li>
+<li class="chapter" data-level="6.2" data-path="if-statements.html"><a href="if-statements.html#if-else"><i class="fa fa-check"></i><b>6.2</b> If Else</a></li>
+<li class="chapter" data-level="6.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>6.3</b> Else If</a></li>
+<li class="chapter" data-level="6.4" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>6.4</b> Ifelse</a></li>
+<li class="chapter" data-level="6.5" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>6.5</b> Nested If Chains</a></li>
+<li class="chapter" data-level="6.6" data-path="if-statements.html"><a href="if-statements.html#additional-resources-3"><i class="fa fa-check"></i><b>6.6</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>7</b> Base R Plotting</a><ul>
+<li class="chapter" data-level="7.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>7.1</b> Load A Big Data Set</a></li>
+<li class="chapter" data-level="7.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>7.2</b> Histograms</a></li>
+<li class="chapter" data-level="7.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>7.3</b> Boxplot</a></li>
+<li class="chapter" data-level="7.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>7.4</b> Scatter Plot</a></li>
+<li class="chapter" data-level="7.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>7.5</b> Pie Charts</a></li>
+<li class="chapter" data-level="7.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-extra-linespointselements-to-a-graph"><i class="fa fa-check"></i><b>7.6</b> Adding Extra Lines/Points/Elements to a Graph</a></li>
+<li class="chapter" data-level="7.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>7.7</b> The par() Help File</a></li>
+<li class="chapter" data-level="7.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>7.8</b> Adding Legends</a></li>
+<li class="chapter" data-level="7.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-maps-package"><i class="fa fa-check"></i><b>7.9</b> The “maps” Package</a></li>
+<li class="chapter" data-level="7.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>7.10</b> What makes a good plot?</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages</a><ul>
+<li class="chapter" data-level="8.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>8.1</b> Namespace Collisions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>9</b> Loops</a><ul>
+<li class="chapter" data-level="9.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>9.1</b> While Loop</a></li>
+<li class="chapter" data-level="9.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>9.2</b> For Loops</a></li>
+<li class="chapter" data-level="9.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>9.3</b> Break</a></li>
+<li class="chapter" data-level="9.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>9.4</b> Next</a></li>
+<li class="chapter" data-level="9.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>9.5</b> Nested Loops</a></li>
+<li class="chapter" data-level="9.6" data-path="loops.html"><a href="loops.html#additional-resources-4"><i class="fa fa-check"></i><b>9.6</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>10</b> Apply Family of Functions</a><ul>
+<li class="chapter" data-level="10.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply"><i class="fa fa-check"></i><b>10.1</b> apply()</a></li>
+<li class="chapter" data-level="10.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply"><i class="fa fa-check"></i><b>10.2</b> lapply()</a></li>
+<li class="chapter" data-level="10.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply"><i class="fa fa-check"></i><b>10.3</b> sapply()</a></li>
+<li class="chapter" data-level="10.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply"><i class="fa fa-check"></i><b>10.4</b> tapply()</a></li>
+<li class="chapter" data-level="10.5" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#mapply"><i class="fa fa-check"></i><b>10.5</b> mapply()</a></li>
+<li class="chapter" data-level="10.6" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#replicate"><i class="fa fa-check"></i><b>10.6</b> replicate()</a></li>
+<li class="chapter" data-level="10.7" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>10.7</b> How to Pick a Method</a></li>
+<li class="chapter" data-level="10.8" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#more-examples"><i class="fa fa-check"></i><b>10.8</b> More Examples</a></li>
+<li class="chapter" data-level="" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#additional-resources-5"><i class="fa fa-check"></i>Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>11</b> Text Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="text-data.html"><a href="text-data.html#making-strings"><i class="fa fa-check"></i><b>11.1</b> Making Strings</a></li>
+<li class="chapter" data-level="11.2" data-path="text-data.html"><a href="text-data.html#substring-operations"><i class="fa fa-check"></i><b>11.2</b> Substring Operations</a></li>
+<li class="chapter" data-level="11.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>11.3</b> Dividing Strings into Vectors</a></li>
+<li class="chapter" data-level="11.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>11.4</b> Converting Objects into Strings</a></li>
+<li class="chapter" data-level="11.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>11.5</b> Versatility of the paste() Function</a></li>
+<li class="chapter" data-level="11.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>11.6</b> gsub , sub</a></li>
+<li class="chapter" data-level="11.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>11.7</b> Text of Some Importance</a></li>
+<li class="chapter" data-level="11.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>11.8</b> Search</a></li>
+<li class="chapter" data-level="11.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>11.9</b> Word Count Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>12.1</b> Ranges, Escaping</a></li>
+<li class="chapter" data-level="12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>12.2</b> Metacharacters</a></li>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i>Quantifiers</a></li>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i>Anchoring</a></li>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i>Splitting on a Regexp</a></li>
+<li class="chapter" data-level="12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#an-example"><i class="fa fa-check"></i><b>12.3</b> An Example</a><ul>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#match-locations-and-substrings"><i class="fa fa-check"></i>Match Locations and Substrings</a></li>
+<li class="chapter" data-level="12.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>12.3.1</b> Replacements</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#additional-resources-6"><i class="fa fa-check"></i>Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="text-data" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Text Data</h1>
+<p>In this section we give an introduction to strings and string operations, how to extracting and manipulating string objects, and an introduction to general search methods.</p>
+<p>We have focus on character objects in particular because a lot of the “messy” data comes in character form. For example, web pages can be scraped, email can be analyzed for network properties and survey responses must be processed and compared. Even if you only care about numbers, it helps to be able to extract them from text and manipulate them easily.</p>
+<p>In general we will try to stick to the following distinction. However, many people will use the term “character” and “string” interchangeably.</p>
+<ul>
+<li><strong><em>Character</em></strong>: a symbol in a written language, specifically what you can enter at a keyboard: letters, numerals, punctuation, space, newlines, etc.</li>
+</ul>
+<pre><code>&#39;L&#39;, &#39;i&#39;, &#39;n&#39;, &#39;c&#39;, &#39;o&#39;, &#39;l&#39;</code></pre>
+<ul>
+<li><strong><em>String</em></strong>: a sequence of characters bound together</li>
+</ul>
+<pre><code>Lincoln</code></pre>
+<p>Note: R does not have a separate type for characters and strings</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="text-data.html#cb519-1"></a><span class="kw">class</span>(<span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="text-data.html#cb521-1"></a><span class="kw">class</span>(<span class="st">&quot;Lincoln&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div id="making-strings" class="section level2">
+<h2><span class="header-section-number">11.1</span> Making Strings</h2>
+<p>Use single or double quotes to construct a string, but in general its recommeded to use double quotes. This is because the R console showcases character strings in double quotes regardless of how the string was created, and sometimes we might have single or double quotes in the string itself.</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="text-data.html#cb523-1"></a><span class="st">&#39;Lincoln&#39;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Lincoln&quot;</code></pre>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="text-data.html#cb525-1"></a><span class="st">&quot;Lincoln&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Lincoln&quot;</code></pre>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="text-data.html#cb527-1"></a><span class="st">&quot;Abraham Lincoln&#39;s Hat&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Abraham Lincoln&#39;s Hat&quot;</code></pre>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="text-data.html#cb529-1"></a><span class="st">&quot;As Lincoln never said, &#39;Four score and seven beers ago&#39;&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;As Lincoln never said, &#39;Four score and seven beers ago&#39;&quot;</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="text-data.html#cb531-1"></a><span class="st">&#39;As Lincoln never said, &quot;Four score and seven beers ago&quot;&#39;</span></span></code></pre></div>
+<pre><code>## [1] &quot;As Lincoln never said, \&quot;Four score and seven beers ago\&quot;&quot;</code></pre>
+<p>The space, <code>" "</code> is a character; so are multiple spaces <code>"   "</code> and the empty string, <code>""</code>.</p>
+<p>Some characters are special, so we have “escape characters” to specify them in strings.
+- quotes within strings: <code>\"</code>
+- tab: <code>\t</code>
+- new line <code>\n</code> and carriage return <code>\r</code> – use the former rather than the latter when possible.</p>
+<p>Recall that strings (or character objects) are one of the atomic data types, like <code>numeric</code> or <code>logical</code>. Thus strings can go into scalars, vectors, arrays, lists, or be the type of a column in a data frame. We can use the <code>nchar()</code> to get the length of a single string.</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="text-data.html#cb533-1"></a><span class="kw">length</span>(<span class="st">&quot;Abraham Lincoln&#39;s beard&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="text-data.html#cb535-1"></a><span class="kw">length</span>(<span class="kw">c</span>(<span class="st">&quot;Abraham&quot;</span>, <span class="st">&quot;Lincoln&#39;s&quot;</span>, <span class="st">&quot;beard&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="text-data.html#cb537-1"></a><span class="kw">nchar</span>(<span class="st">&quot;Abraham&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="text-data.html#cb539-1"></a><span class="kw">nchar</span>(<span class="st">&quot;Abraham Lincoln&#39;s beard&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 23</code></pre>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="text-data.html#cb541-1"></a><span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;Abraham&quot;</span>, <span class="st">&quot;Lincoln&#39;s&quot;</span>, <span class="st">&quot;beard&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 7 9 5</code></pre>
+<p>We can use <code>print()</code> to display the string, and <code>cat()</code> is used to write the string directly to the console. If you’re debugging, <code>message()</code> is R’s preferred syntax.</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="text-data.html#cb543-1"></a>presidents =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>,<span class="st">&quot;Pierce&quot;</span>,<span class="st">&quot;Buchanan&quot;</span>,<span class="st">&quot;Davis&quot;</span>,<span class="st">&quot;Johnson&quot;</span>)</span>
+<span id="cb543-2"><a href="text-data.html#cb543-2"></a></span>
+<span id="cb543-3"><a href="text-data.html#cb543-3"></a><span class="kw">print</span>(<span class="st">&quot;Abraham Lincoln&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Abraham Lincoln&quot;</code></pre>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="text-data.html#cb545-1"></a><span class="kw">cat</span>(<span class="st">&quot;Abraham Lincoln&quot;</span>)</span></code></pre></div>
+<pre><code>## Abraham Lincoln</code></pre>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="text-data.html#cb547-1"></a><span class="kw">cat</span>(presidents)</span></code></pre></div>
+<pre><code>## Fillmore Pierce Buchanan Davis Johnson</code></pre>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="text-data.html#cb549-1"></a><span class="kw">message</span>(presidents)</span></code></pre></div>
+<pre><code>## FillmorePierceBuchananDavisJohnson</code></pre>
+</div>
+<div id="substring-operations" class="section level2">
+<h2><span class="header-section-number">11.2</span> Substring Operations</h2>
+<p><strong><em>Substring</em></strong>: a smaller string from the big string, but still a string in its own right.</p>
+<p>A string is not a vector or a list, so we <strong><em>cannot</em></strong> use subscripts like <code>[[ ]]</code> or <code>[ ]</code> to extract substrings; we use <code>substr()</code> instead.</p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="text-data.html#cb551-1"></a>phrase &lt;-<span class="st"> &quot;Christmas Bonus&quot;</span></span>
+<span id="cb551-2"><a href="text-data.html#cb551-2"></a><span class="kw">substr</span>(phrase, <span class="dt">start=</span><span class="dv">8</span>, <span class="dt">stop=</span><span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;as Bo&quot;</code></pre>
+<p>We can also use <code>substr</code> to replace elements:</p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="text-data.html#cb553-1"></a><span class="kw">substr</span>(phrase, <span class="dv">13</span>, <span class="dv">13</span>) =<span class="st"> &quot;g&quot;</span></span>
+<span id="cb553-2"><a href="text-data.html#cb553-2"></a>phrase</span></code></pre></div>
+<pre><code>## [1] &quot;Christmas Bogus&quot;</code></pre>
+<p>The function <code>substr()</code> can also be used for vectors.</p>
+<p><code>substr()</code> vectorizes over all its arguments:</p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="text-data.html#cb555-1"></a>presidents</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore&quot; &quot;Pierce&quot;   &quot;Buchanan&quot; &quot;Davis&quot;    &quot;Johnson&quot;</code></pre>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="text-data.html#cb557-1"></a><span class="kw">substr</span>(presidents,<span class="dv">1</span>,<span class="dv">2</span>)   <span class="co"># First two characters</span></span></code></pre></div>
+<pre><code>## [1] &quot;Fi&quot; &quot;Pi&quot; &quot;Bu&quot; &quot;Da&quot; &quot;Jo&quot;</code></pre>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="text-data.html#cb559-1"></a><span class="kw">substr</span>(presidents,<span class="kw">nchar</span>(presidents)<span class="op">-</span><span class="dv">1</span>,<span class="kw">nchar</span>(presidents))   <span class="co"># Last two</span></span></code></pre></div>
+<pre><code>## [1] &quot;re&quot; &quot;ce&quot; &quot;an&quot; &quot;is&quot; &quot;on&quot;</code></pre>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="text-data.html#cb561-1"></a><span class="kw">substr</span>(presidents,<span class="dv">20</span>,<span class="dv">21</span>)    <span class="co"># No such substrings so return the null string</span></span></code></pre></div>
+<pre><code>## [1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="text-data.html#cb563-1"></a><span class="kw">substr</span>(presidents,<span class="dv">7</span>,<span class="dv">7</span>)      <span class="co"># Explain!</span></span></code></pre></div>
+<pre><code>## [1] &quot;r&quot; &quot;&quot;  &quot;a&quot; &quot;&quot;  &quot;n&quot;</code></pre>
+</div>
+<div id="dividing-strings-into-vectors" class="section level2">
+<h2><span class="header-section-number">11.3</span> Dividing Strings into Vectors</h2>
+<p><code>strsplit()</code> divides a string according to key characters, by splitting each element of the character vector <code>x</code> at appearances of the pattern <code>split</code>.</p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="text-data.html#cb565-1"></a>scarborough.fair =<span class="st"> &quot;parsley, sage, rosemary, thyme&quot;</span></span>
+<span id="cb565-2"><a href="text-data.html#cb565-2"></a><span class="kw">strsplit</span>(scarborough.fair, <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;parsley&quot;   &quot; sage&quot;     &quot; rosemary&quot; &quot; thyme&quot;</code></pre>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="text-data.html#cb567-1"></a><span class="kw">strsplit</span>(scarborough.fair, <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;parsley&quot;  &quot;sage&quot;     &quot;rosemary&quot; &quot;thyme&quot;</code></pre>
+<p>Pattern is recycled over elements of the input vector:</p>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="text-data.html#cb569-1"></a><span class="kw">strsplit</span> (<span class="kw">c</span>(scarborough.fair, <span class="st">&quot;Garfunkel, Oates&quot;</span>, <span class="st">&quot;Clement, McKenzie&quot;</span>), <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;parsley&quot;  &quot;sage&quot;     &quot;rosemary&quot; &quot;thyme&quot;   
+## 
+## [[2]]
+## [1] &quot;Garfunkel&quot; &quot;Oates&quot;    
+## 
+## [[3]]
+## [1] &quot;Clement&quot;  &quot;McKenzie&quot;</code></pre>
+<p>Note that it outputs a <code>list</code> of character vectors.</p>
+</div>
+<div id="converting-objects-into-strings" class="section level2">
+<h2><span class="header-section-number">11.4</span> Converting Objects into Strings</h2>
+<p>Explicitly converting one variable type to another is called <strong><em>casting</em></strong>. Notice that the number “7.2e12” is printed as supplied, but “7.2e5” is not. This is because if a number is exceeding large, small, or close to zero, then R will by default use scientific notation for that number.</p>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="text-data.html#cb571-1"></a><span class="kw">as.character</span>(<span class="fl">7.2</span>)            <span class="co"># Obvious</span></span></code></pre></div>
+<pre><code>## [1] &quot;7.2&quot;</code></pre>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="text-data.html#cb573-1"></a><span class="kw">as.character</span>(<span class="fl">7.2e12</span>)         <span class="co"># Obvious</span></span></code></pre></div>
+<pre><code>## [1] &quot;7.2e+12&quot;</code></pre>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="text-data.html#cb575-1"></a><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="fl">7.2</span>,<span class="fl">7.2e12</span>))  <span class="co"># Obvious</span></span></code></pre></div>
+<pre><code>## [1] &quot;7.2&quot;     &quot;7.2e+12&quot;</code></pre>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="text-data.html#cb577-1"></a><span class="kw">as.character</span>(<span class="fl">7.2e5</span>)          <span class="co"># Not quite so obvious</span></span></code></pre></div>
+<pre><code>## [1] &quot;720000&quot;</code></pre>
+</div>
+<div id="versatility-of-the-paste-function" class="section level2">
+<h2><span class="header-section-number">11.5</span> Versatility of the paste() Function</h2>
+<p>The <code>paste()</code> function is very flexible. With one vector argument, works like <code>as.character()</code>.</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="text-data.html#cb579-1"></a><span class="kw">paste</span>(<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;41&quot; &quot;42&quot; &quot;43&quot; &quot;44&quot; &quot;45&quot;</code></pre>
+<p>With 2 or more vector arguments, it combines them with recycling.</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="text-data.html#cb581-1"></a><span class="kw">paste</span>(presidents,<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore 41&quot; &quot;Pierce 42&quot;   &quot;Buchanan 43&quot; &quot;Davis 44&quot;    &quot;Johnson 45&quot;</code></pre>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="text-data.html#cb583-1"></a><span class="kw">paste</span>(presidents,<span class="kw">c</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;D&quot;</span>))  <span class="co"># Not historically accurate!</span></span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore R&quot; &quot;Pierce D&quot;   &quot;Buchanan R&quot; &quot;Davis D&quot;    &quot;Johnson R&quot;</code></pre>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="text-data.html#cb585-1"></a><span class="kw">paste</span>(presidents,<span class="st">&quot;(&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;D&quot;</span>),<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>,<span class="st">&quot;)&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore ( R 41 )&quot; &quot;Pierce ( D 42 )&quot;   &quot;Buchanan ( R 43 )&quot;
+## [4] &quot;Davis ( D 44 )&quot;    &quot;Johnson ( R 45 )&quot;</code></pre>
+<p>We can changing the separator between pasted-together terms.</p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="text-data.html#cb587-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore_ (_41_)&quot; &quot;Pierce_ (_42_)&quot;   &quot;Buchanan_ (_43_)&quot; &quot;Davis_ (_44_)&quot;   
+## [5] &quot;Johnson_ (_45_)&quot;</code></pre>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="text-data.html#cb589-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore (41)&quot; &quot;Pierce (42)&quot;   &quot;Buchanan (43)&quot; &quot;Davis (44)&quot;   
+## [5] &quot;Johnson (45)&quot;</code></pre>
+<p>We can also condense multiple strings together using the <code>collapse</code> argument.</p>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="text-data.html#cb591-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;; &quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fillmore (41); Pierce (42); Buchanan (43); Davis (44); Johnson (45)&quot;</code></pre>
+<p>Default value of <code>collapse</code> is <code>NULL</code> – that is, it won’t use it.</p>
+</div>
+<div id="gsub-sub" class="section level2">
+<h2><span class="header-section-number">11.6</span> gsub , sub</h2>
+<p>gsub is all occurances, and sub is first occurance.</p>
+</div>
+<div id="text-of-some-importance" class="section level2">
+<h2><span class="header-section-number">11.7</span> Text of Some Importance</h2>
+<p>Consider the following quote from Abraham Lincoln. Often times we will want to study or analyze a block of text. To</p>
+<blockquote>
+<p>“If we shall suppose that American slavery is one of those
+offenses which, in the providence of God, must needs come, but which, having
+continued through His appointed time, He now wills to remove, and that He
+gives to both North and South this terrible war as the woe due to those by
+whom the offense came, shall we discern therein any departure from those
+divine attributes which the believers in a living God always ascribe to Him?
+Fondly do we hope, fervently do we pray, that this mighty scourge of war may
+speedily pass away. Yet, if God wills that it continue until all the wealth
+piled by the bondsman’s two hundred and fifty years of unrequited toil shall
+be sunk, and until every drop of blood drawn with the lash shall be paid by
+another drawn with the sword, as was said three thousand years ago, so still
+it must be said”the judgments of the Lord are true and righteous
+altogether."</p>
+</blockquote>
+<p>We can read in the file with the following commands.</p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="text-data.html#cb593-1"></a>the_url =<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt&quot;</span></span>
+<span id="cb593-2"><a href="text-data.html#cb593-2"></a>al1 =<span class="st"> </span><span class="kw">readLines</span>(the_url, <span class="dt">warn =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb593-3"><a href="text-data.html#cb593-3"></a></span>
+<span id="cb593-4"><a href="text-data.html#cb593-4"></a><span class="co"># How many lines in the file </span></span>
+<span id="cb593-5"><a href="text-data.html#cb593-5"></a><span class="kw">length</span>(al1)</span></code></pre></div>
+<pre><code>## [1] 22</code></pre>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="text-data.html#cb595-1"></a><span class="co"># See the first few lines</span></span>
+<span id="cb595-2"><a href="text-data.html#cb595-2"></a><span class="kw">head</span>(al1)</span></code></pre></div>
+<pre><code>## [1] &quot;{\\rtf1\\ansi\\ansicpg1252\\cocoartf2578&quot;                                    
+## [2] &quot;\\cocoatextscaling0\\cocoaplatform0{\\fonttbl\\f0\\fnil\\fcharset0 Georgia;}&quot;
+## [3] &quot;{\\colortbl;\\red255\\green255\\blue255;\\red46\\green43\\blue41;}&quot;          
+## [4] &quot;{\\*\\expandedcolortbl;;\\cssrgb\\c23529\\c22353\\c21176;}&quot;                  
+## [5] &quot;\\margl1440\\margr1440\\vieww17340\\viewh17140\\viewkind0&quot;                   
+## [6] &quot;\\deftab720&quot;</code></pre>
+<p><code>al1</code> is a vector, one element per line of text</p>
+</div>
+<div id="search" class="section level2">
+<h2><span class="header-section-number">11.8</span> Search</h2>
+<p>We can search through text strings for certain patterns. Some particularly helpful functions for doing this are <code>grep()</code> and <code>grepl()</code>. The <code>grep()</code> function</p>
+<p>Narrowing down entries: use <code>grep()</code> to find which strings have a matching search term</p>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="text-data.html#cb597-1"></a><span class="co"># Returns indices for which element in al1 has the term &quot;God&quot;</span></span>
+<span id="cb597-2"><a href="text-data.html#cb597-2"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1)</span></code></pre></div>
+<pre><code>## [1] 11 15 17</code></pre>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="text-data.html#cb599-1"></a><span class="co"># Returns T/F values for which indices have the term &quot;God&quot; </span></span>
+<span id="cb599-2"><a href="text-data.html#cb599-2"></a><span class="kw">grepl</span>(<span class="st">&quot;God&quot;</span>, al1)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="text-data.html#cb601-1"></a><span class="co"># Returns the the elements in al1 that have the term &quot;God&quot; </span></span>
+<span id="cb601-2"><a href="text-data.html#cb601-2"></a>al1[<span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1)]</span></code></pre></div>
+<pre><code>## [1] &quot;offenses which, in the providence of God, must needs come, but which, having\\&quot; 
+## [2] &quot; divine attributes which the believers in a living God always ascribe to Him?\\&quot;
+## [3] &quot; speedily pass away.  Yet, if God wills that it continue until all the wealth\\&quot;</code></pre>
+</div>
+<div id="word-count-tables" class="section level2">
+<h2><span class="header-section-number">11.9</span> Word Count Tables</h2>
+<p>Lets convert all the words in this document into a single string. Then we can</p>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="text-data.html#cb603-1"></a>al1 =<span class="st"> </span><span class="kw">paste</span>(al1, <span class="dt">collapse=</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb603-2"><a href="text-data.html#cb603-2"></a>al1.words =<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split=</span><span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb603-3"><a href="text-data.html#cb603-3"></a><span class="kw">head</span>(al1.words)</span></code></pre></div>
+<pre><code>## [1] &quot;{\\rtf1\\ansi\\ansicpg1252\\cocoartf2578&quot;                          
+## [2] &quot;\\cocoatextscaling0\\cocoaplatform0{\\fonttbl\\f0\\fnil\\fcharset0&quot;
+## [3] &quot;Georgia;}&quot;                                                         
+## [4] &quot;{\\colortbl;\\red255\\green255\\blue255;\\red46\\green43\\blue41;}&quot;
+## [5] &quot;{\\*\\expandedcolortbl;;\\cssrgb\\c23529\\c22353\\c21176;}&quot;        
+## [6] &quot;\\margl1440\\margr1440\\vieww17340\\viewh17140\\viewkind0&quot;</code></pre>
+<p>Tabulate how often each word appears using the <code>table()</code> function. Then we can sort the frequencies in order using <code>sort()</code>.</p>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="text-data.html#cb605-1"></a>wc =<span class="st"> </span><span class="kw">table</span>(al1.words)</span>
+<span id="cb605-2"><a href="text-data.html#cb605-2"></a>wc =<span class="st"> </span><span class="kw">sort</span>(wc,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)</span>
+<span id="cb605-3"><a href="text-data.html#cb605-3"></a><span class="kw">head</span>(wc,<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## al1.words
+##             the      of     and    that      to      we      be   shall      as 
+##      13       9       6       5       4       4       4       3       3       2 
+##    by\\      do   drawn     God      in      it    must    said    this those\\ 
+##       2       2       2       2       2       2       2       2       2       2</code></pre>
+<p>Notice that puncuation using these methods is still present.</p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="text-data.html#cb607-1"></a>wc[<span class="st">&quot;years&quot;</span>]</span></code></pre></div>
+<pre><code>## years 
+##     2</code></pre>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="text-data.html#cb609-1"></a>wc[<span class="st">&quot;years,&quot;</span>]</span></code></pre></div>
+<pre><code>## &lt;NA&gt; 
+##   NA</code></pre>
+<p>In addition, all our words and string subsets are case sensitive.</p>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="text-data.html#cb611-1"></a><span class="co"># What happens when we look for a word that is not in our </span></span>
+<span id="cb611-2"><a href="text-data.html#cb611-2"></a><span class="co"># word count table? </span></span>
+<span id="cb611-3"><a href="text-data.html#cb611-3"></a></span>
+<span id="cb611-4"><a href="text-data.html#cb611-4"></a><span class="co"># words are case sensitive </span></span>
+<span id="cb611-5"><a href="text-data.html#cb611-5"></a>wc[<span class="st">&quot;that&quot;</span>]</span></code></pre></div>
+<pre><code>## that 
+##    4</code></pre>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="text-data.html#cb613-1"></a><span class="kw">which</span>(<span class="kw">names</span>(wc)  <span class="op">==</span><span class="st"> &quot;That&quot;</span>)</span></code></pre></div>
+<pre><code>## integer(0)</code></pre>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="text-data.html#cb615-1"></a>wc[<span class="st">&quot;That&quot;</span>]</span></code></pre></div>
+<pre><code>## &lt;NA&gt; 
+##   NA</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="apply-family-of-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regular-expressions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-text-analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
