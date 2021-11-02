@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-11-01" />
+<meta name="date" content="2021-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -260,12 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>12</b> Regular Expressions</a><ul>
 <li class="chapter" data-level="12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>12.1</b> Ranges, Escaping</a></li>
 <li class="chapter" data-level="12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>12.2</b> Metacharacters</a></li>
-<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i>Quantifiers</a></li>
-<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i>Anchoring</a></li>
-<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i>Splitting on a Regexp</a></li>
-<li class="chapter" data-level="12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#an-example"><i class="fa fa-check"></i><b>12.3</b> An Example</a><ul>
-<li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#match-locations-and-substrings"><i class="fa fa-check"></i>Match Locations and Substrings</a></li>
-<li class="chapter" data-level="12.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>12.3.1</b> Replacements</a></li>
+<li class="chapter" data-level="12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i><b>12.3</b> Quantifiers</a></li>
+<li class="chapter" data-level="12.4" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i><b>12.4</b> Anchoring</a></li>
+<li class="chapter" data-level="12.5" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>12.5</b> Splitting on a Regexp</a></li>
+<li class="chapter" data-level="12.6" data-path="regular-expressions.html"><a href="regular-expressions.html#an-example"><i class="fa fa-check"></i><b>12.6</b> An Example</a><ul>
+<li class="chapter" data-level="12.6.1" data-path="regular-expressions.html"><a href="regular-expressions.html#match-locations-and-substrings"><i class="fa fa-check"></i><b>12.6.1</b> Match Locations and Substrings</a></li>
+<li class="chapter" data-level="12.6.2" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>12.6.2</b> Replacements</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="regular-expressions.html"><a href="regular-expressions.html#additional-resources-6"><i class="fa fa-check"></i>Additional Resources</a></li>
 </ul></li>
@@ -460,15 +460,10 @@ altogether."</p>
 <span id="cb593-3"><a href="text-data.html#cb593-3"></a></span>
 <span id="cb593-4"><a href="text-data.html#cb593-4"></a><span class="co"># How many lines in the file </span></span>
 <span id="cb593-5"><a href="text-data.html#cb593-5"></a><span class="kw">length</span>(al1)</span></code></pre></div>
-<pre><code>## [1] 22</code></pre>
+<pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="text-data.html#cb595-1"></a><span class="co"># See the first few lines</span></span>
 <span id="cb595-2"><a href="text-data.html#cb595-2"></a><span class="kw">head</span>(al1)</span></code></pre></div>
-<pre><code>## [1] &quot;{\\rtf1\\ansi\\ansicpg1252\\cocoartf2578&quot;                                    
-## [2] &quot;\\cocoatextscaling0\\cocoaplatform0{\\fonttbl\\f0\\fnil\\fcharset0 Georgia;}&quot;
-## [3] &quot;{\\colortbl;\\red255\\green255\\blue255;\\red46\\green43\\blue41;}&quot;          
-## [4] &quot;{\\*\\expandedcolortbl;;\\cssrgb\\c23529\\c22353\\c21176;}&quot;                  
-## [5] &quot;\\margl1440\\margr1440\\vieww17340\\viewh17140\\viewkind0&quot;                   
-## [6] &quot;\\deftab720&quot;</code></pre>
+<pre><code>## [1] &quot;If we shall suppose that American slavery is one of those offenses which, in the providence of God, must needs come, but which, having continued through His appointed time, He now wills to remove, and that He gives to both North and South this terrible war as the woe due to those by whom the offense came, shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether”.&quot;</code></pre>
 <p><code>al1</code> is a vector, one element per line of text</p>
 </div>
 <div id="search" class="section level2">
@@ -477,16 +472,13 @@ altogether."</p>
 <p>Narrowing down entries: use <code>grep()</code> to find which strings have a matching search term</p>
 <div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="text-data.html#cb597-1"></a><span class="co"># Returns indices for which element in al1 has the term &quot;God&quot;</span></span>
 <span id="cb597-2"><a href="text-data.html#cb597-2"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1)</span></code></pre></div>
-<pre><code>## [1] 11 15 17</code></pre>
+<pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="text-data.html#cb599-1"></a><span class="co"># Returns T/F values for which indices have the term &quot;God&quot; </span></span>
 <span id="cb599-2"><a href="text-data.html#cb599-2"></a><span class="kw">grepl</span>(<span class="st">&quot;God&quot;</span>, al1)</span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-## [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="text-data.html#cb601-1"></a><span class="co"># Returns the the elements in al1 that have the term &quot;God&quot; </span></span>
 <span id="cb601-2"><a href="text-data.html#cb601-2"></a>al1[<span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1)]</span></code></pre></div>
-<pre><code>## [1] &quot;offenses which, in the providence of God, must needs come, but which, having\\&quot; 
-## [2] &quot; divine attributes which the believers in a living God always ascribe to Him?\\&quot;
-## [3] &quot; speedily pass away.  Yet, if God wills that it continue until all the wealth\\&quot;</code></pre>
+<pre><code>## [1] &quot;If we shall suppose that American slavery is one of those offenses which, in the providence of God, must needs come, but which, having continued through His appointed time, He now wills to remove, and that He gives to both North and South this terrible war as the woe due to those by whom the offense came, shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether”.&quot;</code></pre>
 </div>
 <div id="word-count-tables" class="section level2">
 <h2><span class="header-section-number">11.9</span> Word Count Tables</h2>
@@ -494,21 +486,16 @@ altogether."</p>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="text-data.html#cb603-1"></a>al1 =<span class="st"> </span><span class="kw">paste</span>(al1, <span class="dt">collapse=</span><span class="st">&quot; &quot;</span>)</span>
 <span id="cb603-2"><a href="text-data.html#cb603-2"></a>al1.words =<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split=</span><span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
 <span id="cb603-3"><a href="text-data.html#cb603-3"></a><span class="kw">head</span>(al1.words)</span></code></pre></div>
-<pre><code>## [1] &quot;{\\rtf1\\ansi\\ansicpg1252\\cocoartf2578&quot;                          
-## [2] &quot;\\cocoatextscaling0\\cocoaplatform0{\\fonttbl\\f0\\fnil\\fcharset0&quot;
-## [3] &quot;Georgia;}&quot;                                                         
-## [4] &quot;{\\colortbl;\\red255\\green255\\blue255;\\red46\\green43\\blue41;}&quot;
-## [5] &quot;{\\*\\expandedcolortbl;;\\cssrgb\\c23529\\c22353\\c21176;}&quot;        
-## [6] &quot;\\margl1440\\margr1440\\vieww17340\\viewh17140\\viewkind0&quot;</code></pre>
+<pre><code>## [1] &quot;If&quot;       &quot;we&quot;       &quot;shall&quot;    &quot;suppose&quot;  &quot;that&quot;     &quot;American&quot;</code></pre>
 <p>Tabulate how often each word appears using the <code>table()</code> function. Then we can sort the frequencies in order using <code>sort()</code>.</p>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="text-data.html#cb605-1"></a>wc =<span class="st"> </span><span class="kw">table</span>(al1.words)</span>
 <span id="cb605-2"><a href="text-data.html#cb605-2"></a>wc =<span class="st"> </span><span class="kw">sort</span>(wc,<span class="dt">decreasing=</span><span class="ot">TRUE</span>)</span>
 <span id="cb605-3"><a href="text-data.html#cb605-3"></a><span class="kw">head</span>(wc,<span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## al1.words
-##             the      of     and    that      to      we      be   shall      as 
-##      13       9       6       5       4       4       4       3       3       2 
-##    by\\      do   drawn     God      in      it    must    said    this those\\ 
-##       2       2       2       2       2       2       2       2       2       2</code></pre>
+##   the    of   and shall  that    to    we    be    by those    as    do drawn 
+##     9     6     5     4     4     4     4     3     3     3     2     2     2 
+##   God    He    in    it  must  said  this 
+##     2     2     2     2     2     2     2</code></pre>
 <p>Notice that puncuation using these methods is still present.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="text-data.html#cb607-1"></a>wc[<span class="st">&quot;years&quot;</span>]</span></code></pre></div>
 <pre><code>## years 

@@ -76,9 +76,9 @@ word-count-tables
 regular-expressions
 ranges-escaping
 metacharacters
-an-example
-replacements
 quantifiers
 anchoring
 splitting-on-a-regexp
+an-example
 match-locations-and-substrings
+replacements
