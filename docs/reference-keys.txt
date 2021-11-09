@@ -82,3 +82,17 @@ splitting-on-a-regexp
 an-example
 match-locations-and-substrings
 replacements
+simulation
+what-are-simulation-studies
+review-random-variables
+generating-random-variables
+setting-a-seed
+sample
+replicate-1
+adding-curves-to-graphs
+example
+resources
+example-central-limit-theorem-clt
+the-data
+recall-clt
+assumption-violations-of-clt
