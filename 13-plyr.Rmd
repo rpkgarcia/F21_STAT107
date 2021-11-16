@@ -65,7 +65,7 @@ Each input type has various rules for how to split it up.
 
 The way each input is split up actually doesn't depend on the class of the data object, but the method that it responds to.  For example, an object split using `a*ply()` must respond to `dim()` and accept multidimensional indexing.  Thus, you can use a data frame as a data input for `a*ply()`.  For `d*ply()`, the data must work with `split()` and must be able to be converted into a list.  Hence, many matrix objects can be used as inputs for `d*ply()`.  For `l*ply()` the data must work with `length()` and `[[` indexing. 
 
-### Input: a*ply() {-}
+### Input: a*ply() 
 
 For the `a*ply()` functions we have `.margins` argument which works the same as the `MARGIN` argument for `apply()`.  
 

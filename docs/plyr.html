@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2" data-path="plyr.html"><a href="plyr.html#iteration-with-plyr"><i class="fa fa-check"></i><b>14.2</b> Iteration with plyr</a></li>
 <li class="chapter" data-level="14.3" data-path="plyr.html"><a href="plyr.html#syntax"><i class="fa fa-check"></i><b>14.3</b> Syntax</a></li>
 <li class="chapter" data-level="14.4" data-path="plyr.html"><a href="plyr.html#inputs"><i class="fa fa-check"></i><b>14.4</b> Inputs</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="plyr.html"><a href="plyr.html#input-aply--"><i class="fa fa-check"></i><b>14.4.1</b> Input: a*ply() {-}</a></li>
+<li class="chapter" data-level="14.4.1" data-path="plyr.html"><a href="plyr.html#input-aply"><i class="fa fa-check"></i><b>14.4.1</b> Input: a*ply()</a></li>
 <li class="chapter" data-level="14.4.2" data-path="plyr.html"><a href="plyr.html#input-dply"><i class="fa fa-check"></i><b>14.4.2</b> Input: d*ply()</a></li>
 <li class="chapter" data-level="14.4.3" data-path="plyr.html"><a href="plyr.html#input-lply"><i class="fa fa-check"></i><b>14.4.3</b> Input: l*ply()</a></li>
 </ul></li>
@@ -362,8 +362,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Each element of a list is separated.</p></li>
 </ul>
 <p>The way each input is split up actually doesn’t depend on the class of the data object, but the method that it responds to. For example, an object split using <code>a*ply()</code> must respond to <code>dim()</code> and accept multidimensional indexing. Thus, you can use a data frame as a data input for <code>a*ply()</code>. For <code>d*ply()</code>, the data must work with <code>split()</code> and must be able to be converted into a list. Hence, many matrix objects can be used as inputs for <code>d*ply()</code>. For <code>l*ply()</code> the data must work with <code>length()</code> and <code>[[</code> indexing.</p>
-<div id="input-aply--" class="section level3">
-<h3><span class="header-section-number">14.4.1</span> Input: a*ply() {-}</h3>
+<div id="input-aply" class="section level3">
+<h3><span class="header-section-number">14.4.1</span> Input: a*ply()</h3>
 <p>For the <code>a*ply()</code> functions we have <code>.margins</code> argument which works the same as the <code>MARGIN</code> argument for <code>apply()</code>.</p>
 <ul>
 <li><code>.margins=1</code>: Slice up into rows.</li>
@@ -622,11 +622,11 @@ The</p></li>
 <div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="plyr.html#cb764-1"></a><span class="co"># Plyr way </span></span>
 <span id="cb764-2"><a href="plyr.html#cb764-2"></a><span class="kw">system.time</span>(<span class="kw">ddply</span>(baseball, <span class="st">&quot;id&quot;</span>, summarize, <span class="kw">length</span>(year)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.247   0.001   0.250</code></pre>
+##   0.211   0.002   0.213</code></pre>
 <div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="plyr.html#cb766-1"></a><span class="co"># Apply method way </span></span>
 <span id="cb766-2"><a href="plyr.html#cb766-2"></a><span class="kw">system.time</span>(<span class="kw">tapply</span>(baseball<span class="op">$</span>year, baseball<span class="op">$</span>id,  <span class="cf">function</span>(x) <span class="kw">length</span>(x)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.004   0.000   0.005</code></pre>
+##   0.004   0.000   0.004</code></pre>
 <div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="plyr.html#cb768-1"></a><span class="co"># Loop way </span></span>
 <span id="cb768-2"><a href="plyr.html#cb768-2"></a><span class="kw">system.time</span>({</span>
 <span id="cb768-3"><a href="plyr.html#cb768-3"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">unique</span>(baseball<span class="op">$</span>id)){</span>
@@ -634,7 +634,7 @@ The</p></li>
 <span id="cb768-5"><a href="plyr.html#cb768-5"></a>  } </span>
 <span id="cb768-6"><a href="plyr.html#cb768-6"></a>})</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.199   0.045   0.243</code></pre>
+##   0.190   0.037   0.228</code></pre>
 
 </div>
 </div>

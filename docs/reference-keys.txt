@@ -99,7 +99,7 @@ tidyverse-and-plyr
 iteration-with-plyr
 syntax
 inputs
-input-aply--
+input-aply
 input-dply
 input-lply
 outputs
