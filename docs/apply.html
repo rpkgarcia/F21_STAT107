@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 10 Apply Family of Functions | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 10 Apply Family of Functions | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 10 Apply Family of Functions | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="plyr.html"/>
-
+<link rel="prev" href="loops.html"/>
+<link rel="next" href="text-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -318,28 +318,359 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="apply" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Apply Family of Functions</h1>
+<p>Loops (like <code>for</code>, and <code>while</code>) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.</p>
+<p><code>R</code> has a more efficient and quick approach to perform iterations – <strong>The apply family</strong>.</p>
+<p>The apply family consists of vectorized functions. Below are the most common forms of apply functions.</p>
+<ul>
+<li><code>apply()</code></li>
+<li><code>lapply()</code></li>
+<li><code>sapply()</code></li>
+<li><code>tapply()</code></li>
+<li><code>mapply()</code></li>
+<li><code>replicate()</code></li>
+</ul>
+<p>These functions let you take data in batches and process the whole batch at once.</p>
+<p>There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function.</p>
+<p>These functions apply a function to different components of a vector/list/dataframe/array in a non-sequential way. In general, if each element in your object is not dependent on the other elements of your object then an apply function is usually faster than a loop.</p>
+<p><img src="images/lapplyGraphic.png" width="112" style="display: block; margin: auto;" /></p>
+<div id="apply-1" class="section level2">
+<h2><span class="header-section-number">10.1</span> apply()</h2>
+<p>The <code>apply()</code>function is used to apply a function to the rows or columns of matrices or data frames. It assembles the returned values into a vector, and then returns that vector.</p>
+<p>If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e. either all numeric values or all character strings) Otherwise, R will force all columns to have identical types. This may not be what you want. In that case, use the <code>lapply()</code> or <code>sapply()</code> functions.</p>
+<p>Description of the required <code>apply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>MARGIN</code>: A vector giving the subscripts which the function will be applied over.
+<ul>
+<li>1 indicates rows</li>
+<li>2 indicates columns</li>
+<li>c(1, 2) indicates rows and columns</li>
+</ul></li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="apply.html#cb467-1"></a><span class="co"># Get column means </span></span>
+<span id="cb467-2"><a href="apply.html#cb467-2"></a>data =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb467-3"><a href="apply.html#cb467-3"></a>data</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="apply.html#cb469-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, mean)</span></code></pre></div>
+<pre><code>## [1] 2 5 8</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="apply.html#cb471-1"></a><span class="co"># Get row means </span></span>
+<span id="cb471-2"><a href="apply.html#cb471-2"></a><span class="kw">apply</span>(data, <span class="dv">1</span>, sum)</span></code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<p>You can use user-defined functions as well.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="apply.html#cb473-1"></a><span class="kw">apply</span>(data, <span class="dv">2</span>, <span class="cf">function</span>(x){</span>
+<span id="cb473-2"><a href="apply.html#cb473-2"></a>  </span>
+<span id="cb473-3"><a href="apply.html#cb473-3"></a>  <span class="co"># Standard deviation formula </span></span>
+<span id="cb473-4"><a href="apply.html#cb473-4"></a>  y =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb473-5"><a href="apply.html#cb473-5"></a>  </span>
+<span id="cb473-6"><a href="apply.html#cb473-6"></a>  <span class="kw">return</span>(y)</span>
+<span id="cb473-7"><a href="apply.html#cb473-7"></a>  })</span></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+</div>
+<div id="lapply" class="section level2">
+<h2><span class="header-section-number">10.2</span> lapply()</h2>
+<p>The <code>lapply()</code> function is used to apply a function to each element of the list. It collects the returned values into a list, and then <strong>returns that list</strong>.</p>
+<p>Description of the required <code>lapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="apply.html#cb475-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb475-2"><a href="apply.html#cb475-2"></a>             <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb475-3"><a href="apply.html#cb475-3"></a>             <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb475-4"><a href="apply.html#cb475-4"></a>data_lst </span></code></pre></div>
+<pre><code>## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9</code></pre>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="apply.html#cb477-1"></a>data_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb477-2"><a href="apply.html#cb477-2"></a>data_vector</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="apply.html#cb479-1"></a><span class="kw">lapply</span>(data_lst, sum)</span></code></pre></div>
+<pre><code>## $item1
+## [1] 15
+## 
+## $item2
+## [1] 100
+## 
+## $item3
+## [1] 25</code></pre>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="apply.html#cb481-1"></a><span class="kw">lapply</span>(data_vector, sum)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 6
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 8</code></pre>
+</div>
+<div id="sapply" class="section level2">
+<h2><span class="header-section-number">10.3</span> sapply()</h2>
+<p>The <code>sapply()</code> and <code>lapply()</code> work basically the same.</p>
+<p>The only difference is that <code>lapply()</code> always returns a list, whereas <code>sapply()</code> tries to simplify the result into a vector or matrix.</p>
+<ul>
+<li><p>If the return value is a list where every element is length 1, you get a vector.</p></li>
+<li><p>If the return value is a list where every element is a vector of the same length (&gt; 1), you get a matrix.</p></li>
+<li><p>If the lengths vary, simplification is impossible and you get a list.</p></li>
+</ul>
+<p>Description of the required <code>sapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="apply.html#cb483-1"></a>data_lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb483-2"><a href="apply.html#cb483-2"></a>                 <span class="dt">item2 =</span> <span class="kw">seq</span>(<span class="dv">4</span>,<span class="dv">36</span>,<span class="dv">8</span>),</span>
+<span id="cb483-3"><a href="apply.html#cb483-3"></a>                 <span class="dt">item3 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span>
+<span id="cb483-4"><a href="apply.html#cb483-4"></a>data_lst</span></code></pre></div>
+<pre><code>## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="apply.html#cb485-1"></a><span class="kw">sapply</span>(data_lst, sum)</span></code></pre></div>
+<pre><code>## item1 item2 item3 
+##    15   100    25</code></pre>
+</div>
+<div id="tapply" class="section level2">
+<h2><span class="header-section-number">10.4</span> tapply()</h2>
+<p>The <code>tapply()</code> function breaks the data set up into groups and applies a function to each group.</p>
+<p>Description of the required <code>sapply()</code> arguments:</p>
+<ul>
+<li><code>X</code>: A matrix , data frame or array</li>
+<li><code>INDEX</code>: A grouping factor or a list of factors</li>
+<li><code>FUN</code>: The function to be applied</li>
+</ul>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="apply.html#cb487-1"></a>data =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Max&quot;</span>,<span class="st">&quot;Ray&quot;</span>,<span class="st">&quot;Kim&quot;</span>,<span class="st">&quot;Sam&quot;</span>,<span class="st">&quot;Eve&quot;</span>,<span class="st">&quot;Bob&quot;</span>), </span>
+<span id="cb487-2"><a href="apply.html#cb487-2"></a>                  <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">21</span>),</span>
+<span id="cb487-3"><a href="apply.html#cb487-3"></a>                  <span class="dt">gender=</span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>))) </span>
+<span id="cb487-4"><a href="apply.html#cb487-4"></a></span>
+<span id="cb487-5"><a href="apply.html#cb487-5"></a>data</span></code></pre></div>
+<pre><code>##   name age gender
+## 1  Amy  24      F
+## 2  Max  22      M
+## 3  Ray  21      M
+## 4  Kim  23      F
+## 5  Sam  20      M
+## 6  Eve  24      F
+## 7  Bob  21      M</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="apply.html#cb489-1"></a><span class="kw">tapply</span>(data<span class="op">$</span>age, data<span class="op">$</span>gender, min)</span></code></pre></div>
+<pre><code>##  F  M 
+## 23 20</code></pre>
+</div>
+<div id="mapply" class="section level2">
+<h2><span class="header-section-number">10.5</span> mapply()</h2>
+<p>The <code>mapply()</code> function is a multivariate version of <code>sapply()</code>. It applies <code>FUN</code> to the first elements of each … argument, the second elements, the third elements, and so on.</p>
+<p>Description of the required <code>mapply()</code> arguments:</p>
+<ul>
+<li><code>FUN</code>: The function to be applied</li>
+<li><code>...</code>: Arguments to vectorize over (vectors or lists of strictly positive length, or all of zero length).</li>
+</ul>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="apply.html#cb491-1"></a><span class="kw">mapply</span>(rep, <span class="dt">times =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">x =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] 3 3
+## 
+## [[3]]
+## [1] 2 2 2
+## 
+## [[4]]
+## [1] 1 1 1 1</code></pre>
+</div>
+<div id="replicate" class="section level2">
+<h2><span class="header-section-number">10.6</span> replicate()</h2>
+<p>The <code>replicate()</code> function is a wrapper for <code>sapply()</code>. If we want to repeat an evaluation of an function call or an expression that does not require us to iterate through a data set or vector we can use <code>replicate()</code>.</p>
+<p>Description of the required <code>replicate()</code> arguments:</p>
+<ul>
+<li><code>n</code>: An integer containing the number of replications.</li>
+<li><code>expr</code>: The expression (or function call) to evaluate repeatedly.</li>
+</ul>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="apply.html#cb493-1"></a><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">4</span>, <span class="st">&quot;Hello&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello&quot; &quot;Hello&quot; &quot;Hello&quot; &quot;Hello&quot;</code></pre>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="apply.html#cb495-1"></a><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="kw">factorial</span>(<span class="dv">4</span>))</span></code></pre></div>
+<pre><code>##  [1] 24 24 24 24 24 24 24 24 24 24</code></pre>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="apply.html#cb497-1"></a><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)))</span></code></pre></div>
+<pre><code>##      [,1]   [,2]   [,3]   [,4]   [,5]  
+## [1,] &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;blue&quot;
+## [2,] &quot;blue&quot; &quot;blue&quot; &quot;blue&quot; &quot;blue&quot; &quot;red&quot;</code></pre>
+</div>
+<div id="how-to-pick-a-method" class="section level2">
+<h2><span class="header-section-number">10.7</span> How to Pick a Method</h2>
+<p>It can be difficult at first to decide which of these apply function you may want to use. In general, we can use the flow chart below as a quick guide.</p>
+<p><img src="images/ApplyFlowChart.png" width="716" style="display: block; margin: auto;" /></p>
+</div>
+<div id="more-examples" class="section level2">
+<h2><span class="header-section-number">10.8</span> More Examples</h2>
+<p>To see some more examples of these functions in action. We will use the <code>iris</code> data set which is a built in data set in R. This data set has four numeric columns, and one factor column, <code>Species</code>. Each row is a flower, and there are four different measurements of each flower.</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="apply.html#cb499-1"></a><span class="kw">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="apply.html#cb501-1"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>Find the maximum value for the numeric variables for each observation.</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="apply.html#cb503-1"></a>numeric_iris =<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>]</span>
+<span id="cb503-2"><a href="apply.html#cb503-2"></a>max_in_row =<span class="st"> </span><span class="kw">apply</span>(numeric_iris, <span class="dv">1</span>, max)</span>
+<span id="cb503-3"><a href="apply.html#cb503-3"></a><span class="kw">head</span>(max_in_row)</span></code></pre></div>
+<pre><code>## [1] 5.1 4.9 4.7 4.6 5.0 5.4</code></pre>
+<p>Determine the (arithmetic) mean of the sepal width for each species.</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="apply.html#cb505-1"></a>mean_species =<span class="st"> </span><span class="kw">tapply</span>(iris<span class="op">$</span>Sepal.Width, <span class="dt">INDEX =</span> iris<span class="op">$</span>Species, mean)</span>
+<span id="cb505-2"><a href="apply.html#cb505-2"></a>mean_species</span></code></pre></div>
+<pre><code>##     setosa versicolor  virginica 
+##      3.428      2.770      2.974</code></pre>
+<p>Determine the (arithmetic) mean and the median of sepal width for each species.</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="apply.html#cb507-1"></a>my_avgs =<span class="st"> </span><span class="cf">function</span>(vec){</span>
+<span id="cb507-2"><a href="apply.html#cb507-2"></a>  the_mean =<span class="st"> </span><span class="kw">mean</span>(vec)</span>
+<span id="cb507-3"><a href="apply.html#cb507-3"></a>  the_median =<span class="st"> </span><span class="kw">median</span>(vec)</span>
+<span id="cb507-4"><a href="apply.html#cb507-4"></a>  return_object=<span class="kw">c</span>(the_mean, the_median)</span>
+<span id="cb507-5"><a href="apply.html#cb507-5"></a>  <span class="kw">names</span>(return_object) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;median&quot;</span>)</span>
+<span id="cb507-6"><a href="apply.html#cb507-6"></a>  <span class="kw">return</span>(return_object)</span>
+<span id="cb507-7"><a href="apply.html#cb507-7"></a>}</span>
+<span id="cb507-8"><a href="apply.html#cb507-8"></a></span>
+<span id="cb507-9"><a href="apply.html#cb507-9"></a>species_avgs =<span class="st"> </span><span class="kw">tapply</span>(iris<span class="op">$</span>Sepal.Width, </span>
+<span id="cb507-10"><a href="apply.html#cb507-10"></a>                      iris<span class="op">$</span>Species,</span>
+<span id="cb507-11"><a href="apply.html#cb507-11"></a>                      my_avgs)</span>
+<span id="cb507-12"><a href="apply.html#cb507-12"></a>species_avgs</span></code></pre></div>
+<pre><code>## $setosa
+##   mean median 
+##  3.428  3.400 
+## 
+## $versicolor
+##   mean median 
+##   2.77   2.80 
+## 
+## $virginica
+##   mean median 
+##  2.974  3.000</code></pre>
+<p>Make a plot of the sepal width and sepal length. Make the points differ depending on the species type.</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="apply.html#cb509-1"></a><span class="co"># Starting plot, make it blank </span></span>
+<span id="cb509-2"><a href="apply.html#cb509-2"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb509-3"><a href="apply.html#cb509-3"></a></span>
+<span id="cb509-4"><a href="apply.html#cb509-4"></a></span>
+<span id="cb509-5"><a href="apply.html#cb509-5"></a><span class="co"># Custom function to add the points</span></span>
+<span id="cb509-6"><a href="apply.html#cb509-6"></a>add_points =<span class="st"> </span><span class="cf">function</span>(the_data, ...){</span>
+<span id="cb509-7"><a href="apply.html#cb509-7"></a>  </span>
+<span id="cb509-8"><a href="apply.html#cb509-8"></a>  <span class="cf">if</span>(the_data[<span class="dv">5</span>]<span class="op">==</span><span class="st">&quot;setosa&quot;</span>){</span>
+<span id="cb509-9"><a href="apply.html#cb509-9"></a>    <span class="kw">points</span>(<span class="dt">x =</span> the_data[<span class="dv">1</span>], </span>
+<span id="cb509-10"><a href="apply.html#cb509-10"></a>           <span class="dt">y =</span> the_data[<span class="dv">2</span>], </span>
+<span id="cb509-11"><a href="apply.html#cb509-11"></a>           <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb509-12"><a href="apply.html#cb509-12"></a>           <span class="dt">pch =</span> <span class="dv">0</span>)</span>
+<span id="cb509-13"><a href="apply.html#cb509-13"></a>  } <span class="cf">else</span> <span class="cf">if</span>(the_data[<span class="dv">5</span>]<span class="op">==</span><span class="st">&quot;virginica&quot;</span>){</span>
+<span id="cb509-14"><a href="apply.html#cb509-14"></a>    <span class="kw">points</span>(<span class="dt">x =</span> the_data[<span class="dv">1</span>], </span>
+<span id="cb509-15"><a href="apply.html#cb509-15"></a>           <span class="dt">y =</span> the_data[<span class="dv">2</span>], </span>
+<span id="cb509-16"><a href="apply.html#cb509-16"></a>           <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb509-17"><a href="apply.html#cb509-17"></a>           <span class="dt">pch =</span> <span class="dv">2</span>)</span>
+<span id="cb509-18"><a href="apply.html#cb509-18"></a>  } <span class="cf">else</span>{</span>
+<span id="cb509-19"><a href="apply.html#cb509-19"></a>    <span class="kw">points</span>(<span class="dt">x =</span> the_data[<span class="dv">1</span>], </span>
+<span id="cb509-20"><a href="apply.html#cb509-20"></a>           <span class="dt">y =</span> the_data[<span class="dv">2</span>], </span>
+<span id="cb509-21"><a href="apply.html#cb509-21"></a>           <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, </span>
+<span id="cb509-22"><a href="apply.html#cb509-22"></a>           <span class="dt">pch =</span> <span class="dv">10</span>)</span>
+<span id="cb509-23"><a href="apply.html#cb509-23"></a>    </span>
+<span id="cb509-24"><a href="apply.html#cb509-24"></a>  }</span>
+<span id="cb509-25"><a href="apply.html#cb509-25"></a>} </span>
+<span id="cb509-26"><a href="apply.html#cb509-26"></a></span>
+<span id="cb509-27"><a href="apply.html#cb509-27"></a></span>
+<span id="cb509-28"><a href="apply.html#cb509-28"></a><span class="co"># Use apply to add points</span></span>
+<span id="cb509-29"><a href="apply.html#cb509-29"></a><span class="kw">apply</span>(iris, <span class="dv">1</span>, add_points)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<p>Make a plot of the sepal width and sepal length. Make the points differ depending on the species type. Add the (arithmetic) mean of these two variables for each group.</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="apply.html#cb511-1"></a><span class="co"># ------ PLOT FROM BEFORE</span></span>
+<span id="cb511-2"><a href="apply.html#cb511-2"></a><span class="co"># Starting plot, make it blank </span></span>
+<span id="cb511-3"><a href="apply.html#cb511-3"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb511-4"><a href="apply.html#cb511-4"></a><span class="kw">apply</span>(iris, <span class="dv">1</span>, add_points)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="apply.html#cb513-1"></a><span class="co"># ------ </span></span>
+<span id="cb513-2"><a href="apply.html#cb513-2"></a></span>
+<span id="cb513-3"><a href="apply.html#cb513-3"></a></span>
+<span id="cb513-4"><a href="apply.html#cb513-4"></a><span class="co"># Split the data into a list by factor</span></span>
+<span id="cb513-5"><a href="apply.html#cb513-5"></a>split_iris =<span class="st"> </span><span class="kw">split</span>(iris, <span class="dt">f =</span> iris<span class="op">$</span>Species)</span>
+<span id="cb513-6"><a href="apply.html#cb513-6"></a></span>
+<span id="cb513-7"><a href="apply.html#cb513-7"></a><span class="co"># Iterate through the list and add (black) points to the plot</span></span>
+<span id="cb513-8"><a href="apply.html#cb513-8"></a><span class="kw">lapply</span>(split_iris, <span class="cf">function</span>(species_data){</span>
+<span id="cb513-9"><a href="apply.html#cb513-9"></a>  <span class="kw">points</span>(<span class="kw">mean</span>(species_data<span class="op">$</span>Sepal.Length), </span>
+<span id="cb513-10"><a href="apply.html#cb513-10"></a>         <span class="kw">mean</span>(species_data<span class="op">$</span>Sepal.Width), </span>
+<span id="cb513-11"><a href="apply.html#cb513-11"></a>         <span class="dt">pch =</span> <span class="dv">16</span>) </span>
+<span id="cb513-12"><a href="apply.html#cb513-12"></a>})</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<pre><code>## $setosa
+## NULL
+## 
+## $versicolor
+## NULL
+## 
+## $virginica
+## NULL</code></pre>
+<p>Lets try using another example. Suppose we wish to use the following formula (below) with <code>a = Sepal.Length</code>, <code>b = Sepal.Width</code>, and <code>c = Petal.Length</code>.
+<span class="math display">\[ \frac{-b + \sqrt{b^2-4ac} }{2a}\]</span></p>
+<p>Now there is more efficient ways to do this in R, but lets practice how we would do it with <code>mapply</code> as an example.</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="apply.html#cb515-1"></a>my_formula =<span class="st"> </span><span class="cf">function</span>(a, b, c){</span>
+<span id="cb515-2"><a href="apply.html#cb515-2"></a>  num =<span class="st"> </span>(<span class="op">-</span>b <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(b<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))</span>
+<span id="cb515-3"><a href="apply.html#cb515-3"></a>  den =<span class="st"> </span><span class="dv">2</span><span class="op">*</span>a</span>
+<span id="cb515-4"><a href="apply.html#cb515-4"></a>  </span>
+<span id="cb515-5"><a href="apply.html#cb515-5"></a>  answer =<span class="st"> </span>num<span class="op">/</span>den</span>
+<span id="cb515-6"><a href="apply.html#cb515-6"></a>  <span class="kw">return</span>(answer)</span>
+<span id="cb515-7"><a href="apply.html#cb515-7"></a>}</span>
+<span id="cb515-8"><a href="apply.html#cb515-8"></a></span>
+<span id="cb515-9"><a href="apply.html#cb515-9"></a>formula_results =<span class="st"> </span><span class="kw">mapply</span>(my_formula, </span>
+<span id="cb515-10"><a href="apply.html#cb515-10"></a>                         <span class="dt">a =</span> iris<span class="op">$</span>Sepal.Length, </span>
+<span id="cb515-11"><a href="apply.html#cb515-11"></a>                         <span class="dt">b =</span> iris<span class="op">$</span>Sepal.Width, </span>
+<span id="cb515-12"><a href="apply.html#cb515-12"></a>                         <span class="dt">c =</span> iris<span class="op">$</span>Petal.Length)</span>
+<span id="cb515-13"><a href="apply.html#cb515-13"></a><span class="kw">head</span>(formula_results)</span></code></pre></div>
+<pre><code>## [1] 0.2831638 0.3098526 0.2860609 0.3260870 0.2800000 0.3061340</code></pre>
+</div>
+<div id="additional-resources-5" class="section level2 unnumbered">
+<h2>Additional Resources</h2>
+<ul>
+<li><a href="http://adv-r.had.co.nz/Functionals.html" class="uri">http://adv-r.had.co.nz/Functionals.html</a></li>
+</ul>
 
-<div id="refs" class="references">
-<div>
-<p>Diez, David, Mine Cetinkaya-Rundel, and Christopher D Barr. 2020. <em>OpenIntro Statistics, Fourth Edition</em>. OpenIntro. <a href="https://www.openintro.org/book/os/">https://www.openintro.org/book/os/</a>.</p>
-</div>
-<div>
-<p> Dr. Robert Desharnais. 2020. <em>Biology3000</em>. Los Angeles, CA: California State University, Los Angeles.</p>
-</div>
-<div>
-<p>John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine. 2016. “Software Carpentry: Programming with R.version 2016.06.” 2016. <a href="https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html">https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a>.</p>
-</div>
-<div>
-<p>Morris, Tim P, Ian R White, and Michael J Crowther. 2019. “Using Simulation Studies to Evaluate Statistical Methods.” <em>Statistics in Medicine</em> 38 (11): 2074–2102.</p>
-</div>
-<div>
-<p>Vries, Andrie de, and Joris Meys. 2015. <em>R for Dummies</em>. Hoboken, New Jersey: John Wiley &amp; Sons, Inc. <a href="https://www.dummies.com/programming/r/how-to-use-the-r-help-files/">https://www.dummies.com/programming/r/how-to-use-the-r-help-files/</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29.</p>
-</div>
 </div>
 </div>
             </section>
@@ -347,8 +678,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="plyr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="text-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -380,7 +711,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/99-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-apply-family.Rmd",
 "text": "Edit"
 },
 "history": {

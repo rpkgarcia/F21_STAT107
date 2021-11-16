@@ -1,4 +1,4 @@
-#  Apply Family of Functions
+#  Apply Family of Functions {#apply}
 
 Loops (like `for`, and `while`) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.
 

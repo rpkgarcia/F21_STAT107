@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 14 plyr | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 14 plyr | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 14 plyr | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="plyr.html"/>
-
+<link rel="prev" href="simulation.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -318,28 +318,330 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="plyr" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> plyr</h1>
+<div id="tidyverse-and-plyr" class="section level2">
+<h2><span class="header-section-number">14.1</span> Tidyverse and plyr</h2>
+<p>For this document you will need to install and load the family of tidyverse functions. To install the package refer to Section <a href="packages.html#packages">8</a>.</p>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="plyr.html#cb736-1"></a><span class="kw">library</span>(plyr)</span></code></pre></div>
+<p>The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax. There are approximately 20 tidyverse packages, but the core ones are <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code>. You can install these packages individually or all at once using by simply using the command <code>install.packages("tidyverse")</code>.</p>
+<p>We will be focusing on the <code>pplyr</code> package for now The functions and topics that we that we will be covering can be found in <span class="citation">Wickham (<a href="#ref-wickham2011split" role="doc-biblioref">2011</a>)</span>.</p>
+</div>
+<div id="iteration-with-plyr" class="section level2">
+<h2><span class="header-section-number">14.2</span> Iteration with plyr</h2>
+<p>The main focus of the <code>plyr</code> package is to formalize cleaning, and implementing functions to our data sets. In many data sets we have to split the data into the desired subsets, apply a function, and then reformat the data with adjustments. This process appears over and over again. When we apply or implement a function to different components of a data set we typically use an apply method or for loops, Sections <a href="apply.html#apply">10</a> and <a href="loops.html#loops">9</a> respectively. Often times this can take several lines of code to accomplish.</p>
+<p>The <code>plyr</code> package aims to reduce the amount of steps it takes to accomplish these tasks. In general, the functions in the <code>plyr</code> package are considered iteration techniques and are closely related to the apply functions in base R. In some cases, a <code>plyr</code> preforms exactly the same as the apply functions, both in terms of efficiency and in the task accomplished.</p>
+<p>Although the <code>plyr</code> package contains similar functions to base R, some users find this <code>plyr</code> functions to be more intuitive. In addition, the <code>plyr</code> functions generally have more features and can simplify code. The techniques in the <code>plyr</code> package are known as the <code>split-apply-combine</code> method. They work to split a data set in the desired way, apply the desired function, and combine and return the desired output to the user all in one step. This philosophy of the <code>plyr</code> functions is inspired by Google’s <code>map-reduce</code> technique of analyzing their data sets.</p>
+</div>
+<div id="syntax" class="section level2">
+<h2><span class="header-section-number">14.3</span> Syntax</h2>
+<p>For the <code>plyr</code> package an <strong><em>a</em>rray</strong> includes the special cases of vectors (1d arrays) and matrices (2d arrays). Arrays are made out of any atomic vector: logical, character, integer, or numeric. A <strong><em>l</em>ist</strong> is a non-atomic array, which is is an array that can contain any type of data structure. A <strong><em>d</em>ata frame</strong> is a 2d array where each column can be a different atomic class.</p>
+<p>The functions of the <code>plyr</code> package have the same general structure: ?*ply(). All <code>plyr</code> functions have simple and informative names, the first (?) and second (*) characters describe the input and output data types, respectively. Several inputs and outputs are supported: a = array, d = data frame, l = list, and _ = discarded.</p>
+<ul>
+<li>first character (input type): a, d, l</li>
+<li>second character (output type): a, d, l, _ (nothing)</li>
+</ul>
+<p>A table of the 12 core functions is directly below.</p>
+<p><img src="images/dplyr12corefunctions.png" width="563" style="display: block; margin: auto;" /></p>
+<p>Similarly to the apply functions, the functions have two or three main arguments depending on the input.</p>
+<ul>
+<li><p><code>a*ply(.data, .margins, .fun, ...)</code></p></li>
+<li><p><code>d*ply(.data, .variables, .fun, ...)</code></p></li>
+<li><p><code>l*ply(.data, .fun, ...)</code></p></li>
+</ul>
+<p>The first argument <code>.data</code> contains the object that will be split, processed, and recombined. The second argument <code>.variables</code> or <code>.margins</code> describes how to split up the input into pieces. The third argument <code>.fun</code> is the processing function that is to be applied to each piece.</p>
+<p>The tidyverse uses function arguments to start with a “.” in order to differentiate the <code>plyr</code> arguments with any arguments to be passed to the processing function (<code>.fun</code>).</p>
+<p>In general, the <code>plyr</code> functions have a very similar set up to the apply functions in base R. Recall <code>apply(ARRAY, MARGIN, FUN)</code>.</p>
+</div>
+<div id="inputs" class="section level2">
+<h2><span class="header-section-number">14.4</span> Inputs</h2>
+<p>Each input type has various rules for how to split it up.</p>
+<ul>
+<li><p>Arrays are sliced by dimension into lower-dimensional pieces.</p></li>
+<li><p>Data frames are subsetted by combinations of variables</p></li>
+<li><p>Each element of a list is separated.</p></li>
+</ul>
+<p>The way each input is split up actually doesn’t depend on the class of the data object, but the method that it responds to. For example, an object split using <code>a*ply()</code> must respond to <code>dim()</code> and accept multidimensional indexing. Thus, you can use a data frame as a data input for <code>a*ply()</code>. For <code>d*ply()</code>, the data must work with <code>split()</code> and must be able to be converted into a list. Hence, many matrix objects can be used as inputs for <code>d*ply()</code>. For <code>l*ply()</code> the data must work with <code>length()</code> and <code>[[</code> indexing.</p>
+<div id="input-aply--" class="section level3">
+<h3><span class="header-section-number">14.4.1</span> Input: a*ply() {-}</h3>
+<p>For the <code>a*ply()</code> functions we have <code>.margins</code> argument which works the same as the <code>MARGIN</code> argument for <code>apply()</code>.</p>
+<ul>
+<li><code>.margins=1</code>: Slice up into rows.</li>
+<li><code>.margins=2</code>: Slice up into columns.</li>
+<li><code>.margins=3</code>: Slice up into individual cells.</li>
+</ul>
+</div>
+<div id="input-dply" class="section level3">
+<h3><span class="header-section-number">14.4.2</span> Input: d*ply()</h3>
+<p>When using a data frame we typically want to split the data into groups based on combinations of variables. We can do this using the <code>.variables</code> argument. This argument supports multiple forms of input. We can use a character vector of column names, <code>c("Var1", "Var2")</code> or use <code>.(var1, var2)</code>.</p>
+<p>For example, to find the number of observations that have the same <code>vs</code> and <code>am</code> in the mtcars data set, we can use the following commands</p>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="plyr.html#cb737-1"></a><span class="kw">daply</span>(mtcars, <span class="dt">.variables =</span> <span class="kw">c</span>(<span class="st">&quot;vs&quot;</span>, <span class="st">&quot;am&quot;</span>), <span class="dt">.fun =</span> nrow)</span></code></pre></div>
+<pre><code>##    am
+## vs   0 1
+##   0 12 6
+##   1  7 7</code></pre>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="plyr.html#cb739-1"></a><span class="kw">daply</span>(mtcars, <span class="dt">.variables =</span> .(vs, am), <span class="dt">.fun =</span> nrow)</span></code></pre></div>
+<pre><code>##    am
+## vs   0 1
+##   0 12 6
+##   1  7 7</code></pre>
+</div>
+<div id="input-lply" class="section level3">
+<h3><span class="header-section-number">14.4.3</span> Input: l*ply()</h3>
+<p>Lists do not have an additional argument to break up the data. The function is simply applied to each element of the list.</p>
+</div>
+</div>
+<div id="outputs" class="section level2">
+<h2><span class="header-section-number">14.5</span> Outputs</h2>
+<p>The output type defines how the data is recombined after the processing function, and how the data is labeled.</p>
+</div>
+<div id="helpers" class="section level2">
+<h2><span class="header-section-number">14.6</span> Helpers</h2>
+<p>The <code>plyr</code> package has several different “helper” features that are common for data analysis problems.</p>
+<ul>
+<li><p><code>arrange</code>: re-order the rows of a data frame by specifying the columns to order by</p></li>
+<li><p><code>mutate</code>: add new columns or modifying existing columns, like <code>transform</code>, but new columns can refer to other columns that you just created.</p></li>
+<li><p><code>summarise</code>: like <code>mutate</code> but create a new data frame, not preserving any columns in the old data frame.</p></li>
+<li><p><code>join</code> : an adapation of merge which is more similar to SQL, and has a much faster implementation if you only want to find the first match.</p></li>
+<li><p><code>colwise</code>: make any function work colwise on a dataframe</p></li>
+<li><p><code>count</code>: quickly count unique combinations and return return as a data frame.</p></li>
+<li><p><code>failwith</code>: sets a default value to return if the function throws an error. For example, <code>failwith(NA, f)</code> will return an <code>NA</code> whenever <code>f</code> throws an error.
+The</p></li>
+<li><p><code>progress</code>: allows you to monitor the progress of long running operations. There four different options:
++ “none”, the default, no progress bar is displayed<br />
++ “text”, provides a textual progress bar.
++ “win” and “tk” provide graphical progress bars for</p></li>
+</ul>
+</div>
+<div id="examples" class="section level2">
+<h2><span class="header-section-number">14.7</span> Examples</h2>
+<p>We will use the <code>baseball</code> data set in the <code>plyr</code> package.</p>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="plyr.html#cb741-1"></a><span class="kw">head</span>(baseball)</span></code></pre></div>
+<pre><code>##          id year stint team lg   g  ab   r   h X2b X3b hr rbi sb cs bb so ibb
+## 1 aaronha01 1954     1  ML1 NL 122 468  58 131  27   6 13  69  2  2 28 39  NA
+## 2 aaronha01 1955     1  ML1 NL 153 602 105 189  37   9 27 106  3  1 49 61   5
+## 3 aaronha01 1956     1  ML1 NL 153 609 106 200  34  14 26  92  2  4 37 54   6
+## 4 aaronha01 1957     1  ML1 NL 151 615 118 198  27   6 44 132  1  1 57 58  15
+## 5 aaronha01 1958     1  ML1 NL 153 601 109 196  34   4 30  95  4  1 59 49  16
+## 6 aaronha01 1959     1  ML1 NL 154 629 116 223  46   7 39 123  8  0 51 54  17
+##   hbp sh sf gidp cyear
+## 1   3  6  4   13     1
+## 2   3  7  4   20     2
+## 3   2  5  7   21     3
+## 4   0  0  3   13     4
+## 5   1  0  3   21     5
+## 6   4  0  9   19     6</code></pre>
+<p>What we will explore is the performance of a batter over his career. To get started, we need to calculate the “career year”, i.e. the number of years since the player started playing.</p>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="plyr.html#cb743-1"></a>baseball =<span class="st"> </span><span class="kw">ddply</span>(baseball, .(id), </span>
+<span id="cb743-2"><a href="plyr.html#cb743-2"></a>                 <span class="dt">cyear =</span> year <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(year) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb743-3"><a href="plyr.html#cb743-3"></a><span class="kw">head</span>(baseball)</span></code></pre></div>
+<pre><code>##          id year stint team lg   g  ab   r   h X2b X3b hr rbi sb cs bb so ibb
+## 1 aaronha01 1954     1  ML1 NL 122 468  58 131  27   6 13  69  2  2 28 39  NA
+## 2 aaronha01 1955     1  ML1 NL 153 602 105 189  37   9 27 106  3  1 49 61   5
+## 3 aaronha01 1956     1  ML1 NL 153 609 106 200  34  14 26  92  2  4 37 54   6
+## 4 aaronha01 1957     1  ML1 NL 151 615 118 198  27   6 44 132  1  1 57 58  15
+## 5 aaronha01 1958     1  ML1 NL 153 601 109 196  34   4 30  95  4  1 59 49  16
+## 6 aaronha01 1959     1  ML1 NL 154 629 116 223  46   7 39 123  8  0 51 54  17
+##   hbp sh sf gidp cyear
+## 1   3  6  4   13     1
+## 2   3  7  4   20     2
+## 3   2  5  7   21     3
+## 4   0  0  3   13     4
+## 5   1  0  3   21     5
+## 6   4  0  9   19     6</code></pre>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="plyr.html#cb745-1"></a>baseball2006 =<span class="st"> </span><span class="kw">subset</span>(baseball, year <span class="op">==</span><span class="st"> </span><span class="dv">2006</span>)</span>
+<span id="cb745-2"><a href="plyr.html#cb745-2"></a><span class="kw">ddply</span>(baseball2006, <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;team&quot;</span>), summarize,</span>
+<span id="cb745-3"><a href="plyr.html#cb745-3"></a>  <span class="dt">homeruns =</span> <span class="kw">sum</span>(hr))</span></code></pre></div>
+<pre><code>##    year team homeruns
+## 1  2006  ARI       35
+## 2  2006  ATL        7
+## 3  2006  BAL       19
+## 4  2006  BOS       35
+## 5  2006  CHA       43
+## 6  2006  CHN       26
+## 7  2006  CIN       30
+## 8  2006  CLE        6
+## 9  2006  COL        1
+## 10 2006  DET       15
+## 11 2006  HOU       23
+## 12 2006  KCA       24
+## 13 2006  LAN       17
+## 14 2006  MIL        9
+## 15 2006  MIN        8
+## 16 2006  NYA       19
+## 17 2006  NYN       74
+## 18 2006  OAK       39
+## 19 2006  PHI        8
+## 20 2006  PIT       18
+## 21 2006  SDN       32
+## 22 2006  SEA       11
+## 23 2006  SFN       65
+## 24 2006  SLN       20
+## 25 2006  TBA        0
+## 26 2006  TEX       12
+## 27 2006  TOR       12
+## 28 2006  WAS        0</code></pre>
+<p>How many years did each baseball player play.</p>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="plyr.html#cb747-1"></a>id_num_years =<span class="st"> </span><span class="kw">ddply</span>(baseball,      <span class="co"># Data set </span></span>
+<span id="cb747-2"><a href="plyr.html#cb747-2"></a>                     <span class="st">&quot;id&quot;</span>,          <span class="co"># How to Split Data</span></span>
+<span id="cb747-3"><a href="plyr.html#cb747-3"></a>                     summarize,     <span class="co"># Create new data frame with results</span></span>
+<span id="cb747-4"><a href="plyr.html#cb747-4"></a>                     <span class="kw">length</span>(year))  <span class="co"># How many values are in each split subset of data</span></span>
+<span id="cb747-5"><a href="plyr.html#cb747-5"></a><span class="kw">head</span>(id_num_years)</span></code></pre></div>
+<pre><code>##          id ..1
+## 1 aaronha01  23
+## 2 abernte02  17
+## 3 adairje01  15
+## 4 adamsba01  19
+## 5 adamsbo03  15
+## 6 adcocjo01  17</code></pre>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="plyr.html#cb749-1"></a>id_years_teams =<span class="st"> </span><span class="kw">ddply</span>(baseball,                       <span class="co"># Data set</span></span>
+<span id="cb749-2"><a href="plyr.html#cb749-2"></a>                      <span class="st">&quot;id&quot;</span>,                            <span class="co"># How to split up the data set</span></span>
+<span id="cb749-3"><a href="plyr.html#cb749-3"></a>                      summarise,                       <span class="co"># Generate a new data frame for results</span></span>
+<span id="cb749-4"><a href="plyr.html#cb749-4"></a>                      <span class="dt">duration =</span> <span class="kw">max</span>(year) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(year),<span class="co"># New column called duration</span></span>
+<span id="cb749-5"><a href="plyr.html#cb749-5"></a>                      <span class="dt">nteams =</span> <span class="kw">length</span>(<span class="kw">unique</span>(team)))   <span class="co"># New column called nteams </span></span></code></pre></div>
+<p>Find the number of total hrs for each year, append it to the existing data set.</p>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="plyr.html#cb750-1"></a>hr_total_year =<span class="st"> </span><span class="kw">ddply</span>(baseball,            <span class="co"># Starting data set </span></span>
+<span id="cb750-2"><a href="plyr.html#cb750-2"></a>                      <span class="st">&quot;year&quot;</span>,              <span class="co"># How to break up the data set</span></span>
+<span id="cb750-3"><a href="plyr.html#cb750-3"></a>                      transform,           <span class="co"># Make a new column to original data set</span></span>
+<span id="cb750-4"><a href="plyr.html#cb750-4"></a>                      <span class="dt">total.hr =</span> <span class="kw">sum</span>(hr))  <span class="co"># New column is the total num of home runs in a year. </span></span>
+<span id="cb750-5"><a href="plyr.html#cb750-5"></a><span class="kw">head</span>(hr_total_year)</span></code></pre></div>
+<pre><code>##          id year stint team lg  g  ab  r  h X2b X3b hr rbi sb cs bb so ibb hbp
+## 1 ansonca01 1871     1  RC1    25 120 29 39  11   3  0  16  6  2  2  1  NA  NA
+## 2 forceda01 1871     1  WS3    32 162 45 45   9   4  0  29  8  0  4  0  NA  NA
+## 3 mathebo01 1871     1  FW1    19  89 15 24   3   1  0  10  2  1  2  0  NA  NA
+## 4 startjo01 1871     1  NY2    33 161 35 58   5   1  1  34  4  2  3  0  NA  NA
+## 5 suttoez01 1871     1  CL1    29 128 35 45   3   7  3  23  3  1  1  0  NA  NA
+## 6 whitede01 1871     1  CL1    29 146 40 47   6   5  1  21  2  2  4  1  NA  NA
+##   sh sf gidp cyear total.hr
+## 1 NA NA   NA     1        7
+## 2 NA NA   NA     1        7
+## 3 NA NA   NA     1        7
+## 4 NA NA   NA     1        7
+## 5 NA NA   NA     1        7
+## 6 NA NA   NA     1        7</code></pre>
+<p>Add several new columns to a data set with the <code>mutate</code> option.</p>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="plyr.html#cb752-1"></a>add_columns =<span class="st"> </span><span class="kw">ddply</span>(baseball,       <span class="co"># inputted data set</span></span>
+<span id="cb752-2"><a href="plyr.html#cb752-2"></a>                    <span class="st">&quot;year&quot;</span>,         <span class="co"># How to split data</span></span>
+<span id="cb752-3"><a href="plyr.html#cb752-3"></a>                    mutate,         <span class="co"># Want original data set with (1+) new columns</span></span>
+<span id="cb752-4"><a href="plyr.html#cb752-4"></a>                    <span class="dt">mu =</span> <span class="kw">mean</span>(hr),  <span class="co"># New column #1</span></span>
+<span id="cb752-5"><a href="plyr.html#cb752-5"></a>                    <span class="dt">sigma =</span> <span class="kw">sd</span>(hr), <span class="co"># New column #2</span></span>
+<span id="cb752-6"><a href="plyr.html#cb752-6"></a>                    <span class="dt">cv =</span> sigma<span class="op">/</span>mu)  <span class="co"># New column #3</span></span>
+<span id="cb752-7"><a href="plyr.html#cb752-7"></a><span class="kw">head</span>(add_columns)</span></code></pre></div>
+<pre><code>##          id year stint team lg  g  ab  r  h X2b X3b hr rbi sb cs bb so ibb hbp
+## 1 ansonca01 1871     1  RC1    25 120 29 39  11   3  0  16  6  2  2  1  NA  NA
+## 2 forceda01 1871     1  WS3    32 162 45 45   9   4  0  29  8  0  4  0  NA  NA
+## 3 mathebo01 1871     1  FW1    19  89 15 24   3   1  0  10  2  1  2  0  NA  NA
+## 4 startjo01 1871     1  NY2    33 161 35 58   5   1  1  34  4  2  3  0  NA  NA
+## 5 suttoez01 1871     1  CL1    29 128 35 45   3   7  3  23  3  1  1  0  NA  NA
+## 6 whitede01 1871     1  CL1    29 146 40 47   6   5  1  21  2  2  4  1  NA  NA
+##   sh sf gidp cyear mu    sigma       cv
+## 1 NA NA   NA     1  1 1.154701 1.154701
+## 2 NA NA   NA     1  1 1.154701 1.154701
+## 3 NA NA   NA     1  1 1.154701 1.154701
+## 4 NA NA   NA     1  1 1.154701 1.154701
+## 5 NA NA   NA     1  1 1.154701 1.154701
+## 6 NA NA   NA     1  1 1.154701 1.154701</code></pre>
+<p>You can also plot with plyr.</p>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="plyr.html#cb754-1"></a>baseball2005_<span class="dv">2007</span> =<span class="st"> </span><span class="kw">subset</span>(baseball, year<span class="op">&gt;=</span><span class="dv">2005</span>)</span>
+<span id="cb754-2"><a href="plyr.html#cb754-2"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb754-3"><a href="plyr.html#cb754-3"></a><span class="kw">d_ply</span>(baseball2005_<span class="dv">2007</span>, <span class="st">&quot;year&quot;</span>, transform, <span class="kw">hist</span>(hr, <span class="dt">main =</span> <span class="kw">unique</span>(year)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="plyr.html#cb755-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>Creating a custom function.</p>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="plyr.html#cb756-1"></a>measures_of_center =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb756-2"><a href="plyr.html#cb756-2"></a>  </span>
+<span id="cb756-3"><a href="plyr.html#cb756-3"></a>  </span>
+<span id="cb756-4"><a href="plyr.html#cb756-4"></a>  <span class="co"># the_mean = mean(x)</span></span>
+<span id="cb756-5"><a href="plyr.html#cb756-5"></a>  <span class="co"># the_median = median(x)</span></span>
+<span id="cb756-6"><a href="plyr.html#cb756-6"></a>  <span class="co"># the_geo = exp(mean(log(x)))</span></span>
+<span id="cb756-7"><a href="plyr.html#cb756-7"></a>  <span class="co"># the_harm = 1/mean(1/x)</span></span>
+<span id="cb756-8"><a href="plyr.html#cb756-8"></a>  <span class="co"># centers = c(the_mean, the_median, the_geo, the_harm)</span></span>
+<span id="cb756-9"><a href="plyr.html#cb756-9"></a>  <span class="co"># names(centers) = c(&quot;Mean&quot;, &quot;Median&quot;, &quot;Geometric&quot;, &quot;Harmonic&quot;)</span></span>
+<span id="cb756-10"><a href="plyr.html#cb756-10"></a>  centers =<span class="st"> </span><span class="kw">summary</span>(x)</span>
+<span id="cb756-11"><a href="plyr.html#cb756-11"></a>  <span class="kw">return</span>(centers)</span>
+<span id="cb756-12"><a href="plyr.html#cb756-12"></a>}</span>
+<span id="cb756-13"><a href="plyr.html#cb756-13"></a></span>
+<span id="cb756-14"><a href="plyr.html#cb756-14"></a>baseball_stats =<span class="st"> </span><span class="kw">subset</span>(baseball, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;hr&quot;</span>, <span class="st">&quot;rbi&quot;</span>, <span class="st">&quot;sb&quot;</span>))</span>
+<span id="cb756-15"><a href="plyr.html#cb756-15"></a></span>
+<span id="cb756-16"><a href="plyr.html#cb756-16"></a></span>
+<span id="cb756-17"><a href="plyr.html#cb756-17"></a><span class="co"># Return an array </span></span>
+<span id="cb756-18"><a href="plyr.html#cb756-18"></a><span class="kw">head</span>(<span class="kw">daply</span>(baseball_stats, .(year), <span class="kw">colwise</span>(mean)))</span></code></pre></div>
+<pre><code>##       
+## year   hr         rbi      sb      
+##   1871 1          22.28571 3.857143
+##   1872 0.07692308 20.53846 1.538462
+##   1873 0.5384615  30.92308 1.692308
+##   1874 0.8666667  29       3.333333
+##   1875 0.7647059  31.58824 5.705882
+##   1876 1.066667   30.13333 NA</code></pre>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="plyr.html#cb758-1"></a><span class="co"># Return a data frame</span></span>
+<span id="cb758-2"><a href="plyr.html#cb758-2"></a><span class="kw">head</span>(<span class="kw">ddply</span>(baseball_stats, .(year), <span class="kw">colwise</span>(mean)))</span></code></pre></div>
+<pre><code>##   year         hr      rbi       sb
+## 1 1871 1.00000000 22.28571 3.857143
+## 2 1872 0.07692308 20.53846 1.538462
+## 3 1873 0.53846154 30.92308 1.692308
+## 4 1874 0.86666667 29.00000 3.333333
+## 5 1875 0.76470588 31.58824 5.705882
+## 6 1876 1.06666667 30.13333       NA</code></pre>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="plyr.html#cb760-1"></a><span class="co"># Return a list</span></span>
+<span id="cb760-2"><a href="plyr.html#cb760-2"></a><span class="kw">head</span>(<span class="kw">dlply</span>(baseball_stats, .(year), <span class="kw">colwise</span>(mean)))</span></code></pre></div>
+<pre><code>## $`1871`
+##   hr      rbi       sb
+## 1  1 22.28571 3.857143
+## 
+## $`1872`
+##           hr      rbi       sb
+## 1 0.07692308 20.53846 1.538462
+## 
+## $`1873`
+##          hr      rbi       sb
+## 1 0.5384615 30.92308 1.692308
+## 
+## $`1874`
+##          hr rbi       sb
+## 1 0.8666667  29 3.333333
+## 
+## $`1875`
+##          hr      rbi       sb
+## 1 0.7647059 31.58824 5.705882
+## 
+## $`1876`
+##         hr      rbi sb
+## 1 1.066667 30.13333 NA</code></pre>
+<p>There are even more functions that we have not considered in this package. For example, we have an <code>mapply()</code> version for plyr.</p>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="plyr.html#cb762-1"></a><span class="kw">mdply</span>(<span class="kw">cbind</span>(<span class="dt">mean =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), rnorm, <span class="dt">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   mean sd         V1       V2        V3       V4       V5
+## 1    1  1  0.3068252 2.597985 1.6701004 2.478022 1.146168
+## 2    2  2  1.9081973 2.540262 4.0358842 1.403136 1.174000
+## 3    3  3  4.5592248 0.308029 0.2552031 2.892366 1.389544
+## 4    4  4  4.2569431 3.088500 8.6408356 7.598323 5.176289
+## 5    5  5 -0.1205350 6.274319 5.8327707 1.981088 5.963103</code></pre>
+</div>
+<div id="comparing-base-r-loops-plyr" class="section level2">
+<h2><span class="header-section-number">14.8</span> Comparing Base R, Loops, plyr</h2>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="plyr.html#cb764-1"></a><span class="co"># Plyr way </span></span>
+<span id="cb764-2"><a href="plyr.html#cb764-2"></a><span class="kw">system.time</span>(<span class="kw">ddply</span>(baseball, <span class="st">&quot;id&quot;</span>, summarize, <span class="kw">length</span>(year)))</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.226   0.001   0.227</code></pre>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="plyr.html#cb766-1"></a><span class="co"># Apply method way </span></span>
+<span id="cb766-2"><a href="plyr.html#cb766-2"></a><span class="kw">system.time</span>(<span class="kw">tapply</span>(baseball<span class="op">$</span>year, baseball<span class="op">$</span>id,  <span class="cf">function</span>(x) <span class="kw">length</span>(x)))</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.004   0.000   0.004</code></pre>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="plyr.html#cb768-1"></a><span class="co"># Loop way </span></span>
+<span id="cb768-2"><a href="plyr.html#cb768-2"></a><span class="kw">system.time</span>({</span>
+<span id="cb768-3"><a href="plyr.html#cb768-3"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">unique</span>(baseball<span class="op">$</span>id)){</span>
+<span id="cb768-4"><a href="plyr.html#cb768-4"></a>    <span class="kw">length</span>(<span class="kw">which</span>(baseball<span class="op">$</span>id <span class="op">==</span><span class="st"> </span>i))</span>
+<span id="cb768-5"><a href="plyr.html#cb768-5"></a>  } </span>
+<span id="cb768-6"><a href="plyr.html#cb768-6"></a>})</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.188   0.039   0.228</code></pre>
 
+</div>
+</div>
+<h3>References</h3>
 <div id="refs" class="references">
-<div>
-<p>Diez, David, Mine Cetinkaya-Rundel, and Christopher D Barr. 2020. <em>OpenIntro Statistics, Fourth Edition</em>. OpenIntro. <a href="https://www.openintro.org/book/os/">https://www.openintro.org/book/os/</a>.</p>
-</div>
-<div>
-<p> Dr. Robert Desharnais. 2020. <em>Biology3000</em>. Los Angeles, CA: California State University, Los Angeles.</p>
-</div>
-<div>
-<p>John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine. 2016. “Software Carpentry: Programming with R.version 2016.06.” 2016. <a href="https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html">https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a>.</p>
-</div>
-<div>
-<p>Morris, Tim P, Ian R White, and Michael J Crowther. 2019. “Using Simulation Studies to Evaluate Statistical Methods.” <em>Statistics in Medicine</em> 38 (11): 2074–2102.</p>
-</div>
-<div>
-<p>Vries, Andrie de, and Joris Meys. 2015. <em>R for Dummies</em>. Hoboken, New Jersey: John Wiley &amp; Sons, Inc. <a href="https://www.dummies.com/programming/r/how-to-use-the-r-help-files/">https://www.dummies.com/programming/r/how-to-use-the-r-help-files/</a>.</p>
-</div>
-<div>
+<div id="ref-wickham2011split">
 <p>Wickham, Hadley. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29.</p>
-</div>
 </div>
 </div>
             </section>
@@ -347,8 +649,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="plyr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="simulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -380,7 +682,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/99-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-plyr.Rmd",
 "text": "Edit"
 },
 "history": {

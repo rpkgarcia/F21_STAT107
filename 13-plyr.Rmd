@@ -1,0 +1,242 @@
+# plyr
+
+
+## Tidyverse and plyr
+
+For this document you will need to install and load the family the package plyr functions. To install the package refer to Section \@ref(packages). 
+
+```{r warning=FALSE, message=F}
+library(plyr)
+```
+
+
+The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax.  There are approximately 20 tidyverse packages, but the core ones are `ggplot2`, `dplyr`, `tidyr`, `readr`, `purr`, `tibble`, `stringr`, and `forcats`.  You can install these packages individually or all at once using by simply using the command `install.packages("tidyverse")`. 
+
+We will be focusing on the `plyr` package for now. The functions and topics that we that we will be covering can be found in @wickham2011split. 
+
+
+## Iteration with plyr
+
+The main focus of the `plyr` package is to formalize cleaning, and implementing functions to our data sets.  In many data sets we have to split the data into the desired subsets, apply a function, and then reformat the data with adjustments.  This process appears over and over again.  When we apply or implement a function to different components of a data set we typically use an apply method or for loops, Sections  \@ref(apply) and \@ref(loops) respectively. Often times this can take several lines of code to accomplish. 
+
+The `plyr` package aims to reduce the amount of steps it takes to accomplish these tasks. In general, the functions in the `plyr` package are considered iteration techniques and are closely related to the apply functions in base R.  In some cases, a `plyr` preforms exactly the same as the apply functions, both in terms of efficiency and in the task accomplished. 
+
+Although the `plyr` package contains similar functions to base R, some users find this `plyr` functions to be more intuitive. In addition, the `plyr` functions generally have more features and can simplify code. The techniques in the `plyr` package are known as the `split-apply-combine` method.  They work to split a data set in the desired way, apply the desired function, and combine and return the desired output to the user all in one step. This philosophy of the `plyr` functions is inspired by Google's `map-reduce` technique of analyzing their data sets. 
+
+## Syntax
+
+For the `plyr` package an ***a*rray** includes the special cases of vectors (1d arrays) and matrices (2d arrays). Arrays are made out of any atomic vector: logical, character, integer, or numeric. A ***l*ist** is a non-atomic array, which is is an array that can contain any type of data structure. A ***d*ata frame** is a 2d array where each column can be a different atomic class. 
+
+The functions of the `plyr` package have the same general structure:  ?\*ply(). All `plyr` functions have simple and informative names, the first (?) and second (\*) characters describe the input and output data types, respectively.  Several inputs and outputs are supported: a = array, d = data frame, l = list, and \_ = discarded. 
+
+- first character (input type): a, d, l
+- second character (output type): a, d, l, \_ (nothing)
+
+A table of the 12 core functions is directly below. 
+
+```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center'}
+library(knitr)
+knitr::include_graphics("images/dplyr12corefunctions.png")
+```
+
+Similarly to the apply functions, the functions have two or three main arguments depending on the input. 
+
+- `a*ply(.data, .margins, .fun, ...)`
+
+- `d*ply(.data, .variables, .fun, ...)`
+
+- `l*ply(.data, .fun, ...)`
+
+The first argument `.data` contains the object that will be split, processed, and recombined.  The second argument `.variables` or `.margins` describes how to split up the input into pieces. The third argument `.fun` is the processing function that is to be applied to each piece. 
+
+The tidyverse uses function arguments to start with a "." in order to differentiate the `plyr` arguments with any arguments to be passed to the processing function (`.fun`). 
+
+In general, the `plyr` functions have a very similar set up to the apply functions in base R.  Recall `apply(ARRAY, MARGIN, FUN)`. 
+
+## Inputs
+
+Each input type has various rules for how to split it up. 
+
+- Arrays are sliced by dimension into lower-dimensional pieces. 
+
+- Data frames are subsetted by combinations of variables
+
+- Each element of a list is separated. 
+
+The way each input is split up actually doesn't depend on the class of the data object, but the method that it responds to.  For example, an object split using `a*ply()` must respond to `dim()` and accept multidimensional indexing.  Thus, you can use a data frame as a data input for `a*ply()`.  For `d*ply()`, the data must work with `split()` and must be able to be converted into a list.  Hence, many matrix objects can be used as inputs for `d*ply()`.  For `l*ply()` the data must work with `length()` and `[[` indexing. 
+
+### Input: a*ply() {-}
+
+For the `a*ply()` functions we have `.margins` argument which works the same as the `MARGIN` argument for `apply()`.  
+
+- `.margins=1`: Slice up into rows. 
+- `.margins=2`: Slice up into columns. 
+- `.margins=3`: Slice up into individual cells. 
+
+
+### Input: d*ply()
+
+When using a data frame we typically want to split the data into groups based on combinations of variables.  We can do this using the `.variables` argument. This argument supports multiple forms of input. We can use a character vector of column names, `c("Var1", "Var2")` or use `.(var1, var2)`. 
+
+For example, to find the number of observations that have the same `vs` and `am` in the mtcars data set, we can use the following commands
+
+```{r}
+daply(mtcars, .variables = c("vs", "am"), .fun = nrow)
+
+daply(mtcars, .variables = .(vs, am), .fun = nrow)
+```
+### Input: l*ply()
+
+Lists do not have an additional argument to break up the data. The function is simply applied to each element of the list. 
+
+## Outputs
+
+The output type defines how the data is recombined after the processing function, and how the data is labeled. 
+
+## Helpers
+
+The `plyr` package has several different "helper" features that are common for data analysis problems. 
+
+- `arrange`: re-order the rows of a data frame by specifying the columns to order by
+
+- `mutate`: add new columns or modifying existing columns, like `transform`, but new columns can refer to other columns that you just created.
+
+- `summarise`: like `mutate` but create a new data frame, not preserving any columns in the old data frame.
+
+- `join` : an adapation of merge which is more similar to SQL, and has a much faster implementation if you only want to find the first match.
+
+- `colwise`: make any function work colwise on a dataframe
+
+- `count`: quickly count unique combinations and return return as a data frame.
+
+- `failwith`: sets a default value to return if the function throws an error. For example, `failwith(NA, f)` will return an `NA` whenever `f` throws an error.
+The
+
+- `progress`: allows you to monitor the progress of long running operations. There four different options: 
+        + "none", the default, no progress bar is displayed  
+        + "text", provides a textual progress bar.
+        + "win" and "tk" provide graphical progress bars for
+
+
+## Examples 
+
+We will use the `baseball` data set in the `plyr` package. 
+
+
+```{r}
+head(baseball)
+```
+What we will explore is the performance of a batter over his career. To get started, we need to calculate the “career year”, i.e. the number of years since the player started playing. 
+
+```{r}
+baseball = ddply(baseball, .(id), 
+                 cyear = year - min(year) + 1)
+head(baseball)
+```
+
+
+```{r}
+baseball2006 = subset(baseball, year == 2006)
+ddply(baseball2006, c("year", "team"), summarize,
+  homeruns = sum(hr))
+```
+How many years did each baseball player play. 
+
+```{r}
+id_num_years = ddply(baseball,      # Data set 
+                     "id",          # How to Split Data
+                     summarize,     # Create new data frame with results
+                     length(year))  # How many values are in each split subset of data
+head(id_num_years)
+```
+```{r}
+id_years_teams = ddply(baseball,                       # Data set
+                      "id",                            # How to split up the data set
+                      summarise,                       # Generate a new data frame for results
+                      duration = max(year) - min(year),# New column called duration
+                      nteams = length(unique(team)))   # New column called nteams 
+```
+
+Find the number of total hrs for each year, append it to the existing data set. 
+
+```{r}
+hr_total_year = ddply(baseball,            # Starting data set 
+                      "year",              # How to break up the data set
+                      transform,           # Make a new column to original data set
+                      total.hr = sum(hr))  # New column is the total num of home runs in a year. 
+head(hr_total_year)
+```
+
+Add several new columns to a data set with the `mutate` option. 
+
+```{r}
+add_columns = ddply(baseball,       # inputted data set
+                    "year",         # How to split data
+                    mutate,         # Want original data set with (1+) new columns
+                    mu = mean(hr),  # New column #1
+                    sigma = sd(hr), # New column #2
+                    cv = sigma/mu)  # New column #3
+head(add_columns)
+```
+You can also plot with plyr. 
+
+```{r}
+baseball2005_2007 = subset(baseball, year>=2005)
+par(mfrow = c(1, 3))
+d_ply(baseball2005_2007, "year", transform, hist(hr, main = unique(year)))
+par(mfrow = c(1, 1))
+```
+Creating a custom function. 
+
+```{r}
+measures_of_center = function(x){
+  
+  
+  # the_mean = mean(x)
+  # the_median = median(x)
+  # the_geo = exp(mean(log(x)))
+  # the_harm = 1/mean(1/x)
+  # centers = c(the_mean, the_median, the_geo, the_harm)
+  # names(centers) = c("Mean", "Median", "Geometric", "Harmonic")
+  centers = summary(x)
+  return(centers)
+}
+
+baseball_stats = subset(baseball, select = c("year","hr", "rbi", "sb"))
+
+
+# Return an array 
+head(daply(baseball_stats, .(year), colwise(mean)))
+
+# Return a data frame
+head(ddply(baseball_stats, .(year), colwise(mean)))
+
+# Return a list
+head(dlply(baseball_stats, .(year), colwise(mean)))
+```
+ There are even more functions that we have not considered in this package.  For example, we have an `mapply()` version for plyr. 
+ 
+```{r}
+mdply(cbind(mean = 1:5, sd = 1:5), rnorm, n = 5)
+```
+ 
+
+## Comparing Base R, Loops, plyr
+
+```{r}
+
+# Plyr way 
+system.time(ddply(baseball, "id", summarize, length(year)))
+
+# Apply method way 
+system.time(tapply(baseball$year, baseball$id,  function(x) length(x)))
+
+# Loop way 
+system.time({
+  for(i in unique(baseball$id)){
+    length(which(baseball$id == i))
+  } 
+})
+```
+
+

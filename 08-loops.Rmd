@@ -1,4 +1,4 @@
-# Loops
+# Loops {#loops}
 Loops are another type of control flow structure.  They dictate how many times a series of commands should be run.  There are two type of loops, a `while` loop and a `for` loop.  These two loops operate similarly and are found in other programming languages such as `C` and `Python`. 
 
 
