@@ -322,10 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 14</span> plyr</h1>
 <div id="tidyverse-and-plyr" class="section level2">
 <h2><span class="header-section-number">14.1</span> Tidyverse and plyr</h2>
-<p>For this document you will need to install and load the family of tidyverse functions. To install the package refer to Section <a href="packages.html#packages">8</a>.</p>
+<p>For this document you will need to install and load the family the package plyr functions. To install the package refer to Section <a href="packages.html#packages">8</a>.</p>
 <div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="plyr.html#cb736-1"></a><span class="kw">library</span>(plyr)</span></code></pre></div>
 <p>The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax. There are approximately 20 tidyverse packages, but the core ones are <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code>. You can install these packages individually or all at once using by simply using the command <code>install.packages("tidyverse")</code>.</p>
-<p>We will be focusing on the <code>pplyr</code> package for now The functions and topics that we that we will be covering can be found in <span class="citation">Wickham (<a href="#ref-wickham2011split" role="doc-biblioref">2011</a>)</span>.</p>
+<p>We will be focusing on the <code>plyr</code> package for now. The functions and topics that we that we will be covering can be found in <span class="citation">Wickham (<a href="#ref-wickham2011split" role="doc-biblioref">2011</a>)</span>.</p>
 </div>
 <div id="iteration-with-plyr" class="section level2">
 <h2><span class="header-section-number">14.2</span> Iteration with plyr</h2>
@@ -622,11 +622,11 @@ The</p></li>
 <div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="plyr.html#cb764-1"></a><span class="co"># Plyr way </span></span>
 <span id="cb764-2"><a href="plyr.html#cb764-2"></a><span class="kw">system.time</span>(<span class="kw">ddply</span>(baseball, <span class="st">&quot;id&quot;</span>, summarize, <span class="kw">length</span>(year)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.226   0.001   0.227</code></pre>
+##   0.247   0.001   0.250</code></pre>
 <div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="plyr.html#cb766-1"></a><span class="co"># Apply method way </span></span>
 <span id="cb766-2"><a href="plyr.html#cb766-2"></a><span class="kw">system.time</span>(<span class="kw">tapply</span>(baseball<span class="op">$</span>year, baseball<span class="op">$</span>id,  <span class="cf">function</span>(x) <span class="kw">length</span>(x)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.004   0.000   0.004</code></pre>
+##   0.004   0.000   0.005</code></pre>
 <div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="plyr.html#cb768-1"></a><span class="co"># Loop way </span></span>
 <span id="cb768-2"><a href="plyr.html#cb768-2"></a><span class="kw">system.time</span>({</span>
 <span id="cb768-3"><a href="plyr.html#cb768-3"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">unique</span>(baseball<span class="op">$</span>id)){</span>
@@ -634,7 +634,7 @@ The</p></li>
 <span id="cb768-5"><a href="plyr.html#cb768-5"></a>  } </span>
 <span id="cb768-6"><a href="plyr.html#cb768-6"></a>})</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.188   0.039   0.228</code></pre>
+##   0.199   0.045   0.243</code></pre>
 
 </div>
 </div>
