@@ -71,8 +71,14 @@ For the `a*ply()` functions we have `.margins` argument which works the same as 
 
 - `.margins=1`: Slice up into rows. 
 - `.margins=2`: Slice up into columns. 
-- `.margins=3`: Slice up into individual cells. 
+- `.margins=c(1,2)`: Slice up into individual cells. 
 
+```{r}
+
+my_mat = matrix(1:100, nrow = 10)
+my_mat
+aaply(my_mat, 2, mean)
+```
 
 ### Input: d*ply()
 
@@ -88,6 +94,15 @@ daply(mtcars, .variables = .(vs, am), .fun = nrow)
 ### Input: l*ply()
 
 Lists do not have an additional argument to break up the data. The function is simply applied to each element of the list. 
+
+```{r}
+# Input: List, Output: Matrix(array)
+laply(1:10, rep, times = 4)
+
+# Input: list, Output: list 
+llply(1:10, rep, times = 4)
+```
+
 
 ## Outputs
 
@@ -113,9 +128,12 @@ The `plyr` package has several different "helper" features that are common for d
 The
 
 - `progress`: allows you to monitor the progress of long running operations. There four different options: 
-        + "none", the default, no progress bar is displayed  
-        + "text", provides a textual progress bar.
-        + "win" and "tk" provide graphical progress bars for
+
+    + "none", the default, no progress bar is displayed 
+        
+    + "text", provides a textual progress bar.
+        
+    + "win" and "tk" provide graphical progress bars for
 
 
 ## Examples 
@@ -126,38 +144,19 @@ We will use the `baseball` data set in the `plyr` package.
 ```{r}
 head(baseball)
 ```
-What we will explore is the performance of a batter over his career. To get started, we need to calculate the “career year”, i.e. the number of years since the player started playing. 
+What we will explore is the performance of a batter over his career. 
+
+### Creating New Columns in a Data Set {-}
+
+To get started, we need to calculate the “career year”, i.e. the number of years since the player started playing. 
 
 ```{r}
-baseball = ddply(baseball, .(id), 
+baseball = ddply(baseball, .(id),
                  cyear = year - min(year) + 1)
 head(baseball)
 ```
 
-
-```{r}
-baseball2006 = subset(baseball, year == 2006)
-ddply(baseball2006, c("year", "team"), summarize,
-  homeruns = sum(hr))
-```
-How many years did each baseball player play. 
-
-```{r}
-id_num_years = ddply(baseball,      # Data set 
-                     "id",          # How to Split Data
-                     summarize,     # Create new data frame with results
-                     length(year))  # How many values are in each split subset of data
-head(id_num_years)
-```
-```{r}
-id_years_teams = ddply(baseball,                       # Data set
-                      "id",                            # How to split up the data set
-                      summarise,                       # Generate a new data frame for results
-                      duration = max(year) - min(year),# New column called duration
-                      nteams = length(unique(team)))   # New column called nteams 
-```
-
-Find the number of total hrs for each year, append it to the existing data set. 
+Find the number of total home runs for each year, append it to the existing data set. 
 
 ```{r}
 hr_total_year = ddply(baseball,            # Starting data set 
@@ -178,43 +177,91 @@ add_columns = ddply(baseball,       # inputted data set
                     cv = sigma/mu)  # New column #3
 head(add_columns)
 ```
+
+### Creating a New Data Set From the Original {-}
+
+Using the baseball teams from 2006, find the number of home runs per team. 
+
+```{r}
+
+# Subset data to only look at the year 2006
+baseball2006 = subset(baseball, year == 2006)
+
+# Split data frame into chunks by year and team 
+ddply(baseball2006, c("year", "team"), 
+      summarize,                         # Create new data set to summarize results
+      homeruns = sum(hr))                # New column in the data set 
+```
+How many years did each baseball player play. 
+
+```{r}
+id_num_years = ddply(baseball,      # Data set 
+                     "id",          # How to Split Data
+                     summarize,     # Create new data frame with results
+                     length(year))  # How many values are in each split subset of data
+head(id_num_years)
+```
+
+Generate a new data frame that contains each player, the number of years they played, and the number of teams the played on. 
+
+```{r}
+id_years_teams = ddply(baseball,                       # Data set
+                      "id",                            # How to split up the data set
+                      summarise,                       # Generate a new data frame for results
+                      duration = max(year) - min(year),# New column called duration
+                      nteams = length(unique(team)))   # New column called nteams 
+```
+
+### Base R Plotting with plyr {-}
+
 You can also plot with plyr. 
 
 ```{r}
+
+# Subset the data set 
 baseball2005_2007 = subset(baseball, year>=2005)
+
+# Plot a histogram for each year 
 par(mfrow = c(1, 3))
 d_ply(baseball2005_2007, "year", transform, hist(hr, main = unique(year)))
 par(mfrow = c(1, 1))
 ```
-Creating a custom function. 
+
+
+### Using your own function {-}
+
+You can create your own custom function with `plyr` just like we did with the apply functions. 
+
 
 ```{r}
-measures_of_center = function(x){
+some_stats = function(player_data){
+  if(max(player_data$cyear) >=10){
+    superstar = TRUE
+  } else{
+    superstar = FALSE
+  }
   
+  if(max(player_data$hr)>50){
+    hrstar = TRUE 
+  } else{
+    hrstar = FALSE
+  }
   
-  # the_mean = mean(x)
-  # the_median = median(x)
-  # the_geo = exp(mean(log(x)))
-  # the_harm = 1/mean(1/x)
-  # centers = c(the_mean, the_median, the_geo, the_harm)
-  # names(centers) = c("Mean", "Median", "Geometric", "Harmonic")
-  centers = summary(x)
-  return(centers)
+  return_me = c(superstar, hrstar)
+  names(return_me) = c("MVP", "Hitter")
+  return(return_me)
 }
 
-baseball_stats = subset(baseball, select = c("year","hr", "rbi", "sb"))
-
-
-# Return an array 
-head(daply(baseball_stats, .(year), colwise(mean)))
-
-# Return a data frame
-head(ddply(baseball_stats, .(year), colwise(mean)))
-
-# Return a list
-head(dlply(baseball_stats, .(year), colwise(mean)))
+new_variables = ddply(baseball,    # Data set
+                      "id",        # Break up data set by player
+                      some_stats)
+new_variables
 ```
- There are even more functions that we have not considered in this package.  For example, we have an `mapply()` version for plyr. 
+
+
+### More plyr Functions {-}
+
+There are even more functions that we have not considered in this package.  For example, we have an `mapply()` version for plyr. 
  
 ```{r}
 mdply(cbind(mean = 1:5, sd = 1:5), rnorm, n = 5)
