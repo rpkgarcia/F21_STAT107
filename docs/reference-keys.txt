@@ -106,3 +106,12 @@ outputs
 helpers
 examples
 comparing-base-r-loops-plyr
+ggplot2
+tidyverse-and-ggplot2
+intro-to-ggplot2
+getting-started-kep-components
+adjust-aesthetic-attributes-by-variable
+adjust-aesthetic-attributes-for-the-entire-plot
+faceting
+some-example-plots
+where-can-i-learn-more

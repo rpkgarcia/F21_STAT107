@@ -255,7 +255,7 @@ some_stats = function(player_data){
 new_variables = ddply(baseball,    # Data set
                       "id",        # Break up data set by player
                       some_stats)
-new_variables
+head(new_variables)
 ```
 
 
