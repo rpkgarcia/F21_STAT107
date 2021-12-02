@@ -115,3 +115,14 @@ adjust-aesthetic-attributes-for-the-entire-plot
 faceting
 some-example-plots
 where-can-i-learn-more
+debugging
+debugging-background-history-types-of-bugs-challenges-to-consider
+debugging-strategies-in-general
+example-of-the-binary-search-algorithm
+using-debuggers
+traceback
+browswer
+debug
+more-options-to-consider
+important-takeaways
+resources

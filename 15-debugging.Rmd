@@ -1,0 +1,322 @@
+# Debugging 
+
+```{r echo=F, fig.align='center', out.width="25%", message=FALSE, warning=FALSE}
+library(knitr)
+knitr::include_graphics("images/moth.png")
+```
+
+## Debugging Background (History, Types of Bugs, Challenges to Consider) 
+
+Debugging is the process of finding and resolving defects or problems within a computer program that prevent correct operation of computer software or a system.
+
+History of the term:
+
+- Admiral Grace Hopper used the term while working on a Mark II computer at Harvard University in the 1940s , her associates discovered a moth stuck in a relay which prevented it from working, whereupon she remarked that they were 'debugging' the system.
+
+- The term 'bug', in the sense of 'technical error', dates back at least to 1878 with Thomas Edison.
+
+- 'Debugging' used in reference to airplane engine testing in 1945. 
+
+Debugging ranges in complexity from fixing simple errors to performing lengthy and tiresome tasks. Certain programs make debugging easier with built in functions, warning messages, and error messages.  Warning/error messages often only reveal the presence of problems, but doesn't tell us what the problems are, or how the code needs to be fixed. **In other words, testing reveals the effects (or symptoms) of errors, not the cause of errors.** 
+
+When a human or animal is sick or in pain, they go see a doctor. They tell the doctor what are the issues they are experiencing: a headache, a pain in their leg, sneezing, etc.  The doctor takes this information, they may do additional tests or an exam, and then the doctor determines the problem.  Once the doctor determines the problem, a treatment is recommended.  Debugging is similar to this process, where R (or your computer) is the patient, and you (the programmer) are the doctor.  R will give the programmer an error or warning message telling you were the compiler had an issue executing the commands.  This message may not actually be the route of the problem though. For example, sometimes a patient goes to the doctor complaining of a pain in their leg, but the doctor determines that it is their back that is injured and a muscle connected to their back is causing the pain. When R gives you this warning or error message, it is describing a **symptom**, not the actual problem.  It is your job to determine the problem, and then determine the solution (or the treatment).  Often times knowing the symptom is not enough to determine the problem or the solution, which we see in the medical practice as well.  Additional tests or further analysis is needed.  We can use the debugging strategies described below which can help us further determine what the problem is. 
+ 
+    
+We will focus on techniques in R, but several of these techniques and be generalized to other languages.
+
+### Types of bugs {-}
+
+ - **Syntax or type errors**.  Wrong spelling or punctuation.  Example: forgetting a semi-colon or not starting a new line of code. 
+ 
+ - **Typos**. Missing parentheses, order of operations, wrong object name. Often caught by compilers. 
+ 
+ - **Implementation errors**.  Inputting the wrong data type into a function. 
+ 
+ - **Logical errors**. Algorithm/function does not work on all cases. Logical flaw in design or structure. Hard to detect. 
+
+### Debugging Process Difficulties {-}
+
+  - **The symptoms may not give clear indications about the cause**.  Error/Warning messages may not give a clear indication of true problem. 
+    
+ - **Symptoms may be difficult to reproduce**.  Symptoms or errors maybe different or nonexistent in different settings. 
+    
+ - **Errors may be correlated**.  Same error may have multiple symptoms.  Addressing one symptom without addressing the error, results in more symptoms. 
+    
+ - **Fixing an error may introduce new errors**.  Your subsequent code may be dependent on the line with the error. 
+
+## Debugging Strategies In General
+
+What to do when a bug is suspected:
+
+  1) Find where the bug is. 
+  2) Determine what the bug is. 
+  3) Fix the bug. 
+
+Finding the bug is often the hardest step. 
+
+Strategies to find a bug that do not require any addition functions or code. 
+
+  - **Back Tracking/Bottom-Up**: Walk through your program from the last item you created and work your way back up to the top. Observe each point in the program and see which points are not working correctly, and stop when the program is working correctly. This is a good strategy for long chunks of code it is known or clear that most of it is working correctly. 
+    
+  - **Incremental/Top-down development**:  In this method we walk through each line of code, and check each step from "the top down".  Only moving forward to subsequent steps once it is insured that the current steps is operating appropriately. 
+    
+  - **Problem simplification**:  Isolate the location where you suspect a problem.  Simplify this section of code as much as possible and try test cases to reproduce the problem.  This is a good method in general to try. 
+    
+  - **Series of Print Statements**: Put a series of print statement in the program to make sure that the code is doing what you suspect at various locations. 
+    
+  - **"Wolf fence" algorithm/Binary Search**: Put a print statement in the middle of the code with a custom message.  If the code runs and prints the statement, then it is likely your error is in the bottom 50% of your code.  If the print statement never gets printed, then it is likely your problem is in the top half. If you conclude that the error is in the bottom half then add another print statment that seperates the bottom 25% of your code, from the top 75% of your code.  If this print statement is not present, then you can conlude that the problem is most likely between the bottom 50% -75% of your code.  You can keep adding print statements further splitting the data in halfs in order to isolate the problem further.  This method is helpful for determining where the problem is. 
+    
+    
+### Example of the Binary Search Algorithm
+
+Below is an example of the binary search algorithm. For this example, one of the lines of code in the `LongComplexFunction()` will generate an error.  We will pretend that we do not know where the error is. 
+
+```{r, eval = F}
+SimpleFun_Plus = function(y){
+         y = y + 1
+        return(y) 
+}
+SimpleFun_Minus = function(y){
+         y = y - 1
+        return(y) 
+}
+SimpleFun_A <- function(y){
+         y = y + "a"
+        return(y) 
+}
+
+
+
+# Hypothetical long complicated function
+LongComplexFunction = function(x){
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_A(x)          # The Problem 
+  x = SimpleFun_Minus(x)
+  return(x)
+}
+
+# Function call produces an error
+LongComplexFunction(1)
+```
+
+The first step is to add a print statement half way through the program of function that is producing the error message. Then we call the function again and see if it produces the print statement before the error is generated. 
+
+```{r, eval = F}
+LongComplexFunction = function(x){
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  
+  print("50%-ish through the function")
+  
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_A(x)          # The Problem 
+  x = SimpleFun_Minus(x)
+  return(x)
+}
+
+# Call the function again
+LongComplexFunction(1)
+```
+
+The print statement was produced, so we conclude that the top 50% of the code was likely fine and focus on the bottom half.  We add another print statement that splits the end of the function in half. 
+
+```{r, eval = F}
+LongComplexFunction = function(x){
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  
+  print("50%-ish through the function")
+  
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  
+  print("75%-ish through the function")
+  
+  x = SimpleFun_A(x)          # The Problem 
+  x = SimpleFun_Minus(x)
+  return(x)
+}
+
+# Call the function again
+LongComplexFunction(1)
+```
+
+Again the print statement was produced, so we conclude that the top 75% of the code was likely fine and focus on the bottom 25%.  We can add another print statement that splits this portion in half. 
+
+```{r, eval = F}
+LongComplexFunction = function(x){
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  
+  print("50%-ish through the function")
+  
+  x = SimpleFun_Minus(x)
+  x = SimpleFun_Plus(x)
+  x = SimpleFun_Minus(x)
+  
+  print("75%-ish through the function")
+  
+  x = SimpleFun_A(x)          # The Problem 
+  
+  print("90%-ish through the function")
+  
+  x = SimpleFun_Minus(x)
+  return(x)
+}
+
+# Call the function again
+LongComplexFunction(1)
+```
+
+The last print statement was not produced before the error was generated, we have isolated a section of the function for where to look for the error. 
+
+
+## Using Debuggers
+
+Some popular debuggers in R: 
+
+- `traceback()`
+- `browser()`
+- `debug()`
+
+### traceback() 
+
+The `traceback()` function is useful to see where a error occurred within a function and when we call functions within functions. It is not particularly helpful for functions that are self-contained. It prints the sequence of calls that lead to the error. It is useful when an error occurs with an unidentifiable error message, or a large series of error messages is produced after calling a function.
+
+### Example with traceback(){-}
+ 
+Run the following chunk of code and observe the output in your console. The command `func1(7)` results in an error, but we will pretend we do not know where the error occurred.
+We type `traceback()` in the console to see where this error happened, and what the last function call was. 
+ 
+ 
+```{r, eval = F}
+func1 = function(x){func2(x)}
+func2 = function(x){func3(x+1)}
+func3 = function(x){func4(x+4)}
+func4 = function(x){
+  y = "a"
+  x = x+ y
+  return(x)
+}
+
+func1(7)
+traceback() 
+```
+The function `traceback()` tells us that the last function called was `func4(x + 4)`, so we conclude that the error must be in that function.
+
+ 
+### Unfamiliar function with traceback() {-}
+
+### browswer()
+
+### debug() 
+
+## More options to consider
+
+R has even more functions and tools to help us "examine" the program to "diagnose" the problem. Here are some other features that can be explored. 
+
+- `Breakpoints`
+- `trace()`
+- `recover()`
+- `system.time()`
+
+
+## Important Takeaways  
+
+Debugging can take longer then writing the program itself. 
+    
+ - **Primary Goal**: Do not have bugs in the first place. 
+    
+    
+ - **Secondary Goal**: Have clean readable code where it is easy to spot the bugs quickly. 
+    
+
+    
+*Great programmers are just good programmers with great habits.*
+
+### Tips for Writing good code {-}
+10 Tips for Writing good code. 
+
+
+- **Use Descriptive Names**: Have a system for naming variables, functions, etc.  
+        
+- **Give Each Class/Function One Purpose**: Which is easier to edit, a function that is several hundred lines long?  Or several small functions?
+        
+- **Delete Unnecessary Code**:  If you comment out a chunk of code that you are no longer using, delete it!
+
+- **Readability $>$ Cleverness**: Compacting 10 lines of code sounds appealing, and is likely clever, but it is even more likely to be difficult to read. 
+        
+- **Keep a Consistent Coding Style**:  Have a formatting method?  Stick to it.
+        
+- **Choose the right program**: You do not need to have the best program, but you will want a program where your project is all in the same place. 
+        
+- **Master the Language’s Idioms**: If the language has a system and syntax it was built to use, use it.  (R and vectorization, Python and lists, C and defining variable types) 
+
+- **Study the Code of Others**: Read code from experts and novice.  Get a feel for what makes clean code.
+        
+- **Write Good Comments**: Comments exist to explain WHY a piece of code exists rather than WHAT the code actually does. (i.e. "Use because X, Y, and Z", not "This will do W, U, and V.").  Use more rather than less, but too many is problematic. 
+
+- **Refactor/Rewrite**:  Just because the program works, doesn't mean it can be adjusted to be more clear.  Refactor as you would rewrite an essay. 
+
+
+
+### Steps to Reduce the Number of Bugs {-}
+
+The most important way to combat bugs is to write a bug-free program in the first place.
+
+
+- Write your program in such a way that it can stand alone, and be understood by a peer with a similar level of programming knowledge. 
+
+- Sit and make a plan for your program before you begin writing it. 
+
+- Avoid writing the program as fast as possible.
+
+- Practice defensive programming. This is similar to defensive driving, which means driving under worst-case scenarios. Make your code explicit, have your program print out an error message or make checks for the input.
+
+    
+
+
+### After You Located the Error {-}
+
+Often the hardest step is locating  *where* the bug is.  The next step is determining *what* the bug is.  
+
+- Help Files
+
+- Google (seriously)
+
+## Resources
+
+- http://www.cs.cornell.edu/courses/cs312/2006fa/lectures/lec26.html
+
+- https://en.wikipedia.org/wiki/Debugging
+
+- https://data-flair.training/blogs/debugging-in-r-programming/
+
+- https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio
+
+- https://adv-r.hadley.nz/debugging.html
+
+- http://www.math.ncu.edu.tw/~chenwc/R\_note/reference/debug/Rdebug.pdf
+
+- https://www.makeuseof.com/tag/10-tips-writing-cleaner-better-code/
+
+- https://owi.usgs.gov/R/training-curriculum/r-package-dev/debugging/

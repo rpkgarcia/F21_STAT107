@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 More on R Objects | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 16 Debugging | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 More on R Objects | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 16 Debugging | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 More on R Objects | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 16 Debugging | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -37,8 +37,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction-to-r-objects.html"/>
-<link rel="next" href="working-with-data-sets.html"/>
+<link rel="prev" href="ggplot2.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -360,307 +360,268 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-on-r-objects" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> More on R Objects</h1>
-<p>Factors and lists have especially unique properties that are often utilized. In this chapter we take special care to discuss these properties.</p>
-<div id="factors-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> Factors</h2>
-<p>In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color and if they own a pet.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="more-on-r-objects.html#cb174-1"></a>name =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Eve&quot;</span>, <span class="st">&quot;Kim&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Ray&quot;</span>, <span class="st">&quot;Sam&quot;</span>)</span>
-<span id="cb174-2"><a href="more-on-r-objects.html#cb174-2"></a>hair =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="st">&quot;Black&quot;</span>)</span>
-<span id="cb174-3"><a href="more-on-r-objects.html#cb174-3"></a>own_pets =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb174-4"><a href="more-on-r-objects.html#cb174-4"></a></span>
-<span id="cb174-5"><a href="more-on-r-objects.html#cb174-5"></a>catagorical =<span class="st"> </span><span class="kw">data.frame</span>(name, hair, own_pets)</span>
-<span id="cb174-6"><a href="more-on-r-objects.html#cb174-6"></a><span class="kw">colnames</span>(catagorical) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Hair Color&quot;</span>, <span class="st">&quot;Own Pets&quot;</span>)</span>
-<span id="cb174-7"><a href="more-on-r-objects.html#cb174-7"></a></span>
-<span id="cb174-8"><a href="more-on-r-objects.html#cb174-8"></a>catagorical</span></code></pre></div>
-<pre><code>##   Name Hair Color Own Pets
-## 1  Amy     Blonde     TRUE
-## 2  Bob      Black    FALSE
-## 3  Eve      Black     TRUE
-## 4  Kim        Red     TRUE
-## 5  Max     Blonde    FALSE
-## 6  Ray      Brown    FALSE
-## 7  Sam      Black    FALSE</code></pre>
-<p>Here, the hair color and pet ownership are examples of categorical data. For the hair color variable we will typically want to store it as a factor, as opposed to a character vector. The different values that the factor can take are called levels. In R, you can create a factor with the <code>factor()</code> function.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="more-on-r-objects.html#cb176-1"></a>f =<span class="st"> </span><span class="kw">factor</span>(hair)</span>
-<span id="cb176-2"><a href="more-on-r-objects.html#cb176-2"></a>f</span></code></pre></div>
-<pre><code>## [1] Blonde Black  Black  Red    Blonde Brown  Black 
-## Levels: Black Blonde Brown Red</code></pre>
-<p>A factor looks like a vector, but it has special properties. Levels are one of them. Notice that when you print the factor, R displays the distinct levels below the factor. R keeps track of all the possible values in a vector, and each value is called a level of the associated factor.The <code>levels()</code> function shows all the levels from a factor.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="more-on-r-objects.html#cb178-1"></a><span class="kw">levels</span>(f)</span></code></pre></div>
-<pre><code>## [1] &quot;Black&quot;  &quot;Blonde&quot; &quot;Brown&quot;  &quot;Red&quot;</code></pre>
-<p>If your vector contains only a subset of all the possible levels, then R will have an incomplete picture of the possible levels. Consider the following example of a vector consisting of directions:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="more-on-r-objects.html#cb180-1"></a>directions =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;East&quot;</span>)</span>
-<span id="cb180-2"><a href="more-on-r-objects.html#cb180-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(directions)</span>
-<span id="cb180-3"><a href="more-on-r-objects.html#cb180-3"></a>f</span></code></pre></div>
-<pre><code>## [1] North West  North East  North West  East 
-## Levels: East North West</code></pre>
-<p>Notice that the levels of your new factor do not contain the value “South”. So, R thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the <code>levels</code> argument of the function <code>factor()</code>.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="more-on-r-objects.html#cb182-1"></a>directions =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;East&quot;</span>)</span>
-<span id="cb182-2"><a href="more-on-r-objects.html#cb182-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(directions,</span>
-<span id="cb182-3"><a href="more-on-r-objects.html#cb182-3"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;West&quot;</span>))</span>
-<span id="cb182-4"><a href="more-on-r-objects.html#cb182-4"></a>f</span></code></pre></div>
-<pre><code>## [1] North West  North East  North West  East 
-## Levels: North East South West</code></pre>
-<p>R lets you assign abbreviated names for the levels. You can do this by specifying the <code>labels</code> argument of <code>factor()</code>.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="more-on-r-objects.html#cb184-1"></a>directions =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;South&quot;</span>)</span>
-<span id="cb184-2"><a href="more-on-r-objects.html#cb184-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(directions,</span>
-<span id="cb184-3"><a href="more-on-r-objects.html#cb184-3"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;West&quot;</span>),</span>
-<span id="cb184-4"><a href="more-on-r-objects.html#cb184-4"></a>            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;N&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;W&quot;</span>))</span>
-<span id="cb184-5"><a href="more-on-r-objects.html#cb184-5"></a>f</span></code></pre></div>
-<pre><code>## [1] N W S E W N S
-## Levels: N E S W</code></pre>
-<p>Sometimes data has some kind of natural order between elements. For example, sports analysts use a three-point scale to determine how well a sports team is competing:</p>
-<p><strong>loss &lt; tie &lt; win</strong>.</p>
-<p>In market research, it’s very common to use a five point scale to measure perceptions:</p>
-<p><strong>strongly disagree &lt; disagree &lt; neutral &lt; agree &lt; strongly agree</strong>.</p>
-<p>Such kind of data that is possible to place in order or scale is known as <strong>ordinal data</strong>. We can store ordinal data as an ordered factor. To create an ordered factor, use the <code>factor()</code> function with the argument <code>ordered=TRUE</code>.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="more-on-r-objects.html#cb186-1"></a>record =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb186-2"><a href="more-on-r-objects.html#cb186-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(record, </span>
-<span id="cb186-3"><a href="more-on-r-objects.html#cb186-3"></a>            <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb186-4"><a href="more-on-r-objects.html#cb186-4"></a>f</span></code></pre></div>
-<pre><code>## [1] win  tie  loss tie  loss win  win 
-## Levels: loss &lt; tie &lt; win</code></pre>
-<p>You can also reverse the order of levels using the <code>rev()</code> function.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="more-on-r-objects.html#cb188-1"></a>record =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb188-2"><a href="more-on-r-objects.html#cb188-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(record, </span>
-<span id="cb188-3"><a href="more-on-r-objects.html#cb188-3"></a>            <span class="dt">ordered =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb188-4"><a href="more-on-r-objects.html#cb188-4"></a>            <span class="dt">levels =</span> <span class="kw">rev</span>(<span class="kw">levels</span>(f)))</span>
-<span id="cb188-5"><a href="more-on-r-objects.html#cb188-5"></a>f</span></code></pre></div>
-<pre><code>## [1] win  tie  loss tie  loss win  win 
-## Levels: win &lt; tie &lt; loss</code></pre>
-<p>If you have no observations in one of the levels, you can drop it using the <code>droplevels()</code> function.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="more-on-r-objects.html#cb190-1"></a>record =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb190-2"><a href="more-on-r-objects.html#cb190-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(record,</span>
-<span id="cb190-3"><a href="more-on-r-objects.html#cb190-3"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;win&quot;</span>))</span>
-<span id="cb190-4"><a href="more-on-r-objects.html#cb190-4"></a></span>
-<span id="cb190-5"><a href="more-on-r-objects.html#cb190-5"></a>f</span></code></pre></div>
-<pre><code>## [1] win  loss loss win  loss win 
-## Levels: loss tie win</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="more-on-r-objects.html#cb192-1"></a><span class="kw">droplevels</span>(f)</span></code></pre></div>
-<pre><code>## [1] win  loss loss win  loss win 
-## Levels: loss win</code></pre>
-<p>The <code>summary()</code> function will give you a quick overview of the contents of a factor.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="more-on-r-objects.html#cb194-1"></a>f =<span class="st"> </span><span class="kw">factor</span>(hair)</span>
-<span id="cb194-2"><a href="more-on-r-objects.html#cb194-2"></a>f</span></code></pre></div>
-<pre><code>## [1] Blonde Black  Black  Red    Blonde Brown  Black 
-## Levels: Black Blonde Brown Red</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="more-on-r-objects.html#cb196-1"></a><span class="kw">summary</span>(f)</span></code></pre></div>
-<pre><code>##  Black Blonde  Brown    Red 
-##      3      2      1      1</code></pre>
-<p>The function <code>table()</code> tabulates observations.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="more-on-r-objects.html#cb198-1"></a><span class="kw">table</span>(f)</span></code></pre></div>
-<pre><code>## f
-##  Black Blonde  Brown    Red 
-##      3      2      1      1</code></pre>
-</div>
-<div id="lists-1" class="section level2">
-<h2><span class="header-section-number">3.2</span> Lists</h2>
-<p>A <em>list</em> is an array of objects. Unlike vectors and matrices, the elements in a list can belong to different classes. Lists are useful for packaging together a set of related objects. We can create a list of objects in our environment by using the <code>list()</code> function.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="more-on-r-objects.html#cb200-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb200-2"><a href="more-on-r-objects.html#cb200-2"></a></span>
-<span id="cb200-3"><a href="more-on-r-objects.html#cb200-3"></a><span class="co"># A list of characters</span></span>
-<span id="cb200-4"><a href="more-on-r-objects.html#cb200-4"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb200-5"><a href="more-on-r-objects.html#cb200-5"></a></span>
-<span id="cb200-6"><a href="more-on-r-objects.html#cb200-6"></a><span class="co"># A list of mixed datatypes</span></span>
-<span id="cb200-7"><a href="more-on-r-objects.html#cb200-7"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;abc&quot;</span>, <span class="fl">1.23</span>, <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>The best way to understand the contents of a list is to use the structure function <code>str()</code>. It provides a compact display of the internal structure of a list.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="more-on-r-objects.html#cb201-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;abc&quot;</span>, <span class="fl">1.23</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb201-2"><a href="more-on-r-objects.html#cb201-2"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 4
-##  $ : num 1
-##  $ : chr &quot;abc&quot;
-##  $ : num 1.23
-##  $ : logi TRUE</code></pre>
-<p>A list can contain sublists, which in turn can contain sublists themselves, and so on. This is known as <em>nested list</em> or <em>recursive vectors</em>.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="more-on-r-objects.html#cb203-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">&quot;abc&quot;</span>, <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
-<span id="cb203-2"><a href="more-on-r-objects.html#cb203-2"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 5
-##  $ : num 1
-##  $ : num 3
-##  $ : chr &quot;abc&quot;
-##  $ :List of 3
-##   ..$ : chr &quot;a&quot;
-##   ..$ : chr &quot;b&quot;
-##   ..$ : chr &quot;c&quot;
-##  $ : logi TRUE</code></pre>
-<p>There are two ways to extract elements from a list:</p>
+<div id="debugging" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Debugging</h1>
+<p><img src="images/moth.png" width="25%" style="display: block; margin: auto;" /></p>
+<div id="debugging-background-history-types-of-bugs-challenges-to-consider" class="section level2">
+<h2><span class="header-section-number">16.1</span> Debugging Background (History, Types of Bugs, Challenges to Consider)</h2>
+<p>Debugging is the process of finding and resolving defects or problems within a computer program that prevent correct operation of computer software or a system.</p>
+<p>History of the term:</p>
 <ul>
-<li>Using <code>[[]]</code> gives you the element itself.</li>
-<li>Using <code>[]</code> gives you a list with the selected elements</li>
+<li><p>Admiral Grace Hopper used the term while working on a Mark II computer at Harvard University in the 1940s , her associates discovered a moth stuck in a relay which prevented it from working, whereupon she remarked that they were ‘debugging’ the system.</p></li>
+<li><p>The term ‘bug’, in the sense of ‘technical error’, dates back at least to 1878 with Thomas Edison.</p></li>
+<li><p>‘Debugging’ used in reference to airplane engine testing in 1945.</p></li>
 </ul>
-<p>You can use <code>[]</code> to extract either a single element or multiple elements from a list. However, the result will always be a list.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="more-on-r-objects.html#cb205-1"></a><span class="co"># extract 2nd element</span></span>
-<span id="cb205-2"><a href="more-on-r-objects.html#cb205-2"></a>lst[<span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 3</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="more-on-r-objects.html#cb207-1"></a><span class="co"># extract 5th element</span></span>
-<span id="cb207-2"><a href="more-on-r-objects.html#cb207-2"></a>lst[<span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="more-on-r-objects.html#cb209-1"></a><span class="co"># select 1st, 3rd and 5th element</span></span>
-<span id="cb209-2"><a href="more-on-r-objects.html#cb209-2"></a>lst[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] &quot;abc&quot;
-## 
-## [[3]]
-## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="more-on-r-objects.html#cb211-1"></a><span class="co"># exclude 1st, 3rd and 5th element</span></span>
-<span id="cb211-2"><a href="more-on-r-objects.html#cb211-2"></a>lst[<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">5</span>)]</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [[2]][[1]]
-## [1] &quot;a&quot;
-## 
-## [[2]][[2]]
-## [1] &quot;b&quot;
-## 
-## [[2]][[3]]
-## [1] &quot;c&quot;</code></pre>
-<p>You can use <code>[[]]</code> to extract only a single element from a list. Unlike <code>[]</code>, <code>[[]]</code> gives you the element itself.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="more-on-r-objects.html#cb213-1"></a><span class="co"># extract 2nd element</span></span>
-<span id="cb213-2"><a href="more-on-r-objects.html#cb213-2"></a>lst[[<span class="dv">2</span>]]</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="more-on-r-objects.html#cb215-1"></a><span class="co"># extract 5th element</span></span>
-<span id="cb215-2"><a href="more-on-r-objects.html#cb215-2"></a>lst[[<span class="dv">5</span>]]</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>You can’t use logical vectors or negative numbers as indices when using <code>[[]]</code>. The difference between <code>[]</code> and <code>[[]]</code> is really important for lists, because <code>[[]]</code> returns the element itself while <code>[]</code> returns a list with the selected elements. The difference becomes clear when we inspect the structure of the output – one is a character and the other one is a list.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="more-on-r-objects.html#cb217-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;f&quot;</span>)</span>
-<span id="cb217-2"><a href="more-on-r-objects.html#cb217-2"></a></span>
-<span id="cb217-3"><a href="more-on-r-objects.html#cb217-3"></a><span class="kw">class</span>(lst[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="more-on-r-objects.html#cb219-1"></a><span class="kw">class</span>(lst[<span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-<p>Each list element can have a name. You can access individual element by specifying its name in double square brackets <code>[[]]</code> or use <code>$</code> operator.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="more-on-r-objects.html#cb221-1"></a>months =<span class="st"> </span><span class="kw">list</span>(<span class="dt">JAN=</span><span class="dv">1</span>, <span class="dt">FEB=</span><span class="dv">2</span>, <span class="dt">MAR=</span><span class="dv">3</span>, <span class="dt">APR=</span><span class="dv">4</span>)</span>
-<span id="cb221-2"><a href="more-on-r-objects.html#cb221-2"></a></span>
-<span id="cb221-3"><a href="more-on-r-objects.html#cb221-3"></a><span class="co"># extract element by its name</span></span>
-<span id="cb221-4"><a href="more-on-r-objects.html#cb221-4"></a>months[[<span class="st">&quot;MAR&quot;</span>]]</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="more-on-r-objects.html#cb223-1"></a><span class="co"># same as above but using the $ operator</span></span>
-<span id="cb223-2"><a href="more-on-r-objects.html#cb223-2"></a>months<span class="op">$</span>MAR</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="more-on-r-objects.html#cb225-1"></a><span class="co"># extract multiple elements</span></span>
-<span id="cb225-2"><a href="more-on-r-objects.html#cb225-2"></a>months[<span class="kw">c</span>(<span class="st">&quot;JAN&quot;</span>,<span class="st">&quot;APR&quot;</span>)]</span></code></pre></div>
-<pre><code>## $JAN
-## [1] 1
-## 
-## $APR
-## [1] 4</code></pre>
-<p>You can access individual items in a nested list by using the combination of <code>[[]]</code> or <code>$</code> operator and the <code>[]</code> operator.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="more-on-r-objects.html#cb227-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dt">item1 =</span> <span class="fl">3.14</span>,</span>
-<span id="cb227-2"><a href="more-on-r-objects.html#cb227-2"></a>            <span class="dt">item2 =</span> <span class="kw">list</span>(<span class="dt">item2a =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb227-3"><a href="more-on-r-objects.html#cb227-3"></a>                         <span class="dt">item2b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>)))</span>
-<span id="cb227-4"><a href="more-on-r-objects.html#cb227-4"></a></span>
-<span id="cb227-5"><a href="more-on-r-objects.html#cb227-5"></a><span class="co"># preserve the output as a list</span></span>
-<span id="cb227-6"><a href="more-on-r-objects.html#cb227-6"></a>lst[[<span class="dv">2</span>]][<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## $item2a
-## [1]  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="more-on-r-objects.html#cb229-1"></a><span class="co"># same as above but simplify the output</span></span>
-<span id="cb229-2"><a href="more-on-r-objects.html#cb229-2"></a>lst[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>## [1]  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="more-on-r-objects.html#cb231-1"></a><span class="co"># same as above with names</span></span>
-<span id="cb231-2"><a href="more-on-r-objects.html#cb231-2"></a>lst[[<span class="st">&quot;item2&quot;</span>]][[<span class="st">&quot;item2a&quot;</span>]]</span></code></pre></div>
-<pre><code>## [1]  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="more-on-r-objects.html#cb233-1"></a><span class="co"># same as above with $ operator</span></span>
-<span id="cb233-2"><a href="more-on-r-objects.html#cb233-2"></a>lst<span class="op">$</span>item2<span class="op">$</span>item2a</span></code></pre></div>
-<pre><code>## [1]  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="more-on-r-objects.html#cb235-1"></a><span class="co"># extract individual element</span></span>
-<span id="cb235-2"><a href="more-on-r-objects.html#cb235-2"></a>lst[[<span class="dv">2</span>]][[<span class="dv">2</span>]][<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;c&quot;</code></pre>
-<p>Modifying a list element is pretty straightforward. You use either the <code>[[]]</code> or the <code>$</code> to access that element, and simply assign a new value.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="more-on-r-objects.html#cb237-1"></a><span class="co"># Modify 3rd list element</span></span>
-<span id="cb237-2"><a href="more-on-r-objects.html#cb237-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;f&quot;</span>)</span>
-<span id="cb237-3"><a href="more-on-r-objects.html#cb237-3"></a>lst[[<span class="dv">3</span>]] =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb237-4"><a href="more-on-r-objects.html#cb237-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ : chr &quot;a&quot;
-##  $ : chr &quot;b&quot;
-##  $ : num 1
-##  $ : chr &quot;d&quot;
-##  $ : chr &quot;e&quot;
-##  $ : chr &quot;f&quot;</code></pre>
-<p>You can modify components using <code>[]</code> as well, but you have to assign a list of components.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="more-on-r-objects.html#cb239-1"></a><span class="co"># Modify 3rd list element using []</span></span>
-<span id="cb239-2"><a href="more-on-r-objects.html#cb239-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;f&quot;</span>)</span>
-<span id="cb239-3"><a href="more-on-r-objects.html#cb239-3"></a>lst[<span class="dv">3</span>] =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>)</span>
-<span id="cb239-4"><a href="more-on-r-objects.html#cb239-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ : chr &quot;a&quot;
-##  $ : chr &quot;b&quot;
-##  $ : num 1
-##  $ : chr &quot;d&quot;
-##  $ : chr &quot;e&quot;
-##  $ : chr &quot;f&quot;</code></pre>
-<p>Using <code>[]</code> allows you to modify more than one component at once.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="more-on-r-objects.html#cb241-1"></a><span class="co"># Modify first three list elements</span></span>
-<span id="cb241-2"><a href="more-on-r-objects.html#cb241-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;f&quot;</span>)</span>
-<span id="cb241-3"><a href="more-on-r-objects.html#cb241-3"></a>lst[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>] =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb241-4"><a href="more-on-r-objects.html#cb241-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ : num 1
-##  $ : num 2
-##  $ : num 3
-##  $ : chr &quot;d&quot;
-##  $ : chr &quot;e&quot;
-##  $ : chr &quot;f&quot;</code></pre>
-<p>You can use same method for modifying elements and adding new one. If the element is already present in the list, it is updated else, a new element is added to the list.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="more-on-r-objects.html#cb243-1"></a><span class="co"># Add elements to a list</span></span>
-<span id="cb243-2"><a href="more-on-r-objects.html#cb243-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb243-3"><a href="more-on-r-objects.html#cb243-3"></a>lst[[<span class="dv">4</span>]] =<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb243-4"><a href="more-on-r-objects.html#cb243-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 4
-##  $ : num 1
-##  $ : num 2
-##  $ : num 3
-##  $ : num 4</code></pre>
-<p>By using <code>append()</code> method you can append one or more elements to the list.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="more-on-r-objects.html#cb245-1"></a><span class="co"># Add more than one element to a list</span></span>
-<span id="cb245-2"><a href="more-on-r-objects.html#cb245-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb245-3"><a href="more-on-r-objects.html#cb245-3"></a>lst =<span class="st"> </span><span class="kw">append</span>(lst,<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span>
-<span id="cb245-4"><a href="more-on-r-objects.html#cb245-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ : num 1
-##  $ : num 2
-##  $ : num 3
-##  $ : chr &quot;a&quot;
-##  $ : chr &quot;b&quot;
-##  $ : chr &quot;c&quot;</code></pre>
-<p>By using a logical vector, you can remove list elements based on the condition.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="more-on-r-objects.html#cb247-1"></a><span class="co"># Remove all negative list elements</span></span>
-<span id="cb247-2"><a href="more-on-r-objects.html#cb247-2"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="op">-</span><span class="dv">4</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb247-3"><a href="more-on-r-objects.html#cb247-3"></a>lst[lst <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb247-4"><a href="more-on-r-objects.html#cb247-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 4
-##  $ : num 1
-##  $ : num 2
-##  $ : num 3
-##  $ : num 4</code></pre>
-<p>The <code>c()</code> does a lot more than just creating vectors. It can be used to combine lists into a new list as well.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="more-on-r-objects.html#cb249-1"></a>lst1 =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>)</span>
-<span id="cb249-2"><a href="more-on-r-objects.html#cb249-2"></a>lst2 =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb249-3"><a href="more-on-r-objects.html#cb249-3"></a>lst =<span class="st"> </span><span class="kw">c</span>(lst1, lst2)</span>
-<span id="cb249-4"><a href="more-on-r-objects.html#cb249-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
-<pre><code>## List of 6
-##  $ : chr &quot;a&quot;
-##  $ : chr &quot;b&quot;
-##  $ : chr &quot;c&quot;
-##  $ : num 1
-##  $ : num 2
-##  $ : num 3</code></pre>
-<p>Basic statistical functions work on vectors but not on lists. For example, you cannot directly compute the mean of list of numbers. In that case, you have to flatten the list into a vector using <code>unlist()</code> first and then compute the mean of the result.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="more-on-r-objects.html#cb251-1"></a>lst =<span class="st"> </span><span class="kw">list</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>)</span>
-<span id="cb251-2"><a href="more-on-r-objects.html#cb251-2"></a><span class="kw">mean</span>(<span class="kw">unlist</span>(lst))</span></code></pre></div>
-<pre><code>## [1] 15</code></pre>
-<p>To find the length of a list, use <code>length()</code> function.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="more-on-r-objects.html#cb253-1"></a><span class="kw">length</span>(lst)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<p>Debugging ranges in complexity from fixing simple errors to performing lengthy and tiresome tasks. Certain programs make debugging easier with built in functions, warning messages, and error messages. Warning/error messages often only reveal the presence of problems, but doesn’t tell us what the problems are, or how the code needs to be fixed. <strong>In other words, testing reveals the effects (or symptoms) of errors, not the cause of errors.</strong></p>
+<p>When a human or animal is sick or in pain, they go see a doctor. They tell the doctor what are the issues they are experiencing: a headache, a pain in their leg, sneezing, etc. The doctor takes this information, they may do additional tests or an exam, and then the doctor determines the problem. Once the doctor determines the problem, a treatment is recommended. Debugging is similar to this process, where R (or your computer) is the patient, and you (the programmer) are the doctor. R will give the programmer an error or warning message telling you were the compiler had an issue executing the commands. This message may not actually be the route of the problem though. For example, sometimes a patient goes to the doctor complaining of a pain in their leg, but the doctor determines that it is their back that is injured and a muscle connected to their back is causing the pain. When R gives you this warning or error message, it is describing a <strong>symptom</strong>, not the actual problem. It is your job to determine the problem, and then determine the solution (or the treatment). Often times knowing the symptom is not enough to determine the problem or the solution, which we see in the medical practice as well. Additional tests or further analysis is needed. We can use the debugging strategies described below which can help us further determine what the problem is.</p>
+<p>We will focus on techniques in R, but several of these techniques and be generalized to other languages.</p>
+<div id="types-of-bugs" class="section level3 unnumbered">
+<h3>Types of bugs</h3>
+<ul>
+<li><p><strong>Syntax or type errors</strong>. Wrong spelling or punctuation. Example: forgetting a semi-colon or not starting a new line of code.</p></li>
+<li><p><strong>Typos</strong>. Missing parentheses, order of operations, wrong object name. Often caught by compilers.</p></li>
+<li><p><strong>Implementation errors</strong>. Inputting the wrong data type into a function.</p></li>
+<li><p><strong>Logical errors</strong>. Algorithm/function does not work on all cases. Logical flaw in design or structure. Hard to detect.</p></li>
+</ul>
+</div>
+<div id="debugging-process-difficulties" class="section level3 unnumbered">
+<h3>Debugging Process Difficulties</h3>
+<ul>
+<li><p><strong>The symptoms may not give clear indications about the cause</strong>. Error/Warning messages may not give a clear indication of true problem.</p></li>
+<li><p><strong>Symptoms may be difficult to reproduce</strong>. Symptoms or errors maybe different or nonexistent in different settings.</p></li>
+<li><p><strong>Errors may be correlated</strong>. Same error may have multiple symptoms. Addressing one symptom without addressing the error, results in more symptoms.</p></li>
+<li><p><strong>Fixing an error may introduce new errors</strong>. Your subsequent code may be dependent on the line with the error.</p></li>
+</ul>
+</div>
+</div>
+<div id="debugging-strategies-in-general" class="section level2">
+<h2><span class="header-section-number">16.2</span> Debugging Strategies In General</h2>
+<p>What to do when a bug is suspected:</p>
+<ol style="list-style-type: decimal">
+<li>Find where the bug is.</li>
+<li>Determine what the bug is.</li>
+<li>Fix the bug.</li>
+</ol>
+<p>Finding the bug is often the hardest step.</p>
+<p>Strategies to find a bug that do not require any addition functions or code.</p>
+<ul>
+<li><p><strong>Back Tracking/Bottom-Up</strong>: Walk through your program from the last item you created and work your way back up to the top. Observe each point in the program and see which points are not working correctly, and stop when the program is working correctly. This is a good strategy for long chunks of code it is known or clear that most of it is working correctly.</p></li>
+<li><p><strong>Incremental/Top-down development</strong>: In this method we walk through each line of code, and check each step from “the top down”. Only moving forward to subsequent steps once it is insured that the current steps is operating appropriately.</p></li>
+<li><p><strong>Problem simplification</strong>: Isolate the location where you suspect a problem. Simplify this section of code as much as possible and try test cases to reproduce the problem. This is a good method in general to try.</p></li>
+<li><p><strong>Series of Print Statements</strong>: Put a series of print statement in the program to make sure that the code is doing what you suspect at various locations.</p></li>
+<li><p><strong>“Wolf fence” algorithm/Binary Search</strong>: Put a print statement in the middle of the code with a custom message. If the code runs and prints the statement, then it is likely your error is in the bottom 50% of your code. If the print statement never gets printed, then it is likely your problem is in the top half. If you conclude that the error is in the bottom half then add another print statment that seperates the bottom 25% of your code, from the top 75% of your code. If this print statement is not present, then you can conlude that the problem is most likely between the bottom 50% -75% of your code. You can keep adding print statements further splitting the data in halfs in order to isolate the problem further. This method is helpful for determining where the problem is.</p></li>
+</ul>
+<div id="example-of-the-binary-search-algorithm" class="section level3">
+<h3><span class="header-section-number">16.2.1</span> Example of the Binary Search Algorithm</h3>
+<p>Below is an example of the binary search algorithm. For this example, one of the lines of code in the <code>LongComplexFunction()</code> will generate an error. We will pretend that we do not know where the error is.</p>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="debugging.html#cb795-1"></a>SimpleFun_Plus =<span class="st"> </span><span class="cf">function</span>(y){</span>
+<span id="cb795-2"><a href="debugging.html#cb795-2"></a>         y =<span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb795-3"><a href="debugging.html#cb795-3"></a>        <span class="kw">return</span>(y) </span>
+<span id="cb795-4"><a href="debugging.html#cb795-4"></a>}</span>
+<span id="cb795-5"><a href="debugging.html#cb795-5"></a>SimpleFun_Minus =<span class="st"> </span><span class="cf">function</span>(y){</span>
+<span id="cb795-6"><a href="debugging.html#cb795-6"></a>         y =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb795-7"><a href="debugging.html#cb795-7"></a>        <span class="kw">return</span>(y) </span>
+<span id="cb795-8"><a href="debugging.html#cb795-8"></a>}</span>
+<span id="cb795-9"><a href="debugging.html#cb795-9"></a>SimpleFun_A &lt;-<span class="st"> </span><span class="cf">function</span>(y){</span>
+<span id="cb795-10"><a href="debugging.html#cb795-10"></a>         y =<span class="st"> </span>y <span class="op">+</span><span class="st"> &quot;a&quot;</span></span>
+<span id="cb795-11"><a href="debugging.html#cb795-11"></a>        <span class="kw">return</span>(y) </span>
+<span id="cb795-12"><a href="debugging.html#cb795-12"></a>}</span>
+<span id="cb795-13"><a href="debugging.html#cb795-13"></a></span>
+<span id="cb795-14"><a href="debugging.html#cb795-14"></a></span>
+<span id="cb795-15"><a href="debugging.html#cb795-15"></a></span>
+<span id="cb795-16"><a href="debugging.html#cb795-16"></a><span class="co"># Hypothetical long complicated function</span></span>
+<span id="cb795-17"><a href="debugging.html#cb795-17"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb795-18"><a href="debugging.html#cb795-18"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb795-19"><a href="debugging.html#cb795-19"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb795-20"><a href="debugging.html#cb795-20"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb795-21"><a href="debugging.html#cb795-21"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb795-22"><a href="debugging.html#cb795-22"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb795-23"><a href="debugging.html#cb795-23"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb795-24"><a href="debugging.html#cb795-24"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb795-25"><a href="debugging.html#cb795-25"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb795-26"><a href="debugging.html#cb795-26"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)          <span class="co"># The Problem </span></span>
+<span id="cb795-27"><a href="debugging.html#cb795-27"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb795-28"><a href="debugging.html#cb795-28"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb795-29"><a href="debugging.html#cb795-29"></a>}</span>
+<span id="cb795-30"><a href="debugging.html#cb795-30"></a></span>
+<span id="cb795-31"><a href="debugging.html#cb795-31"></a><span class="co"># Function call produces an error</span></span>
+<span id="cb795-32"><a href="debugging.html#cb795-32"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>The first step is to add a print statement half way through the program of function that is producing the error message. Then we call the function again and see if it produces the print statement before the error is generated.</p>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="debugging.html#cb796-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb796-2"><a href="debugging.html#cb796-2"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb796-3"><a href="debugging.html#cb796-3"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb796-4"><a href="debugging.html#cb796-4"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb796-5"><a href="debugging.html#cb796-5"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb796-6"><a href="debugging.html#cb796-6"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb796-7"><a href="debugging.html#cb796-7"></a>  </span>
+<span id="cb796-8"><a href="debugging.html#cb796-8"></a>  <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb796-9"><a href="debugging.html#cb796-9"></a>  </span>
+<span id="cb796-10"><a href="debugging.html#cb796-10"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb796-11"><a href="debugging.html#cb796-11"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb796-12"><a href="debugging.html#cb796-12"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb796-13"><a href="debugging.html#cb796-13"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)          <span class="co"># The Problem </span></span>
+<span id="cb796-14"><a href="debugging.html#cb796-14"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb796-15"><a href="debugging.html#cb796-15"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb796-16"><a href="debugging.html#cb796-16"></a>}</span>
+<span id="cb796-17"><a href="debugging.html#cb796-17"></a></span>
+<span id="cb796-18"><a href="debugging.html#cb796-18"></a><span class="co"># Call the function again</span></span>
+<span id="cb796-19"><a href="debugging.html#cb796-19"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>The print statement was produced, so we conclude that the top 50% of the code was likely fine and focus on the bottom half. We add another print statement that splits the end of the function in half.</p>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="debugging.html#cb797-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb797-2"><a href="debugging.html#cb797-2"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb797-3"><a href="debugging.html#cb797-3"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb797-4"><a href="debugging.html#cb797-4"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb797-5"><a href="debugging.html#cb797-5"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb797-6"><a href="debugging.html#cb797-6"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb797-7"><a href="debugging.html#cb797-7"></a>  </span>
+<span id="cb797-8"><a href="debugging.html#cb797-8"></a>  <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb797-9"><a href="debugging.html#cb797-9"></a>  </span>
+<span id="cb797-10"><a href="debugging.html#cb797-10"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb797-11"><a href="debugging.html#cb797-11"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb797-12"><a href="debugging.html#cb797-12"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb797-13"><a href="debugging.html#cb797-13"></a>  </span>
+<span id="cb797-14"><a href="debugging.html#cb797-14"></a>  <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb797-15"><a href="debugging.html#cb797-15"></a>  </span>
+<span id="cb797-16"><a href="debugging.html#cb797-16"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)          <span class="co"># The Problem </span></span>
+<span id="cb797-17"><a href="debugging.html#cb797-17"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb797-18"><a href="debugging.html#cb797-18"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb797-19"><a href="debugging.html#cb797-19"></a>}</span>
+<span id="cb797-20"><a href="debugging.html#cb797-20"></a></span>
+<span id="cb797-21"><a href="debugging.html#cb797-21"></a><span class="co"># Call the function again</span></span>
+<span id="cb797-22"><a href="debugging.html#cb797-22"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>Again the print statement was produced, so we conclude that the top 75% of the code was likely fine and focus on the bottom 25%. We can add another print statement that splits this portion in half.</p>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="debugging.html#cb798-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb798-2"><a href="debugging.html#cb798-2"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb798-3"><a href="debugging.html#cb798-3"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb798-4"><a href="debugging.html#cb798-4"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb798-5"><a href="debugging.html#cb798-5"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb798-6"><a href="debugging.html#cb798-6"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb798-7"><a href="debugging.html#cb798-7"></a>  </span>
+<span id="cb798-8"><a href="debugging.html#cb798-8"></a>  <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb798-9"><a href="debugging.html#cb798-9"></a>  </span>
+<span id="cb798-10"><a href="debugging.html#cb798-10"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb798-11"><a href="debugging.html#cb798-11"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb798-12"><a href="debugging.html#cb798-12"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb798-13"><a href="debugging.html#cb798-13"></a>  </span>
+<span id="cb798-14"><a href="debugging.html#cb798-14"></a>  <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb798-15"><a href="debugging.html#cb798-15"></a>  </span>
+<span id="cb798-16"><a href="debugging.html#cb798-16"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)          <span class="co"># The Problem </span></span>
+<span id="cb798-17"><a href="debugging.html#cb798-17"></a>  </span>
+<span id="cb798-18"><a href="debugging.html#cb798-18"></a>  <span class="kw">print</span>(<span class="st">&quot;90%-ish through the function&quot;</span>)</span>
+<span id="cb798-19"><a href="debugging.html#cb798-19"></a>  </span>
+<span id="cb798-20"><a href="debugging.html#cb798-20"></a>  x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb798-21"><a href="debugging.html#cb798-21"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb798-22"><a href="debugging.html#cb798-22"></a>}</span>
+<span id="cb798-23"><a href="debugging.html#cb798-23"></a></span>
+<span id="cb798-24"><a href="debugging.html#cb798-24"></a><span class="co"># Call the function again</span></span>
+<span id="cb798-25"><a href="debugging.html#cb798-25"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<p>The last print statement was not produced before the error was generated, we have isolated a section of the function for where to look for the error.</p>
+</div>
+</div>
+<div id="using-debuggers" class="section level2">
+<h2><span class="header-section-number">16.3</span> Using Debuggers</h2>
+<p>Some popular debuggers in R:</p>
+<ul>
+<li><code>traceback()</code></li>
+<li><code>browser()</code></li>
+<li><code>debug()</code></li>
+</ul>
+<div id="traceback" class="section level3">
+<h3><span class="header-section-number">16.3.1</span> traceback()</h3>
+<p>The <code>traceback()</code> function is useful to see where a error occurred within a function and when we call functions within functions. It is not particularly helpful for functions that are self-contained. It prints the sequence of calls that lead to the error. It is useful when an error occurs with an unidentifiable error message, or a large series of error messages is produced after calling a function.</p>
+</div>
+<div id="example-with-traceback" class="section level3 unnumbered">
+<h3>Example with traceback()</h3>
+<p>Run the following chunk of code and observe the output in your console. The command <code>func1(7)</code> results in an error, but we will pretend we do not know where the error occurred.
+We type <code>traceback()</code> in the console to see where this error happened, and what the last function call was.</p>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="debugging.html#cb799-1"></a>func1 =<span class="st"> </span><span class="cf">function</span>(x){<span class="kw">func2</span>(x)}</span>
+<span id="cb799-2"><a href="debugging.html#cb799-2"></a>func2 =<span class="st"> </span><span class="cf">function</span>(x){<span class="kw">func3</span>(x<span class="op">+</span><span class="dv">1</span>)}</span>
+<span id="cb799-3"><a href="debugging.html#cb799-3"></a>func3 =<span class="st"> </span><span class="cf">function</span>(x){<span class="kw">func4</span>(x<span class="op">+</span><span class="dv">4</span>)}</span>
+<span id="cb799-4"><a href="debugging.html#cb799-4"></a>func4 =<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb799-5"><a href="debugging.html#cb799-5"></a>  y =<span class="st"> &quot;a&quot;</span></span>
+<span id="cb799-6"><a href="debugging.html#cb799-6"></a>  x =<span class="st"> </span>x<span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb799-7"><a href="debugging.html#cb799-7"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb799-8"><a href="debugging.html#cb799-8"></a>}</span>
+<span id="cb799-9"><a href="debugging.html#cb799-9"></a></span>
+<span id="cb799-10"><a href="debugging.html#cb799-10"></a><span class="kw">func1</span>(<span class="dv">7</span>)</span>
+<span id="cb799-11"><a href="debugging.html#cb799-11"></a><span class="kw">traceback</span>() </span></code></pre></div>
+<p>The function <code>traceback()</code> tells us that the last function called was <code>func4(x + 4)</code>, so we conclude that the error must be in that function.</p>
+</div>
+<div id="unfamiliar-function-with-traceback" class="section level3 unnumbered">
+<h3>Unfamiliar function with traceback()</h3>
+</div>
+<div id="browswer" class="section level3">
+<h3><span class="header-section-number">16.3.2</span> browswer()</h3>
+</div>
+<div id="debug" class="section level3">
+<h3><span class="header-section-number">16.3.3</span> debug()</h3>
+</div>
+</div>
+<div id="more-options-to-consider" class="section level2">
+<h2><span class="header-section-number">16.4</span> More options to consider</h2>
+<p>R has even more functions and tools to help us “examine” the program to “diagnose” the problem. Here are some other features that can be explored.</p>
+<ul>
+<li><code>Breakpoints</code></li>
+<li><code>trace()</code></li>
+<li><code>recover()</code></li>
+<li><code>system.time()</code></li>
+</ul>
+</div>
+<div id="important-takeaways" class="section level2">
+<h2><span class="header-section-number">16.5</span> Important Takeaways</h2>
+<p>Debugging can take longer then writing the program itself.</p>
+<ul>
+<li><p><strong>Primary Goal</strong>: Do not have bugs in the first place.</p></li>
+<li><p><strong>Secondary Goal</strong>: Have clean readable code where it is easy to spot the bugs quickly.</p></li>
+</ul>
+<p><em>Great programmers are just good programmers with great habits.</em></p>
+<div id="tips-for-writing-good-code" class="section level3 unnumbered">
+<h3>Tips for Writing good code</h3>
+<p>10 Tips for Writing good code.</p>
+<ul>
+<li><p><strong>Use Descriptive Names</strong>: Have a system for naming variables, functions, etc.</p></li>
+<li><p><strong>Give Each Class/Function One Purpose</strong>: Which is easier to edit, a function that is several hundred lines long? Or several small functions?</p></li>
+<li><p><strong>Delete Unnecessary Code</strong>: If you comment out a chunk of code that you are no longer using, delete it!</p></li>
+<li><p><strong>Readability <span class="math inline">\(&gt;\)</span> Cleverness</strong>: Compacting 10 lines of code sounds appealing, and is likely clever, but it is even more likely to be difficult to read.</p></li>
+<li><p><strong>Keep a Consistent Coding Style</strong>: Have a formatting method? Stick to it.</p></li>
+<li><p><strong>Choose the right program</strong>: You do not need to have the best program, but you will want a program where your project is all in the same place.</p></li>
+<li><p><strong>Master the Language’s Idioms</strong>: If the language has a system and syntax it was built to use, use it. (R and vectorization, Python and lists, C and defining variable types)</p></li>
+<li><p><strong>Study the Code of Others</strong>: Read code from experts and novice. Get a feel for what makes clean code.</p></li>
+<li><p><strong>Write Good Comments</strong>: Comments exist to explain WHY a piece of code exists rather than WHAT the code actually does. (i.e. “Use because X, Y, and Z”, not “This will do W, U, and V.”). Use more rather than less, but too many is problematic.</p></li>
+<li><p><strong>Refactor/Rewrite</strong>: Just because the program works, doesn’t mean it can be adjusted to be more clear. Refactor as you would rewrite an essay.</p></li>
+</ul>
+</div>
+<div id="steps-to-reduce-the-number-of-bugs" class="section level3 unnumbered">
+<h3>Steps to Reduce the Number of Bugs</h3>
+<p>The most important way to combat bugs is to write a bug-free program in the first place.</p>
+<ul>
+<li><p>Write your program in such a way that it can stand alone, and be understood by a peer with a similar level of programming knowledge.</p></li>
+<li><p>Sit and make a plan for your program before you begin writing it.</p></li>
+<li><p>Avoid writing the program as fast as possible.</p></li>
+<li><p>Practice defensive programming. This is similar to defensive driving, which means driving under worst-case scenarios. Make your code explicit, have your program print out an error message or make checks for the input.</p></li>
+</ul>
+</div>
+<div id="after-you-located-the-error" class="section level3 unnumbered">
+<h3>After You Located the Error</h3>
+<p>Often the hardest step is locating <em>where</em> the bug is. The next step is determining <em>what</em> the bug is.</p>
+<ul>
+<li><p>Help Files</p></li>
+<li><p>Google (seriously)</p></li>
+</ul>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2><span class="header-section-number">16.6</span> Resources</h2>
+<ul>
+<li><p><a href="http://www.cs.cornell.edu/courses/cs312/2006fa/lectures/lec26.html" class="uri">http://www.cs.cornell.edu/courses/cs312/2006fa/lectures/lec26.html</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Debugging" class="uri">https://en.wikipedia.org/wiki/Debugging</a></p></li>
+<li><p><a href="https://data-flair.training/blogs/debugging-in-r-programming/" class="uri">https://data-flair.training/blogs/debugging-in-r-programming/</a></p></li>
+<li><p><a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio" class="uri">https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio</a></p></li>
+<li><p><a href="https://adv-r.hadley.nz/debugging.html" class="uri">https://adv-r.hadley.nz/debugging.html</a></p></li>
+<li><p><a href="http://www.math.ncu.edu.tw/~chenwc/R\_note/reference/debug/Rdebug.pdf" class="uri">http://www.math.ncu.edu.tw/~chenwc/R\_note/reference/debug/Rdebug.pdf</a></p></li>
+<li><p><a href="https://www.makeuseof.com/tag/10-tips-writing-cleaner-better-code/" class="uri">https://www.makeuseof.com/tag/10-tips-writing-cleaner-better-code/</a></p></li>
+<li><p><a href="https://owi.usgs.gov/R/training-curriculum/r-package-dev/debugging/" class="uri">https://owi.usgs.gov/R/training-curriculum/r-package-dev/debugging/</a></p></li>
+</ul>
 
 </div>
 </div>
@@ -669,8 +630,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="introduction-to-r-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-data-sets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -702,7 +663,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-objects.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/15-debugging.Rmd",
 "text": "Edit"
 },
 "history": {
