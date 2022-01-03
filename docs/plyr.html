@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2021-12-02" />
+<meta name="date" content="2021-12-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -4403,11 +4403,11 @@ The</p></li>
 <div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="plyr.html#cb770-1"></a><span class="co"># Plyr way </span></span>
 <span id="cb770-2"><a href="plyr.html#cb770-2"></a><span class="kw">system.time</span>(<span class="kw">ddply</span>(baseball, <span class="st">&quot;id&quot;</span>, summarize, <span class="kw">length</span>(year)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.231   0.003   0.234</code></pre>
+##   0.223   0.001   0.224</code></pre>
 <div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="plyr.html#cb772-1"></a><span class="co"># Apply method way </span></span>
 <span id="cb772-2"><a href="plyr.html#cb772-2"></a><span class="kw">system.time</span>(<span class="kw">tapply</span>(baseball<span class="op">$</span>year, baseball<span class="op">$</span>id,  <span class="cf">function</span>(x) <span class="kw">length</span>(x)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.005   0.000   0.005</code></pre>
+##   0.004   0.000   0.005</code></pre>
 <div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="plyr.html#cb774-1"></a><span class="co"># Loop way </span></span>
 <span id="cb774-2"><a href="plyr.html#cb774-2"></a><span class="kw">system.time</span>({</span>
 <span id="cb774-3"><a href="plyr.html#cb774-3"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">unique</span>(baseball<span class="op">$</span>id)){</span>
@@ -4415,7 +4415,7 @@ The</p></li>
 <span id="cb774-5"><a href="plyr.html#cb774-5"></a>  } </span>
 <span id="cb774-6"><a href="plyr.html#cb774-6"></a>})</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.199   0.042   0.243</code></pre>
+##   0.200   0.044   0.245</code></pre>
 
 </div>
 </div>
